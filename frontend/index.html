@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Be Vietnam Pro', sans-serif;
+      background-color: #f4f8f5;
+      color: #0f172a;
+    }
+    .pro-card {
+      background: #ffffff;
+      border: 1px solid #d1e7dd;
+      box-shadow: 0 4px 16px -4px rgba(13, 92, 46, 0.06);
+    }
+    .brand-gradient {
+      background: linear-gradient(135deg, #0d5c2e 0%, #4ca634 100%);
+    }
+    .brand-btn {
+      background: linear-gradient(135deg, #106b35 0%, #459c2f 100%);
+      box-shadow: 0 4px 12px rgba(22, 101, 52, 0.22);
+    }
+    .brand-btn:hover {
+      background: linear-gradient(135deg, #0b4f26 0%, #388524 100%);
+    }
+    .rank-badge-1 {
+      background: linear-gradient(135deg, #0d5c2e 0%, #4ca634 100%);
+      box-shadow: 0 4px 12px rgba(13, 92, 46, 0.3);
+    }
+    .rank-badge-2 {
+      background: linear-gradient(135deg, #15803d 0%, #22c55e 100%);
+      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
+    }
+    .rank-badge-3 {
+      background: linear-gradient(135deg, #047857 0%, #10b981 100%);
+      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
+    }
+    .rank-badge-other {
+      background: #ecfdf5;
+      border: 1px solid #a7f3d0;
+      color: #065f46;
+    }
+    /* Custom scrollbar cho cột dọc Trending Now */
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #f1f5f9;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #86efac;
+      border-radius: 8px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb:hover {
+      background: #22c55e;
+    }
+  </style>
+</head>
+<body class="min-h-screen pb-16">
+  <!-- TOP NAVBAR -->
+  <header class="sticky top-0 z-40 border-b border-emerald-200/80 bg-white/95 backdrop-blur-md shadow-sm">
+    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div class="flex items-center gap-3.5">
+        <div class="w-12 h-12 rounded-xl bg-white border border-emerald-200 p-1.5 flex items-center justify-center shadow-sm shrink-0">
+          <img id="brandLogo" src="logo.png" alt="Logo" class="w-full h-full object-contain" />
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2.5">
+            <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-emerald-950">
+              LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT
+            </h1>
+            <span class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
+              Top 10 / Ngày
+            </span>
+          </div>
+          <p class="text-xs text-slate-600 mt-0.5">
+            Hệ thống nghiên cứu 10 Keyword Tin tức Công nghệ, Phần mềm, Game, AI & Chính sách số kèm Top 3 bài viết & Gợi ý Keyword SEO
+          </p>
+        </div>
+      </div>
+
+      <!-- QUOTA & ACTIONS -->
+      <div class="flex flex-wrap items-center gap-2.5">
+        <div id="quotaBox" class="px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-2 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+          <span class="text-emerald-900 font-medium">SerpApi Quota:</span>
+          <span id="quotaText" class="font-extrabold text-emerald-800">-- / 250 lượt</span>
+        </div>
+
+        <button onclick="scanLatestNews(false)" id="btnScanNews" class="px-4 py-2.5 rounded-xl brand-btn text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2">
+          <svg id="scanIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+          </svg>
+          <span>Quét Tin Mới & Cập Nhật Top 10</span>
+        </button>
+
+        <button onclick="exportReportCSV()" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-emerald-900 font-semibold text-xs sm:text-sm border border-emerald-300 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+          </svg>
+          <span>Xuất CSV</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-6">
+    <!-- STATUS SUMMARY & 4 SERPAPI SUITE PANEL -->
+    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+      <!-- KPI Cards -->
+      <div class="lg:col-span-5 grid grid-cols-2 gap-3.5">
+        <div class="pro-card rounded-2xl p-4">
+          <div class="text-xs font-medium text-slate-500">Cập nhật lần cuối</div>
+          <div id="statGeneratedAt" class="text-base font-extrabold text-emerald-950 mt-1">Đang tải...</div>
+          <div id="statTimeWindow" class="text-xs font-semibold text-emerald-700 mt-1">Khung thời gian: 48 giờ qua</div>
+        </div>
+        <div class="pro-card rounded-2xl p-4">
+          <div class="text-xs font-medium text-slate-500">Bài báo & Đối thủ đã quét</div>
+          <div class="flex items-baseline gap-2 mt-1">
+            <span id="statTotalArticles" class="text-2xl font-extrabold text-emerald-700">--</span>
+            <span class="text-xs text-slate-500 font-medium">bài mới</span>
+          </div>
+          <div id="statTotalClusters" class="text-xs text-slate-600 mt-1">Gom thành -- chủ đề</div>
+        </div>
+      </div>
+
+      <!-- 4 SerpApi Engines Status -->
+      <div class="lg:col-span-7 pro-card rounded-2xl p-4 flex flex-col justify-between">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-900">Trạng thái 4 Cổng SerpApi Hàng Ngày</span>
+            <span id="serpCacheBadge" class="px-2.5 py-0.5 text-[11px] font-semibold rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
+              Đang kiểm tra...
+            </span>
+          </div>
+          <button onclick="scanLatestNews(true)" class="text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">
+            Gọi mới lại 4 cổng SerpApi (-4 lượt)
+          </button>
+        </div>
+
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
+          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+            <div class="text-slate-600 text-[11px] font-medium">1. Trending Now</div>
+            <div id="apiStatus1" class="font-bold text-emerald-800 mt-0.5">--</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+            <div class="text-slate-600 text-[11px] font-medium">2. Autocomplete</div>
+            <div id="apiStatus2" class="font-bold text-emerald-800 mt-0.5">--</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+            <div class="text-slate-600 text-[11px] font-medium">3. Google Search</div>
+            <div id="apiStatus3" class="font-bold text-emerald-800 mt-0.5">--</div>
+          </div>
+          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+            <div class="text-slate-600 text-[11px] font-medium">4. Google Trends</div>
+            <div id="apiStatus4" class="font-bold text-emerald-800 mt-0.5">--</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAIN 2-COLUMN LAYOUT: LEFT SIDEBAR (GOOGLE TRENDING NOW) & RIGHT CONTENT (FILTERS + TOP 10 KEYWORDS) -->
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <!-- CỘT DỌC BÊN TRÁI: GOOGLE TRENDING NOW (VN) -->
+      <aside class="lg:col-span-3 lg:sticky lg:top-24 space-y-4">
+        <div id="trendingNowBar" class="pro-card rounded-2xl p-4 border-t-4 border-t-emerald-600">
+          <div class="flex items-center justify-between gap-2 mb-1.5">
+            <span class="px-2.5 py-1 text-[11px] font-extrabold rounded-md bg-emerald-700 text-white tracking-wide">
+              GOOGLE TRENDING NOW (VN)
+            </span>
+            <span class="text-[11px] font-bold text-emerald-700">Live 48h</span>
+          </div>
+          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+            Các truy vấn đang tăng trưởng đột biến tại Việt Nam được lấy từ SerpApi:
+          </p>
+          <div id="trendingNowChips" class="flex flex-col gap-2 max-h-[68vh] overflow-y-auto pr-1 custom-scroll">
+            <div class="text-xs text-slate-400 py-4 text-center">Đang tải xu hướng...</div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- CỘT BÊN PHẢI: BỘ LỌC & DANH SÁCH TOP 10 KEYWORD -->
+      <div class="lg:col-span-9 space-y-5">
+        <!-- FILTER CONTROLS -->
+        <section class="pro-card rounded-2xl p-4 flex flex-col xl:flex-row xl:items-center justify-between gap-3.5">
+          <div class="flex flex-wrap items-center gap-2.5">
+            <!-- Time window selector -->
+            <div class="flex items-center bg-emerald-50 p-1 rounded-xl border border-emerald-200 text-xs">
+              <button onclick="changeHoursWindow(24)" id="btnHours24" class="px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-emerald-900">
+                Trong 24h qua
+              </button>
+              <button onclick="changeHoursWindow(48)" id="btnHours48" class="px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm">
+                Trong 48h qua (Khuyên dùng)
+              </button>
+            </div>
+
+            <!-- Source filter -->
+            <select id="filterSource" onchange="renderKeywords()" class="bg-white border border-emerald-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600">
+              <option value="ALL">Tất cả nguồn (Báo chí + Đối thủ)</option>
+              <option value="HAS_COMPETITOR">Ưu tiên: Đối thủ đã lên bài</option>
+              <option value="OPPORTUNITY">Cơ hội: Báo đã viết, Đối thủ chưa viết</option>
+            </select>
+
+            <!-- Niche filter -->
+            <select id="filterNiche" onchange="renderKeywords()" class="bg-white border border-emerald-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600">
+              <option value="ALL">Tất cả 9 Ngách Nội Dung</option>
+            </select>
+          </div>
+
+          <!-- Search input -->
+          <div class="relative w-full xl:w-64">
+            <input
+              type="text"
+              id="searchInput"
+              oninput="renderKeywords()"
+              placeholder="Tìm nhanh keyword hoặc tên báo..."
+              class="w-full bg-emerald-50/50 border border-emerald-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:bg-white"
+            />
+            <svg class="w-4 h-4 text-emerald-700 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+            </svg>
+          </div>
+        </section>
+
+        <!-- LOADING INDICATOR -->
+        <div id="loadingBox" class="pro-card rounded-2xl py-16 text-center hidden">
+          <div class="inline-block w-10 h-10 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mb-3"></div>
+          <p class="text-sm font-bold text-emerald-950">Đang quét tin tức từ các Báo lớn, Đối thủ và đồng bộ 4 cổng SerpApi...</p>
+          <p class="text-xs text-slate-500 mt-1">Quá trình này mất khoảng 5 - 10 giây.</p>
+        </div>
+
+        <!-- TOP 10 KEYWORDS LIST -->
+        <section id="keywordsContainer" class="space-y-5"></section>
+      </div>
+    </div>
+  </main>
+
+  <!-- TOAST NOTIFICATION -->
+  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden px-4 py-3 rounded-xl brand-gradient text-white text-xs font-bold shadow-xl">
+    Đã sao chép vào bộ nhớ tạm!
+  </div>
+
+  <script>
+    let currentReport = null;
+    let currentHours = 48;
+
+    const NICHE_COLORS = {
+      emerald: "bg-emerald-100 text-emerald-800 border-emerald-300",
+      blue: "bg-teal-100 text-teal-800 border-teal-300",
+      indigo: "bg-emerald-50 text-emerald-900 border-emerald-300",
+      purple: "bg-green-100 text-green-800 border-green-300",
+      amber: "bg-lime-100 text-lime-900 border-lime-300",
+      pink: "bg-emerald-100 text-emerald-800 border-emerald-300",
+      red: "bg-amber-100 text-amber-900 border-amber-300",
+      rose: "bg-rose-100 text-rose-800 border-rose-300",
+      teal: "bg-teal-100 text-teal-800 border-teal-300"
+    };
+
+    const API_BASE = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
+
+    // Đảm bảo logo hiển thị tốt dù mở bằng http://127.0.0.1:8000 hay file://
+    const logoEl = document.getElementById("brandLogo");
+    if (window.location.protocol !== "file:") {
+      logoEl.src = "/logo.png";
+    }
+
+    async function loadReport(refreshNews = false, forceSerpapi = false) {
+      const loadingBox = document.getElementById("loadingBox");
+      const container = document.getElementById("keywordsContainer");
+      const btnScan = document.getElementById("btnScanNews");
+
+      loadingBox.classList.remove("hidden");
+      container.classList.add("opacity-40");
+      btnScan.disabled = true;
+
+      try {
+        const url = `${API_BASE}/api/report?hours=${currentHours}&refresh_news=${refreshNews}&force_serpapi=${forceSerpapi}`;
+        const resp = await fetch(url);
+        if (!resp.ok) throw new Error(`Server trả về lỗi HTTP ${resp.status}`);
+        const data = await resp.json();
+        currentReport = data;
+        updateDashboardHeader(data);
+        populateNicheDropdown(data.niches_catalog || []);
+        renderKeywords();
+      } catch (err) {
+        console.error(err);
+        container.innerHTML = `
+          <div class="pro-card rounded-2xl p-8 text-center">
+            <p class="text-base font-bold text-rose-600">Không tải được dữ liệu từ server</p>
+            <p class="text-xs text-slate-500 mt-2">${escapeHtml(err.message)}</p>
+            <p class="text-xs text-slate-700 mt-3">Hãy chạy <code class="px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded font-mono">python run_dashboard.py</code> rồi mở <strong>http://127.0.0.1:8000</strong></p>
+          </div>`;
+      } finally {
+        loadingBox.classList.add("hidden");
+        container.classList.remove("opacity-40");
+        btnScan.disabled = false;
+      }
+    }
+
+    function updateDashboardHeader(data) {
+      document.getElementById("statGeneratedAt").textContent = data.generated_at || "--";
+      document.getElementById("statTimeWindow").textContent = `Khung thời gian: ${data.time_window_hours || 48} giờ qua`;
+      document.getElementById("statTotalArticles").textContent = data.total_articles_scanned || 0;
+      document.getElementById("statTotalClusters").textContent = `Phát hiện ${data.total_clusters_detected || 0} cụm chủ đề`;
+
+      const serp = data.serpapi_status || {};
+      const acc = serp.account || {};
+      if (acc.searches_left !== undefined) {
+        document.getElementById("quotaText").textContent = `${acc.searches_left} / ${acc.searches_per_month || 250} lượt`;
+      }
+
+      const cacheBadge = document.getElementById("serpCacheBadge");
+      if (serp.daily_suite_from_cache) {
+        cacheBadge.textContent = "Đã lưu Cache hôm nay (0 tốn thêm lượt)";
+        cacheBadge.className = "px-2.5 py-0.5 text-[11px] font-bold rounded-md bg-emerald-100 text-emerald-800 border border-emerald-300";
+      } else {
+        cacheBadge.textContent = "Vừa đồng bộ trực tiếp 4 API";
+        cacheBadge.className = "px-2.5 py-0.5 text-[11px] font-bold rounded-md bg-green-100 text-green-800 border border-green-300";
+      }
+
+      const apis = serp.apis_called || {};
+      setApiStatus("apiStatus1", apis.google_trends_trending_now, "xu hướng");
+      setApiStatus("apiStatus2", apis.google_autocomplete, "gợi ý");
+      setApiStatus("apiStatus3", apis.google_search, "bài top");
+      setApiStatus("apiStatus4", apis.google_trends, "chỉ số");
+
+      // Cột dọc Google Trending Now bên trái
+      const highlights = serp.trending_now_highlights || [];
+      const chips = document.getElementById("trendingNowChips");
+      if (highlights.length > 0) {
+        chips.innerHTML = highlights.map((item, idx) => `
+          <div onclick="copyText('${escapeAttr(item.query)}')"
+               title="Bấm để copy từ khóa xu hướng"
+               class="cursor-pointer group p-2.5 rounded-xl bg-emerald-50/60 hover:bg-emerald-100/80 border border-emerald-200/80 transition flex items-center justify-between gap-2">
+            <div class="flex items-center gap-2.5 min-w-0">
+              <span class="w-6 h-6 rounded-lg bg-emerald-700 text-white text-[11px] font-extrabold flex items-center justify-center shrink-0">
+                ${idx + 1}
+              </span>
+              <span class="font-bold text-xs text-slate-800 group-hover:text-emerald-950 truncate">
+                ${escapeHtml(item.query)}
+              </span>
+            </div>
+            ${item.search_volume ? `
+              <span class="px-2 py-0.5 rounded-md bg-white border border-emerald-200 text-[10px] font-bold text-emerald-700 shrink-0">
+                ${item.search_volume.toLocaleString()}+
+              </span>
+            ` : ""}
+          </div>
+        `).join("");
+      } else {
+        chips.innerHTML = `<div class="text-xs text-slate-500 py-4 text-center">Chưa có dữ liệu xu hướng.</div>`;
+      }
+    }
+
+    function setApiStatus(elId, info, unit) {
+      const el = document.getElementById(elId);
+      if (!info) {
+        el.textContent = "Chưa gọi";
+        el.className = "font-semibold text-slate-400 mt-0.5";
+        return;
+      }
+      if (info.status === "success") {
+        const count = info.count !== undefined ? `${info.count} ${unit}` : "Hoạt động tốt";
+        el.textContent = `✓ ${count}`;
+        el.className = "font-bold text-emerald-700 mt-0.5";
+      } else {
+        el.textContent = info.status;
+        el.className = "font-bold text-amber-600 mt-0.5";
+      }
+    }
+
+    function populateNicheDropdown(catalog) {
+      const select = document.getElementById("filterNiche");
+      const currentVal = select.value;
+      select.innerHTML = `<option value="ALL">Tất cả 9 Ngách Nội Dung</option>` +
+        catalog.map(n => `<option value="${n.id}">${escapeHtml(n.name)}</option>`).join("");
+      select.value = currentVal || "ALL";
+    }
+
+    function renderKeywords() {
+      const container = document.getElementById("keywordsContainer");
+      if (!currentReport || !currentReport.top_10_keywords) {
+        container.innerHTML = "";
+        return;
+      }
+
+      const sourceFilter = document.getElementById("filterSource").value;
+      const nicheFilter = document.getElementById("filterNiche").value;
+      const q = (document.getElementById("searchInput").value || "").toLowerCase().trim();
+
+      const filtered = currentReport.top_10_keywords.filter(item => {
+        if (nicheFilter !== "ALL" && item.niche?.id !== nicheFilter) return false;
+        if (sourceFilter === "HAS_COMPETITOR" && (item.stats?.competitor_count || 0) === 0) return false;
+        if (sourceFilter === "OPPORTUNITY" && (item.stats?.competitor_count || 0) > 0) return false;
+
+        if (q) {
+          const inKw = item.keyword.toLowerCase().includes(q);
+          const inRel = (item.related_keywords || []).some(r => r.toLowerCase().includes(q));
+          const inArts = (item.top_3_articles || []).some(a =>
+            a.title.toLowerCase().includes(q) || a.source_name.toLowerCase().includes(q)
+          );
+          if (!inKw && !inRel && !inArts) return false;
+        }
+        return true;
+      });
+
+      if (filtered.length === 0) {
+        container.innerHTML = `
+          <div class="pro-card rounded-2xl p-10 text-center text-slate-500">
+            Không tìm thấy keyword nào khớp với bộ lọc hiện tại.
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = filtered.map(item => renderKeywordCard(item)).join("");
+    }
+
+    function renderKeywordCard(item) {
+      const rank = item.rank;
+      let rankClass = "rank-badge-other";
+      if (rank === 1) rankClass = "rank-badge-1 text-white";
+      else if (rank === 2) rankClass = "rank-badge-2 text-white";
+      else if (rank === 3) rankClass = "rank-badge-3 text-white";
+
+      const nicheColor = NICHE_COLORS[item.niche?.badge_color] || NICHE_COLORS.emerald;
+      const compCount = item.stats?.competitor_count || 0;
+      const pressCount = item.stats?.press_count || 0;
+
+      const competitorAlertBadge = compCount > 0
+        ? `<span class="px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-300 text-xs font-bold flex items-center gap-1">
+             🔥 ${compCount} Đối thủ đã lên bài (${escapeHtml((item.stats.competitor_list || []).join(", "))})
+           </span>`
+        : `<span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold">
+             💡 Cơ hội đi trước: ${pressCount} Báo lớn đã viết, Đối thủ chưa lên bài
+           </span>`;
+
+      const articlesHtml = (item.top_3_articles || []).map((art, idx) => {
+        const isComp = art.source_type === "COMPETITOR";
+        const srcBadgeClass = isComp
+          ? "bg-amber-100 text-amber-900 border-amber-300"
+          : "bg-emerald-100 text-emerald-900 border-emerald-300";
+
+        return `
+          <a href="${escapeAttr(art.url)}" target="_blank" rel="noopener noreferrer"
+             class="group block p-3.5 rounded-xl bg-emerald-50/40 hover:bg-emerald-50 border border-emerald-200/90 hover:border-emerald-500 transition flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2 py-0.5 text-[11px] font-bold rounded border ${srcBadgeClass}">
+                  [${escapeHtml(art.source_badge)}] ${escapeHtml(art.source_name)}
+                </span>
+                <span class="text-[11px] font-medium text-slate-500 flex items-center gap-1">
+                  🕒 ${escapeHtml(art.relative_time)}
+                </span>
+              </div>
+              <h4 class="text-sm font-bold text-slate-900 group-hover:text-emerald-800 transition line-clamp-2">
+                Bài #${idx + 1}: ${escapeHtml(art.title)}
+              </h4>
+              ${art.summary ? `<p class="text-xs text-slate-600 mt-1.5 line-clamp-2">${escapeHtml(art.summary)}</p>` : ""}
+            </div>
+            <div class="mt-3 pt-2 border-t border-emerald-200/60 flex items-center justify-between text-[11px] font-bold text-emerald-700">
+              <span>Mở đọc bài viết gốc</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </div>
+          </a>
+        `;
+      }).join("");
+
+      const seoList = item.seo_suggested_keywords && item.seo_suggested_keywords.length > 0
+        ? item.seo_suggested_keywords
+        : (item.related_keywords || []).map(rk => ({ keyword: rk, intent: "Keyword Gợi ý", based_on: "Tổng hợp từ Top 3 bài viết" }));
+
+      const seoSuggestionsHtml = seoList.map((s, idx) => `
+        <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-300 hover:border-emerald-600 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div class="space-y-1">
+            <div class="flex flex-wrap items-center gap-2">
+              <span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-[11px] font-bold">
+                Gợi ý SEO #${idx + 1}
+              </span>
+              <span class="text-[11px] text-emerald-900 font-semibold">
+                • ${escapeHtml(s.intent || "Keyword Tin tức SEO")}
+              </span>
+            </div>
+            <div class="text-sm sm:text-base font-extrabold text-emerald-950">
+              “${escapeHtml(s.keyword)}”
+            </div>
+            ${s.based_on ? `<div class="text-[11px] text-slate-600">📌 Bám sát bài: ${escapeHtml(s.based_on)}</div>` : ""}
+          </div>
+          <button onclick="copyText('${escapeAttr(s.keyword)}')"
+                  class="shrink-0 px-3.5 py-2 rounded-lg brand-btn text-white text-xs font-bold transition">
+            Copy Keyword SEO
+          </button>
+        </div>
+      `).join("");
+
+      return `
+        <article class="pro-card rounded-2xl p-5 sm:p-6 transition hover:border-emerald-400">
+          <!-- BƯỚC 1: KEYWORD THU THẬP -->
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-emerald-100">
+            <div class="flex items-start sm:items-center gap-3.5">
+              <div class="w-11 h-11 rounded-2xl ${rankClass} flex items-center justify-center font-extrabold text-lg shrink-0">
+                #${rank}
+              </div>
+              <div>
+                <div class="flex flex-wrap items-center gap-2 mb-1">
+                  <span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider">
+                    1. Keyword Thu Thập
+                  </span>
+                  <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold border ${nicheColor}">
+                    ${escapeHtml(item.niche?.name || "Công nghệ")}
+                  </span>
+                  <span class="text-xs text-slate-400">•</span>
+                  <span class="text-xs text-slate-700">
+                    Độ phủ: <strong class="text-emerald-900">${item.stats?.total_articles_found || 0} bài viết</strong> trong 48h
+                  </span>
+                  ${item.stats?.is_trending_now ? `
+                    <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-bold">
+                      ⚡ Google Trending Now
+                    </span>
+                  ` : ""}
+                </div>
+                <div class="flex items-center gap-2.5">
+                  <h2 class="text-lg sm:text-xl font-extrabold text-emerald-950 tracking-tight">
+                    ${escapeHtml(item.keyword)}
+                  </h2>
+                  <button onclick="copyText('${escapeAttr(item.keyword)}')"
+                          class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-[11px] font-bold text-emerald-800 border border-emerald-300 transition">
+                    Copy
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- SCORE & COMPETITOR ALERT -->
+            <div class="flex flex-wrap items-center gap-3">
+              ${competitorAlertBadge}
+              <div class="px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-right">
+                <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Tổng điểm SEO</div>
+                <div class="text-base font-extrabold text-emerald-700">${item.total_score} <span class="text-xs font-medium text-slate-500">/ 100</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- BƯỚC 2: TOP 3 BÀI VIẾT ĐANG CHỨA KEYWORD -->
+          <div class="mt-4 pb-5 border-b border-emerald-100">
+            <div class="flex items-center justify-between mb-2.5">
+              <div class="flex items-center gap-2">
+                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-bold uppercase tracking-wider">
+                  2. Top 3 Bài Viết
+                </span>
+                <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-700">
+                  Top 3 Bài Viết Mới Nhất Đang Chứa Keyword (24h - 48h qua)
+                </h3>
+              </div>
+              <span class="text-[11px] font-medium text-slate-500">
+                Bài mới nhất: ${item.stats?.newest_hours_ago || 1} giờ trước
+              </span>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+              ${articlesHtml}
+            </div>
+          </div>
+
+          <!-- BƯỚC 3: GỢI Ý KEYWORD CHỊ SẼ DÙNG CHO BÀI VIẾT SEO WEBSITE -->
+          <div class="mt-4">
+            <div class="flex items-center gap-2 mb-3">
+              <span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider">
+                3. Gợi Ý Keyword Viết Bài SEO
+              </span>
+              <h3 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800">
+                Keyword Gợi Ý Bám Sát Vấn Đề Của Top 3 Bài Viết Để Triển Khai Lên Website:
+              </h3>
+            </div>
+            <div class="grid grid-cols-1 gap-2.5">
+              ${seoSuggestionsHtml}
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    function scanLatestNews(forceSerpapi = false) {
+      loadReport(true, forceSerpapi);
+    }
+
+    function changeHoursWindow(hours) {
+      currentHours = hours;
+      const b24 = document.getElementById("btnHours24");
+      const b48 = document.getElementById("btnHours48");
+      if (hours === 24) {
+        b24.className = "px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm";
+        b48.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-emerald-900";
+      } else {
+        b48.className = "px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm";
+        b24.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-emerald-900";
+      }
+      loadReport(true, false);
+    }
+
+    function copyText(text) {
+      navigator.clipboard.writeText(text);
+      const toast = document.getElementById("toast");
+      toast.textContent = `Đã copy: "${text}"`;
+      toast.classList.remove("hidden");
+      setTimeout(() => toast.classList.add("hidden"), 2200);
+    }
+
+    function exportReportCSV() {
+      if (!currentReport || !currentReport.top_10_keywords) return;
+      const rows = [
+        ["Hạng", "Keyword Thu Thập", "Ngách Nội Dung", "Điểm Số", "Gợi Ý Keyword SEO Website", "Bài Viết 1", "Link 1", "Bài Viết 2", "Link 2", "Bài Viết 3", "Link 3"]
+      ];
+      for (const item of currentReport.top_10_keywords) {
+        const a1 = item.top_3_articles[0] || {};
+        const a2 = item.top_3_articles[1] || {};
+        const a3 = item.top_3_articles[2] || {};
+        const seoKws = (item.seo_suggested_keywords || []).map(s => s.keyword).join(" | ") || (item.related_keywords || []).join(" | ");
+        rows.push([
+          item.rank,
+          item.keyword,
+          item.niche?.name || "",
+          item.total_score,
+          seoKws,
+          a1.title ? `[${a1.source_name}] ${a1.title}` : "",
+          a1.url || "",
+          a2.title ? `[${a2.source_name}] ${a2.title}` : "",
+          a2.url || "",
+          a3.title ? `[${a3.source_name}] ${a3.title}` : "",
+          a3.url || ""
+        ]);
+      }
+      const csvContent = "\uFEFF" + rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(",")).join("\n");
+      const blob = new Blob([csvContent], { type: "text/csv;charset=utf-8;" });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = `tnc_top10_keywords_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.click();
+    }
+
+    function escapeHtml(str) {
+      return String(str || "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
+    }
+
+    function escapeAttr(str) {
+      return String(str || "").replace(/'/g, "\\'").replace(/"/g, "&quot;");
+    }
+
+    // Tự động tải dữ liệu khi mở trang
+    loadReport(false, false);
+  </script>
+</body>
+</html>

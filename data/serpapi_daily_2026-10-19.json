@@ -1,0 +1,655 @@
+{
+  "date": "2026-10-19 11:34:52",
+  "from_cache": false,
+  "apis_called": {
+    "google_trends_trending_now": {
+      "status": "success",
+      "count": 40
+    },
+    "google_autocomplete": {
+      "status": "success",
+      "seed_query": "Cập nhật tính năng VNeID mới nhất",
+      "count": 5
+    },
+    "google_search": {
+      "status": "success",
+      "query": "\"Cập nhật tính năng VNeID mới nhất\" OR \"Xu hướng TikTok\" OR \"Tin tức GTA 6 (GTA VI) mới nhất\"",
+      "count": 10
+    },
+    "google_trends": {
+      "status": "success",
+      "query": "Cập nhật tính năng VNeID mới nhất,Xu hướng TikTok,Tin tức GTA 6 (GTA VI) mới nhất,Nền tảng Steam,Cập nhật Windows 11 mới nhất",
+      "scores": {
+        "cập nhật tính năng vneid mới nhất": 0,
+        "xu hướng tiktok": 6,
+        "tin tức gta 6 (gta vi) mới nhất": 0,
+        "nền tảng steam": 0,
+        "cập nhật windows 11 mới nhất": 0
+      }
+    }
+  },
+  "trending_now_items": [
+    {
+      "query": "real madrid đấu với sevilla",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "yan diomande",
+        "real vs",
+        "real",
+        "real madrid vs sevilla",
+        "vô địch tây ban nha"
+      ]
+    },
+    {
+      "query": "xổ số miền nam ngày 17 tháng 10",
+      "search_volume": 200000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Games"
+      ],
+      "related_queries": [
+        "xổ số miền nam ngày 18 tháng 10",
+        "xổ số ngày 18 tháng 10",
+        "xsmn hôm xổ số miền nam 18 10",
+        "xổ số đà lạt ngày 18 tháng 10",
+        "xổ số kiên giang ngày 18 tháng 10"
+      ]
+    },
+    {
+      "query": "cướp",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "mỹ tâm",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "leeds đấu với man utd",
+      "search_volume": 100000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "mu vs leed",
+        "leeds vs man utd",
+        "mu vs leeds",
+        "mu",
+        "leeds – man utd"
+      ]
+    },
+    {
+      "query": "quốc lộ 1a",
+      "search_volume": 500,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "samsung galaxy dòng z",
+      "search_volume": 2000,
+      "increase_percentage": 400,
+      "categories": [
+        "Technology",
+        "Science"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "real madrid – sevilla",
+      "search_volume": 5000,
+      "increase_percentage": 500,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "real madrid"
+      ]
+    },
+    {
+      "query": "tập đoàn sơn hải",
+      "search_volume": 2000,
+      "increase_percentage": 500,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "20/10",
+      "search_volume": 2000,
+      "increase_percentage": 100,
+      "categories": [
+        "Shopping"
+      ],
+      "related_queries": [
+        "quà 20/10"
+      ]
+    },
+    {
+      "query": "ngày 20/10",
+      "search_volume": 1000,
+      "increase_percentage": 200,
+      "categories": [
+        "Hobbies and Leisure"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "nottm forest đấu với arsenal",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "arsenal",
+        "arsenal vs",
+        "ars",
+        "nottm forest – arsenal",
+        "nottm forest vs arsenal"
+      ]
+    },
+    {
+      "query": "phim gả kim thoa",
+      "search_volume": 2000,
+      "increase_percentage": 200,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": [
+        "gia kim thoa",
+        "phim giả kim thoa"
+      ]
+    },
+    {
+      "query": "vnvc",
+      "search_volume": 2000,
+      "increase_percentage": 100,
+      "categories": [
+        "Health"
+      ],
+      "related_queries": [
+        "viêm não mô cầu",
+        "nhiễm não mô cầu",
+        "bệnh viêm màng não mô cầu"
+      ]
+    },
+    {
+      "query": "xuất khẩu",
+      "search_volume": 500,
+      "increase_percentage": 600,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "betis đấu với barcelona",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "thứ hạng của real betis gặp barcelona",
+        "barca vs",
+        "barca",
+        "barca vs real betis",
+        "giải vô địch pháp"
+      ]
+    },
+    {
+      "query": "canada",
+      "search_volume": 1000,
+      "increase_percentage": 300,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "vàng",
+      "search_volume": 50000,
+      "increase_percentage": 300,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "giá vàng sjc"
+      ]
+    },
+    {
+      "query": "hề mộng dao",
+      "search_volume": 200,
+      "increase_percentage": 400,
+      "categories": [
+        "Entertainment",
+        "Beauty and Fashion"
+      ],
+      "related_queries": [
+        "kylie jenner"
+      ]
+    },
+    {
+      "query": "thứ hạng của man city gặp ipswich town",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "man city đấu với ipswich town",
+        "man city vs ipswich town",
+        "man city – ipswich town",
+        "ngoại hạng",
+        "mc vs"
+      ]
+    },
+    {
+      "query": "milan đấu với atalanta",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "thứ hạng của ac milan gặp atalanta",
+        "ac milan",
+        "ac milan vs"
+      ]
+    },
+    {
+      "query": "sân bay",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance",
+        "Travel and Transportation"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "ninh bình đấu với hoàng anh gia lai",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "kết quả bóng đá ngoại hạng anh",
+        "câu lạc bộ bóng đá ninh bình",
+        "hagl",
+        "ninh bình fc",
+        "kết quả bóng đá đức"
+      ]
+    },
+    {
+      "query": "cahn đấu với hà nội",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "v league",
+        "vleague",
+        "cahn vs hà nội",
+        "hà nội fc",
+        "giải vđqg việt nam"
+      ]
+    },
+    {
+      "query": "ung thư đại trực tràng",
+      "search_volume": 2000,
+      "increase_percentage": 800,
+      "categories": [
+        "Health"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "bộ nội vụ",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": [
+        "sáp nhập xã phường"
+      ]
+    },
+    {
+      "query": "thứ hạng của bournemouth gặp sunderland",
+      "search_volume": 10000,
+      "increase_percentage": 700,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "bournemouth đấu với sunderland",
+        "bournemouth – sunderland"
+      ]
+    },
+    {
+      "query": "juventus đấu với lazio",
+      "search_volume": 2000,
+      "increase_percentage": 700,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "juventus vs"
+      ]
+    },
+    {
+      "query": "atlanta united đấu với inter miami",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "thứ hạng của atlanta united gặp inter miami",
+        "inter miami vs",
+        "giải nhà nghề mỹ",
+        "atlanta united vs inter miami",
+        "inter"
+      ]
+    },
+    {
+      "query": "xsmn hôm xổ số miền nam 17 10",
+      "search_volume": 20000,
+      "increase_percentage": 500,
+      "categories": [
+        "Games"
+      ],
+      "related_queries": [
+        "xổ số miền bắc ngày 17 tháng 10",
+        "xsmb hôm qua",
+        "xsmb thứ 7",
+        "xổ số miền bắc ngày hôm nay",
+        "số miền trung"
+      ]
+    },
+    {
+      "query": "thứ hạng của brentford gặp liverpool",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "brentford đấu với liverpool",
+        "liverpool",
+        "brentford vs liverpool",
+        "trận đấu ngoại hạng anh",
+        "brentford – liverpool"
+      ]
+    },
+    {
+      "query": "thứ hạng của everton gặp chelsea",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "everton đấu với chelsea",
+        "chelsea",
+        "chelsea vs",
+        "everton vs chelsea",
+        "everton – chelsea"
+      ]
+    },
+    {
+      "query": "tiền thưởng",
+      "search_volume": 1000,
+      "increase_percentage": 100,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "nawat itsaragrisil",
+      "search_volume": 2000,
+      "increase_percentage": 700,
+      "categories": [
+        "Entertainment",
+        "Beauty and Fashion"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thiếu tướng quân đội nhân dân việt nam",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": [
+        "cục cứu hộ cứu nạn, quân đội nhân dân việt nam"
+      ]
+    },
+    {
+      "query": "giáo sư",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Health"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "giá xăng",
+      "search_volume": 10000,
+      "increase_percentage": 800,
+      "categories": [
+        "Business and Finance",
+        "Autos and Vehicles"
+      ],
+      "related_queries": [
+        "giá xăng dầu"
+      ]
+    },
+    {
+      "query": "brighton đấu với crystal palace",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "brighton",
+        "brighton vs",
+        "premier"
+      ]
+    },
+    {
+      "query": "hồ định công",
+      "search_volume": 500,
+      "increase_percentage": 500,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "đuối nước"
+      ]
+    },
+    {
+      "query": "brighton – crystal palace",
+      "search_volume": 2000,
+      "increase_percentage": 800,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "charalampos kostoulas",
+        "brighton – arsenal"
+      ]
+    }
+  ],
+  "autocomplete_suggestions": [
+    "vneid tính năng mới",
+    "cập nhật vneid mức độ 2 online",
+    "cập nhật vneid lên mức 2",
+    "cập nhật vneid mức độ 2",
+    "cập nhật vneid mức độ 1"
+  ],
+  "google_search_articles": [
+    {
+      "title": "Nhạc Xu Hướng TIKTOK Nghe Là Nghiện - TRẦN GIAN CÕI TẠM",
+      "url": "https://www.youtube.com/watch?v=4WX4X6wakc8",
+      "summary": "... vụ quảng cáo youtube , tiktok ....báo chí. Nhạc Xu Hướng TIKTOK Nghe Là Nghiện - TRẦN GIAN CÕI TẠM. @NhacsiLu%C3%A2nPhan. AI. No views31 minutes ago more.",
+      "source_name": "YouTube · NHẠC SĨ LUÂN PHAN",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.492003+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Nhạc hay # xu hướng tiktok.Hình ảnh mang tính chất Minh họa",
+      "url": "https://www.tiktok.com/@linhlinh_51/video/7697893060507716872",
+      "summary": "Video TikTok từ Bà nội tuổi dần BST1 22TQ (@linhlinh_51): \"Nhạc hay # xu hướng tiktok.Hình ảnh mang tính chất Minh họa\".Bà nội tạm biệt Huế thôi | âm ...",
+      "source_name": "TikTok · Hoang Linh Linh BST1 22TQ",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.492036+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Ý nghĩa Slay là gì? Xu hướng Tiktok của gen Z hiện nay ...",
+      "url": "https://careerviet.vn/vi/talentcommunity/wiki-career/slay-la-gi.35A53662.html",
+      "summary": "Ý nghĩa Slay là gì? Xu hướng Tiktok của gen Z hiện nay yêu thích. Lượt xem: 65.",
+      "source_name": "CareerViet",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.492079+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "2 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "#080327 #xu hướng # tiktok #capcut #hottrend @xaykenh ...",
+      "url": "https://www.facebook.com/thuy.thuy.495905/posts/080327-xu-h%C6%B0%E1%BB%9Bng-tiktok-capcut-hottrend-xaykenh-trung-ni%C3%AAn/4728859287359785/",
+      "summary": "080327 #xu hướng # tiktok #capcut #hottrend @xaykenh @trung niên.",
+      "source_name": "Facebook · Thủy Thủy",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.492103+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Bóng truyền hơi chào mừng 20 tháng 10 # Nhạc hay xu hướng ...",
+      "url": "https://www.tiktok.com/@linhlinh_51/video/7697922953568095495",
+      "summary": "Video TikTok từ Bà nội tuổi dần BST1 22TQ (@linhlinh_51): \"Bóng truyền hơi chào mừng 20 tháng 10 # Nhạc hay xu hướng TikTok\".âm thanh gốc - Bà nội tuổi dần ...",
+      "source_name": "TikTok · Hoang Linh Linh BST1 22TQ",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.492116+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Vinahouse TikTok 2026 Mix | remix nổi bật từ các xu hướng ...",
+      "url": "https://www.youtube.com/watch?v=2BZz4HEXxfM",
+      "summary": "Vinahouse TikTok 2026 Mix | remix nổi bật từ các xu hướng TikTok, phù hợp mở cả ngày lẫn buổi tối. @Tropicalvibes-b8z. AI. 1 like1.5K viewsStreamed 3 hours ago",
+      "source_name": "YouTube · Tropical vibes",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.492127+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Thôi còn gì anh ơi - bài hát xu hướng ...",
+      "url": "https://www.tiktok.com/@ngoannguyen7272/video/7697498727933578497",
+      "summary": "Keywords: thôi còn gì anh ơi,lời bài hát ngắn TikTok,nhạc xu hướng TikTok,nhạc chạy mỗi ngày,trend xuhuong tiktok,câu hát viral,nhạc TikTok 2026,cover thôi ...",
+      "source_name": "TikTok · Ngoan...67🎥",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.494270+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Trend con mắt nào của em thấy",
+      "url": "https://ai-hay.vn/trend-con-mat-nao-cua-em-thay-pN1UmIkpf9a",
+      "summary": "Trend con mắt nào của em thấy",
+      "source_name": "AI Hay",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.494302+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "1 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "#CapCut Cuộc đời đã chấm hết.. ở tuổi 21#CapCut xu hướng ...",
+      "url": "https://www.tiktok.com/@trung.ngc49/video/7697867929752227080",
+      "summary": "113 Lượt thích,Video TikTok từ ĐÊM SẦU ĐỜI (@trung.ngc49): \"#CapCut Cuộc đời đã chấm hết.. ở tuổi 21#CapCut xu hướng tiktok\".âm thanh gốc - Gia Tường ...",
+      "source_name": "TikTok · NGƯỜI NẶNG TÌNH",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.494321+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Nghe fanchant cỡ này mới biết ca khúc hot nhất Tinh Hà ...",
+      "url": "https://kenh14.vn/nghe-fanchant-co-nay-moi-biet-ca-khuc-hot-nhat-tinh-ha-say-hi-khong-phai-noi-suong-215261018155829199.chn",
+      "summary": "Khoảnh khắc biển người bên dưới đồng thanh hát thuộc lòng từng câu từng chữ đã nhanh chóng leo thẳng lên xu hướng TikTok và Threads. Cư dân mạng liên tục ...",
+      "source_name": "Kenh14.vn",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-19T11:34:58.494334+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "15 giờ trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    }
+  ],
+  "google_trends_scores": {
+    "cập nhật tính năng vneid mới nhất": 0,
+    "xu hướng tiktok": 6,
+    "tin tức gta 6 (gta vi) mới nhất": 0,
+    "nền tảng steam": 0,
+    "cập nhật windows 11 mới nhất": 0
+  }
+}

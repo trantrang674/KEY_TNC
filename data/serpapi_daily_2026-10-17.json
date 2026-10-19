@@ -1,0 +1,547 @@
+{
+  "date": "2026-10-17 16:40:27",
+  "from_cache": false,
+  "apis_called": {
+    "google_trends_trending_now": {
+      "status": "success",
+      "count": 40
+    },
+    "google_autocomplete": {
+      "status": "success",
+      "seed_query": "Xác thực mạng xã hội bằng VNeID",
+      "count": 5
+    },
+    "google_search": {
+      "status": "success",
+      "query": "\"Xác thực mạng xã hội bằng VNeID\" OR \"Nền tảng Steam\" OR \"Windows 11\"",
+      "count": 7
+    },
+    "google_trends": {
+      "status": "success",
+      "query": "Xác thực mạng xã hội bằng VNeID,Nền tảng Steam,Windows 11,Tin tức GTA 6 (GTA VI) mới nhất,Liên Minh Huyền Thoại",
+      "scores": {
+        "xác thực mạng xã hội bằng vneid": 0,
+        "nền tảng steam": 0,
+        "windows 11": 59,
+        "tin tức gta 6 (gta vi) mới nhất": 0,
+        "liên minh huyền thoại": 14
+      }
+    }
+  },
+  "trending_now_items": [
+    {
+      "query": "cảnh sát giao thông",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "campuchia",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "không khí lạnh",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": [
+        "không khí lạnh miền bắc",
+        "thời tiết miền bắc"
+      ]
+    },
+    {
+      "query": "châu âu",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "xổ số miền nam ngày 16 tháng 10",
+      "search_volume": 500000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Games"
+      ],
+      "related_queries": [
+        "xsmn hôm xổ số miền nam 16 10",
+        "xổ số ngày 16 tháng 10",
+        "xổ số miền nam ngày 17 tháng 10",
+        "xsmn 16/10/26",
+        "xổ số thành phố long an"
+      ]
+    },
+    {
+      "query": "hồng nhung",
+      "search_volume": 5000,
+      "increase_percentage": 900,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "gả kim thoa",
+      "search_volume": 5000,
+      "increase_percentage": 600,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": [
+        "phim gả kim thoa"
+      ]
+    },
+    {
+      "query": "sân bay",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "ai la triệu phú",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": [
+        "ai là triệu phú"
+      ]
+    },
+    {
+      "query": "học",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Jobs and Education"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "phương oanh",
+      "search_volume": 2000,
+      "increase_percentage": 500,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "ung thư đại trực tràng",
+      "search_volume": 2000,
+      "increase_percentage": 900,
+      "categories": [
+        "Health"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "giải bóng đá vô địch u 15 quốc gia việt nam",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "giải bóng đá vô địch u-15 quốc gia việt nam"
+      ]
+    },
+    {
+      "query": "bão cuồng phong",
+      "search_volume": 1000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "elon musk",
+      "search_volume": 10000,
+      "increase_percentage": 200,
+      "categories": [
+        "Autos and Vehicles"
+      ],
+      "related_queries": [
+        "tesla roadster",
+        "tesla",
+        "xe tesla roadster"
+      ]
+    },
+    {
+      "query": "bộ giáo dục và đào tạo",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Jobs and Education"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "đội tuyển bóng đá quốc gia tây ban nha",
+      "search_volume": 1000,
+      "increase_percentage": 600,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "vũ linh",
+      "search_volume": 1000,
+      "increase_percentage": 500,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "alexander zverev",
+      "search_volume": 1000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "ngoại hối",
+      "search_volume": 500,
+      "increase_percentage": 700,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "usd to vnd"
+      ]
+    },
+    {
+      "query": "s27 ultra",
+      "search_volume": 500,
+      "increase_percentage": 400,
+      "categories": [
+        "Technology"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "tài xế xe tải",
+      "search_volume": 500,
+      "increase_percentage": 400,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "the căn cước",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": [
+        "thẻ căn cước"
+      ]
+    },
+    {
+      "query": "giá vàng hôm nay",
+      "search_volume": 20000,
+      "increase_percentage": 75,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "giá vàng",
+        "giá vàng hiện tại",
+        "vàng hôm nay"
+      ]
+    },
+    {
+      "query": "metro",
+      "search_volume": 2000,
+      "increase_percentage": 400,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "điện"
+      ]
+    },
+    {
+      "query": "não mô cầu",
+      "search_volume": 2000,
+      "increase_percentage": 400,
+      "categories": [
+        "Health"
+      ],
+      "related_queries": [
+        "nhiễm não mô cầu",
+        "bệnh viêm não mô cầu"
+      ]
+    },
+    {
+      "query": "biển báo giao thông",
+      "search_volume": 500,
+      "increase_percentage": 700,
+      "categories": [
+        "Law and Government",
+        "Autos and Vehicles"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "lợi nhuận",
+      "search_volume": 500,
+      "increase_percentage": 300,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thể thao",
+      "search_volume": 200,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "the thao"
+      ]
+    },
+    {
+      "query": "lê trương hải hiếu",
+      "search_volume": 5000,
+      "increase_percentage": 700,
+      "categories": [
+        "Law and Government",
+        "Politics"
+      ],
+      "related_queries": [
+        "lê trương hải hiếu con ai",
+        "lê trương hải hiếu là con ai"
+      ]
+    },
+    {
+      "query": "nhà ở xã hội",
+      "search_volume": 200,
+      "increase_percentage": 700,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "cục cứu hộ cứu nạn, quân đội nhân dân việt nam",
+      "search_volume": 1000,
+      "increase_percentage": 500,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "tiểu học an dương",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": [
+        "học sinh"
+      ]
+    },
+    {
+      "query": "doanh thu",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thành ủy thành phố hồ chí minh",
+      "search_volume": 2000,
+      "increase_percentage": 700,
+      "categories": [
+        "Law and Government",
+        "Politics"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "hoàng hậu thái lan suthida",
+      "search_volume": 1000,
+      "increase_percentage": 300,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "hoàng hậu thái lan",
+        "thái lan"
+      ]
+    },
+    {
+      "query": "bão áp thấp nhiệt đới",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "2026",
+      "search_volume": 1000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "central coast đấu với newcastle jets",
+      "search_volume": 100,
+      "increase_percentage": 200,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "iphone duo",
+      "search_volume": 5000,
+      "increase_percentage": 100,
+      "categories": [
+        "Technology"
+      ],
+      "related_queries": [
+        "topzone"
+      ]
+    }
+  ],
+  "autocomplete_suggestions": [
+    "xác thực bằng vneid",
+    "xác thực vneid bằng nfc",
+    "xác thực vneid ở đâu",
+    "xác thực điện tử vneid",
+    "xác thực vneid"
+  ],
+  "google_search_articles": [
+    {
+      "title": "WINDOWS 11 KHÔNG THỂ LÀM HÀI LÒNG TẤT CẢ MỌI ...",
+      "url": "https://www.facebook.com/phongvuvietnam/posts/windows-11-kh%C3%B4ng-th%E1%BB%83-l%C3%A0m-h%C3%A0i-l%C3%B2ng-t%E1%BA%A5t-c%E1%BA%A3-m%E1%BB%8Di-ng%C6%B0%E1%BB%9Di-1-t%E1%BB%B7-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-1-t%E1%BB%B7-gu-kh%C3%A1c-/1436463692020915/",
+      "summary": "Windows 11 đạt 1 tỷ người dùng dù bị chê bởi giới chuyên môn ‍♂️ Trong báo cáo thu nhập quý 4/2025 của Microsoft, CEO Satya Nadella chia sẻ Windows 11 ...",
+      "source_name": "Phong Vũ",
+      "source_type": "COMPETITOR",
+      "source_badge": "Đối thủ",
+      "published_at": "2026-10-17T16:40:39.015539+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Hướng dẫn cài đặt lại hoặc khôi phục cài đặt gốc Windows ...",
+      "url": "https://translate.google.com/translate?u=https://www.dell.com/support/kbdoc/en-us/000192698/reset-or-reinstall-windows-11-on-your-dell-computer&hl=vi&sl=en&tl=vi&client=srp",
+      "summary": "Cài đặt lại Windows 11 và giữ lại các tệp cá nhân của bạn. · Gỡ bỏ các ứng dụng và trình điều khiển mà bạn đã cài đặt. · Xóa bỏ các thay đổi bạn đã thực hiện đối ...",
+      "source_name": "Dell",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-17T16:40:39.015570+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "2 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Windows 11 kết nối sâu hơn với điện thoại",
+      "url": "https://vov.vn/cong-nghe/windows-11-ket-noi-sau-hon-voi-dien-thoai-chuyen-tep-de-dang-post1341893.vov",
+      "summary": "Microsoft mở rộng khả năng tích hợp điện thoại với Windows 11, cho phép người dùng xem thông báo, trả lời tin nhắn, mở ứng dụng, quản lý tệp trên máy tính.",
+      "source_name": "VOV.VN",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-17T16:40:39.015582+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "11 giờ trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Windows 11 kết nối sâu hơn với điện thoại, chuyển tệp dễ ...",
+      "url": "https://www.24h.com.vn/cong-nghe-thong-tin/windows-11-ket-noi-sau-hon-voi-dien-thoai-chuyen-tep-de-dang-c55a1803395.html",
+      "summary": "Với các thiết bị Android tương thích, người dùng có thể mở ứng dụng điện thoại trong những cửa sổ riêng trên máy tính và tùy chỉnh kích thước cửa sổ. Windows 11 ...",
+      "source_name": "24h Công Nghệ",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-17T16:40:39.015599+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "5 giờ trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "I get an error when installing a Brother printer driver ...",
+      "url": "https://www.brother.com.vn/vi-vn/support/hl-l5100dn/faqs/faq00100869_000",
+      "summary": "I get an error when installing a Brother printer driver (Windows 11) - HL-L5100DN | Brother Việt Nam.",
+      "source_name": "Brother Việt Nam",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-17T16:40:39.015612+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "24 giờ trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Tại sao không bật được chế độ Test Mode trên Windows 11?",
+      "url": "https://ai-hay.vn/tai-sao-khong-bat-duoc-che-do-test-mode-tren-windows-11-pN1UmIkYyG0",
+      "summary": "Tại sao không bật được chế độ Test Mode trên Windows 11?",
+      "source_name": "AI Hay",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-17T16:40:39.015622+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "2 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Microsoft giúp máy tính 8 GB RAM chạy mượt Windows 11",
+      "url": "https://thanhnien.vn/microsoft-giup-may-tinh-8-gb-ram-chay-muot-windows-11-185261016102544317.htm",
+      "summary": "Microsoft tuyên bố đã giúp Windows 11 phản hồi nhanh hơn 20% và chạy mượt hơn trên máy 8 GB RAM.",
+      "source_name": "Báo Thanh Niên",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-17T16:40:39.015633+07:00",
+      "hours_ago": 6.0,
+      "relative_time": "1 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    }
+  ],
+  "google_trends_scores": {
+    "xác thực mạng xã hội bằng vneid": 0,
+    "nền tảng steam": 0,
+    "windows 11": 59,
+    "tin tức gta 6 (gta vi) mới nhất": 0,
+    "liên minh huyền thoại": 14
+  }
+}
