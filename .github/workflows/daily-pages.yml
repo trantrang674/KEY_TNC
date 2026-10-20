@@ -1,0 +1,52 @@
+name: Cập nhật báo cáo hằng ngày
+
+on:
+  schedule:
+    - cron: "30 0 * * *"   # 00:30 UTC = 07:30 giờ Việt Nam, mỗi ngày
+  workflow_dispatch:        # cho phép bấm chạy tay trong tab Actions
+
+# Chỉ chạy theo lịch / chạy tay (KHÔNG chạy khi push) để không tốn lượt SerpApi (4 lượt mỗi lần chạy).
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          cache: pip
+
+      - name: Cài thư viện
+        run: pip install -r requirements.txt
+
+      - name: Tạo báo cáo và trang tĩnh
+        env:
+          SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+        run: python build_static.py
+
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

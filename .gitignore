@@ -1,0 +1,15 @@
+# Khóa bí mật - KHÔNG BAO GIỜ đưa lên GitHub
+.env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# Database cục bộ
+data/tnc.db
+data/tnc.db-*
+
+# Trang tĩnh sinh tự động
+site/

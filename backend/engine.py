@@ -21,6 +21,7 @@ from backend.classifier import (
     classify_niche,
     extract_core_keyword
 )
+from backend import db
 from backend.news_fetcher import fetch_all_rss_articles
 from backend.serpapi_client import (
     run_daily_4_serpapi_suite,
@@ -372,6 +373,12 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
         "niches_catalog": list(NICHES.values()),
         "top_10_keywords": top_10
     }
+
+    # Lưu lịch sử vào SQLite (lỗi DB không được làm hỏng báo cáo)
+    try:
+        report["db_run_id"] = db.persist_run(report, serp_data, clean_pool)
+    except Exception as e:
+        print(f"[db] Không ghi được vào database: {e}")
 
     # Lưu kết quả báo cáo mới nhất ra file JSON
     latest_report_path = DATA_DIR / "latest_top10_report.json"

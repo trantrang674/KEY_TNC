@@ -140,7 +140,7 @@
               Đang kiểm tra...
             </span>
           </div>
-          <button onclick="scanLatestNews(true)" class="text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">
+          <button onclick="scanLatestNews(true)" id="btnForceSerp" class="text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">
             Gọi mới lại 4 cổng SerpApi (-4 lượt)
           </button>
         </div>
@@ -263,12 +263,25 @@
       teal: "bg-teal-100 text-teal-800 border-teal-300"
     };
 
+    // Chế độ trang tĩnh (GitHub Pages): script build_static.py đổi false -> true khi xuất bản
+    const STATIC_MODE = false; /*STATIC_MODE_MARKER*/
+
     const API_BASE = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
 
     // Đảm bảo logo hiển thị tốt dù mở bằng http://127.0.0.1:8000 hay file://
     const logoEl = document.getElementById("brandLogo");
-    if (window.location.protocol !== "file:") {
+    if (!STATIC_MODE && window.location.protocol !== "file:") {
       logoEl.src = "/logo.png";
+    }
+
+    if (STATIC_MODE) {
+      // Trang tĩnh không có server: ẩn các nút cần backend (quét lại, gọi lại SerpApi, đổi khung giờ, quota)
+      ["btnScanNews", "btnForceSerp", "quotaBox"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) el.classList.add("hidden");
+      });
+      const hoursGroup = document.getElementById("btnHours24")?.parentElement;
+      if (hoursGroup) hoursGroup.classList.add("hidden");
     }
 
     async function loadReport(refreshNews = false, forceSerpapi = false) {
@@ -281,7 +294,9 @@
       btnScan.disabled = true;
 
       try {
-        const url = `${API_BASE}/api/report?hours=${currentHours}&refresh_news=${refreshNews}&force_serpapi=${forceSerpapi}`;
+        const url = STATIC_MODE
+          ? `report.json?t=${Date.now()}`
+          : `${API_BASE}/api/report?hours=${currentHours}&refresh_news=${refreshNews}&force_serpapi=${forceSerpapi}`;
         const resp = await fetch(url);
         if (!resp.ok) throw new Error(`Server trả về lỗi HTTP ${resp.status}`);
         const data = await resp.json();
@@ -295,7 +310,9 @@
           <div class="pro-card rounded-2xl p-8 text-center">
             <p class="text-base font-bold text-rose-600">Không tải được dữ liệu từ server</p>
             <p class="text-xs text-slate-500 mt-2">${escapeHtml(err.message)}</p>
-            <p class="text-xs text-slate-700 mt-3">Hãy chạy <code class="px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded font-mono">python run_dashboard.py</code> rồi mở <strong>http://127.0.0.1:8000</strong></p>
+            ${STATIC_MODE
+              ? `<p class="text-xs text-slate-700 mt-3">Báo cáo chưa được tạo. Hãy chạy workflow <strong>Cập nhật báo cáo hằng ngày</strong> trong tab Actions của repo.</p>`
+              : `<p class="text-xs text-slate-700 mt-3">Hãy chạy <code class="px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded font-mono">python run_dashboard.py</code> rồi mở <strong>http://127.0.0.1:8000</strong></p>`}
           </div>`;
       } finally {
         loadingBox.classList.add("hidden");

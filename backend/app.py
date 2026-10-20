@@ -12,6 +12,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import HTMLResponse, JSONResponse, FileResponse
 from fastapi.staticfiles import StaticFiles
 
+from pydantic import BaseModel
+
+from backend import db
 from backend.engine import build_daily_top10_report
 from backend.serpapi_client import DATA_DIR, get_serpapi_account_info
 
@@ -69,6 +72,36 @@ def get_report(
 
     report = build_daily_top10_report(max_hours=hours, force_serpapi=force_serpapi)
     return JSONResponse(content=report)
+
+
+@app.get("/api/history")
+def get_keyword_history(keyword: str = Query(..., description="Tên keyword (khớp một phần)"),
+                        limit: int = Query(30, le=200)):
+    return JSONResponse(content=db.keyword_history(keyword, limit))
+
+
+@app.get("/api/suggestions")
+def get_suggestions(status: Optional[str] = Query(None, description="NEW|PLANNED|WRITING|PUBLISHED|SKIPPED"),
+                    limit: int = Query(100, le=500)):
+    return JSONResponse(content=db.list_suggestions(status, limit))
+
+
+class SuggestionUpdate(BaseModel):
+    status: Optional[str] = None
+    assignee: Optional[str] = None
+    published_url: Optional[str] = None
+    note: Optional[str] = None
+
+
+@app.patch("/api/suggestions/{suggestion_id}")
+def patch_suggestion(suggestion_id: int, body: SuggestionUpdate):
+    try:
+        ok = db.update_suggestion(suggestion_id, body.model_dump(exclude_none=True))
+    except ValueError as e:
+        return JSONResponse(status_code=400, content={"error": str(e)})
+    if not ok:
+        return JSONResponse(status_code=404, content={"error": "Không tìm thấy gợi ý"})
+    return {"ok": True}
 
 
 @app.get("/api/quota")
