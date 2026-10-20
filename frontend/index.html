@@ -101,11 +101,6 @@
 
         <!-- Form đăng nhập / đăng ký / quên mật khẩu / đặt lại mật khẩu -->
         <div id="authFormCard" class="pro-card rounded-2xl p-6">
-          <div id="authTabs" class="grid grid-cols-2 gap-1 p-1 rounded-xl bg-emerald-50 border border-emerald-200 mb-5 text-sm">
-            <button type="button" id="tabLogin" onclick="setAuthMode('login')" class="py-2 rounded-lg font-bold transition">Đăng nhập</button>
-            <button type="button" id="tabRegister" onclick="setAuthMode('register')" class="py-2 rounded-lg font-bold transition">Đăng ký</button>
-          </div>
-
           <h3 id="authHeading" class="hidden text-base font-extrabold text-emerald-950 mb-1"></h3>
           <p id="authHint" class="hidden text-xs text-slate-600 mb-4"></p>
 
@@ -157,10 +152,10 @@
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="mt-4 text-base font-extrabold text-emerald-950">Tài khoản đang chờ duyệt</h3>
+          <h3 class="mt-4 text-base font-extrabold text-emerald-950">Chưa có quyền truy cập</h3>
           <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-            Tài khoản <strong id="pendingEmail" class="text-emerald-900"></strong> đã đăng ký thành công.<br />
-            Quản trị viên cần duyệt trước khi bạn xem được báo cáo.
+            Tài khoản <strong id="pendingEmail" class="text-emerald-900"></strong> chưa được cấp quyền xem báo cáo.<br />
+            Vui lòng liên hệ quản trị viên để được cấp quyền.
           </p>
           <div class="mt-5 grid grid-cols-2 gap-2.5">
             <button type="button" onclick="recheckApproval()" id="btnRecheck" class="py-2.5 rounded-xl brand-btn text-white font-bold text-xs">Kiểm tra lại</button>
@@ -806,14 +801,10 @@
     const authState = { userId: null, unlocked: false, recovering: false, formReady: false };
 
     const AUTH_CFG = {
-      login:    { submit: "Đăng nhập" },
-      register: { submit: "Tạo tài khoản" },
-      forgot:   { submit: "Gửi liên kết đặt lại", heading: "Quên mật khẩu", hint: "Nhập email đã đăng ký, hệ thống sẽ gửi liên kết đặt lại mật khẩu." },
+      login:    { submit: "Đăng nhập", heading: "Đăng nhập", hint: "Tài khoản do quản trị viên cấp. Chưa có tài khoản? Vui lòng liên hệ quản trị viên." },
+      forgot:  { submit: "Gửi liên kết đặt lại", heading: "Quên mật khẩu", hint: "Nhập email đã đăng ký, hệ thống sẽ gửi liên kết đặt lại mật khẩu." },
       reset:    { submit: "Lưu mật khẩu mới", heading: "Đặt mật khẩu mới", hint: "Nhập mật khẩu mới cho tài khoản của bạn." }
     };
-    const TAB_ON = "py-2 rounded-lg font-bold transition brand-gradient text-white shadow-sm";
-    const TAB_OFF = "py-2 rounded-lg font-bold transition text-slate-600 hover:text-emerald-900";
-
     const byId = (id) => document.getElementById(id);
     const show = (id, on) => byId(id).classList.toggle("hidden", !on);
 
@@ -830,20 +821,16 @@
       authMode = mode;
       authState.formReady = true;
       const cfg = AUTH_CFG[mode];
-      show("authTabs", mode === "login" || mode === "register");
-      byId("tabLogin").className = mode === "login" ? TAB_ON : TAB_OFF;
-      byId("tabRegister").className = mode === "register" ? TAB_ON : TAB_OFF;
       show("authHeading", !!cfg.heading);
       show("authHint", !!cfg.hint);
       byId("authHeading").textContent = cfg.heading || "";
       byId("authHint").textContent = cfg.hint || "";
       show("fieldEmail", mode !== "reset");
       show("fieldPassword", mode !== "forgot");
-      show("fieldConfirm", mode === "register" || mode === "reset");
+      show("fieldConfirm", mode === "reset");
       show("linkForgot", mode === "login");
       show("linkBack", mode === "forgot");
       byId("authPasswordLabel").textContent = mode === "login" ? "Mật khẩu" : "Mật khẩu mới (tối thiểu 8 ký tự)";
-      if (mode === "register") byId("authPasswordLabel").textContent = "Mật khẩu (tối thiểu 8 ký tự)";
       byId("authPassword").autocomplete = mode === "login" ? "current-password" : "new-password";
       byId("authPassword").placeholder = mode === "login" ? "Nhập mật khẩu" : "Tối thiểu 8 ký tự";
       byId("authSubmitText").textContent = cfg.submit;
@@ -889,8 +876,8 @@
 
       if (needEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showAuthMsg("Vui lòng nhập email hợp lệ.");
       if (needPassword && !password) return showAuthMsg("Vui lòng nhập mật khẩu.");
-      if ((authMode === "register" || authMode === "reset") && password.length < 8) return showAuthMsg("Mật khẩu cần tối thiểu 8 ký tự.");
-      if ((authMode === "register" || authMode === "reset") && password !== confirm) return showAuthMsg("Hai mật khẩu nhập vào không khớp.");
+      if (authMode === "reset" && password.length < 8) return showAuthMsg("Mật khẩu cần tối thiểu 8 ký tự.");
+      if (authMode === "reset" && password !== confirm) return showAuthMsg("Hai mật khẩu nhập vào không khớp.");
 
       showAuthMsg("");
       setBusy(true);
@@ -898,17 +885,6 @@
         if (authMode === "login") {
           const { error } = await sb.auth.signInWithPassword({ email, password });
           if (error) showAuthMsg(mapAuthError(error));
-        } else if (authMode === "register") {
-          const { data, error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: redirect } });
-          if (error) {
-            showAuthMsg(mapAuthError(error));
-          } else if (data.user && data.user.identities && data.user.identities.length === 0) {
-            showAuthMsg("Email này đã được đăng ký. Hãy đăng nhập.");
-          } else if (!data.session) {
-            flashMsg = { type: "ok", text: "Đăng ký thành công. Hãy mở email để xác nhận, sau đó đăng nhập. Quản trị viên sẽ duyệt tài khoản của bạn." };
-            setAuthMode("login");
-          }
-          // Nếu có session ngay (không cần xác nhận email): onAuthStateChange sẽ chuyển sang màn hình chờ duyệt
         } else if (authMode === "forgot") {
           const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: redirect });
           if (error) showAuthMsg(mapAuthError(error));

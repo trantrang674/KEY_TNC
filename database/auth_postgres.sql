@@ -12,7 +12,7 @@
 CREATE TABLE IF NOT EXISTS public.profiles (
     id          UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
     email       TEXT,
-    approved    BOOLEAN NOT NULL DEFAULT FALSE,   -- đổi DEFAULT thành TRUE nếu muốn ai đăng ký cũng xem được
+    approved    BOOLEAN NOT NULL DEFAULT TRUE,    -- chế độ chỉ-admin-tạo-tài-khoản: PHẢI tắt "Allow new users to sign up" trong Dashboard
     created_at  TIMESTAMPTZ NOT NULL DEFAULT now()
 );
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
