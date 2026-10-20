@@ -21,6 +21,15 @@ def main() -> None:
         from backend.engine import build_daily_top10_report
         report = build_daily_top10_report(max_hours=48)
 
+    if "--reuse" not in sys.argv:
+        apis = report.get("serpapi_status", {}).get("apis_called", {})
+        bad = {k: v.get("status") for k, v in apis.items() if v.get("status") != "success"}
+        if not apis or len(bad) == len(apis):
+            sys.exit(f"Cả 4 cổng SerpApi đều lỗi hoặc không chạy ({bad or 'không có kết quả'}). "
+                     "Kiểm tra Secret SERPAPI_API_KEY. Không xuất bản để giữ trang cũ.")
+        if bad:
+            print(f"CẢNH BÁO: một số cổng SerpApi lỗi: {bad}")
+
     if not report.get("top_10_keywords"):
         sys.exit("Báo cáo rỗng (không có keyword nào). Không xuất bản để tránh ghi đè trang cũ bằng trang trống.")
 
