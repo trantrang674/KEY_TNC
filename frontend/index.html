@@ -5,6 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+  <script>
+    // Cấu hình do build_static.py điền khi xuất bản lên GitHub Pages (chế độ chạy local = false, không đăng nhập)
+    const STATIC_MODE = false; /*STATIC_MODE_MARKER*/
+    const SUPABASE_URL = ""; /*SUPABASE_URL_MARKER*/
+    const SUPABASE_ANON_KEY = ""; /*SUPABASE_ANON_KEY_MARKER*/
+    // Khóa giao diện ngay từ đầu để không bị lộ nội dung trước khi đăng nhập xong
+    if (STATIC_MODE) document.documentElement.classList.add("locked");
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
@@ -46,6 +55,20 @@
       border: 1px solid #a7f3d0;
       color: #065f46;
     }
+    /* Chưa đăng nhập: ẩn toàn bộ giao diện chính */
+    html.locked body > header,
+    html.locked body > main { display: none; }
+    .auth-bg {
+      background:
+        radial-gradient(1000px 500px at 15% 10%, rgba(76, 166, 52, 0.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 90%, rgba(13, 92, 46, 0.16), transparent 60%),
+        #f4f8f5;
+    }
+    .auth-input {
+      width: 100%; padding: 0.7rem 0.9rem; border-radius: 0.75rem; font-size: 0.875rem;
+      border: 1px solid #a7d7bd; background: #fff; outline: none; transition: box-shadow .15s, border-color .15s;
+    }
+    .auth-input:focus { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
     /* Custom scrollbar cho cột dọc Trending Now */
     .custom-scroll::-webkit-scrollbar {
       width: 6px;
@@ -64,6 +87,92 @@
   </style>
 </head>
 <body class="min-h-screen pb-16">
+  <!-- MÀN HÌNH ĐĂNG NHẬP (chỉ hiện ở chế độ GitHub Pages) -->
+  <div id="authOverlay" class="hidden fixed inset-0 z-[100] auth-bg overflow-y-auto">
+    <div class="min-h-full flex items-center justify-center px-4 py-10">
+      <div class="w-full max-w-md">
+        <div class="text-center mb-6">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-white border border-emerald-200 p-2 shadow-sm flex items-center justify-center">
+            <img src="logo.png" alt="Logo" class="w-full h-full object-contain" />
+          </div>
+          <h2 class="mt-4 text-xl font-extrabold tracking-tight text-emerald-950">LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT</h2>
+          <p class="text-xs text-slate-600 mt-1">Hệ thống nội bộ. Vui lòng đăng nhập để xem báo cáo.</p>
+        </div>
+
+        <!-- Form đăng nhập / đăng ký / quên mật khẩu / đặt lại mật khẩu -->
+        <div id="authFormCard" class="pro-card rounded-2xl p-6">
+          <div id="authTabs" class="grid grid-cols-2 gap-1 p-1 rounded-xl bg-emerald-50 border border-emerald-200 mb-5 text-sm">
+            <button type="button" id="tabLogin" onclick="setAuthMode('login')" class="py-2 rounded-lg font-bold transition">Đăng nhập</button>
+            <button type="button" id="tabRegister" onclick="setAuthMode('register')" class="py-2 rounded-lg font-bold transition">Đăng ký</button>
+          </div>
+
+          <h3 id="authHeading" class="hidden text-base font-extrabold text-emerald-950 mb-1"></h3>
+          <p id="authHint" class="hidden text-xs text-slate-600 mb-4"></p>
+
+          <form id="authForm" onsubmit="submitAuth(event)" class="space-y-3.5" novalidate>
+            <div id="fieldEmail">
+              <label for="authEmail" class="block text-xs font-bold text-emerald-900 mb-1.5">Email</label>
+              <input id="authEmail" type="email" autocomplete="email" placeholder="ten@congty.com" class="auth-input" />
+            </div>
+
+            <div id="fieldPassword">
+              <div class="flex items-center justify-between mb-1.5">
+                <label id="authPasswordLabel" for="authPassword" class="block text-xs font-bold text-emerald-900">Mật khẩu</label>
+                <button type="button" id="linkForgot" onclick="setAuthMode('forgot')" class="text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">Quên mật khẩu?</button>
+              </div>
+              <div class="relative">
+                <input id="authPassword" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" class="auth-input pr-11" />
+                <button type="button" onclick="togglePassword()" id="btnTogglePw" aria-label="Hiện hoặc ẩn mật khẩu"
+                        class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-emerald-700 hover:text-emerald-950">
+                  <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div id="fieldConfirm" class="hidden">
+              <label for="authConfirm" class="block text-xs font-bold text-emerald-900 mb-1.5">Nhập lại mật khẩu</label>
+              <input id="authConfirm" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu" class="auth-input" />
+            </div>
+
+            <div id="authMsg" role="alert" class="hidden text-xs font-semibold rounded-xl px-3.5 py-2.5 border"></div>
+
+            <button type="submit" id="authSubmit" class="w-full py-3 rounded-xl brand-btn text-white font-bold text-sm transition flex items-center justify-center gap-2 disabled:opacity-60">
+              <span id="authSpinner" class="hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></span>
+              <span id="authSubmitText">Đăng nhập</span>
+            </button>
+
+            <button type="button" id="linkBack" onclick="setAuthMode('login')" class="hidden w-full text-xs font-semibold text-emerald-700 hover:text-emerald-900 underline">
+              ← Quay lại đăng nhập
+            </button>
+          </form>
+        </div>
+
+        <!-- Màn hình chờ duyệt -->
+        <div id="authPendingCard" class="hidden pro-card rounded-2xl p-7 text-center">
+          <div class="w-14 h-14 mx-auto rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
+            <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+            </svg>
+          </div>
+          <h3 class="mt-4 text-base font-extrabold text-emerald-950">Tài khoản đang chờ duyệt</h3>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Tài khoản <strong id="pendingEmail" class="text-emerald-900"></strong> đã đăng ký thành công.<br />
+            Quản trị viên cần duyệt trước khi bạn xem được báo cáo.
+          </p>
+          <div class="mt-5 grid grid-cols-2 gap-2.5">
+            <button type="button" onclick="recheckApproval()" id="btnRecheck" class="py-2.5 rounded-xl brand-btn text-white font-bold text-xs">Kiểm tra lại</button>
+            <button type="button" onclick="doLogout()" class="py-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-emerald-300 text-emerald-900 font-bold text-xs">Đăng xuất</button>
+          </div>
+        </div>
+
+        <p class="text-center text-[11px] text-slate-500 mt-5">Kết nối được mã hóa. Dữ liệu chỉ hiển thị cho tài khoản đã được duyệt.</p>
+      </div>
+    </div>
+  </div>
+
   <!-- TOP NAVBAR -->
   <header class="sticky top-0 z-40 border-b border-emerald-200/80 bg-white/95 backdrop-blur-md shadow-sm">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -107,6 +216,13 @@
           </svg>
           <span>Xuất CSV</span>
         </button>
+
+        <!-- Người dùng đang đăng nhập (chỉ hiện ở chế độ GitHub Pages) -->
+        <div id="userBox" class="hidden items-center gap-2 pl-3 pr-1.5 py-1.5 rounded-xl bg-white border border-emerald-300 shadow-sm text-xs">
+          <span class="w-6 h-6 rounded-full brand-gradient text-white font-extrabold flex items-center justify-center text-[11px]" id="userInitial">U</span>
+          <span id="userEmail" class="font-semibold text-emerald-950 max-w-[160px] truncate"></span>
+          <button type="button" onclick="doLogout()" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-900 font-bold">Đăng xuất</button>
+        </div>
       </div>
     </div>
   </header>
@@ -263,9 +379,6 @@
       teal: "bg-teal-100 text-teal-800 border-teal-300"
     };
 
-    // Chế độ trang tĩnh (GitHub Pages): script build_static.py đổi false -> true khi xuất bản
-    const STATIC_MODE = false; /*STATIC_MODE_MARKER*/
-
     const API_BASE = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
 
     // Đảm bảo logo hiển thị tốt dù mở bằng http://127.0.0.1:8000 hay file://
@@ -294,12 +407,20 @@
       btnScan.disabled = true;
 
       try {
-        const url = STATIC_MODE
-          ? `report.json?t=${Date.now()}`
-          : `${API_BASE}/api/report?hours=${currentHours}&refresh_news=${refreshNews}&force_serpapi=${forceSerpapi}`;
-        const resp = await fetch(url);
-        if (!resp.ok) throw new Error(`Server trả về lỗi HTTP ${resp.status}`);
-        const data = await resp.json();
+        let data;
+        if (STATIC_MODE) {
+          // Báo cáo nằm trong Supabase, chỉ tài khoản đã đăng nhập và được duyệt mới đọc được (RLS)
+          const { data: rows, error } = await sb
+            .from("daily_reports").select("report").order("report_date", { ascending: false }).limit(1);
+          if (error) throw new Error(error.message);
+          if (!rows || rows.length === 0) throw new Error("Chưa có báo cáo nào hoặc tài khoản chưa được duyệt.");
+          data = rows[0].report;
+        } else {
+          const url = `${API_BASE}/api/report?hours=${currentHours}&refresh_news=${refreshNews}&force_serpapi=${forceSerpapi}`;
+          const resp = await fetch(url);
+          if (!resp.ok) throw new Error(`Server trả về lỗi HTTP ${resp.status}`);
+          data = await resp.json();
+        }
         currentReport = data;
         updateDashboardHeader(data);
         populateNicheDropdown(data.niches_catalog || []);
@@ -675,7 +796,244 @@
     }
 
     // Tự động tải dữ liệu khi mở trang
-    loadReport(false, false);
+    // =====================================================================
+    // ĐĂNG NHẬP (Supabase Auth) — chỉ chạy ở chế độ GitHub Pages
+    // =====================================================================
+    let sb = null;
+    let authMode = "login";
+    let authBusy = false;
+    let flashMsg = null; // thông báo hiển thị sau lần chuyển chế độ kế tiếp
+    const authState = { userId: null, unlocked: false, recovering: false, formReady: false };
+
+    const AUTH_CFG = {
+      login:    { submit: "Đăng nhập" },
+      register: { submit: "Tạo tài khoản" },
+      forgot:   { submit: "Gửi liên kết đặt lại", heading: "Quên mật khẩu", hint: "Nhập email đã đăng ký, hệ thống sẽ gửi liên kết đặt lại mật khẩu." },
+      reset:    { submit: "Lưu mật khẩu mới", heading: "Đặt mật khẩu mới", hint: "Nhập mật khẩu mới cho tài khoản của bạn." }
+    };
+    const TAB_ON = "py-2 rounded-lg font-bold transition brand-gradient text-white shadow-sm";
+    const TAB_OFF = "py-2 rounded-lg font-bold transition text-slate-600 hover:text-emerald-900";
+
+    const byId = (id) => document.getElementById(id);
+    const show = (id, on) => byId(id).classList.toggle("hidden", !on);
+
+    function showAuthMsg(text, type = "error") {
+      const box = byId("authMsg");
+      if (!text) { box.classList.add("hidden"); return; }
+      box.textContent = text;
+      box.className = "text-xs font-semibold rounded-xl px-3.5 py-2.5 border " + (type === "ok"
+        ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+        : "bg-rose-50 text-rose-700 border-rose-300");
+    }
+
+    function setAuthMode(mode) {
+      authMode = mode;
+      authState.formReady = true;
+      const cfg = AUTH_CFG[mode];
+      show("authTabs", mode === "login" || mode === "register");
+      byId("tabLogin").className = mode === "login" ? TAB_ON : TAB_OFF;
+      byId("tabRegister").className = mode === "register" ? TAB_ON : TAB_OFF;
+      show("authHeading", !!cfg.heading);
+      show("authHint", !!cfg.hint);
+      byId("authHeading").textContent = cfg.heading || "";
+      byId("authHint").textContent = cfg.hint || "";
+      show("fieldEmail", mode !== "reset");
+      show("fieldPassword", mode !== "forgot");
+      show("fieldConfirm", mode === "register" || mode === "reset");
+      show("linkForgot", mode === "login");
+      show("linkBack", mode === "forgot");
+      byId("authPasswordLabel").textContent = mode === "login" ? "Mật khẩu" : "Mật khẩu mới (tối thiểu 8 ký tự)";
+      if (mode === "register") byId("authPasswordLabel").textContent = "Mật khẩu (tối thiểu 8 ký tự)";
+      byId("authPassword").autocomplete = mode === "login" ? "current-password" : "new-password";
+      byId("authPassword").placeholder = mode === "login" ? "Nhập mật khẩu" : "Tối thiểu 8 ký tự";
+      byId("authSubmitText").textContent = cfg.submit;
+      byId("authPassword").value = "";
+      byId("authConfirm").value = "";
+      showAuthMsg(flashMsg ? flashMsg.text : "", flashMsg ? flashMsg.type : "error");
+      flashMsg = null;
+    }
+
+    function togglePassword() {
+      const next = byId("authPassword").type === "password" ? "text" : "password";
+      byId("authPassword").type = next;
+      byId("authConfirm").type = next;
+    }
+
+    function setBusy(on) {
+      authBusy = on;
+      byId("authSubmit").disabled = on;
+      show("authSpinner", on);
+    }
+
+    function mapAuthError(err) {
+      const m = ((err && err.message) || "").toLowerCase();
+      if (m.includes("invalid login")) return "Email hoặc mật khẩu không đúng.";
+      if (m.includes("email not confirmed")) return "Email chưa được xác nhận. Hãy mở email và bấm liên kết xác nhận.";
+      if (m.includes("already registered") || m.includes("already been registered")) return "Email này đã được đăng ký. Hãy đăng nhập.";
+      if (m.includes("rate limit") || m.includes("too many") || (err && err.status === 429)) return "Bạn thao tác quá nhanh. Vui lòng thử lại sau ít phút.";
+      if (m.includes("password") && m.includes("character")) return "Mật khẩu chưa đủ mạnh hoặc quá ngắn.";
+      if (m.includes("same password")) return "Mật khẩu mới phải khác mật khẩu cũ.";
+      if (m.includes("failed to fetch") || m.includes("network")) return "Không kết nối được máy chủ. Kiểm tra mạng và thử lại.";
+      return "Có lỗi xảy ra: " + ((err && err.message) || "không rõ nguyên nhân");
+    }
+
+    async function submitAuth(e) {
+      e.preventDefault();
+      if (authBusy || !sb) return;
+      const email = byId("authEmail").value.trim();
+      const password = byId("authPassword").value;
+      const confirm = byId("authConfirm").value;
+      const needEmail = authMode !== "reset";
+      const needPassword = authMode !== "forgot";
+      const redirect = window.location.origin + window.location.pathname;
+
+      if (needEmail && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return showAuthMsg("Vui lòng nhập email hợp lệ.");
+      if (needPassword && !password) return showAuthMsg("Vui lòng nhập mật khẩu.");
+      if ((authMode === "register" || authMode === "reset") && password.length < 8) return showAuthMsg("Mật khẩu cần tối thiểu 8 ký tự.");
+      if ((authMode === "register" || authMode === "reset") && password !== confirm) return showAuthMsg("Hai mật khẩu nhập vào không khớp.");
+
+      showAuthMsg("");
+      setBusy(true);
+      try {
+        if (authMode === "login") {
+          const { error } = await sb.auth.signInWithPassword({ email, password });
+          if (error) showAuthMsg(mapAuthError(error));
+        } else if (authMode === "register") {
+          const { data, error } = await sb.auth.signUp({ email, password, options: { emailRedirectTo: redirect } });
+          if (error) {
+            showAuthMsg(mapAuthError(error));
+          } else if (data.user && data.user.identities && data.user.identities.length === 0) {
+            showAuthMsg("Email này đã được đăng ký. Hãy đăng nhập.");
+          } else if (!data.session) {
+            flashMsg = { type: "ok", text: "Đăng ký thành công. Hãy mở email để xác nhận, sau đó đăng nhập. Quản trị viên sẽ duyệt tài khoản của bạn." };
+            setAuthMode("login");
+          }
+          // Nếu có session ngay (không cần xác nhận email): onAuthStateChange sẽ chuyển sang màn hình chờ duyệt
+        } else if (authMode === "forgot") {
+          const { error } = await sb.auth.resetPasswordForEmail(email, { redirectTo: redirect });
+          if (error) showAuthMsg(mapAuthError(error));
+          else showAuthMsg("Nếu email tồn tại, liên kết đặt lại mật khẩu đã được gửi. Hãy kiểm tra hộp thư.", "ok");
+        } else if (authMode === "reset") {
+          const { error } = await sb.auth.updateUser({ password });
+          if (error) {
+            showAuthMsg(mapAuthError(error));
+          } else {
+            authState.recovering = false;
+            history.replaceState(null, "", window.location.pathname);
+            const { data } = await sb.auth.getSession();
+            handleSession(data.session);
+          }
+        }
+      } catch (err) {
+        showAuthMsg(mapAuthError(err));
+      } finally {
+        setBusy(false);
+      }
+    }
+
+    function lockUI() {
+      document.documentElement.classList.add("locked");
+      authState.unlocked = false;
+      authState.userId = null;
+      currentReport = null;
+      byId("keywordsContainer").innerHTML = "";
+      show("userBox", false);
+      byId("userBox").classList.remove("flex");
+    }
+
+    function showOverlay() { show("authOverlay", true); }
+    function showForm() { show("authFormCard", true); show("authPendingCard", false); }
+    function showPending(email) {
+      byId("pendingEmail").textContent = email || "";
+      show("authFormCard", false);
+      show("authPendingCard", true);
+    }
+
+    async function handleSession(session) {
+      if (authState.recovering) return;
+      if (!session) {
+        lockUI();
+        showOverlay();
+        showForm();
+        if (!authState.formReady) setAuthMode("login");
+        return;
+      }
+      if (authState.unlocked && authState.userId === session.user.id) return; // tránh tải lại khi chuyển tab
+
+      const { data, error } = await sb.from("profiles").select("approved").eq("id", session.user.id).maybeSingle();
+      if (error) {
+        flashMsg = { type: "error", text: "Không kiểm tra được tài khoản: " + error.message };
+        await sb.auth.signOut();
+        return;
+      }
+      if (!data || !data.approved) {
+        authState.userId = session.user.id;
+        lockUI();
+        showOverlay();
+        showPending(session.user.email);
+        return;
+      }
+
+      authState.userId = session.user.id;
+      authState.unlocked = true;
+      document.documentElement.classList.remove("locked");
+      show("authOverlay", false);
+      byId("userEmail").textContent = session.user.email || "";
+      byId("userInitial").textContent = (session.user.email || "U").charAt(0).toUpperCase();
+      show("userBox", true);
+      byId("userBox").classList.add("flex");
+      loadReport(false, false);
+    }
+
+    async function recheckApproval() {
+      const btn = byId("btnRecheck");
+      btn.disabled = true;
+      const { data } = await sb.auth.getSession();
+      authState.userId = null;
+      await handleSession(data.session);
+      if (!authState.unlocked) {
+        btn.textContent = "Vẫn chưa được duyệt";
+        setTimeout(() => { btn.textContent = "Kiểm tra lại"; btn.disabled = false; }, 2500);
+      }
+    }
+
+    async function doLogout() {
+      if (sb) await sb.auth.signOut();
+    }
+
+    function initAuth() {
+      showOverlay();
+      if (!window.supabase || !SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        setAuthMode("login");
+        byId("authSubmit").disabled = true;
+        showAuthMsg("Chưa cấu hình đăng nhập (thiếu SUPABASE_URL hoặc SUPABASE_ANON_KEY khi xuất bản).");
+        return;
+      }
+      authState.recovering = window.location.hash.includes("type=recovery");
+      sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true }
+      });
+      sb.auth.onAuthStateChange((event, session) => {
+        // Hoãn sang tick sau để không gọi Supabase ngay trong callback (tránh treo)
+        setTimeout(() => {
+          if (event === "PASSWORD_RECOVERY") {
+            authState.recovering = true;
+            lockUI(); showOverlay(); showForm(); setAuthMode("reset");
+          } else if (event === "SIGNED_OUT") {
+            lockUI(); showOverlay(); showForm(); setAuthMode("login");
+          } else if (event === "INITIAL_SESSION" || event === "SIGNED_IN") {
+            if (authState.recovering) { showForm(); setAuthMode("reset"); return; }
+            handleSession(session);
+          }
+        }, 0);
+      });
+    }
+
+    if (STATIC_MODE) {
+      initAuth();
+    } else {
+      loadReport(false, false);
+    }
   </script>
 </body>
 </html>

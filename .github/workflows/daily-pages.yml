@@ -33,6 +33,9 @@ jobs:
       - name: Tạo báo cáo và trang tĩnh
         env:
           SERPAPI_API_KEY: ${{ secrets.SERPAPI_API_KEY }}
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+          SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
         run: python build_static.py
 
       - uses: actions/configure-pages@v5
