@@ -169,33 +169,28 @@
   </div>
 
   <!-- TOP NAVBAR -->
-  <header class="sticky top-0 z-40 border-b border-emerald-200/80 bg-white/95 backdrop-blur-md shadow-sm">
+  <header class="sticky top-0 z-40 border-b border-[#003d21] bg-[#004f2b] shadow-sm">
     <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
       <div class="flex items-center gap-3.5">
         <div class="w-12 h-12 rounded-xl bg-white border border-emerald-200 p-1.5 flex items-center justify-center shadow-sm shrink-0">
           <img id="brandLogo" src="logo.png" alt="Logo" class="w-full h-full object-contain" />
         </div>
         <div>
-          <div class="flex flex-wrap items-center gap-2.5">
-            <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-emerald-950">
-              LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT
-            </h1>
-            <span class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-emerald-100 text-emerald-800 border border-emerald-300">
-              Top 10 / Ngày
-            </span>
-          </div>
-          <p class="text-xs text-slate-600 mt-0.5">
-            Hệ thống nghiên cứu 10 Keyword Tin tức Công nghệ, Phần mềm, Game, AI & Chính sách số kèm Top 3 bài viết & Gợi ý Keyword SEO
+          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white">
+            LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT
+          </h1>
+          <p class="text-xs text-emerald-100 mt-0.5">
+            Hệ thống nghiên cứu Keyword Tin tức Công nghệ hằng ngày
           </p>
         </div>
       </div>
 
       <!-- QUOTA & ACTIONS -->
       <div class="flex flex-wrap items-center gap-2.5">
-        <div id="quotaBox" class="px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 flex items-center gap-2 text-xs">
-          <span class="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
-          <span class="text-emerald-900 font-medium">SerpApi Quota:</span>
-          <span id="quotaText" class="font-extrabold text-emerald-800">-- / 250 lượt</span>
+        <div id="quotaBox" class="px-3.5 py-2 rounded-xl bg-white/10 border border-white/25 flex items-center gap-2 text-xs">
+          <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
+          <span class="text-emerald-50 font-medium">SerpApi Quota:</span>
+          <span id="quotaText" class="font-extrabold text-white">-- / 250 lượt</span>
         </div>
 
         <button onclick="scanLatestNews(false)" id="btnScanNews" class="px-4 py-2.5 rounded-xl brand-btn text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2">
@@ -223,85 +218,98 @@
   </header>
 
   <main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-6">
-    <!-- STATUS SUMMARY & 4 SERPAPI SUITE PANEL -->
-    <section class="grid grid-cols-1 lg:grid-cols-12 gap-4">
-      <!-- KPI Cards -->
-      <div class="lg:col-span-5 grid grid-cols-2 gap-3.5">
-        <div class="pro-card rounded-2xl p-4">
-          <div class="text-xs font-medium text-slate-500">Cập nhật lần cuối</div>
-          <div id="statGeneratedAt" class="text-base font-extrabold text-emerald-950 mt-1">Đang tải...</div>
-          <div id="statTimeWindow" class="text-xs font-semibold text-emerald-700 mt-1">Khung thời gian: 48 giờ qua</div>
-        </div>
-        <div class="pro-card rounded-2xl p-4">
-          <div class="text-xs font-medium text-slate-500">Bài báo & Đối thủ đã quét</div>
-          <div class="flex items-baseline gap-2 mt-1">
-            <span id="statTotalArticles" class="text-2xl font-extrabold text-emerald-700">--</span>
-            <span class="text-xs text-slate-500 font-medium">bài mới</span>
-          </div>
-          <div id="statTotalClusters" class="text-xs text-slate-600 mt-1">Gom thành -- chủ đề</div>
-        </div>
-      </div>
-
-      <!-- 4 SerpApi Engines Status -->
-      <div class="lg:col-span-7 pro-card rounded-2xl p-4 flex flex-col justify-between">
-        <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-          <div class="flex items-center gap-2">
-            <span class="text-xs font-extrabold uppercase tracking-wider text-emerald-900">Trạng thái 4 Cổng SerpApi Hàng Ngày</span>
-            <span id="serpCacheBadge" class="px-2.5 py-0.5 text-[11px] font-semibold rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
-              Đang kiểm tra...
-            </span>
-          </div>
-          <button onclick="scanLatestNews(true)" id="btnForceSerp" class="text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">
-            Gọi mới lại 4 cổng SerpApi (-4 lượt)
-          </button>
-        </div>
-
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-2.5 text-xs">
-          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
-            <div class="text-slate-600 text-[11px] font-medium">1. Trending Now</div>
-            <div id="apiStatus1" class="font-bold text-emerald-800 mt-0.5">--</div>
-          </div>
-          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
-            <div class="text-slate-600 text-[11px] font-medium">2. Autocomplete</div>
-            <div id="apiStatus2" class="font-bold text-emerald-800 mt-0.5">--</div>
-          </div>
-          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
-            <div class="text-slate-600 text-[11px] font-medium">3. Google Search</div>
-            <div id="apiStatus3" class="font-bold text-emerald-800 mt-0.5">--</div>
-          </div>
-          <div class="p-2.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
-            <div class="text-slate-600 text-[11px] font-medium">4. Google Trends</div>
-            <div id="apiStatus4" class="font-bold text-emerald-800 mt-0.5">--</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MAIN 2-COLUMN LAYOUT: LEFT SIDEBAR (GOOGLE TRENDING NOW) & RIGHT CONTENT (FILTERS + TOP 10 KEYWORDS) -->
+    <!-- MAIN 2-COLUMN LAYOUT: LEFT (FILTERS + TOP 10 KEYWORDS) & RIGHT SIDEBAR (THÔNG TIN LỌC KEYWORD + GOOGLE TRENDING NOW) -->
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      <!-- CỘT DỌC BÊN TRÁI: GOOGLE TRENDING NOW (VN) -->
-      <aside class="lg:col-span-3 lg:sticky lg:top-24 space-y-4">
+      <!-- CỘT DỌC BÊN PHẢI: THÔNG TIN LỌC KEYWORD + GOOGLE TRENDING NOW (VN) -->
+      <aside class="lg:col-span-3 lg:order-2 lg:sticky lg:top-24 space-y-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto custom-scroll">
+        <div class="pro-card rounded-2xl p-4 border-t-4 border-t-emerald-600">
+          <h2 class="text-xs font-extrabold uppercase tracking-wider text-emerald-900 mb-3">Thông tin lọc keyword</h2>
+
+          <div class="space-y-2.5">
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <div class="text-xs font-medium text-slate-500">Cập nhật lần cuối</div>
+              <div id="statGeneratedAt" class="text-base font-extrabold text-emerald-950 mt-1">Đang tải...</div>
+              <div id="statTimeWindow" class="text-xs font-semibold text-emerald-700 mt-1">Khung thời gian: 48 giờ qua</div>
+            </div>
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <div class="text-xs font-medium text-slate-500">Bài báo & Đối thủ đã quét</div>
+              <div class="flex items-baseline gap-2 mt-1">
+                <span id="statTotalArticles" class="text-2xl font-extrabold text-emerald-700">--</span>
+                <span class="text-xs text-slate-500 font-medium">bài mới</span>
+              </div>
+              <div id="statTotalClusters" class="text-xs text-slate-600 mt-1">Gom thành -- chủ đề</div>
+            </div>
+
+            <!-- 4 SerpApi Engines Status -->
+            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
+              <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-900">Trạng thái 4 Cổng SerpApi Hàng Ngày</div>
+              <span id="serpCacheBadge" class="inline-block mt-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
+                Đang kiểm tra...
+              </span>
+              <div class="grid grid-cols-2 gap-2 text-xs mt-2.5">
+                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
+                  <div class="text-slate-600 text-[11px] font-medium">1. Trending Now</div>
+                  <div id="apiStatus1" class="font-bold text-emerald-800 mt-0.5">--</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
+                  <div class="text-slate-600 text-[11px] font-medium">2. Autocomplete</div>
+                  <div id="apiStatus2" class="font-bold text-emerald-800 mt-0.5">--</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
+                  <div class="text-slate-600 text-[11px] font-medium">3. Google Search</div>
+                  <div id="apiStatus3" class="font-bold text-emerald-800 mt-0.5">--</div>
+                </div>
+                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
+                  <div class="text-slate-600 text-[11px] font-medium">4. Google Trends</div>
+                  <div id="apiStatus4" class="font-bold text-emerald-800 mt-0.5">--</div>
+                </div>
+              </div>
+              <button onclick="scanLatestNews(true)" id="btnForceSerp" class="mt-2.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">
+                Gọi mới lại 4 cổng SerpApi (-4 lượt)
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GOOGLE TRENDING NOW (VN): thu gọn, bấm mũi tên để xem top 12 -->
         <div id="trendingNowBar" class="pro-card rounded-2xl p-4 border-t-4 border-t-emerald-600">
-          <div class="flex items-center justify-between gap-2 mb-1.5">
+          <button type="button" onclick="toggleTrending()" id="btnTrendingToggle" aria-expanded="false" aria-controls="trendingNowBody"
+                  class="w-full flex items-center justify-between gap-2 text-left">
             <span class="px-2.5 py-1 text-[11px] font-extrabold rounded-md bg-emerald-700 text-white tracking-wide">
               GOOGLE TRENDING NOW (VN)
             </span>
-            <span class="text-[11px] font-bold text-emerald-700">Live 48h</span>
-          </div>
-          <p class="text-xs text-slate-600 mb-3 leading-relaxed">
-            Các truy vấn đang tăng trưởng đột biến tại Việt Nam được lấy từ SerpApi:
-          </p>
-          <div id="trendingNowChips" class="flex flex-col gap-2 max-h-[68vh] overflow-y-auto pr-1 custom-scroll">
-            <div class="text-xs text-slate-400 py-4 text-center">Đang tải xu hướng...</div>
+            <span class="flex items-center gap-1.5 text-emerald-700">
+              <span class="text-[11px] font-bold">Live 48h</span>
+              <svg id="trendingChevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+              </svg>
+            </span>
+          </button>
+          <div id="trendingNowBody" class="hidden mt-3">
+            <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+              Top 12 truy vấn đang tăng trưởng đột biến tại Việt Nam được lấy từ SerpApi:
+            </p>
+            <div id="trendingNowChips" class="flex flex-col gap-2 max-h-[60vh] overflow-y-auto pr-1 custom-scroll">
+              <div class="text-xs text-slate-400 py-4 text-center">Đang tải xu hướng...</div>
+            </div>
           </div>
         </div>
       </aside>
 
-      <!-- CỘT BÊN PHẢI: BỘ LỌC & DANH SÁCH TOP 10 KEYWORD -->
-      <div class="lg:col-span-9 space-y-5">
+      <!-- CỘT BÊN TRÁI: BỘ LỌC & DANH SÁCH TOP 10 KEYWORD -->
+      <div class="lg:col-span-9 lg:order-1 space-y-5">
         <!-- FILTER CONTROLS -->
         <section class="pro-card rounded-2xl p-4 flex flex-col xl:flex-row xl:items-center justify-between gap-3.5">
           <div class="flex flex-wrap items-center gap-2.5">
+            <!-- Date filter: xem lại báo cáo các ngày đã lọc (chỉ ở bản GitHub Pages, dữ liệu lưu trong Supabase) -->
+            <div id="dateFilterBox" class="hidden items-center gap-2 bg-emerald-50 px-2.5 py-1 rounded-xl border border-emerald-200 text-xs">
+              <label for="filterDate" class="font-bold text-emerald-900">Ngày lọc</label>
+              <input type="date" id="filterDate" onchange="loadReport(false, false)"
+                     class="bg-white border border-emerald-200 rounded-lg px-2 py-1 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600" />
+              <button type="button" onclick="resetToLatestDate()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold">Mới nhất</button>
+              <span id="dateFilterHint" class="text-[11px] text-slate-500"></span>
+            </div>
+
             <!-- Time window selector -->
             <div class="flex items-center bg-emerald-50 p-1 rounded-xl border border-emerald-200 text-xs">
               <button onclick="changeHoursWindow(24)" id="btnHours24" class="px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-emerald-900">
@@ -388,6 +396,9 @@
         const el = document.getElementById(id);
         if (el) el.classList.add("hidden");
       });
+      const dateBox = document.getElementById("dateFilterBox");
+      dateBox.classList.remove("hidden");
+      dateBox.classList.add("flex");
       const hoursGroup = document.getElementById("btnHours24")?.parentElement;
       if (hoursGroup) hoursGroup.classList.add("hidden");
     }
@@ -405,10 +416,17 @@
         let data;
         if (STATIC_MODE) {
           // Báo cáo nằm trong Supabase, chỉ tài khoản đã đăng nhập và được duyệt mới đọc được (RLS)
-          const { data: rows, error } = await sb
-            .from("daily_reports").select("report").order("report_date", { ascending: false }).limit(1);
+          const selectedDate = byId("filterDate").value;
+          let q = sb.from("daily_reports").select("report_date, report");
+          q = selectedDate ? q.eq("report_date", selectedDate) : q.order("report_date", { ascending: false }).limit(1);
+          const { data: rows, error } = await q;
           if (error) throw new Error(error.message);
-          if (!rows || rows.length === 0) throw new Error("Chưa có báo cáo nào hoặc tài khoản chưa được duyệt.");
+          loadAvailableDates();
+          if (!rows || rows.length === 0) {
+            if (selectedDate) { showNoDataForDate(selectedDate); return; }
+            throw new Error("Chưa có báo cáo nào hoặc tài khoản chưa được duyệt.");
+          }
+          byId("filterDate").value = rows[0].report_date;
           data = rows[0].report;
         } else {
           const url = `${API_BASE}/api/report?hours=${currentHours}&refresh_news=${refreshNews}&force_serpapi=${forceSerpapi}`;
@@ -435,6 +453,38 @@
         container.classList.remove("opacity-40");
         btnScan.disabled = false;
       }
+    }
+
+    // Danh sách ngày đã có báo cáo (mỗi lần bấm Run workflow lưu 1 báo cáo cho ngày đó)
+    async function loadAvailableDates() {
+      const { data } = await sb.from("daily_reports").select("report_date").order("report_date", { ascending: false }).limit(400);
+      const dates = (data || []).map(r => r.report_date);
+      byId("dateFilterHint").textContent = dates.length ? `Đã lưu ${dates.length} ngày` : "";
+      if (dates.length) {
+        byId("filterDate").max = dates[0];
+        byId("filterDate").min = dates[dates.length - 1];
+      }
+    }
+
+    function resetToLatestDate() {
+      byId("filterDate").value = "";
+      loadReport(false, false);
+    }
+
+    function showNoDataForDate(isoDate) {
+      const [y, m, d] = isoDate.split("-");
+      currentReport = null;
+      ["statGeneratedAt", "statTotalArticles"].forEach(id => byId(id).textContent = "--");
+      byId("statTimeWindow").textContent = "Khung thời gian: --";
+      byId("statTotalClusters").textContent = "Gom thành -- chủ đề";
+      byId("serpCacheBadge").textContent = "Không có dữ liệu";
+      ["apiStatus1", "apiStatus2", "apiStatus3", "apiStatus4"].forEach(id => setApiStatus(id, null));
+      byId("trendingNowChips").innerHTML = `<div class="text-xs text-slate-500 py-4 text-center">Chưa có dữ liệu xu hướng.</div>`;
+      byId("keywordsContainer").innerHTML = `
+        <div class="pro-card rounded-2xl p-10 text-center">
+          <p class="text-base font-bold text-emerald-950">Không có dữ liệu đã quét trong ngày này</p>
+          <p class="text-xs text-slate-500 mt-2">Ngày ${d}/${m}/${y} chưa có báo cáo nào được lọc.</p>
+        </div>`;
     }
 
     function updateDashboardHeader(data) {
@@ -464,8 +514,8 @@
       setApiStatus("apiStatus3", apis.google_search, "bài top");
       setApiStatus("apiStatus4", apis.google_trends, "chỉ số");
 
-      // Cột dọc Google Trending Now bên trái
-      const highlights = serp.trending_now_highlights || [];
+      // Google Trending Now (cột bên phải, thu gọn mặc định, tối đa 12 từ khóa)
+      const highlights = (serp.trending_now_highlights || []).slice(0, 12);
       const chips = document.getElementById("trendingNowChips");
       if (highlights.length > 0) {
         chips.innerHTML = highlights.map((item, idx) => `
@@ -490,6 +540,13 @@
       } else {
         chips.innerHTML = `<div class="text-xs text-slate-500 py-4 text-center">Chưa có dữ liệu xu hướng.</div>`;
       }
+    }
+
+    function toggleTrending() {
+      const body = document.getElementById("trendingNowBody");
+      const open = body.classList.toggle("hidden") === false;
+      document.getElementById("btnTrendingToggle").setAttribute("aria-expanded", open);
+      document.getElementById("trendingChevron").classList.toggle("rotate-180", open);
     }
 
     function setApiStatus(elId, info, unit) {
