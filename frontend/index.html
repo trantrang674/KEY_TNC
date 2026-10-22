@@ -322,14 +322,14 @@
 
             <!-- Source filter -->
             <select id="filterSource" onchange="renderKeywords()" class="bg-white border border-emerald-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600">
-              <option value="ALL">Tất cả nguồn (Báo chí + Đối thủ)</option>
-              <option value="HAS_COMPETITOR">Ưu tiên: Đối thủ đã lên bài</option>
-              <option value="OPPORTUNITY">Cơ hội: Báo đã viết, Đối thủ chưa viết</option>
+              <option value="ALL">Nguồn: Tất cả</option>
+              <option value="COMPETITOR">Đối thủ</option>
+              <option value="PRESS">Báo</option>
             </select>
 
             <!-- Niche filter -->
             <select id="filterNiche" onchange="renderKeywords()" class="bg-white border border-emerald-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600">
-              <option value="ALL">Tất cả 9 Ngách Nội Dung</option>
+              <option value="ALL">Ngách Nội Dung: Tất cả</option>
             </select>
           </div>
 
@@ -434,6 +434,7 @@
           if (!resp.ok) throw new Error(`Server trả về lỗi HTTP ${resp.status}`);
           data = await resp.json();
         }
+        applyNicheNames(data);
         currentReport = data;
         updateDashboardHeader(data);
         populateNicheDropdown(data.niches_catalog || []);
@@ -453,6 +454,25 @@
         container.classList.remove("opacity-40");
         btnScan.disabled = false;
       }
+    }
+
+    // Tên nhóm chủ đề hiển thị theo mã nhóm, áp dụng cả cho báo cáo cũ đã lưu (trùng với backend/classifier.py)
+    const NICHE_NAMES = {
+      HARDWARE_COMPONENT: "Linh kiện - Phần Cứng",
+      OS_SOFTWARE: "HĐH - Phần mềm",
+      BIG_TECH_EVENT: "Có thể quan tâm",
+      GAME_TREND: "Game",
+      AI_UPDATES: "A.I",
+      SOCIAL_APPS: "Mạng xã hội - App",
+      GOV_DIGITAL_POLICY: "Chính sách - Quy định",
+      CYBERSECURITY_ALERT: "An ninh mạng",
+      PC_TIPS_FREE_GAMES: "Tối ưu - Sửa lỗi"
+    };
+
+    function applyNicheNames(data) {
+      const rename = (n) => { if (n && NICHE_NAMES[n.id]) n.name = NICHE_NAMES[n.id]; };
+      (data.top_10_keywords || []).forEach(k => rename(k.niche));
+      (data.niches_catalog || []).forEach(rename);
     }
 
     // Danh sách ngày đã có báo cáo (mỗi lần bấm Run workflow lưu 1 báo cáo cho ngày đó)
@@ -569,7 +589,7 @@
     function populateNicheDropdown(catalog) {
       const select = document.getElementById("filterNiche");
       const currentVal = select.value;
-      select.innerHTML = `<option value="ALL">Tất cả 9 Ngách Nội Dung</option>` +
+      select.innerHTML = `<option value="ALL">Ngách Nội Dung: Tất cả</option>` +
         catalog.map(n => `<option value="${n.id}">${escapeHtml(n.name)}</option>`).join("");
       select.value = currentVal || "ALL";
     }
@@ -587,8 +607,8 @@
 
       const filtered = currentReport.top_10_keywords.filter(item => {
         if (nicheFilter !== "ALL" && item.niche?.id !== nicheFilter) return false;
-        if (sourceFilter === "HAS_COMPETITOR" && (item.stats?.competitor_count || 0) === 0) return false;
-        if (sourceFilter === "OPPORTUNITY" && (item.stats?.competitor_count || 0) > 0) return false;
+        if (sourceFilter === "COMPETITOR" && (item.stats?.competitor_count || 0) === 0) return false;
+        if (sourceFilter === "PRESS" && (item.stats?.press_count || 0) === 0) return false;
 
         if (q) {
           const inKw = item.keyword.toLowerCase().includes(q);
@@ -610,28 +630,65 @@
         return;
       }
 
-      container.innerHTML = filtered.map(item => renderKeywordCard(item)).join("");
+      container.innerHTML = `
+        <div class="pro-card rounded-2xl overflow-hidden">
+          <div class="overflow-x-auto">
+            <table class="w-full text-sm">
+              <thead>
+                <tr class="bg-emerald-50 text-[11px] font-extrabold uppercase tracking-wider text-emerald-900 border-b border-emerald-200">
+                  <th class="px-3 py-3 text-center w-12">#</th>
+                  <th class="px-3 py-3 text-left">Keyword thu thập</th>
+                  <th class="px-3 py-3 text-left">Nhóm chủ đề</th>
+                  <th class="px-3 py-3 text-center">Độ phủ</th>
+                  <th class="px-3 py-3 text-center">Kênh báo đã đăng</th>
+                  <th class="px-3 py-3 text-center">Đối thủ đã đăng</th>
+                  <th class="px-3 py-3 w-10"></th>
+                </tr>
+              </thead>
+              <tbody>${filtered.map(item => renderKeywordRow(item)).join("")}</tbody>
+            </table>
+          </div>
+        </div>
+        <p class="text-[11px] text-slate-500 mt-2">Bấm vào từng keyword để xem Top 3 bài viết và Keyword gợi ý viết bài SEO.</p>`;
     }
 
-    function renderKeywordCard(item) {
-      const rank = item.rank;
-      let rankClass = "rank-badge-other";
-      if (rank === 1) rankClass = "rank-badge-1 text-white";
-      else if (rank === 2) rankClass = "rank-badge-2 text-white";
-      else if (rank === 3) rankClass = "rank-badge-3 text-white";
+    function toggleRow(rank) {
+      const detail = document.getElementById(`detail-${rank}`);
+      const open = detail.classList.toggle("hidden") === false;
+      document.getElementById(`chev-${rank}`).classList.toggle("rotate-180", open);
+      document.getElementById(`row-${rank}`).classList.toggle("bg-emerald-50/60", open);
+    }
 
-      const nicheColor = NICHE_COLORS[item.niche?.badge_color] || NICHE_COLORS.emerald;
+    function renderKeywordRow(item) {
+      const rank = item.rank;
       const compCount = item.stats?.competitor_count || 0;
       const pressCount = item.stats?.press_count || 0;
+      const pressTip = escapeHtml((item.stats?.press_list || []).join(", "));
+      const compTip = escapeHtml((item.stats?.competitor_list || []).join(", "));
 
-      const competitorAlertBadge = compCount > 0
-        ? `<span class="px-3 py-1 rounded-xl bg-amber-50 text-amber-800 border border-amber-300 text-xs font-bold flex items-center gap-1">
-             🔥 ${compCount} Đối thủ đã lên bài (${escapeHtml((item.stats.competitor_list || []).join(", "))})
-           </span>`
-        : `<span class="px-3 py-1 rounded-xl bg-emerald-50 text-emerald-800 border border-emerald-300 text-xs font-bold">
-             💡 Cơ hội đi trước: ${pressCount} Báo lớn đã viết, Đối thủ chưa lên bài
-           </span>`;
+      return `
+        <tr id="row-${rank}" onclick="toggleRow(${rank})" class="cursor-pointer hover:bg-emerald-50/60 border-b border-emerald-100 transition">
+          <td class="px-3 py-3 text-center text-slate-600">${rank}</td>
+          <td class="px-3 py-3 font-semibold text-emerald-950">
+            ${escapeHtml(item.keyword)}
+            ${item.stats?.is_trending_now ? `<span class="ml-1 text-xs font-medium text-amber-700">⚡ Trending</span>` : ""}
+          </td>
+          <td class="px-3 py-3 text-slate-700">${escapeHtml(item.niche?.name || "Công nghệ")}</td>
+          <td class="px-3 py-3 text-center whitespace-nowrap text-slate-700">${item.stats?.total_articles_found || 0} bài</td>
+          <td class="px-3 py-3 text-center text-slate-700" title="${pressTip}">${pressCount}</td>
+          <td class="px-3 py-3 text-center text-slate-700" title="${compTip}">${compCount}</td>
+          <td class="px-3 py-3 text-emerald-700">
+            <svg id="chev-${rank}" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+            </svg>
+          </td>
+        </tr>
+        <tr id="detail-${rank}" class="hidden border-b border-emerald-100 bg-white">
+          <td colspan="7" class="px-4 py-4">${renderKeywordDetail(item)}</td>
+        </tr>`;
+    }
 
+    function renderKeywordDetail(item) {
       const articlesHtml = (item.top_3_articles || []).map((art, idx) => {
         const isComp = art.source_type === "COMPETITOR";
         const srcBadgeClass = isComp
@@ -691,55 +748,9 @@
       `).join("");
 
       return `
-        <article class="pro-card rounded-2xl p-5 sm:p-6 transition hover:border-emerald-400">
-          <!-- BƯỚC 1: KEYWORD THU THẬP -->
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-4 border-b border-emerald-100">
-            <div class="flex items-start sm:items-center gap-3.5">
-              <div class="w-11 h-11 rounded-2xl ${rankClass} flex items-center justify-center font-extrabold text-lg shrink-0">
-                #${rank}
-              </div>
-              <div>
-                <div class="flex flex-wrap items-center gap-2 mb-1">
-                  <span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider">
-                    1. Keyword Thu Thập
-                  </span>
-                  <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold border ${nicheColor}">
-                    ${escapeHtml(item.niche?.name || "Công nghệ")}
-                  </span>
-                  <span class="text-xs text-slate-400">•</span>
-                  <span class="text-xs text-slate-700">
-                    Độ phủ: <strong class="text-emerald-900">${item.stats?.total_articles_found || 0} bài viết</strong> trong 48h
-                  </span>
-                  ${item.stats?.is_trending_now ? `
-                    <span class="px-2 py-0.5 rounded bg-amber-100 text-amber-900 border border-amber-300 text-[11px] font-bold">
-                      ⚡ Google Trending Now
-                    </span>
-                  ` : ""}
-                </div>
-                <div class="flex items-center gap-2.5">
-                  <h2 class="text-lg sm:text-xl font-extrabold text-emerald-950 tracking-tight">
-                    ${escapeHtml(item.keyword)}
-                  </h2>
-                  <button onclick="copyText('${escapeAttr(item.keyword)}')"
-                          class="px-2.5 py-1 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-[11px] font-bold text-emerald-800 border border-emerald-300 transition">
-                    Copy
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <!-- SCORE & COMPETITOR ALERT -->
-            <div class="flex flex-wrap items-center gap-3">
-              ${competitorAlertBadge}
-              <div class="px-3.5 py-2 rounded-xl bg-emerald-50 border border-emerald-200 text-right">
-                <div class="text-[10px] font-bold uppercase tracking-wider text-emerald-800">Tổng điểm SEO</div>
-                <div class="text-base font-extrabold text-emerald-700">${item.total_score} <span class="text-xs font-medium text-slate-500">/ 100</span></div>
-              </div>
-            </div>
-          </div>
-
-          <!-- BƯỚC 2: TOP 3 BÀI VIẾT ĐANG CHỨA KEYWORD -->
-          <div class="mt-4 pb-5 border-b border-emerald-100">
+        <div>
+          <!-- TOP 3 BÀI VIẾT ĐANG CHỨA KEYWORD -->
+          <div class="pb-5 border-b border-emerald-100">
             <div class="flex items-center justify-between mb-2.5">
               <div class="flex items-center gap-2">
                 <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-bold uppercase tracking-wider">
@@ -772,7 +783,7 @@
               ${seoSuggestionsHtml}
             </div>
           </div>
-        </article>
+        </div>
       `;
     }
 

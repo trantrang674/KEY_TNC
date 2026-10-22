@@ -10,7 +10,7 @@ from typing import Dict, List, Tuple
 NICHES = {
     "HARDWARE_COMPONENT": {
         "id": "HARDWARE_COMPONENT",
-        "name": "Linh kiện & Công nghệ Phần cứng",
+        "name": "Linh kiện - Phần Cứng",
         "badge_color": "emerald",
         "group": "Sát sườn ngành hàng",
         "keywords": [
@@ -25,7 +25,7 @@ NICHES = {
     },
     "OS_SOFTWARE": {
         "id": "OS_SOFTWARE",
-        "name": "Hệ điều hành & Phần mềm Bản quyền",
+        "name": "HĐH - Phần mềm",
         "badge_color": "blue",
         "group": "Sát sườn ngành hàng",
         "keywords": [
@@ -38,7 +38,7 @@ NICHES = {
     },
     "BIG_TECH_EVENT": {
         "id": "BIG_TECH_EVENT",
-        "name": "Ông lớn Công nghệ & Sự kiện",
+        "name": "Có thể quan tâm",
         "badge_color": "indigo",
         "group": "Sát sườn ngành hàng",
         "keywords": [
@@ -50,7 +50,7 @@ NICHES = {
     },
     "GAME_TREND": {
         "id": "GAME_TREND",
-        "name": "Game Hot & Xu hướng Làng Game",
+        "name": "Game",
         "badge_color": "purple",
         "group": "Tin tức Hot & Trend",
         "keywords": [
@@ -64,7 +64,7 @@ NICHES = {
     },
     "AI_UPDATES": {
         "id": "AI_UPDATES",
-        "name": "Trí tuệ nhân tạo (AI Updates)",
+        "name": "A.I",
         "badge_color": "amber",
         "group": "Tin tức Hot & Trend",
         "keywords": [
@@ -76,7 +76,7 @@ NICHES = {
     },
     "SOCIAL_APPS": {
         "id": "SOCIAL_APPS",
-        "name": "Mạng xã hội & Ứng dụng phổ biến",
+        "name": "Mạng xã hội - App",
         "badge_color": "pink",
         "group": "Tin tức Hot & Trend",
         "keywords": [
@@ -88,7 +88,7 @@ NICHES = {
     },
     "GOV_DIGITAL_POLICY": {
         "id": "GOV_DIGITAL_POLICY",
-        "name": "Chính sách Số & Quy định Chính phủ",
+        "name": "Chính sách - Quy định",
         "badge_color": "red",
         "group": "Tin tức Hot & Trend",
         "keywords": [
@@ -100,7 +100,7 @@ NICHES = {
     },
     "CYBERSECURITY_ALERT": {
         "id": "CYBERSECURITY_ALERT",
-        "name": "An ninh mạng & Cảnh báo Lừa đảo",
+        "name": "An ninh mạng",
         "badge_color": "rose",
         "group": "Mở rộng hữu ích",
         "keywords": [
@@ -111,7 +111,7 @@ NICHES = {
     },
     "PC_TIPS_FREE_GAMES": {
         "id": "PC_TIPS_FREE_GAMES",
-        "name": "Tối ưu PC, Sửa lỗi & Game Miễn phí",
+        "name": "Tối ưu - Sửa lỗi",
         "badge_color": "teal",
         "group": "Mở rộng hữu ích",
         "keywords": [
@@ -274,7 +274,7 @@ def classify_niche(title: str, summary: str = "") -> Dict:
             best_niche = niche_info
 
     if not best_niche:
-        # Mặc định về Ông lớn Công nghệ & Sự kiện nếu chưa khớp từ khóa cụ thể
+        # Mặc định về nhóm "Có thể quan tâm" nếu chưa khớp từ khóa cụ thể
         best_niche = NICHES["BIG_TECH_EVENT"]
 
     return {

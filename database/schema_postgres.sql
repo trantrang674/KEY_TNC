@@ -183,15 +183,15 @@ CREATE INDEX IF NOT EXISTS idx_seo_status ON seo_suggestions(status);
 
 -- ---------- 7. DỮ LIỆU KHỞI TẠO: 9 NGÁCH ----------
 INSERT INTO niches (id, name, badge_color, group_name) VALUES
- ('HARDWARE_COMPONENT',  'Linh kiện & Công nghệ Phần cứng',      'emerald', 'Sát sườn ngành hàng'),
- ('OS_SOFTWARE',         'Hệ điều hành & Phần mềm Bản quyền',    'blue',    'Sát sườn ngành hàng'),
- ('BIG_TECH_EVENT',      'Ông lớn Công nghệ & Sự kiện',          'indigo',  'Sát sườn ngành hàng'),
- ('GAME_TREND',          'Game Hot & Xu hướng Làng Game',        'purple',  'Tin tức Hot & Trend'),
- ('AI_UPDATES',          'Trí tuệ nhân tạo (AI Updates)',        'amber',   'Tin tức Hot & Trend'),
- ('SOCIAL_APPS',         'Mạng xã hội & Ứng dụng phổ biến',      'pink',    'Tin tức Hot & Trend'),
- ('GOV_DIGITAL_POLICY',  'Chính sách Số & Quy định Chính phủ',   'red',     'Tin tức Hot & Trend'),
- ('CYBERSECURITY_ALERT', 'An ninh mạng & Cảnh báo Lừa đảo',      'rose',    'Mở rộng hữu ích'),
- ('PC_TIPS_FREE_GAMES',  'Tối ưu PC, Sửa lỗi & Game Miễn phí',   'teal',    'Mở rộng hữu ích')
+ ('HARDWARE_COMPONENT',  'Linh kiện - Phần Cứng',      'emerald', 'Sát sườn ngành hàng'),
+ ('OS_SOFTWARE',         'HĐH - Phần mềm',    'blue',    'Sát sườn ngành hàng'),
+ ('BIG_TECH_EVENT',      'Có thể quan tâm',          'indigo',  'Sát sườn ngành hàng'),
+ ('GAME_TREND',          'Game',        'purple',  'Tin tức Hot & Trend'),
+ ('AI_UPDATES',          'A.I',        'amber',   'Tin tức Hot & Trend'),
+ ('SOCIAL_APPS',         'Mạng xã hội - App',      'pink',    'Tin tức Hot & Trend'),
+ ('GOV_DIGITAL_POLICY',  'Chính sách - Quy định',   'red',     'Tin tức Hot & Trend'),
+ ('CYBERSECURITY_ALERT', 'An ninh mạng',      'rose',    'Mở rộng hữu ích'),
+ ('PC_TIPS_FREE_GAMES',  'Tối ưu - Sửa lỗi',   'teal',    'Mở rộng hữu ích')
 ON CONFLICT (id) DO NOTHING;
 
 -- ---------- 8. VIEW: Top 10 của lần chạy mới nhất ----------
