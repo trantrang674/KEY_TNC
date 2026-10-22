@@ -57,11 +57,32 @@ def session():
         conn.close()
 
 
+def _migrate_ranking_positions(conn: sqlite3.Connection) -> None:
+    """DB cũ giới hạn position 1..3; nâng lên 1..5 để lưu được Top 5 bài viết (giữ nguyên dữ liệu cũ)."""
+    row = conn.execute(
+        "SELECT sql FROM sqlite_master WHERE type='table' AND name='ranking_articles'"
+    ).fetchone()
+    if not row or "BETWEEN 1 AND 3" not in (row["sql"] or ""):
+        return
+    conn.execute("ALTER TABLE ranking_articles RENAME TO ranking_articles_old")
+    conn.execute(
+        """CREATE TABLE ranking_articles (
+               ranking_id  INTEGER NOT NULL REFERENCES keyword_rankings(id) ON DELETE CASCADE,
+               article_id  INTEGER NOT NULL REFERENCES articles(id),
+               position    INTEGER NOT NULL CHECK (position BETWEEN 1 AND 5),
+               PRIMARY KEY (ranking_id, position)
+           )"""
+    )
+    conn.execute("INSERT INTO ranking_articles SELECT ranking_id, article_id, position FROM ranking_articles_old")
+    conn.execute("DROP TABLE ranking_articles_old")
+
+
 def init_schema(conn: sqlite3.Connection) -> None:
     exists = conn.execute(
         "SELECT 1 FROM sqlite_master WHERE type='table' AND name='articles'"
     ).fetchone()
     if exists:
+        _migrate_ranking_positions(conn)
         return
     conn.executescript(SCHEMA_PATH.read_text(encoding="utf-8"))
     for n in NICHES.values():
@@ -265,7 +286,7 @@ def save_report(conn, report: Dict[str, Any], serpapi_run_id: Optional[int] = No
         ).lastrowid
 
         article_ids: Dict[str, int] = {}
-        for pos, art in enumerate(item.get("top_3_articles", [])[:3], start=1):
+        for pos, art in enumerate(item.get("top_3_articles", [])[:5], start=1):
             aid = upsert_article(conn, art)
             if aid is None:
                 continue

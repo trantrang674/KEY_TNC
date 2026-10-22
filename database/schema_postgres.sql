@@ -157,7 +157,7 @@ CREATE INDEX IF NOT EXISTS idx_rank_keyword ON keyword_rankings(keyword_id, run_
 CREATE TABLE IF NOT EXISTS ranking_articles (
     ranking_id  BIGINT NOT NULL REFERENCES keyword_rankings(id) ON DELETE CASCADE,
     article_id  BIGINT NOT NULL REFERENCES articles(id),
-    position    SMALLINT NOT NULL CHECK (position BETWEEN 1 AND 3),
+    position    SMALLINT NOT NULL CHECK (position BETWEEN 1 AND 5),
     PRIMARY KEY (ranking_id, position)
 );
 CREATE INDEX IF NOT EXISTS idx_ra_article ON ranking_articles(article_id);

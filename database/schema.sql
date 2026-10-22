@@ -96,11 +96,11 @@ CREATE TABLE keyword_rankings (
 );
 CREATE INDEX idx_rank_keyword ON keyword_rankings(keyword_id, run_id);
 
--- Top 3 bài đại diện cho mỗi keyword trong mỗi lần chạy
+-- Top 5 bài đại diện cho mỗi keyword trong mỗi lần chạy
 CREATE TABLE ranking_articles (
     ranking_id  INTEGER NOT NULL REFERENCES keyword_rankings(id) ON DELETE CASCADE,
     article_id  INTEGER NOT NULL REFERENCES articles(id),
-    position    INTEGER NOT NULL CHECK (position BETWEEN 1 AND 3),
+    position    INTEGER NOT NULL CHECK (position BETWEEN 1 AND 5),
     PRIMARY KEY (ranking_id, position)
 );
 

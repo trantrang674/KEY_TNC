@@ -197,7 +197,7 @@
           <svg id="scanIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
           </svg>
-          <span>Quét Tin Mới & Cập Nhật Top 10</span>
+          <span>Quét Tin Mới & Cập Nhật Top 20</span>
         </button>
 
         <button onclick="exportReportCSV()" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-emerald-900 font-semibold text-xs sm:text-sm border border-emerald-300 transition flex items-center gap-1.5 shadow-sm">
@@ -649,7 +649,7 @@
             </table>
           </div>
         </div>
-        <p class="text-[11px] text-slate-500 mt-2">Bấm vào từng keyword để xem Top 3 bài viết và Keyword gợi ý viết bài SEO.</p>`;
+        <p class="text-[11px] text-slate-500 mt-2">Bấm vào từng keyword để xem Top 5 bài viết và Keyword gợi ý viết bài SEO.</p>`;
     }
 
     function toggleRow(rank) {
@@ -722,7 +722,7 @@
 
       const seoList = item.seo_suggested_keywords && item.seo_suggested_keywords.length > 0
         ? item.seo_suggested_keywords
-        : (item.related_keywords || []).map(rk => ({ keyword: rk, intent: "Keyword Gợi ý", based_on: "Tổng hợp từ Top 3 bài viết" }));
+        : (item.related_keywords || []).map(rk => ({ keyword: rk, intent: "Keyword Gợi ý", based_on: "Tổng hợp từ Top 5 bài viết" }));
 
       const seoSuggestionsHtml = seoList.map((s, idx) => `
         <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-300 hover:border-emerald-600 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
@@ -738,7 +738,7 @@
             <div class="text-sm sm:text-base font-extrabold text-emerald-950">
               “${escapeHtml(s.keyword)}”
             </div>
-            ${s.based_on ? `<div class="text-[11px] text-slate-600">📌 Bám sát bài: ${escapeHtml(s.based_on)}</div>` : ""}
+            ${s.based_on ? `<div class="text-[11px] text-slate-600">📌 Dựa trên: ${escapeHtml(s.based_on)}</div>` : ""}
           </div>
           <button onclick="copyText('${escapeAttr(s.keyword)}')"
                   class="shrink-0 px-3.5 py-2 rounded-lg brand-btn text-white text-xs font-bold transition">
@@ -754,17 +754,17 @@
             <div class="flex items-center justify-between mb-2.5">
               <div class="flex items-center gap-2">
                 <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-bold uppercase tracking-wider">
-                  2. Top 3 Bài Viết
+                  2. Top 5 Bài Viết
                 </span>
                 <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-700">
-                  Top 3 Bài Viết Mới Nhất Đang Chứa Keyword (24h - 48h qua)
+                  Top 5 Bài Viết Mới Nhất Đang Chứa Keyword (24h - 48h qua)
                 </h3>
               </div>
               <span class="text-[11px] font-medium text-slate-500">
                 Bài mới nhất: ${item.stats?.newest_hours_ago || 1} giờ trước
               </span>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3.5">
+            <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
               ${articlesHtml}
             </div>
           </div>
@@ -776,7 +776,7 @@
                 3. Gợi Ý Keyword Viết Bài SEO
               </span>
               <h3 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800">
-                Keyword Gợi Ý Bám Sát Vấn Đề Của Top 3 Bài Viết Để Triển Khai Lên Website:
+                Keyword Gợi Ý Bám Sát Vấn Đề Của Top 5 Bài Viết Để Triển Khai Lên Website:
               </h3>
             </div>
             <div class="grid grid-cols-1 gap-2.5">
@@ -815,26 +815,27 @@
 
     function exportReportCSV() {
       if (!currentReport || !currentReport.top_10_keywords) return;
+      const ARTICLE_SLOTS = 5;
+      const articleHeaders = [];
+      for (let i = 1; i <= ARTICLE_SLOTS; i++) articleHeaders.push(`Bài Viết ${i}`, `Link ${i}`);
       const rows = [
-        ["Hạng", "Keyword Thu Thập", "Ngách Nội Dung", "Điểm Số", "Gợi Ý Keyword SEO Website", "Bài Viết 1", "Link 1", "Bài Viết 2", "Link 2", "Bài Viết 3", "Link 3"]
+        ["Hạng", "Keyword Thu Thập", "Ngách Nội Dung", "Điểm Số", "Gợi Ý Keyword SEO Website", ...articleHeaders]
       ];
       for (const item of currentReport.top_10_keywords) {
-        const a1 = item.top_3_articles[0] || {};
-        const a2 = item.top_3_articles[1] || {};
-        const a3 = item.top_3_articles[2] || {};
+        const arts = item.top_3_articles || [];
         const seoKws = (item.seo_suggested_keywords || []).map(s => s.keyword).join(" | ") || (item.related_keywords || []).join(" | ");
+        const artCells = [];
+        for (let i = 0; i < ARTICLE_SLOTS; i++) {
+          const a = arts[i] || {};
+          artCells.push(a.title ? `[${a.source_name}] ${a.title}` : "", a.url || "");
+        }
         rows.push([
           item.rank,
           item.keyword,
           item.niche?.name || "",
           item.total_score,
           seoKws,
-          a1.title ? `[${a1.source_name}] ${a1.title}` : "",
-          a1.url || "",
-          a2.title ? `[${a2.source_name}] ${a2.title}` : "",
-          a2.url || "",
-          a3.title ? `[${a3.source_name}] ${a3.title}` : "",
-          a3.url || ""
+          ...artCells
         ]);
       }
       const csvContent = "\uFEFF" + rows.map(r => r.map(c => `"${String(c).replace(/"/g, '""')}"`).join(",")).join("\n");
@@ -842,7 +843,7 @@
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = `tnc_top10_keywords_${new Date().toISOString().slice(0, 10)}.csv`;
+      a.download = `tnc_top20_keywords_${new Date().toISOString().slice(0, 10)}.csv`;
       a.click();
     }
 

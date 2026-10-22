@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-FastAPI Server cung cấp API và giao diện Web Dashboard cho hệ thống nghiên cứu Top 10 Keyword Tin tức Công nghệ.
+FastAPI Server cung cấp API và giao diện Web Dashboard cho hệ thống nghiên cứu Top 20 Keyword Tin tức Công nghệ.
 """
 
 import json
@@ -24,7 +24,7 @@ FRONTEND_DIR.mkdir(parents=True, exist_ok=True)
 
 app = FastAPI(
     title="LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT",
-    description="Hệ thống nghiên cứu Top 10 Keyword Tin tức Công nghệ & Top 3 Bài viết mỗi ngày",
+    description="Hệ thống nghiên cứu Top 20 Keyword Tin tức Công nghệ & Top 5 Bài viết mỗi ngày",
     version="1.0.0"
 )
 

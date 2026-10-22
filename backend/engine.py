@@ -4,8 +4,10 @@ Module điều phối trung tâm (Engine):
 - Bước 1: Quét tin tức từ Báo công nghệ VN & Đối thủ (trong 24h - 48h).
 - Bước 2: Phân loại 9 Ngách Nội Dung & Trích xuất/Gom cụm Keyword.
 - Bước 3: Gọi trọn gói 4 cổng SerpApi (1 lượt/con/ngày, có Cache 24h) để làm giàu dữ liệu và chấm điểm.
-- Bước 4: Chấm điểm & Chọn ra Top 10 Keyword điểm cao nhất bất kỳ.
-- Bước 5: Tuyển chọn Top 3 bài viết mới nhất (ưu tiên đa dạng nguồn Báo + Đối thủ) cho mỗi Keyword.
+- Bước 4: Chấm điểm & Chọn ra Top 20 Keyword điểm cao nhất bất kỳ.
+- Bước 5: Tuyển chọn Top 5 bài viết mới nhất (ưu tiên đa dạng nguồn Báo + Đối thủ) cho mỗi Keyword.
+- Lưu ý: tên khóa JSON "top_10_keywords" / "top_3_articles" được giữ nguyên để tương thích báo cáo cũ,
+  nhưng nay chứa TOP_KEYWORDS (20) keyword và TOP_ARTICLES (5) bài viết.
 """
 
 import json
@@ -32,13 +34,17 @@ from backend.seo_suggester import suggest_seo_keywords
 
 VN_TZ = timezone(timedelta(hours=7))
 
+TOP_KEYWORDS = 20    # số keyword đưa vào báo cáo mỗi ngày
+TOP_ARTICLES = 5     # số bài viết đại diện cho mỗi keyword
+SEO_SUGGESTIONS = 3  # số keyword gợi ý viết bài SEO cho mỗi keyword
 
-def select_top_3_articles(articles: List[Dict], all_pool: List[Dict], keyword: str) -> List[Dict]:
+
+def select_top_articles(articles: List[Dict], all_pool: List[Dict], keyword: str, limit: int = TOP_ARTICLES) -> List[Dict]:
     """
-    Chọn ra đúng Top 3 bài viết tốt nhất cho 1 Keyword trong vòng 24h - 48h:
+    Chọn ra đúng Top `limit` bài viết tốt nhất cho 1 Keyword trong vòng 24h - 48h:
     - Ưu tiên bài viết mới nhất (24h đầu tiên, mở rộng 48h).
     - Ưu tiên đa dạng nguồn (không lấy trùng nguồn nếu có nhiều nguồn khác nhau cùng viết).
-    - Nếu cụm hiện tại có ít hơn 3 bài, tìm thêm trong kho bài viết 48h có chứa từ khóa liên quan.
+    - Nếu cụm hiện tại có ít hơn `limit` bài, tìm thêm trong kho bài viết 48h có chứa từ khóa liên quan.
     """
     # Sắp xếp ưu tiên bài trong 24h và số giờ nhỏ nhất
     sorted_arts = sorted(
@@ -52,7 +58,7 @@ def select_top_3_articles(articles: List[Dict], all_pool: List[Dict], keyword: s
 
     # Lượt 1: Ưu tiên mỗi nguồn 1 bài mới nhất để đa dạng góc nhìn (Báo chí + Đối thủ)
     for art in sorted_arts:
-        if len(selected) >= 3:
+        if len(selected) >= limit:
             break
         src_name = art.get("source_name", "")
         url = art.get("url", "")
@@ -61,23 +67,23 @@ def select_top_3_articles(articles: List[Dict], all_pool: List[Dict], keyword: s
             used_urls.add(url)
             used_sources.add(src_name)
 
-    # Lượt 2: Nếu chưa đủ 3 bài, lấy tiếp các bài mới nhất trong cùng cụm
+    # Lượt 2: Nếu chưa đủ bài, lấy tiếp các bài mới nhất trong cùng cụm
     for art in sorted_arts:
-        if len(selected) >= 3:
+        if len(selected) >= limit:
             break
         url = art.get("url", "")
         if url not in used_urls:
             selected.append(art)
             used_urls.add(url)
 
-    # Lượt 3: Nếu vẫn chưa đủ 3 bài, tìm mở rộng trong toàn bộ kho bài viết 48h theo từ khóa con
-    if len(selected) < 3:
+    # Lượt 3: Nếu vẫn chưa đủ bài, tìm mở rộng trong toàn bộ kho bài viết 48h theo từ khóa con
+    if len(selected) < limit:
         kw_tokens = [
             tok.lower() for tok in re.split(r"\W+", keyword)
             if len(tok) >= 3 and tok.lower() not in {"mới", "nhất", "cập", "nhật", "tính", "năng", "cách"}
         ]
         for art in all_pool:
-            if len(selected) >= 3:
+            if len(selected) >= limit:
                 break
             url = art.get("url", "")
             if url in used_urls:
@@ -87,7 +93,7 @@ def select_top_3_articles(articles: List[Dict], all_pool: List[Dict], keyword: s
                 selected.append(art)
                 used_urls.add(url)
 
-    return selected[:3]
+    return selected[:limit]
 
 
 def generate_related_keywords(core_kw: str, articles: List[Dict], serp_data: Dict) -> List[str]:
@@ -138,7 +144,7 @@ def generate_related_keywords(core_kw: str, articles: List[Dict], serp_data: Dic
 
 def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -> Dict[str, Any]:
     """
-    Chạy toàn bộ quy trình nghiên cứu Top 10 Keyword + Top 3 bài viết mỗi keyword.
+    Chạy toàn bộ quy trình nghiên cứu Top 20 Keyword + Top 5 bài viết mỗi keyword.
     """
     now_vn = datetime.now(VN_TZ)
 
@@ -303,19 +309,20 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
         total_score = round(coverage_score + competitor_score + freshness_score + serp_score, 1)
         total_score = min(99.5, total_score)
 
-        # Tuyển chọn Top 3 bài viết đại diện tốt nhất
-        top_3_arts = select_top_3_articles(cl["articles"], clean_pool, cl["keyword"])
+        # Tuyển chọn Top 5 bài viết đại diện tốt nhất (biến giữ tên top_3_arts để khớp khóa JSON cũ)
+        top_3_arts = select_top_articles(cl["articles"], clean_pool, cl["keyword"])
 
         # Chỉ xét những keyword có bài viết thực tế
         if not top_3_arts:
             continue
 
-        # Sinh Gợi ý Keyword viết bài SEO bám sát vấn đề của Top 3 bài viết
+        # Sinh Gợi ý Keyword viết bài SEO (cụm ngắn, chính xác) bám sát vấn đề của các bài viết top
         seo_suggestions = suggest_seo_keywords(
             keyword=cl["keyword"],
             cluster_id=cid,
             articles=top_3_arts,
-            limit=4
+            limit=SEO_SUGGESTIONS,
+            autocomplete=serp_data.get("autocomplete_suggestions", [])
         )
         related_kws = [s["keyword"] for s in seo_suggestions] if seo_suggestions else generate_related_keywords(cl["keyword"], top_3_arts, serp_data)
 
@@ -345,14 +352,14 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
             "top_3_articles": top_3_arts
         })
 
-    # Sắp xếp lấy đúng Top 10 Keyword điểm cao nhất bất kỳ
+    # Sắp xếp lấy đúng Top 20 Keyword điểm cao nhất bất kỳ
     scored_clusters.sort(
         key=lambda x: (x["total_score"], len(x["top_3_articles"]), -x["stats"]["newest_hours_ago"]),
         reverse=True
     )
 
     top_10 = []
-    for idx, item in enumerate(scored_clusters[:10], start=1):
+    for idx, item in enumerate(scored_clusters[:TOP_KEYWORDS], start=1):
         item["rank"] = idx
         top_10.append(item)
 
