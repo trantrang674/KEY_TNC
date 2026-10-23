@@ -1,15 +1,15 @@
 {
-  "generated_at": "19/10/2026 11:36:07",
+  "generated_at": "23/10/2026 16:32:43",
   "time_window_hours": 48,
-  "total_articles_scanned": 250,
-  "total_clusters_detected": 160,
+  "total_articles_scanned": 295,
+  "total_clusters_detected": 188,
   "serpapi_status": {
     "account": {
       "status": "Active",
       "plan_name": "Free Plan",
-      "searches_left": 200,
+      "searches_left": 168,
       "searches_per_month": 250,
-      "this_month_usage": 50
+      "this_month_usage": 82
     },
     "daily_suite_from_cache": true,
     "apis_called": {
@@ -24,157 +24,150 @@
       },
       "google_search": {
         "status": "success",
-        "query": "\"Cập nhật tính năng VNeID mới nhất\" OR \"Xu hướng TikTok\" OR \"Tin tức GTA 6 (GTA VI) mới nhất\"",
-        "count": 10
+        "query": "\"Cập nhật tính năng VNeID mới nhất\" OR \"Claude AI\" OR \"Ứng dụng Zalo\"",
+        "count": 8
       },
       "google_trends": {
         "status": "success",
-        "query": "Cập nhật tính năng VNeID mới nhất,Xu hướng TikTok,Tin tức GTA 6 (GTA VI) mới nhất,Nền tảng Steam,Cập nhật Windows 11 mới nhất",
+        "query": "Cập nhật tính năng VNeID mới nhất,Claude AI,Ứng dụng Zalo,Liên Minh Huyền Thoại,Nền tảng Steam",
         "scores": {
           "cập nhật tính năng vneid mới nhất": 0,
-          "xu hướng tiktok": 6,
-          "tin tức gta 6 (gta vi) mới nhất": 0,
-          "nền tảng steam": 0,
-          "cập nhật windows 11 mới nhất": 0
+          "claude ai": 54,
+          "ứng dụng zalo": 1,
+          "liên minh huyền thoại": 5,
+          "nền tảng steam": 0
         }
       }
     },
     "trending_now_highlights": [
       {
-        "query": "real madrid đấu với sevilla",
-        "search_volume": 20000,
-        "increase_percentage": 1000,
-        "categories": [
-          "Sports"
-        ],
-        "related_queries": [
-          "yan diomande",
-          "real vs",
-          "real",
-          "real madrid vs sevilla",
-          "vô địch tây ban nha"
-        ]
-      },
-      {
-        "query": "xổ số miền nam ngày 17 tháng 10",
-        "search_volume": 200000,
-        "increase_percentage": 1000,
-        "categories": [
-          "Games"
-        ],
-        "related_queries": [
-          "xổ số miền nam ngày 18 tháng 10",
-          "xổ số ngày 18 tháng 10",
-          "xsmn hôm xổ số miền nam 18 10",
-          "xổ số đà lạt ngày 18 tháng 10",
-          "xổ số kiên giang ngày 18 tháng 10"
-        ]
-      },
-      {
-        "query": "cướp",
-        "search_volume": 5000,
-        "increase_percentage": 1000,
-        "categories": [
-          "Law and Government"
-        ],
-        "related_queries": []
-      },
-      {
-        "query": "mỹ tâm",
+        "query": "nhà cao tầng",
         "search_volume": 10000,
         "increase_percentage": 1000,
         "categories": [
-          "Other"
+          "Business and Finance"
         ],
         "related_queries": []
       },
       {
-        "query": "leeds đấu với man utd",
-        "search_volume": 100000,
+        "query": "lại văn sâm",
+        "search_volume": 10000,
         "increase_percentage": 1000,
-        "categories": [
-          "Sports"
-        ],
-        "related_queries": [
-          "mu vs leed",
-          "leeds vs man utd",
-          "mu vs leeds",
-          "mu",
-          "leeds – man utd"
-        ]
-      },
-      {
-        "query": "quốc lộ 1a",
-        "search_volume": 500,
-        "increase_percentage": 1000,
-        "categories": [
-          "Other"
-        ],
-        "related_queries": []
-      },
-      {
-        "query": "samsung galaxy dòng z",
-        "search_volume": 2000,
-        "increase_percentage": 400,
-        "categories": [
-          "Technology",
-          "Science"
-        ],
-        "related_queries": []
-      },
-      {
-        "query": "real madrid – sevilla",
-        "search_volume": 5000,
-        "increase_percentage": 500,
-        "categories": [
-          "Sports"
-        ],
-        "related_queries": [
-          "real madrid"
-        ]
-      },
-      {
-        "query": "tập đoàn sơn hải",
-        "search_volume": 2000,
-        "increase_percentage": 500,
         "categories": [
           "Entertainment"
         ],
         "related_queries": []
       },
       {
-        "query": "20/10",
-        "search_volume": 2000,
-        "increase_percentage": 100,
-        "categories": [
-          "Shopping"
-        ],
-        "related_queries": [
-          "quà 20/10"
-        ]
-      },
-      {
-        "query": "ngày 20/10",
-        "search_volume": 1000,
-        "increase_percentage": 200,
-        "categories": [
-          "Hobbies and Leisure"
-        ],
-        "related_queries": []
-      },
-      {
-        "query": "nottm forest đấu với arsenal",
-        "search_volume": 20000,
+        "query": "fifa",
+        "search_volume": 5000,
         "increase_percentage": 1000,
         "categories": [
           "Sports"
         ],
+        "related_queries": []
+      },
+      {
+        "query": "thứ hạng của cahn gặp câu lạc bộ bóng đá đông á thanh hóa",
+        "search_volume": 10000,
+        "increase_percentage": 1000,
+        "categories": [
+          "Sports"
+        ],
+        "related_queries": []
+      },
+      {
+        "query": "xổ số miền nam ngày 22 tháng 10",
+        "search_volume": 200000,
+        "increase_percentage": 1000,
+        "categories": [
+          "Games"
+        ],
         "related_queries": [
-          "arsenal",
-          "arsenal vs",
-          "ars",
-          "nottm forest – arsenal",
-          "nottm forest vs arsenal"
+          "xsmn hôm xổ số miền nam 22 10",
+          "xổ số ngày 22 tháng 10",
+          "xổ số bình thuận ngày 22 tháng 10",
+          "xổ số miền nam ngày 21 tháng 10",
+          "xổ số ngày 21 tháng 10"
+        ]
+      },
+      {
+        "query": "iphone duo",
+        "search_volume": 5000,
+        "increase_percentage": 200,
+        "categories": [
+          "Technology"
+        ],
+        "related_queries": [
+          "iphone dou",
+          "giá iphone duo"
+        ]
+      },
+      {
+        "query": "gả kim thoa tập 16",
+        "search_volume": 10000,
+        "increase_percentage": 1000,
+        "categories": [
+          "Entertainment"
+        ],
+        "related_queries": [
+          "phim gả kim thoa tập 16",
+          "ga kim thoa",
+          "xem phim gả kim thoa",
+          "phim giả kim thoa"
+        ]
+      },
+      {
+        "query": "supachok sarachat",
+        "search_volume": 5000,
+        "increase_percentage": 1000,
+        "categories": [
+          "Sports"
+        ],
+        "related_queries": []
+      },
+      {
+        "query": "thuế",
+        "search_volume": 10000,
+        "increase_percentage": 600,
+        "categories": [
+          "Other"
+        ],
+        "related_queries": [
+          "công an thành phố đồng nai"
+        ]
+      },
+      {
+        "query": "định danh điện tử",
+        "search_volume": 10000,
+        "increase_percentage": 1000,
+        "categories": [
+          "Other"
+        ],
+        "related_queries": [
+          "vneid"
+        ]
+      },
+      {
+        "query": "trường cao đẳng công nghệ quốc tế lilama 2",
+        "search_volume": 10000,
+        "increase_percentage": 1000,
+        "categories": [
+          "Other"
+        ],
+        "related_queries": [
+          "sinh viên"
+        ]
+      },
+      {
+        "query": "concert bigbang",
+        "search_volume": 2000,
+        "increase_percentage": 300,
+        "categories": [
+          "Entertainment"
+        ],
+        "related_queries": [
+          "bigbang"
         ]
       }
     ],
@@ -189,7 +182,7 @@
   "niches_catalog": [
     {
       "id": "HARDWARE_COMPONENT",
-      "name": "Linh kiện & Công nghệ Phần cứng",
+      "name": "Linh kiện - Phần Cứng",
       "badge_color": "emerald",
       "group": "Sát sườn ngành hàng",
       "keywords": [
@@ -251,7 +244,7 @@
     },
     {
       "id": "OS_SOFTWARE",
-      "name": "Hệ điều hành & Phần mềm Bản quyền",
+      "name": "HĐH - Phần mềm",
       "badge_color": "blue",
       "group": "Sát sườn ngành hàng",
       "keywords": [
@@ -288,7 +281,7 @@
     },
     {
       "id": "BIG_TECH_EVENT",
-      "name": "Ông lớn Công nghệ & Sự kiện",
+      "name": "Có thể quan tâm",
       "badge_color": "indigo",
       "group": "Sát sườn ngành hàng",
       "keywords": [
@@ -314,7 +307,7 @@
     },
     {
       "id": "GAME_TREND",
-      "name": "Game Hot & Xu hướng Làng Game",
+      "name": "Game",
       "badge_color": "purple",
       "group": "Tin tức Hot & Trend",
       "keywords": [
@@ -359,7 +352,7 @@
     },
     {
       "id": "AI_UPDATES",
-      "name": "Trí tuệ nhân tạo (AI Updates)",
+      "name": "A.I",
       "badge_color": "amber",
       "group": "Tin tức Hot & Trend",
       "keywords": [
@@ -394,7 +387,7 @@
     },
     {
       "id": "SOCIAL_APPS",
-      "name": "Mạng xã hội & Ứng dụng phổ biến",
+      "name": "Mạng xã hội - App",
       "badge_color": "pink",
       "group": "Tin tức Hot & Trend",
       "keywords": [
@@ -427,7 +420,7 @@
     },
     {
       "id": "GOV_DIGITAL_POLICY",
-      "name": "Chính sách Số & Quy định Chính phủ",
+      "name": "Chính sách - Quy định",
       "badge_color": "red",
       "group": "Tin tức Hot & Trend",
       "keywords": [
@@ -458,7 +451,7 @@
     },
     {
       "id": "CYBERSECURITY_ALERT",
-      "name": "An ninh mạng & Cảnh báo Lừa đảo",
+      "name": "An ninh mạng",
       "badge_color": "rose",
       "group": "Mở rộng hữu ích",
       "keywords": [
@@ -484,7 +477,7 @@
     },
     {
       "id": "PC_TIPS_FREE_GAMES",
-      "name": "Tối ưu PC, Sửa lỗi & Game Miễn phí",
+      "name": "Tối ưu - Sửa lỗi",
       "badge_color": "teal",
       "group": "Mở rộng hữu ích",
       "keywords": [
@@ -512,14 +505,341 @@
   ],
   "top_10_keywords": [
     {
-      "keyword": "Tin tức GTA 6 (GTA VI) mới nhất",
-      "cluster_id": "gta 6 (gta vi)",
+      "keyword": "Claude AI",
+      "cluster_id": "claude ai",
+      "niche": {
+        "id": "AI_UPDATES",
+        "name": "A.I",
+        "badge_color": "amber",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 12
+      },
+      "total_score": 86.2,
+      "score_breakdown": {
+        "coverage": 40.0,
+        "competitor": 18.0,
+        "freshness": 20.0,
+        "serpapi_trend": 8.2
+      },
+      "stats": {
+        "total_articles_found": 14,
+        "press_count": 12,
+        "competitor_count": 1,
+        "press_list": [
+          "BeInCrypto",
+          "Báo Tri thức và Cuộc sống",
+          "Coursera",
+          "Facebook",
+          "Facebook · Cesglobal AI",
+          "Facebook · Claude VN",
+          "Odoo Apps Store",
+          "Quantrimang.com",
+          "Tinh Tế",
+          "TradingView",
+          "Vietnam.vn",
+          "downdetector.com.ar"
+        ],
+        "competitor_list": [
+          "Phong Vũ"
+        ],
+        "newest_hours_ago": 5.3,
+        "is_trending_now": false,
+        "google_trends_index": 54
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Claude ngày ra mắt",
+          "intent": "Keyword Tính năng / Tin mới",
+          "based_on": "[Tinh Tế] Anthropic ra mắt Claude Duet: AI agent chủ động cho dân văn phòng, cạnh tranh Muse và Dots"
+        },
+        {
+          "keyword": "Claude Duet",
+          "intent": "Keyword Tính năng / Tin mới",
+          "based_on": "[Tinh Tế] Anthropic ra mắt Claude Duet: AI agent chủ động cho dân văn phòng, cạnh tranh Muse và Dots"
+        },
+        {
+          "keyword": "Claude AI",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "[BeInCrypto] Claude AI giải mã bí ẩn 17 năm của Satoshi về Bitcoin"
+        }
+      ],
+      "related_keywords": [
+        "Claude ngày ra mắt",
+        "Claude Duet",
+        "Claude AI"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Anthropic ra mắt Claude Duet: AI agent chủ động cho dân văn phòng, cạnh tranh Muse và Dots",
+          "url": "https://tinhte.vn/thread/anthropic-ra-mat-claude-duet-ai-agent-chu-dong-cho-dan-van-phong-canh-tranh-muse-va-dots.4186233/",
+          "summary": "Anthropic vừa mở bản thử nghiệm (research preview) Claude Duet, một ứng dụng riêng nơi Claude hoạt động như một agent chủ động. Thay vì chờ người dùng ra lệnh, Duet tự theo dõi các ứng dụng đã kết...",
+          "source_name": "Tinh Tế",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T11:15:32+07:00",
+          "hours_ago": 5.3,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 12
+          },
+          "extracted_keyword": "Claude AI"
+        },
+        {
+          "title": "Anthropic ra mắt Claude Duet, gia nhập cuộc đua trợ lý AI cá nhân",
+          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5LSlFPNEFpV05WZjNlS2VpaVlwcEg5YjlIcHA2ZWo2ZGl3WklHSW9kN2NVNmwwc0NlMzNUb0JtcVRlbEwtSjk5clpMN1pnNVotVWxXMWt0OUQ2NVI2bVl0VTJ0a19xaEtBWHc?oc=5",
+          "summary": "Anthropic ra mắt Claude Duet, gia nhập cuộc đua trợ lý AI cá nhân Phong Vũ",
+          "source_name": "Phong Vũ",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T09:18:29+07:00",
+          "hours_ago": 7.2,
+          "relative_time": "7 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "Claude AI"
+        },
+        {
+          "title": "6 giải pháp thay thế Claude Cowork dành cho Mac & PC",
+          "url": "https://news.google.com/rss/articles/CBMicEFVX3lxTE8yN0VwQ0dadEx0cGJ4bkRjUUEwaGlHVjd3YlR6cm9wa3lYR0Q5N3J2ZXhNODVqd0NxVVlCTUUtb0VPUGpqYm1pOE9GVDgxM3JmSGxtS015cG1ZZXBoTmpvb0d0bFdSc2k0d1hEeVVBRFY?oc=5",
+          "summary": "6 giải pháp thay thế Claude Cowork dành cho Mac & PC Quantrimang.com",
+          "source_name": "Quantrimang.com",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T07:26:00+07:00",
+          "hours_ago": 9.1,
+          "relative_time": "9 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Claude AI"
+        },
+        {
+          "title": "Claude AI giải mã bí ẩn 17 năm của Satoshi về Bitcoin",
+          "url": "https://vn.beincrypto.com/ai-cracks-satoshi-bitcoin-17-year-mystery/",
+          "summary": "Claude AI giúp một nhà phát triển tái tạo phần mềm Bitcoin gốc của Satoshi Nakamoto từ năm 2009. Chương trình được xây dựng lại hoàn toàn trùng khớp, ...",
+          "source_name": "BeInCrypto",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T04:18:36.557262+07:00",
+          "hours_ago": 12.0,
+          "relative_time": "12 giờ trước",
+          "within_24h": true,
+          "from_serpapi_search": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          }
+        },
+        {
+          "title": "Claude AI down? Current problems and outages - Downdetector",
+          "url": "https://downdetector.com.ar/en/status/claude-ai/",
+          "summary": "User reports show no current problems with Claude AI. Claude AI by Anthropic is an AI assistant platform offering conversational models including Opus, Sonnet ...",
+          "source_name": "downdetector.com.ar",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T23:18:36.557314+07:00",
+          "hours_ago": 17.0,
+          "relative_time": "17 giờ trước",
+          "within_24h": true,
+          "from_serpapi_search": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 7
+          }
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "keyword": "Liên Minh Huyền Thoại",
+      "cluster_id": "liên minh huyền thoại",
       "niche": {
         "id": "GAME_TREND",
-        "name": "Game Hot & Xu hướng Làng Game",
+        "name": "Game",
         "badge_color": "purple",
         "group": "Tin tức Hot & Trend",
-        "relevance_score": 9
+        "relevance_score": 3
+      },
+      "total_score": 83.3,
+      "score_breakdown": {
+        "coverage": 40.0,
+        "competitor": 18.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.3
+      },
+      "stats": {
+        "total_articles_found": 6,
+        "press_count": 3,
+        "competitor_count": 1,
+        "press_list": [
+          "GameK",
+          "Techz.vn",
+          "Xemgame.com"
+        ],
+        "competitor_list": [
+          "CellphoneS (Sforum)"
+        ],
+        "newest_hours_ago": 3.0,
+        "is_trending_now": false,
+        "google_trends_index": 5
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "LMHT ngày ra mắt",
+          "intent": "Keyword Tính năng / Tin mới",
+          "based_on": "[Techz.vn] K/DA phát hành EP FIRESTARTER, xác nhận biểu diễn tại Chung kết thế giới LMHT 2026"
+        },
+        {
+          "keyword": "Cấu hình LMHT",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "[GameK] Loạt thông số trước thềm ra quân CKTG 2026 khiến cộng đồng LMHT \"chưng hửng\" của Faker"
+        },
+        {
+          "keyword": "Hướng dẫn LMHT",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "[Xemgame.com] LMHT: Phát hiện mẹo Sylas không phải ai cũng biết, nhưng cực khó làm"
+        }
+      ],
+      "related_keywords": [
+        "LMHT ngày ra mắt",
+        "Cấu hình LMHT",
+        "Hướng dẫn LMHT"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Inspired tiếp tục khẳng định SofM là người đi rừng vĩ đại nhất lịch sử LMHT",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxQdGs5ZDRaNzNsMjltRU5aWjItVmVTc2FfVmpYRlhHVzA0dVVwZ3g0b1ZySFZ2cVBfOWpuYVRHNnIwN0lIcl81d0I0UkdxTG5XSG40dFgwN1V1c1AxVEJCQ2EyODFJU1cyckgxeExseXpQcHpWNFVBQkthc1FJZjRMLUZpTHAxOTBSZXhYeWhlMDJIX0lLdlNXc3hWNXhEdnpCUjFiVWtGV3dxWWdRRVhXMzM2VVhXUQ?oc=5",
+          "summary": "Inspired tiếp tục khẳng định SofM là người đi rừng vĩ đại nhất lịch sử LMHT Xemgame.com",
+          "source_name": "Xemgame.com",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:30:00+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "3 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Liên Minh Huyền Thoại"
+        },
+        {
+          "title": "Loạt thông số trước thềm ra quân CKTG 2026 khiến cộng đồng LMHT \"chưng hửng\" của Faker",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxPbGtzTGVrX0VqZk1ZbF9hQ1NVNjFjQnd3ZHY2eVdVdWhiQW11UkxzN2ppZTRUT240M1JXZlVESU55dHJjUHFQNkxudjU4MTM2Y1l3OWJ0M3pSQnhVQ1JnMmdaV2h6eEZlWWVqZjY3MUdsU2pPQzVSM2xocUFiZG1vZExzeHRiVWtldVlwN1BFZWE5ckxVZEtncHVnSWNzc2ZaMkFJdDZZQzFZQkdyemd6TDVLZTNQTWVpNGY5OEpHRlQtdw?oc=5",
+          "summary": "Loạt thông số trước thềm ra quân CKTG 2026 khiến cộng đồng LMHT \"chưng hửng\" của Faker m.gamek.vn",
+          "source_name": "GameK",
+          "source_type": "PRESS",
+          "source_badge": "Báo Game",
+          "published_at": "2026-10-23T10:00:00+07:00",
+          "hours_ago": 6.5,
+          "relative_time": "6 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "Liên Minh Huyền Thoại"
+        },
+        {
+          "title": "K/DA chính thức trở lại LMHT với đĩa đơn mới FIRESTARTER",
+          "url": "https://news.google.com/rss/articles/CBMiX0FVX3lxTE9XdC05UWRJelBQa0x3WGhuV3pXMXNuY0RZRlY4bU53NHphenNYbUlCQjNCQmZiUGExdlNFMXllaTl3S2RKclR5LTVncUd4OXk3OVlkZmtWbFdYeXZXOGRv?oc=5",
+          "summary": "K/DA chính thức trở lại LMHT với đĩa đơn mới FIRESTARTER CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T16:33:30+07:00",
+          "hours_ago": 24.0,
+          "relative_time": "23 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Liên Minh Huyền Thoại"
+        },
+        {
+          "title": "K/DA phát hành EP FIRESTARTER, xác nhận biểu diễn tại Chung kết thế giới LMHT 2026",
+          "url": "https://news.google.com/rss/articles/CBMixwFBVV95cUxOZDRzUDhRWnhWcng2UjdyMVl3S0c0RlVoYkp3T3VjUjJxWm14c2psYkJzdjZiR09YeXZKSG5BTzlCbmhIZlMwSm81b2RnWWhUT2sxUWJjWnJjSDFUZGlWbWROQkJCUWdhZWxZN1RoWFRZTlh3TGFoY051X3FYTmx5OTdVNjNJVDc3ZXQ1LVZsU3VxRXdFUEpLWU5XQjk1TFRoMzZKemxnR3lMemwxV2FHVl9wYm5rbUxETEF0SENnUUlNY3J1eHNR?oc=5",
+          "summary": "K/DA phát hành EP FIRESTARTER, xác nhận biểu diễn tại Chung kết thế giới LMHT 2026 Techz.vn",
+          "source_name": "Techz.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T09:56:41+07:00",
+          "hours_ago": 30.6,
+          "relative_time": "30 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Liên Minh Huyền Thoại"
+        },
+        {
+          "title": "LMHT: Phát hiện mẹo Sylas không phải ai cũng biết, nhưng cực khó làm",
+          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxQZ252U3hYb19UNDFJRTQ3WHAzSk1FVHh3UnNmWWNqdHhLWHlWdFE4d1lXbHQ5bXJheEF6NVVZSW9mYUJYUkRlTnlhZ2hqbnFacHBWYWdpRVBZczBCcmdic0E3OExUZFVSSThZMWZEWEQ4eDhNLUJWOGtjUW1hTXlQY3EwSFdpVXBSbHNVclNMU1NFN2MwdzRHdWptQ2ZWeFZwb1FmUi1kdUtUQQ?oc=5",
+          "summary": "LMHT: Phát hiện mẹo Sylas không phải ai cũng biết, nhưng cực khó làm Xemgame.com",
+          "source_name": "Xemgame.com",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T14:00:00+07:00",
+          "hours_ago": 26.5,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Liên Minh Huyền Thoại"
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "keyword": "Xu hướng TikTok",
+      "cluster_id": "xu hướng tiktok",
+      "niche": {
+        "id": "SOCIAL_APPS",
+        "name": "Mạng xã hội - App",
+        "badge_color": "pink",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 3
       },
       "total_score": 83.0,
       "score_breakdown": {
@@ -529,114 +849,152 @@
         "serpapi_trend": 5.0
       },
       "stats": {
-        "total_articles_found": 6,
-        "press_count": 4,
+        "total_articles_found": 4,
+        "press_count": 2,
         "competitor_count": 1,
         "press_list": [
-          "BeInCrypto",
-          "GameK",
-          "Phụ nữ Mới",
-          "Vietgame Asia"
+          "Báo Thanh Niên",
+          "Báo Tuổi Trẻ"
         ],
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 0.3,
+        "newest_hours_ago": 3.0,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [
         {
-          "keyword": "Hứa mua GTA 6 rồi bất ngờ lật kèo",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Phụ nữ Mới] Hứa mua GTA 6 rồi bất ngờ lật kèo, cô gái khiến bạn trai quyết định chấm dứt tình yêu: Hàng loạt game thủ lại cho rằng anh đã làm đúng"
+          "keyword": "Hướng dẫn TikTok",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "[CellphoneS (Sforum)] TikTok One là gì? Lợi ích và cách đăng ký sử dụng TikTok One"
         },
         {
-          "keyword": "Rockstar làm lại toàn bộ cho GTA 6",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[BeInCrypto] Rockstar làm lại toàn bộ cho GTA 6: Phố Wall sẽ mua vào ngày 19/11?"
+          "keyword": "TikTok One",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "[CellphoneS (Sforum)] TikTok One là gì? Lợi ích và cách đăng ký sử dụng TikTok One"
         },
         {
-          "keyword": "Góc gaming lên đồ, GTA VI 1 tháng nữa bùng nổ",
+          "keyword": "TikTok mới nhất",
           "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[CellphoneS (Sforum)] Góc gaming lên đồ, GTA VI 1 tháng nữa bùng nổ: 3 combo PS5 từ 20 triệu sắm ngay cho trọn bộ!"
+          "based_on": "Cụm tìm kiếm phổ biến"
         }
       ],
       "related_keywords": [
-        "Hứa mua GTA 6 rồi bất ngờ lật kèo",
-        "Rockstar làm lại toàn bộ cho GTA 6",
-        "Góc gaming lên đồ, GTA VI 1 tháng nữa bùng nổ"
+        "Hướng dẫn TikTok",
+        "TikTok One",
+        "TikTok mới nhất"
       ],
       "top_3_articles": [
         {
-          "title": "Hứa mua GTA 6 rồi bất ngờ lật kèo, cô gái khiến bạn trai quyết định chấm dứt tình yêu: Hàng loạt game thủ lại cho rằng anh đã làm đúng",
-          "url": "https://news.google.com/rss/articles/CBMi_gFBVV95cUxOY2ktSFBpeDlzUGxUWWRXNkFKa3llZGk3V3F4dko3MUlfX3pGdXhHZGh5SUJpN3N2ZlRMSExVVGVNWXo3Y0ZscEN0akNodEE5b3FlcUZGVWRLOXY2RTRScFpLTk1oWG1GeFR6d1BjUFlPYzRTcUZfWjQzTkRBbmVxR25BeTVkNFNiTlpEd2RVYnFwSlVBZlFiZHdMdHpQVmkwcFV3VlVYQTBzbmxvWG05ekZmaHFYNktVNHJjT3JxSVJyZjFqMjZGdVl1NnZ0c1JPUDc1UkE5OUlZalpqTlNpcDVfckhzeE9sX2xlNnh5eHJ6akpDUW1iaFRtTjBNdw?oc=5",
-          "summary": "Hứa mua GTA 6 rồi bất ngờ lật kèo, cô gái khiến bạn trai quyết định chấm dứt tình yêu: Hàng loạt game thủ lại cho rằng anh đã làm đúng Phụ nữ Mới",
-          "source_name": "Phụ nữ Mới",
+          "title": "New York kiện TikTok, cáo buộc thử nghiệm 'tính năng an toàn giả' với trẻ em",
+          "url": "https://tuoitre.vn/new-york-kien-tiktok-cao-buoc-thu-nghiem-tinh-nang-an-toan-gia-voi-tre-em-100261008135629266.htm",
+          "summary": "Bang New York (Mỹ) cáo buộc TikTok bí mật thử nghiệm những tính năng an toàn không hoạt động trên hàng nghìn người dùng, trong đó có trẻ em và thanh thiếu niên.",
+          "source_name": "Báo Tuổi Trẻ",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T11:19:00+07:00",
-          "hours_ago": 0.3,
-          "relative_time": "17 phút trước",
+          "published_at": "2026-10-23T13:32:45.906538+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
           "within_24h": true,
           "niche": {
-            "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
-            "badge_color": "purple",
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
             "group": "Tin tức Hot & Trend",
-            "relevance_score": 9
+            "relevance_score": 3
           },
-          "extracted_keyword": "Tin tức GTA 6 (GTA VI) mới nhất"
+          "extracted_keyword": "Xu hướng TikTok"
         },
         {
-          "title": "Rockstar làm lại toàn bộ cho GTA 6: Phố Wall sẽ mua vào ngày 19/11?",
-          "url": "https://news.google.com/rss/articles/CBMiZ0FVX3lxTFAtcFZqWnA3UU9xM0tuRDFGLWxEMEdjYm5kaEF4bFEwRWtMSEpRaUJaamtTZ0NyUmlUT2h5dkEzZzlFU0FkbnVwN0R0dUxlMFdYRXNEQ0J3WTdPckNpQ1YyMXdhZjNYUUU?oc=5",
-          "summary": "Rockstar làm lại toàn bộ cho GTA 6: Phố Wall sẽ mua vào ngày 19/11? BeInCrypto",
-          "source_name": "BeInCrypto",
+          "title": "Công an xử lý nhóm học sinh đặt bột pháo qua TikTok để chế pháo nổ",
+          "url": "https://news.google.com/rss/articles/CBMiqwFBVV95cUxOU2lDU29yOHl1b2pWZmtMeDM2ZE91b2plWjB1OVpJX1JoWWNKXzNTSUhNamN0WGYtY0NfdHd2dnoxS3p3aFc3TUlpdFlTRFM5MWZTQlR0Ukx3c29Gcm00QVFNdDhfcEZabzR1dC1LdUpLa3VzRVI1Yk91TVQwWGZ0Qm9zQlF0RFlXV1hxZ21wY3ZVRVN3WWN3dkNJMXo2UzIwVFRQRXNFcFdxS28?oc=5",
+          "summary": "Công an xử lý nhóm học sinh đặt bột pháo qua TikTok để chế pháo nổ Thanh Niên",
+          "source_name": "Báo Thanh Niên",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T10:40:00+07:00",
-          "hours_ago": 0.9,
-          "relative_time": "56 phút trước",
+          "published_at": "2026-10-23T10:38:00+07:00",
+          "hours_ago": 5.9,
+          "relative_time": "5 giờ trước",
           "within_24h": true,
           "niche": {
-            "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
-            "badge_color": "purple",
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
             "group": "Tin tức Hot & Trend",
-            "relevance_score": 6
+            "relevance_score": 3
           },
-          "extracted_keyword": "Tin tức GTA 6 (GTA VI) mới nhất"
+          "extracted_keyword": "Xu hướng TikTok"
         },
         {
-          "title": "Góc gaming lên đồ, GTA VI 1 tháng nữa bùng nổ: 3 combo PS5 từ 20 triệu sắm ngay cho trọn bộ!",
-          "url": "https://news.google.com/rss/articles/CBMiZkFVX3lxTE15YW1raHBaVDRFZHRwOHZaWjFpeWJMVUVpdDdoa3hyanF6RXhxLThUSjdJT21yS2t0UUtUaXNWVUVxNEI1TXZJQlRxTjg1QWR3cnR1U1BGcHA0MjQ2X1d6cFpjbmlidw?oc=5",
-          "summary": "Góc gaming lên đồ, GTA VI 1 tháng nữa bùng nổ: 3 combo PS5 từ 20 triệu sắm ngay cho trọn bộ! CellphoneS",
+          "title": "TikTok có trả tiền cho view không? Giải đáp chi tiết",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE1lZlNkb0tSMS1WbER5S2l3cHdiZ2VpaHBGRWhBc0ZLWGZZMVlxY3d1S0JPZWRCUVpPTlktUTZienNUN0M4Y1o2MEpSaEtTdW9DaUwydWlNWThuVEhrY3NOQ2JDaGFPN3NpdzRGSGl6MnlwaWRY?oc=5",
+          "summary": "TikTok có trả tiền cho view không? Giải đáp chi tiết CellphoneS",
           "source_name": "CellphoneS (Sforum)",
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
-          "published_at": "2026-10-19T10:16:52+07:00",
-          "hours_ago": 1.3,
-          "relative_time": "1 giờ trước",
-          "within_24h": true,
+          "published_at": "2026-10-22T10:39:11+07:00",
+          "hours_ago": 29.9,
+          "relative_time": "29 giờ trước",
+          "within_24h": false,
           "niche": {
-            "id": "BIG_TECH_EVENT",
-            "name": "Ông lớn Công nghệ & Sự kiện",
-            "badge_color": "indigo",
-            "group": "Sát sườn ngành hàng",
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
             "relevance_score": 3
           },
-          "extracted_keyword": "Tin tức GTA 6 (GTA VI) mới nhất"
+          "extracted_keyword": "Xu hướng TikTok"
+        },
+        {
+          "title": "TikTok One là gì? Lợi ích và cách đăng ký sử dụng TikTok One",
+          "url": "https://news.google.com/rss/articles/CBMiXkFVX3lxTE5NSlZXcnkwdERXRzVhcVhoTFd2ZFFKMWJpdTJBRTZVTnZGQkY4THpSeHZXMktjQ1NXS1BDMEhCaEw5SmVmTnVGODd3ZWFFMGF5QWRrNVg0aUhRZl9hOXc?oc=5",
+          "summary": "TikTok One là gì? Lợi ích và cách đăng ký sử dụng TikTok One CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-21T16:48:00+07:00",
+          "hours_ago": 47.7,
+          "relative_time": "47 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Xu hướng TikTok"
+        },
+        {
+          "title": "Hy Lạp đề xuất cấm trẻ dưới 15 tuổi dùng Instagram, TikTok, Facebook",
+          "url": "https://tuoitre.vn/hy-lap-de-xuat-cam-tre-duoi-15-tuoi-dung-instagram-tiktok-facebook-100261013094157955.htm",
+          "summary": "Instagram, TikTok và Facebook có thể phải xác minh độ tuổi người dùng theo dự luật mới của Hy Lạp, dự kiến áp dụng từ đầu năm 2027.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:32:45.906355+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "Tính năng mới Facebook"
         }
       ],
-      "rank": 1
+      "rank": 3
     },
     {
       "keyword": "Valorant",
       "cluster_id": "valorant",
       "niche": {
         "id": "GAME_TREND",
-        "name": "Game Hot & Xu hướng Làng Game",
+        "name": "Game",
         "badge_color": "purple",
         "group": "Tin tức Hot & Trend",
         "relevance_score": 3
@@ -653,53 +1011,53 @@
         "press_count": 2,
         "competitor_count": 1,
         "press_list": [
-          "Techz.vn",
-          "VTV Công Nghệ"
+          "MMOSITE.vn",
+          "Techz.vn"
         ],
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 0.6,
+        "newest_hours_ago": 1.8,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [
         {
-          "keyword": "Toàn tập hệ thống skin vũ khí trong VALORANT",
+          "keyword": "Valorant TenZ",
           "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[CellphoneS (Sforum)] Toàn tập hệ thống skin vũ khí trong VALORANT"
+          "based_on": "[Techz.vn] Siêu sao VALORANT TenZ úp mở khả năng trở lại thi đấu chuyên nghiệp"
         },
         {
-          "keyword": "LOUD vô địch VALORANT Champions 2026",
+          "keyword": "Valorant mới nhất",
           "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Techz.vn] LOUD vô địch VALORANT Champions 2026, trở thành tổ chức đầu tiên hai lần đăng quang ngôi vương thế giới"
+          "based_on": "Cụm tìm kiếm phổ biến"
         },
         {
-          "keyword": "Vì đâu đến nỗi",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[VTV Công Nghệ] FLASHBACK - Vì đâu đến nỗi? l Tập 1"
+          "keyword": "Đánh giá Valorant",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "Cụm tìm kiếm phổ biến"
         }
       ],
       "related_keywords": [
-        "Toàn tập hệ thống skin vũ khí trong VALORANT",
-        "LOUD vô địch VALORANT Champions 2026",
-        "Vì đâu đến nỗi"
+        "Valorant TenZ",
+        "Valorant mới nhất",
+        "Đánh giá Valorant"
       ],
       "top_3_articles": [
         {
-          "title": "Toàn tập hệ thống skin vũ khí trong VALORANT",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1jRHRGZk5ia2I0R1JzTGZzdjdtM21MNEFYUXAwRkpWVDJLRklFdDM3VEd4OTZLUUc2emJrNGp6cEJ5NmFMcXJaazFfOVJld3lrajN4UFZ6bnQ1UQ?oc=5",
-          "summary": "Toàn tập hệ thống skin vũ khí trong VALORANT CellphoneS",
-          "source_name": "CellphoneS (Sforum)",
-          "source_type": "COMPETITOR",
-          "source_badge": "Đối thủ",
-          "published_at": "2026-10-19T10:58:37+07:00",
-          "hours_ago": 0.6,
-          "relative_time": "37 phút trước",
+          "title": "Valorant giới thiệu 32 đội tuyển đối tác VCT 2027",
+          "url": "https://news.google.com/rss/articles/CBMieEFVX3lxTE5waWIzd0d2ZHhUZDdoSGFKb3NIRTJ3bGY2TTZ6VWtGN2FPV1BnbEhraUxfUzhJU2FsRnVFbDZjRUw4QlNMcm9rWnpGWTBMaUhIR0xLaU1zZkxKdk1JWEdRczUtQ3BIeXFYdUVNcHFvWnpHRC1kZlMzSQ?oc=5",
+          "summary": "Valorant giới thiệu 32 đội tuyển đối tác VCT 2027 MMOSITE.vn",
+          "source_name": "MMOSITE.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T14:46:45+07:00",
+          "hours_ago": 1.8,
+          "relative_time": "1 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
+            "name": "Game",
             "badge_color": "purple",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 3
@@ -707,19 +1065,39 @@
           "extracted_keyword": "Valorant"
         },
         {
-          "title": "LOUD vô địch VALORANT Champions 2026, trở thành tổ chức đầu tiên hai lần đăng quang ngôi vương thế giới",
-          "url": "https://news.google.com/rss/articles/CBMi4wFBVV95cUxQQUFtejlSNW8xODZqNlpLNGhzSFVQd0lRZk1wZ29QWGZqVlo5WmRCM1l4VjJiY1NHYmloNEh6TElzR3BPbTBlZnJ0Z3pCSXdjMVZ2N3BWVTc3OHE4YXlwQmQ3Qm41QUJiYUYxcFhqaTNWdVZUN01fcDUtVV9ReEQtNHo3cE1ycDlSamoydHhTZFdvenVieUwtRHBHdHBwV25uVjh3Sl9BMUlUdWpmOFExN0NuMGJZNUZoaGQxbktOMWl3bFRQRHdyVVJsYmhlNVYweTY2ZWU0R2FkSnJPQk1YRlIxOA?oc=5",
-          "summary": "LOUD vô địch VALORANT Champions 2026, trở thành tổ chức đầu tiên hai lần đăng quang ngôi vương thế giới Techz.vn",
+          "title": "VALORANT công bố 32 đội VCT 2027: GAM Esports mang dấu ấn Việt ra đấu trường quốc tế",
+          "url": "https://news.google.com/rss/articles/CBMic0FVX3lxTFB2TWxiOXZYMlppU1ZHQkdNdlZuV1NCVEEtb1dnczlpVDNNTFZxY3diR3VFQ05QUGhBb2M5WDBCU1kyR1BEMmt1RW5XcjV1V0NMMXhLdVpJTFYwLWpvcUozbnVQLXdPblJ4Q1BHSFNMbHhZUnc?oc=5",
+          "summary": "VALORANT công bố 32 đội VCT 2027: GAM Esports mang dấu ấn Việt ra đấu trường quốc tế CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T09:27:01+07:00",
+          "hours_ago": 7.1,
+          "relative_time": "7 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Valorant"
+        },
+        {
+          "title": "Siêu sao VALORANT TenZ úp mở khả năng trở lại thi đấu chuyên nghiệp",
+          "url": "https://news.google.com/rss/articles/CBMitAFBVV95cUxNNTNNbWZtSHUzM0IzaGZTNlVvWjd0eURPUXhKNFBScnNpZTFpU3pUNG5PUFlWSHV0VGU1VFNOdmU0ZmpLbG5wRGZQNldfaHl6bk81SG1mVlFfOUVqNVhFeWpzbllLVThlNC10WjEyVEtreFZ4dlJRS3hocFRBa3VodGljZHl4Y3RuU2g1MndQd2RURElHenI1ei1DWmlnVmJiOW1fbjNYNEZQb0QtR3Vtd0xOTXM?oc=5",
+          "summary": "Siêu sao VALORANT TenZ úp mở khả năng trở lại thi đấu chuyên nghiệp Techz.vn",
           "source_name": "Techz.vn",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T10:39:49+07:00",
-          "hours_ago": 0.9,
-          "relative_time": "56 phút trước",
-          "within_24h": true,
+          "published_at": "2026-10-22T11:28:39+07:00",
+          "hours_ago": 29.1,
+          "relative_time": "29 giờ trước",
+          "within_24h": false,
           "niche": {
             "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
+            "name": "Game",
             "badge_color": "purple",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 3
@@ -727,278 +1105,193 @@
           "extracted_keyword": "Valorant"
         },
         {
-          "title": "FLASHBACK - Vì đâu đến nỗi? l Tập 1 - VALORANT: Hồ sơ Esports 2026",
-          "url": "https://news.google.com/rss/articles/CBMiSEFVX3lxTE1UZFduTmc0YUhzdTU0eGQ4ZTM3TFhvQ1gxSHdjTzVFX0RfaF9GZGQ3OVoyVDNlSUVrX29HNEZSbUdVSzA2MWszXw?oc=5",
-          "summary": "FLASHBACK - Vì đâu đến nỗi? l Tập 1 - VALORANT: Hồ sơ Esports 2026 VTVgo",
-          "source_name": "VTV Công Nghệ",
+          "title": "VALORANT công bố danh sách 32 đội tuyển đối tác VCT 2027-2028, đại diện Việt Nam GAM Esports góp mặt",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxQaklReXlrVVpOMlI0U192VkRoRzBOYm05ZDVEeXJFMXl1X094NmVHTUFJTm05NWxQS3FibjVZX1dESEt0ZjlXc1c5enI1X1ZLMWFiQy1Dc3FheFdhMkkxZDJIbkQyVmhkWnA5RDJVbmx1RTNVbndsMUIzYllxbnBjZ1hnMUZ5SWFpbC1QMUpocFlNTmhwZDJuZWt0c1dWbC04TmxSd2tnMk5uSjRySjREdG1VWmtPdFJldnUxbEdmQnIwaURlbnl3MHE2YjhBVU11QWxPM3VvLXFmeDZ1ckRz?oc=5",
+          "summary": "VALORANT công bố danh sách 32 đội tuyển đối tác VCT 2027-2028, đại diện Việt Nam GAM Esports góp mặt Techz.vn",
+          "source_name": "Techz.vn",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-18T07:00:00+07:00",
-          "hours_ago": 28.6,
-          "relative_time": "28 giờ trước",
+          "published_at": "2026-10-22T10:34:57+07:00",
+          "hours_ago": 30.0,
+          "relative_time": "29 giờ trước",
           "within_24h": false,
           "niche": {
             "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
+            "name": "Game",
             "badge_color": "purple",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 6
           },
           "extracted_keyword": "Valorant"
-        }
-      ],
-      "rank": 2
-    },
-    {
-      "keyword": "Liên Minh Huyền Thoại",
-      "cluster_id": "liên minh huyền thoại",
-      "niche": {
-        "id": "GAME_TREND",
-        "name": "Game Hot & Xu hướng Làng Game",
-        "badge_color": "purple",
-        "group": "Tin tức Hot & Trend",
-        "relevance_score": 6
-      },
-      "total_score": 83.0,
-      "score_breakdown": {
-        "coverage": 40.0,
-        "competitor": 18.0,
-        "freshness": 20.0,
-        "serpapi_trend": 5.0
-      },
-      "stats": {
-        "total_articles_found": 8,
-        "press_count": 2,
-        "competitor_count": 1,
-        "press_list": [
-          "Thể Thao 247",
-          "VTV Công Nghệ"
-        ],
-        "competitor_list": [
-          "CellphoneS (Sforum)"
-        ],
-        "newest_hours_ago": 2.1,
-        "is_trending_now": false,
-        "google_trends_index": 0
-      },
-      "seo_suggested_keywords": [
-        {
-          "keyword": "MVK bị loại khỏi CKTG 2026 sau thất bại 0-3 trước KC",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[CellphoneS (Sforum)] LMHT: MVK bị loại khỏi CKTG 2026 sau thất bại 0-3 trước KC"
-        },
-        {
-          "keyword": "Link xem trực tiếp CKTG LMHT hôm nay",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Thể Thao 247] Link xem trực tiếp CKTG 2026 LMHT hôm nay 19/10: Karmine Corp thắng MVK"
-        },
-        {
-          "keyword": "Dplus KIA đăng quang vô địch Liên Minh Huyền Thoại tại Esports World Cup 2026",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[VTV Công Nghệ] Thế giới Thể thao | 22/7/2026 | Dplus KIA đăng quang vô địch Liên Minh Huyền Thoại tại Esports World Cup 2026"
-        }
-      ],
-      "related_keywords": [
-        "MVK bị loại khỏi CKTG 2026 sau thất bại 0-3 trước KC",
-        "Link xem trực tiếp CKTG LMHT hôm nay",
-        "Dplus KIA đăng quang vô địch Liên Minh Huyền Thoại tại Esports World Cup 2026"
-      ],
-      "top_3_articles": [
-        {
-          "title": "LMHT: MVK bị loại khỏi CKTG 2026 sau thất bại 0-3 trước KC",
-          "url": "https://news.google.com/rss/articles/CBMia0FVX3lxTE5nNWdjb0VudmlrbE03T3ZFa0xtb09MbW1pR3czTktYcUhXaW1RS2piRjNrNy1iWjM0NmVrR2RObjBqODR1bHRvS1M3cjdwbzlWY291OXNRN1dvLVZtQ3lRLVljbFpJSkdtZjBn?oc=5",
-          "summary": "LMHT: MVK bị loại khỏi CKTG 2026 sau thất bại 0-3 trước KC CellphoneS",
-          "source_name": "CellphoneS (Sforum)",
-          "source_type": "COMPETITOR",
-          "source_badge": "Đối thủ",
-          "published_at": "2026-10-19T09:32:56+07:00",
-          "hours_ago": 2.1,
-          "relative_time": "2 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
-            "badge_color": "purple",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 6
-          },
-          "extracted_keyword": "Liên Minh Huyền Thoại"
-        },
-        {
-          "title": "Link xem trực tiếp CKTG 2026 LMHT hôm nay 19/10: Karmine Corp thắng MVK",
-          "url": "https://news.google.com/rss/articles/CBMiygFBVV95cUxQRTJ1eTNuOHRxc0lYYzNnS3FqUm15RzBFWUxTRDJaMHV4aTVrcVUzMDhWTnF4Tnd6UHVpV2w3SVZWcFJKLU1wdmtqSlNFV3dwZF9sX0kwVWVRcFdjcGUwN1BycnNWNGgtNWF5TVFOVFpNc1ItSlU2Yi0ybklzTkdwVEJONERDdlRvVFNTNFJ6RzdXWTlYVUJxYXZIT0E1OWdXVXRxRHZ3UnBULWdXeVBtUEtVdnFxMGM1M0pLZmZMR25VWk13MVhEMkRn?oc=5",
-          "summary": "Link xem trực tiếp CKTG 2026 LMHT hôm nay 19/10: Karmine Corp thắng MVK Thể Thao 247",
-          "source_name": "Thể Thao 247",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T08:23:00+07:00",
-          "hours_ago": 3.2,
-          "relative_time": "3 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
-            "badge_color": "purple",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 6
-          },
-          "extracted_keyword": "Liên Minh Huyền Thoại"
-        },
-        {
-          "title": "Thế giới Thể thao | 22/7/2026 | Dplus KIA đăng quang vô địch Liên Minh Huyền Thoại tại Esports World Cup 2026",
-          "url": "https://news.google.com/rss/articles/CBMiQEFVX3lxTE93bVZnMHByVk5zaU9UNXdvWWg2TEZqdUwyR2w5RFY1V0ZubkM1WUFDUTZmLUFqRHBBS216dzkyTXU?oc=5",
-          "summary": "Thế giới Thể thao | 22/7/2026 | Dplus KIA đăng quang vô địch Liên Minh Huyền Thoại tại Esports World Cup 2026 VTVgo",
-          "source_name": "VTV Công Nghệ",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-18T07:00:00+07:00",
-          "hours_ago": 28.6,
-          "relative_time": "28 giờ trước",
-          "within_24h": false,
-          "niche": {
-            "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
-            "badge_color": "purple",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 6
-          },
-          "extracted_keyword": "Liên Minh Huyền Thoại"
-        }
-      ],
-      "rank": 3
-    },
-    {
-      "keyword": "Xu hướng TikTok",
-      "cluster_id": "xu hướng tiktok",
-      "niche": {
-        "id": "SOCIAL_APPS",
-        "name": "Mạng xã hội & Ứng dụng phổ biến",
-        "badge_color": "pink",
-        "group": "Tin tức Hot & Trend",
-        "relevance_score": 3
-      },
-      "total_score": 79.4,
-      "score_breakdown": {
-        "coverage": 40.0,
-        "competitor": 14.0,
-        "freshness": 20.0,
-        "serpapi_trend": 5.4
-      },
-      "stats": {
-        "total_articles_found": 12,
-        "press_count": 11,
-        "competitor_count": 0,
-        "press_list": [
-          "Báo Công An Đà Nẵng",
-          "Báo Dân Trí",
-          "Báo Sức khỏe & Đời sống",
-          "Báo Tuổi Trẻ",
-          "CareerViet",
-          "Facebook · Thủy Thủy",
-          "TikTok · Hoang Linh Linh BST1 22TQ",
-          "VietNamNet",
-          "Vietnam.vn",
-          "YouTube · NHẠC SĨ LUÂN PHAN",
-          "YouTube · Tropical vibes"
-        ],
-        "competitor_list": [],
-        "newest_hours_ago": 1.1,
-        "is_trending_now": false,
-        "google_trends_index": 6
-      },
-      "seo_suggested_keywords": [
-        {
-          "keyword": "Nông nổi đánh nhau sau livestream trên TikTok",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[VietNamNet] Nông nổi đánh nhau sau livestream trên TikTok, 10 thanh thiếu niên bị khởi tố"
-        },
-        {
-          "keyword": "Mâu thuẫn livestream TikTok, nhóm đối tượng dùng phóng lợn hỗn chiến lúc 3 giờ sáng",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Báo Sức khỏe & Đời sống] Mâu thuẫn livestream TikTok, nhóm đối tượng dùng phóng lợn hỗn chiến lúc 3 giờ sáng"
-        },
-        {
-          "keyword": "The Ministry of Health continues to demand the removal of advertisements for Sausando Slimming capsules",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Vietnam.vn] The Ministry of Health continues to demand the removal of advertisements for Sausando Slimming capsules on TikTok."
-        }
-      ],
-      "related_keywords": [
-        "Nông nổi đánh nhau sau livestream trên TikTok",
-        "Mâu thuẫn livestream TikTok, nhóm đối tượng dùng phóng lợn hỗn chiến lúc 3 giờ sáng",
-        "The Ministry of Health continues to demand the removal of advertisements for Sausando Slimming capsules"
-      ],
-      "top_3_articles": [
-        {
-          "title": "Nông nổi đánh nhau sau livestream trên TikTok, 10 thanh thiếu niên bị khởi tố",
-          "url": "https://news.google.com/rss/articles/CBMisAFBVV95cUxNd2pldktqamJXNURLV0pfZnIwMGFaQUp6dGpTQkdXYkpDZmRkaV9Nd2g4bmpySk54Qlh5YTRqdlhobzhTS1AycmVnVFFXNjFIQTBjNGFQYkJ1Zk1mbTNvZXJ4NkQ5Y3ZDZkdsbHF0LUtxZHJCVnZGci1hNFVmZ3dDcG1sUHpudFlvbDh6Yng3UEhSZ2hZT3hueE0wUVBlQ2JvbTIwT2N1bkxiVDNQNXo3aA?oc=5",
-          "summary": "Nông nổi đánh nhau sau livestream trên TikTok, 10 thanh thiếu niên bị khởi tố Báo VietNamNet",
-          "source_name": "VietNamNet",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T10:30:00+07:00",
-          "hours_ago": 1.1,
-          "relative_time": "1 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội & Ứng dụng phổ biến",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Xu hướng TikTok"
-        },
-        {
-          "title": "Mâu thuẫn livestream TikTok, nhóm đối tượng dùng phóng lợn hỗn chiến lúc 3 giờ sáng",
-          "url": "https://news.google.com/rss/articles/CBMiywFBVV95cUxOMjFyeWxmWnhoYlNxMVFWc3FfcmZJanJsQWJjTUk3eThiOTNYaHkyMjBOUld6WFhZdmtsOFB0YVJoX0JZT1psWXY3bjlvMUc3MlhWTHN4U1F0ZE1RQmNqMUwwYXRvdEd0S3QwaFlNV24yOXpoUU9iSTNQVHBiQTdYSjBmekdQaERuR2pHejR4cFNIWVdPb1JaUVlKc1FURG16dVMyckJEUDA0Mk5fYV9xMW1EMDhoRE15cjBFRTFnTUMzM2YzdlZyQnVLaw?oc=5",
-          "summary": "Mâu thuẫn livestream TikTok, nhóm đối tượng dùng phóng lợn hỗn chiến lúc 3 giờ sáng Báo Sức khỏe & Đời sống",
-          "source_name": "Báo Sức khỏe & Đời sống",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T10:11:00+07:00",
-          "hours_ago": 1.4,
-          "relative_time": "1 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội & Ứng dụng phổ biến",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Xu hướng TikTok"
-        },
-        {
-          "title": "The Ministry of Health continues to demand the removal of advertisements for Sausando Slimming capsules on TikTok.",
-          "url": "https://news.google.com/rss/articles/CBMiowFBVV95cUxNNllUcUVzaWcwc0dlcHlSM3E2bDFGZ0lnQjBzM2lDWm91cGE4NjJUV3E0em92N0lLNklJTUpOMmFJRGFISUktMXEyU2lDUXhrNXNYNThDSGRfUEFQUExwbnNlWnN0dlJHQzB2NE9mYUZqUHFFdDdkSGFVQ3JGbTlSYXF4NDNYUHBFbXdWTkF4bG5HNFBPSFRCRmI4MVdrN1B2dUlF?oc=5",
-          "summary": "The Ministry of Health continues to demand the removal of advertisements for Sausando Slimming capsules on TikTok. Vietnam.vn",
-          "source_name": "Vietnam.vn",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T08:48:27+07:00",
-          "hours_ago": 2.8,
-          "relative_time": "2 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "HARDWARE_COMPONENT",
-            "name": "Linh kiện & Công nghệ Phần cứng",
-            "badge_color": "emerald",
-            "group": "Sát sườn ngành hàng",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Xu hướng TikTok"
         }
       ],
       "rank": 4
     },
     {
+      "keyword": "Ứng dụng Zalo",
+      "cluster_id": "ứng dụng zalo",
+      "niche": {
+        "id": "AI_UPDATES",
+        "name": "A.I",
+        "badge_color": "amber",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 3
+      },
+      "total_score": 79.1,
+      "score_breakdown": {
+        "coverage": 40.0,
+        "competitor": 14.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.1
+      },
+      "stats": {
+        "total_articles_found": 4,
+        "press_count": 4,
+        "competitor_count": 0,
+        "press_list": [
+          "Báo Sức Khỏe và Đời Sống",
+          "Công an Hưng Yên",
+          "Công an tỉnh Lâm Đồng",
+          "Truyền hình Quảng Ngãi"
+        ],
+        "competitor_list": [],
+        "newest_hours_ago": 1.0,
+        "is_trending_now": false,
+        "google_trends_index": 1
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Zalo mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        },
+        {
+          "keyword": "Đánh giá Zalo",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        },
+        {
+          "keyword": "Hướng dẫn Zalo",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Zalo mới nhất",
+        "Đánh giá Zalo",
+        "Hướng dẫn Zalo"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Công an xã Mễ Sở triển khai xây dựng mô hình “Zalo kết nối cộng đồng, bảo đảm an ninh trật tự”",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPeG5ubURia3VVU3E2aERKaG9VYWRBakkyN0I4RGlCZkZ5V2JPOGpmY0w1QVB0Ykhqc25QY0ZfdkF6SDlEdklMbktwS2xremFyRDZnMm9MSHUxV2d0NFk2U3ZRZ042Z1ljQjJYNXhQYXBNSWU3Yzl4aGFzcHEzOUFuZlhrQzVvR05JaGNWLXV1S1FkNnh5V0lJTWZ6bVEzaFZzZ3lVaHNOWFpMRzJsaktrV0pJYWFVV2NTVE9tYlF1WjdNSXVCa2tjdndRMmdZR28?oc=5",
+          "summary": "Công an xã Mễ Sở triển khai xây dựng mô hình “Zalo kết nối cộng đồng, bảo đảm an ninh trật tự” Công an Hưng Yên",
+          "source_name": "Công an Hưng Yên",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T15:33:57+07:00",
+          "hours_ago": 1.0,
+          "relative_time": "58 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Ứng dụng Zalo"
+        },
+        {
+          "title": "Cảnh báo thủ đoạn giả danh cán bộ Phòng Kinh tế, yêu cầu người dân gửi sổ đỏ và căn cước công dân qua Zalo",
+          "url": "https://news.google.com/rss/articles/CBMi4AFBVV95cUxNTXNRM0owTDJfWkU3RU1GeTI3a0JLeGtscDg1SWl2U1pVbmE4VjkxOHZqVmVZS3FveTJIOF9GZmhCcWQydW0yRTI0eUNONTd4Ym1aekJIemlKWlZSRDFPeVRzT252d2g3dTFuR3JKRzhsRzlKZUhmaDBzMGphR0Y2MlB1YlZvdXRHQm1CbE0wd2dqTWdWRERvU2drdC0zSHJaMml5VkJkNm9xZWZuX3RHaXA1TmRHSWRFaENVcGNEVHNMN1VEOVN6aHpZLXpIc0k4R1kydENTZVBZY3NvMlc0Uw?oc=5",
+          "summary": "Cảnh báo thủ đoạn giả danh cán bộ Phòng Kinh tế, yêu cầu người dân gửi sổ đỏ và căn cước công dân qua Zalo Công an tỉnh Lâm Đồng",
+          "source_name": "Công an tỉnh Lâm Đồng",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T14:59:00+07:00",
+          "hours_ago": 1.6,
+          "relative_time": "1 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Ứng dụng Zalo"
+        },
+        {
+          "title": "Người dân được hỗ trợ thủ tục qua Zalo",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE0zdEJUQmVkQWttcnUzMTZOTG9LTmhXcmR1SEk2M0lSYlRGRVdXSE9MbW91TEVUdy1nVzVWajJmTkplQU5vYTZaa25CajE2b3Q1bjNfY2Rub2V2WDVWc0VXVG5iOURQMlk3WTRkcWQ4ZGlWZy1yNU1wVk9RSUFPd00?oc=5",
+          "summary": "Người dân được hỗ trợ thủ tục qua Zalo Truyền hình Quảng Ngãi",
+          "source_name": "Truyền hình Quảng Ngãi",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:52:12+07:00",
+          "hours_ago": 2.7,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Ứng dụng Zalo"
+        },
+        {
+          "title": "Hàng giả trên Shopee, Zalo: Ai chịu trách nhiệm khi người mua bị thiệt hại?",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPalFvbEkyUElnT1hkb0lnZks0Y281QVA2ek13QUlNV3ZXeEZ1UGJWMTN2a2FVOW4yQjJZQnNQaWVNdFVrQnFzZEkyajk4OXJZclpWekxjMjROR3llbE0wQ2piUm5tU3NpZGFHazFvVFREQmVOenA0RGR0S0JpeGhpRXVoa1lpelliMWloNVZLNTI2QWpwWUo4RXZlRURwWEJZcHBnZzM0QkdXaU5xVGx5WFVfZGZBVy0xdGxEbQ?oc=5",
+          "summary": "Hàng giả trên Shopee, Zalo: Ai chịu trách nhiệm khi người mua bị thiệt hại? Báo Sức Khỏe và Đời Sống",
+          "source_name": "Báo Sức Khỏe và Đời Sống",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T11:12:00+07:00",
+          "hours_ago": 5.3,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Ứng dụng Zalo"
+        },
+        {
+          "title": "Tất cả người dân trên cả nước chú ý mức phạt đến 200 triệu đồng sắp áp dụng từ 5/12",
+          "url": "https://genk.vn/tat-ca-nguoi-dan-tren-ca-nuoc-chu-y-muc-phat-den-200-trieu-dong-sap-ap-dung-tu-5-12-165261023111143158.chn",
+          "summary": "Đây là nội dung Nghị định số 391/2026/NĐ-CP ký ban hành ngày 20/10/2026 của Chính phủ.",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T16:32:45.600417+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "1 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GOV_DIGITAL_POLICY",
+            "name": "Chính sách - Quy định",
+            "badge_color": "red",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 5
+          },
+          "extracted_keyword": "Tất cả người dân trên cả nước"
+        }
+      ],
+      "rank": 5
+    },
+    {
       "keyword": "Cập nhật tính năng VNeID mới nhất",
       "cluster_id": "định danh điện tử vneid",
       "niche": {
-        "id": "GOV_DIGITAL_POLICY",
-        "name": "Chính sách Số & Quy định Chính phủ",
-        "badge_color": "red",
+        "id": "AI_UPDATES",
+        "name": "A.I",
+        "badge_color": "amber",
         "group": "Tin tức Hot & Trend",
         "relevance_score": 3
       },
@@ -1010,199 +1303,220 @@
         "serpapi_trend": 5.0
       },
       "stats": {
-        "total_articles_found": 11,
+        "total_articles_found": 12,
         "press_count": 9,
         "competitor_count": 0,
         "press_list": [
-          "Baolangson.vn",
+          "Báo Quân đội nhân dân",
           "Báo Thanh Hóa",
           "Báo Thanh Niên",
-          "CafeF",
-          "Công an thành phố Đồng Nai",
-          "Daklak.gov.vn",
-          "Trang Trại Việt",
-          "Vietnam.vn",
-          "Znews"
+          "Báo Tiền Phong",
+          "Công an tỉnh Lâm Đồng",
+          "Kenh14.vn",
+          "Thuonghieucongluan.com.vn",
+          "Tin Chính sách số & Mạng xã hội",
+          "VTV Công Nghệ"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 0.9,
+        "newest_hours_ago": 0.1,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [
         {
-          "keyword": "Nay, nhiều người có tài khoản VNeID có thể cập nhật để hưởng ngay quyền",
-          "intent": "Keyword Tính năng / Tin mới",
-          "based_on": "[CafeF] Từ nay, nhiều người có tài khoản VNeID có thể cập nhật để hưởng ngay quyền lợi đặc biệt"
+          "keyword": "VNeID tính năng mới",
+          "intent": "Gợi ý tìm kiếm Google",
+          "based_on": "Google Autocomplete"
         },
         {
-          "keyword": "4 bước tích hợp giấy tờ trên VNeID",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Báo Thanh Niên] 4 bước tích hợp giấy tờ trên VNeID"
+          "keyword": "Cập nhật VNeID lên mức 2",
+          "intent": "Gợi ý tìm kiếm Google",
+          "based_on": "Google Autocomplete"
         },
         {
-          "keyword": "Công an xã Xuân Phú khuyến cáo người dân nâng cao cảnh giác trước thông",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Công an thành phố Đồng Nai] Công an xã Xuân Phú khuyến cáo người dân nâng cao cảnh giác trước thông tin sai lệch về VNeiD"
+          "keyword": "Hướng dẫn VNeID",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "[Báo Tiền Phong] Cách đăng ký lưu trú cho người thân ở lại qua đêm trên VNeID"
         }
       ],
       "related_keywords": [
-        "Nay, nhiều người có tài khoản VNeID có thể cập nhật để hưởng ngay quyền",
-        "4 bước tích hợp giấy tờ trên VNeID",
-        "Công an xã Xuân Phú khuyến cáo người dân nâng cao cảnh giác trước thông"
+        "VNeID tính năng mới",
+        "Cập nhật VNeID lên mức 2",
+        "Hướng dẫn VNeID"
       ],
       "top_3_articles": [
         {
-          "title": "Từ nay, nhiều người có tài khoản VNeID có thể cập nhật để hưởng ngay quyền lợi đặc biệt",
-          "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxQWHhOeFg3cXNpWVNDZWhZeXhaV1B1Q3VwYV9pSjlZNC12ZTdTc1laTWMzSWZEaUsyZ3NqSVlDd1NyeHdZRHlSczZuQ2Y2OEJjTldWWjlSdVRlRzZyVUU3Qk1CaW9vb2ExT1lMTFdXaFgtSi0yNmhVS1pzTk9UN3VEdTN5RF9ibnBacDhMcmRRZU5Gd0FSaVBoeUFmeU1ySGtCUl9kRnowaFBXN0wydlJYd1hyeFpwYXlET2NsN0VuN1JDSEU?oc=5",
-          "summary": "Từ nay, nhiều người có tài khoản VNeID có thể cập nhật để hưởng ngay quyền lợi đặc biệt CafeF",
-          "source_name": "CafeF",
+          "title": "Chính thức triển khai 12 dịch vụ công ngành điện trên ứng dụng VNeID phạm vi toàn quốc",
+          "url": "https://news.google.com/rss/articles/CBMi3AFBVV95cUxOYUczUmJRY2J1RFI1Tm1GUEhIc1hPWlJfcmNlWWZuNUhQNkUyeTRuWTRtWkgxdTJHNS1Rc2s5MFZleDBKa0NsdmVGVlF1LVZkN0h5OUdaNUU5X0IwTnRPeEZpNDFaak5HWUVRNHZPdUdMVWdqLUtUalZGTXpneWpmQUpieEczd2V4ajJ5NXEwYXRpNWlnMl8yajJOekRETy04eFJOeDhDMGMxSEVGRzV6ZHBQYTRKTzZrdk1QOTVPWk05T2dkTThGNFZ6SXZGOGJIRml1Ri1pdlNrX2xM?oc=5",
+          "summary": "Chính thức triển khai 12 dịch vụ công ngành điện trên ứng dụng VNeID phạm vi toàn quốc Thuonghieucongluan.com.vn",
+          "source_name": "Thuonghieucongluan.com.vn",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T10:45:00+07:00",
-          "hours_ago": 0.9,
-          "relative_time": "51 phút trước",
-          "within_24h": true,
-          "niche": {
-            "id": "GOV_DIGITAL_POLICY",
-            "name": "Chính sách Số & Quy định Chính phủ",
-            "badge_color": "red",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Cập nhật tính năng VNeID mới nhất"
-        },
-        {
-          "title": "4 bước tích hợp giấy tờ trên VNeID",
-          "url": "https://news.google.com/rss/articles/CBMihAFBVV95cUxOQV9BWlZ1REQzZlU1S2gwTEdRS3h3TlN1S0VaUFo5TF85dVkzelgtejB0ejhYbWxOLWNEVHRRek03cGZHWllwTjFuTC1rWTNCekE4b19QMFRoLXRTVnFKeENnMkJkMzRGTGZqRVd2cElveFZFb3VuN1BLTVllNG01UllIa0c?oc=5",
-          "summary": "4 bước tích hợp giấy tờ trên VNeID Thanh Niên",
-          "source_name": "Báo Thanh Niên",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T10:18:00+07:00",
-          "hours_ago": 1.3,
-          "relative_time": "1 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "GOV_DIGITAL_POLICY",
-            "name": "Chính sách Số & Quy định Chính phủ",
-            "badge_color": "red",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Cập nhật tính năng VNeID mới nhất"
-        },
-        {
-          "title": "Công an xã Xuân Phú khuyến cáo người dân nâng cao cảnh giác trước thông tin sai lệch về VNeiD",
-          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTE9aUmMzam5DLUw0aVpoYXJpWWM4TVhyRVVmQ3J5cEQ1S2dRY2xEZjNRejZQX3ZtblhQcHk1N2FIZF85WnhuSFRtRzdLb3VjWkVYNjE5aUduNnBNVDAtOEpkaV9QdEZXdlVINEd5bjZVRWxDcVVwUjBTdWNXdU9rTEE?oc=5",
-          "summary": "Công an xã Xuân Phú khuyến cáo người dân nâng cao cảnh giác trước thông tin sai lệch về VNeiD Công an thành phố Đồng Nai",
-          "source_name": "Công an thành phố Đồng Nai",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T09:47:46+07:00",
-          "hours_ago": 1.8,
-          "relative_time": "1 giờ trước",
+          "published_at": "2026-10-23T16:25:28+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "7 phút trước",
           "within_24h": true,
           "niche": {
             "id": "AI_UPDATES",
-            "name": "Trí tuệ nhân tạo (AI Updates)",
+            "name": "A.I",
             "badge_color": "amber",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 3
           },
           "extracted_keyword": "Cập nhật tính năng VNeID mới nhất"
+        },
+        {
+          "title": "Xác thực tài khoản VTVgo bằng VNeID",
+          "url": "https://news.google.com/rss/articles/CBMiQEFVX3lxTFBrM0x1aTVmZWY5RFNkcDEtcEI3cFcxXzRlemxCd2RDZW83bTc4LWtiMzBGMXNISkF6Ul9OeV90WUc?oc=5",
+          "summary": "Xác thực tài khoản VTVgo bằng VNeID VTVgo",
+          "source_name": "VTV Công Nghệ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T11:44:09+07:00",
+          "hours_ago": 4.8,
+          "relative_time": "4 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GOV_DIGITAL_POLICY",
+            "name": "Chính sách - Quy định",
+            "badge_color": "red",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Cập nhật tính năng VNeID mới nhất"
+        },
+        {
+          "title": "Phòng An ninh kinh tế Lâm Đồng đẩy mạnh tuyên truyền làm sạch dữ liệu lý lịch tư pháp, khai thác tiện ích trên VNeID",
+          "url": "https://news.google.com/rss/articles/CBMi7gFBVV95cUxQQ0FVb2RHX2tfdWJWZF9yTzB1cGNQM0hiQkM1WnRmQkZHb0N3eG1idG1ma09kcThUakxZcjl1bGdlUXJxdFJiYVhSbTh4RW9keWlJWk9Mb2UxM3BIbm1hNXU3NG5zdEM4azVlVlhZWGJWeVp3TmVLWlRDVU5jZmw1Ujk5eHdGT2VqQkpETWdzY0FydDZfeWhLbnp0a0ZiUGZDWmhxOXcyT194MllYbEpnNTB2Q3FncjNtUTRyeC1fSXlmQzJFVGZFdGZoM3hRSDNjdkxoMVFHOUZ5ZGdFUzA0NzROTC00dzJMMGRJNkZB?oc=5",
+          "summary": "Phòng An ninh kinh tế Lâm Đồng đẩy mạnh tuyên truyền làm sạch dữ liệu lý lịch tư pháp, khai thác tiện ích trên VNeID Công an tỉnh Lâm Đồng",
+          "source_name": "Công an tỉnh Lâm Đồng",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T11:24:00+07:00",
+          "hours_ago": 5.1,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Cập nhật tính năng VNeID mới nhất"
+        },
+        {
+          "title": "Cách đăng ký lưu trú cho người thân ở lại qua đêm trên VNeID",
+          "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPWUNKQUdYSDJSS0p6cE5XX2lEcFhTLVVMTVZ5Rk1uYU5CVm5JNE5LVkdxb25leUFLdWF1THBOcHFyMEMzem8tckVDbHNYX0FUbGwyQW5Fa1dHaWNFdFdmYXBaZFZfU3VGYWx0cUJIaklkTkY3VGpKVHMxRHcwU3hHbEJoVXlNbGw1cHRnczhCbUE4aTQtY0pWOFhReWtSUQ?oc=5",
+          "summary": "Cách đăng ký lưu trú cho người thân ở lại qua đêm trên VNeID Báo Tiền Phong",
+          "source_name": "Báo Tiền Phong",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T10:49:08+07:00",
+          "hours_ago": 5.7,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GOV_DIGITAL_POLICY",
+            "name": "Chính sách - Quy định",
+            "badge_color": "red",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Cập nhật tính năng VNeID mới nhất"
+        },
+        {
+          "title": "Hướng dẫn sử dụng trao đổi thông tin tình hình địa bàn trên VNeID",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxOM05xTXlUNlZvTTB4ZVJlQ3oyMnZNbmp5bkFKUGNUZDZ5dzNwWTNIc0lJaWVCc2RCWFlPUUt3WFFUOE9NQVNGN3oyTWEzY09sWmJBTnpZOVRtSUNoY1UtbnA4T251ajR2TENOVkdkZ1VHYmlTNHNBend3S2xURHBQclFRaHA0LW9ZRzhrQ1FsNkc0V1RfdFVid3lnWU5USHk2?oc=5",
+          "summary": "Hướng dẫn sử dụng trao đổi thông tin tình hình địa bàn trên VNeID Báo Thanh Hóa",
+          "source_name": "Báo Thanh Hóa",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T10:34:00+07:00",
+          "hours_ago": 6.0,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GOV_DIGITAL_POLICY",
+            "name": "Chính sách - Quy định",
+            "badge_color": "red",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Cập nhật tính năng VNeID mới nhất"
         }
       ],
-      "rank": 5
+      "rank": 6
     },
     {
       "keyword": "Nền tảng Steam",
       "cluster_id": "nền tảng steam",
       "niche": {
         "id": "GAME_TREND",
-        "name": "Game Hot & Xu hướng Làng Game",
+        "name": "Game",
         "badge_color": "purple",
         "group": "Tin tức Hot & Trend",
-        "relevance_score": 9
+        "relevance_score": 3
       },
-      "total_score": 78.5,
+      "total_score": 79.0,
       "score_breakdown": {
         "coverage": 40.0,
-        "competitor": 13.5,
+        "competitor": 14.0,
         "freshness": 20.0,
         "serpapi_trend": 5.0
       },
       "stats": {
-        "total_articles_found": 8,
-        "press_count": 3,
+        "total_articles_found": 10,
+        "press_count": 4,
         "competitor_count": 0,
         "press_list": [
+          "Báo Nghệ An",
           "GameK",
-          "Mobile Goddess",
-          "Vietgame Asia"
+          "Phụ nữ Mới",
+          "Thuonghieucongluan.com.vn"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 2.3,
+        "newest_hours_ago": 2.1,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [
         {
-          "keyword": "Cách nhận game bản quyền miễn phí 100% trên Steam hôm nay",
+          "keyword": "Steam miễn phí",
           "intent": "Keyword Săn ưu đãi / Game miễn phí",
-          "based_on": "[GameK] Steam bất ngờ bổ sung miễn phí tựa game phiêu lưu được đánh giá 10/10, tải một lần, sở hữu vĩnh viễn"
+          "based_on": "[Phụ nữ Mới] Steam vừa có thêm loạt game miễn phí mới, nhiều cái tên nhận rating rất tích cực, tải về chơi không mất tiền"
         },
         {
-          "keyword": "42.4% của người dùng Steam chỉ chơi PC",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Mobile Goddess] GameDiscoverCo snapshot: 42.4% của người dùng Steam chỉ chơi PC"
+          "keyword": "Steam ngày ra mắt",
+          "intent": "Keyword Tính năng / Tin mới",
+          "based_on": "[GameK] Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng?"
         },
         {
-          "keyword": "Steam Beta đại tu hệ thống Achievements với Achievement Sets",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Vietgame Asia] Steam Beta đại tu hệ thống Achievements với Achievement Sets"
+          "keyword": "Giá Steam",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[GameK] Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng?"
         }
       ],
       "related_keywords": [
-        "Cách nhận game bản quyền miễn phí 100% trên Steam hôm nay",
-        "42.4% của người dùng Steam chỉ chơi PC",
-        "Steam Beta đại tu hệ thống Achievements với Achievement Sets"
+        "Steam miễn phí",
+        "Steam ngày ra mắt",
+        "Giá Steam"
       ],
       "top_3_articles": [
         {
-          "title": "Steam bất ngờ bổ sung miễn phí tựa game phiêu lưu được đánh giá 10/10, tải một lần, sở hữu vĩnh viễn",
-          "url": "https://news.google.com/rss/articles/CBMi1AFBVV95cUxQa05UM3ZIMTZxd09vMnh3bFQ3UXV5c0F1STZnWEVDdkUyb2RXTUFkTm1TYXZHai1VUUR5cmJHVkdKNHBWY25SZEVkTUhBcXRsYjhEUEh3SXlMX2NLeGxQeGttaDBnVDhTSkdvcUQ1ZDdCckRqVllwYWRGaU1nZ0tMRW5YN0lsT0VvY0VvTWV2TFNYUXZERTdabUdFbFB0X1hlcERsX0lCVFBDT1UtdXNlWk9KVTh5ZVE5WHNVTlBJOW9WN00zUUZtSDhrQm53U0V3Y3pwXw?oc=5",
-          "summary": "Steam bất ngờ bổ sung miễn phí tựa game phiêu lưu được đánh giá 10/10, tải một lần, sở hữu vĩnh viễn m.gamek.vn",
-          "source_name": "GameK",
+          "title": "Nghệ An phấn đấu số hóa 100% không gian học tập STEM/STEAM",
+          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxPMGcxbmo4WXZTeFNkUFIxTFE3Z3AtNnZaRDBYMjg4QjZQTXhmQnR1S0I0QWFPaVF2R1RtOXdNbHRabnk2eTNrdUJLQTBzamRaUEVxYlRGZ09FNU9LaE5tYVoxSm9USTVKN2M1M0lCbU50OFZTZVZwMzYwd1dQWWlxRzRVMlBITHltdEYxaTk1aHpQZzg5VHhB?oc=5",
+          "summary": "Nghệ An phấn đấu số hóa 100% không gian học tập STEM/STEAM Báo Nghệ An",
+          "source_name": "Báo Nghệ An",
           "source_type": "PRESS",
-          "source_badge": "Báo Game",
-          "published_at": "2026-10-19T09:20:00+07:00",
-          "hours_ago": 2.3,
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T14:24:01+07:00",
+          "hours_ago": 2.1,
           "relative_time": "2 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
-            "badge_color": "purple",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 9
-          },
-          "extracted_keyword": "Nền tảng Steam"
-        },
-        {
-          "title": "GameDiscoverCo snapshot: 42.4% của người dùng Steam chỉ chơi PC",
-          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTFBfa1pLYVd1MTdoSWY2Q0dxWkxxZklEOWVPdVFNTnBRNk5FelAzRHJsZGpLMjJhZmluQUZDVVMxQ0pFUlZNQUlqMVlLSmJsMzZ3S2Y2UnFwNmVKR1JtU3BCMGxvN0VUY3Zp?oc=5",
-          "summary": "GameDiscoverCo snapshot: 42.4% của người dùng Steam chỉ chơi PC Mobile Goddess",
-          "source_name": "Mobile Goddess",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-18T05:14:02+07:00",
-          "hours_ago": 30.4,
-          "relative_time": "30 giờ trước",
-          "within_24h": false,
-          "niche": {
-            "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
+            "name": "Game",
             "badge_color": "purple",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 3
@@ -1210,119 +1524,159 @@
           "extracted_keyword": "Nền tảng Steam"
         },
         {
-          "title": "Steam Beta đại tu hệ thống Achievements với Achievement Sets - Tin Game",
-          "url": "https://news.google.com/rss/articles/CBMilwFBVV95cUxQYnF1cDJxcVpKR0pNZkRmMXRHeUZ2b0oyclZjLWlvcGhXOGMzVm5pT21FT2oxTjl1cW0zWDByZTJiOWpFTUk1SmFjRHpRdWhXYnFNMUJhM0duM1k4RGhndWtoZ1Nsd0tDbDZaZE96YnpwOHFfem16anBzSkcydVlTdzc1T243M0FvV08yY1FtXy1kMng2ZDg4?oc=5",
-          "summary": "Steam Beta đại tu hệ thống Achievements với Achievement Sets - Tin Game Vietgame Asia",
-          "source_name": "Vietgame Asia",
+          "title": "Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng?",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOYW5ScUJQMWM2cnRuR2RmeVYyRXlqZ3pITER0bDFlNW1OeWRzU1oxX2xlWVdnLS1VZVJpYWd2U205OGxtQkZoUU5icXBXNDFaZzhmUUI1Z0xvRUlmM2tGeS1pVkpyWnFfSGtjLTVFbWRSSU5Bc0JqWXFLNWN0Ujk4VjQ5V190a25RWG5OdGNmbXlHYWQxOWh2M1RMRkZ3TjFWZkFtek5lS0lXZUlkaWl4eVoxRkx3VXo4SFd0Q3V1Y0NUNFB4MU16VzlVWVp3NWM3elp6eGNLQy1FbmNNOU4xMXNB?oc=5",
+          "summary": "Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng? m.gamek.vn",
+          "source_name": "GameK",
+          "source_type": "PRESS",
+          "source_badge": "Báo Game",
+          "published_at": "2026-10-23T14:16:00+07:00",
+          "hours_ago": 2.3,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Nền tảng Steam"
+        },
+        {
+          "title": "Steam vừa có thêm loạt game miễn phí mới, nhiều cái tên nhận rating rất tích cực, tải về chơi không mất tiền",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPMldKN2VYeUY3RFNSOTVGNHl0aEllcFRjakR1X0wwMktoamxFTVlpYlN1UU1MM01ueDBZNk5oNll3cV9tX3M4ZVo5Ml8xeFdNQVg3Zm10eTlDQW80NDlaRlYxdUFjczcxcFc1MjhwQzJHTlY3NjM3djEtODBRUng0WUZyeG1YbndiNVNYeVZBNW8xcDFrNEh1OFVFa0ctVVNiODBseTdRODk3TUdaaXVISHpWU251UlpJcGtwUGxtZmZ3X0ZDVmJFNExDSHVhNG5KbUJLSEx2NzV4Nmc?oc=5",
+          "summary": "Steam vừa có thêm loạt game miễn phí mới, nhiều cái tên nhận rating rất tích cực, tải về chơi không mất tiền Phụ nữ Mới",
+          "source_name": "Phụ nữ Mới",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-17T20:13:25+07:00",
-          "hours_ago": 39.4,
-          "relative_time": "39 giờ trước",
+          "published_at": "2026-10-23T11:41:00+07:00",
+          "hours_ago": 4.9,
+          "relative_time": "4 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Nền tảng Steam"
+        },
+        {
+          "title": "Nghệ An đặt mục tiêu 100% trường học có không gian STEM/STEAM hiện đại vào năm 2035",
+          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxQR3BSbWdXNTRHUFlNX3lYNkQwQk9yT2IwTHhKeEFObnFha0xrVHFhYjdyc0RBQU44ZEhIdFpubEZKWlJRci1TcTlNSVpZd0FVd2RwYzQ4TjZPTFJfOGtJRlJFTUFxVUJuSDZuVlR5ZGkwQjV0clY2bzA2aDk5aFVtaERxTDJEWU9rd0UzQmpFX05BbTlxZmNFNENseFR0Z1BVWXpnX2hHRTBoU1FqWGRGcXJidW9xa3BEUlE2aENrZ0NTWE11V0J0VQ?oc=5",
+          "summary": "Nghệ An đặt mục tiêu 100% trường học có không gian STEM/STEAM hiện đại vào năm 2035 Thuonghieucongluan.com.vn",
+          "source_name": "Thuonghieucongluan.com.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T12:24:00+07:00",
+          "hours_ago": 28.1,
+          "relative_time": "28 giờ trước",
           "within_24h": false,
           "niche": {
             "id": "GAME_TREND",
-            "name": "Game Hot & Xu hướng Làng Game",
+            "name": "Game",
             "badge_color": "purple",
             "group": "Tin tức Hot & Trend",
-            "relevance_score": 4
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Nền tảng Steam"
+        },
+        {
+          "title": "Steam bất ngờ xuất hiện tựa game kinh dị miễn phí 100%, rating gần 10/10, người chơi khen ngợi chất lượng vượt xa mong đợi",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxNbDBSTkJMRDBrWUJfZE1aUWFXcjJUVjlQZ2s5dmFVa2JYNXBJd3c3bWNFQmVUY2ZNdk9XWElSY1lGV2Z2WVFla1FNN2xBTmc1SElua2U4TU5ONkxJbnZRMGpDcThzSzdWbDJ6ODRMUjJLX29xRURvWl9xR3VaMlEwcmNTRXZ6R25CSXJMVnB6WlhUUUo0YWU2SFdybFVJUTNQZmFvaG52TGp5ejdDZTh3djBNRTlHNTctM1YtazVjVVRTSXk1MG5vTlR3cGpia3U0RjlhSmg4cVp4WXZrbnpjbVY1X2RBOVlrWjlaeg?oc=5",
+          "summary": "Steam bất ngờ xuất hiện tựa game kinh dị miễn phí 100%, rating gần 10/10, người chơi khen ngợi chất lượng vượt xa mong đợi Phụ nữ Mới",
+          "source_name": "Phụ nữ Mới",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T11:35:00+07:00",
+          "hours_ago": 5.0,
+          "relative_time": "4 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 9
           },
           "extracted_keyword": "Nền tảng Steam"
         }
       ],
-      "rank": 6
+      "rank": 7
     },
     {
       "keyword": "Tính năng mới Facebook",
       "cluster_id": "tính năng mới facebook",
       "niche": {
         "id": "SOCIAL_APPS",
-        "name": "Mạng xã hội & Ứng dụng phổ biến",
+        "name": "Mạng xã hội - App",
         "badge_color": "pink",
         "group": "Tin tức Hot & Trend",
-        "relevance_score": 9
+        "relevance_score": 6
       },
-      "total_score": 78.0,
+      "total_score": 75.5,
       "score_breakdown": {
-        "coverage": 39.5,
+        "coverage": 37.0,
         "competitor": 13.5,
         "freshness": 20.0,
         "serpapi_trend": 5.0
       },
       "stats": {
-        "total_articles_found": 5,
+        "total_articles_found": 4,
         "press_count": 3,
         "competitor_count": 0,
         "press_list": [
+          "Báo An Giang Online",
           "Báo Tuổi Trẻ",
-          "Kenh14.vn",
-          "Vietnam.vn"
+          "Kenh14.vn"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 0.2,
+        "newest_hours_ago": 0.4,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [
         {
-          "keyword": "Người dùng Zalo, TikTok, Facebook chú ý thông báo mới nhất từ công an",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Kenh14.vn] Người dùng Zalo, TikTok, Facebook chú ý thông báo mới nhất từ công an"
+          "keyword": "Hướng dẫn Facebook",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "[Báo An Giang Online] AI đang thay đổi cách doanh nghiệp triển khai quảng cáo Facebook"
         },
         {
-          "keyword": "Lại xuất hiện nhóm giả mạo EVN trên Facebook",
+          "keyword": "Facebook mới nhất",
           "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Vietnam.vn] Lại xuất hiện nhóm giả mạo EVN trên Facebook"
+          "based_on": "Cụm tìm kiếm phổ biến"
         },
         {
-          "keyword": "Hy Lạp đề xuất cấm trẻ dưới 15 tuổi dùng Instagram, TikTok, Facebook",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Báo Tuổi Trẻ] Hy Lạp đề xuất cấm trẻ dưới 15 tuổi dùng Instagram, TikTok, Facebook"
+          "keyword": "Đánh giá Facebook",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "Cụm tìm kiếm phổ biến"
         }
       ],
       "related_keywords": [
-        "Người dùng Zalo, TikTok, Facebook chú ý thông báo mới nhất từ công an",
-        "Lại xuất hiện nhóm giả mạo EVN trên Facebook",
-        "Hy Lạp đề xuất cấm trẻ dưới 15 tuổi dùng Instagram, TikTok, Facebook"
+        "Hướng dẫn Facebook",
+        "Facebook mới nhất",
+        "Đánh giá Facebook"
       ],
       "top_3_articles": [
         {
-          "title": "Người dùng Zalo, TikTok, Facebook chú ý thông báo mới nhất từ công an",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxPV1NvVGh4VGpHaFpCM0J6UERMWEFSYmwyb29PSHBCY1dsQzQxMDdnRzJ0S09EczhEUWNsYlJrSGhYemxDbWxnNklGQlpVZ1U2MWNOX1lsVWZOWDJSVS1GYjlIS3BNRUtGTzkyU0FKZXNEVmdpbGl1TVZxWUtVdUtjM3FZdklMSTB4MElncERBSFVaMGRFU0xZRzJkVldVbk9RU2hsZC1zdmNwX2dD?oc=5",
-          "summary": "Người dùng Zalo, TikTok, Facebook chú ý thông báo mới nhất từ công an Kenh14.vn",
+          "title": "Cảnh báo \"nóng\" từ Công an tới tất cả những ai nhận được tin nhắn Facebook, Zalo từ bạn bè, người thân với nội dung sau",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUzZ5RFBzdjBZcjBnOE1SekFyeUJtUk0zc0kwQjBjd2pHemJ1anhkTWJUR2c5UUN4REhBSkp4Ynd4Yi1yWUE4T3VPTEpmQmpFLXNROFl5V1JqTndBOElCYmliVVVVTzRwRWJXaVQ4bjU0UGNXdFlIemwwZTRJWFlRUWN6WHktTXZOd3BUUzFVSU92eVl4eS1DZncwN1lvbjhmb0FyLUNULTROdnlWQ1ZfSWc5OG42bTZpYi1mOXlaYmNxU1RHdmNSLW1fWnRmZDRHQUFEbVBFUlBQWVU5T2lKeUxKTGkwTHV0ZGRJaQ?oc=5",
+          "summary": "Cảnh báo \"nóng\" từ Công an tới tất cả những ai nhận được tin nhắn Facebook, Zalo từ bạn bè, người thân với nội dung sau Kenh14.vn",
           "source_name": "Kenh14.vn",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T11:22:00+07:00",
-          "hours_ago": 0.2,
-          "relative_time": "14 phút trước",
+          "published_at": "2026-10-23T16:08:00+07:00",
+          "hours_ago": 0.4,
+          "relative_time": "24 phút trước",
           "within_24h": true,
           "niche": {
             "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội & Ứng dụng phổ biến",
+            "name": "Mạng xã hội - App",
             "badge_color": "pink",
             "group": "Tin tức Hot & Trend",
-            "relevance_score": 9
-          },
-          "extracted_keyword": "Tính năng mới Facebook"
-        },
-        {
-          "title": "Lại xuất hiện nhóm giả mạo EVN trên Facebook",
-          "url": "https://news.google.com/rss/articles/CBMidkFVX3lxTFA4d0MzbDYxOFlmLWdrUlVWYk5kRFhqNG9rNElTa3hPV3dxR1MtMjZ0WlR4OEJQallocnNIVjRzcEd4Mnp0OHMxZVptZDktSnNWRVN1MkpUazYybS1rRmVmYk1WTGNRRE9JYU02Tzl0VFRfaG15ZVE?oc=5",
-          "summary": "Lại xuất hiện nhóm giả mạo EVN trên Facebook Vietnam.vn",
-          "source_name": "Vietnam.vn",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T10:46:54+07:00",
-          "hours_ago": 0.8,
-          "relative_time": "49 phút trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội & Ứng dụng phổ biến",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
+            "relevance_score": 6
           },
           "extracted_keyword": "Tính năng mới Facebook"
         },
@@ -1333,148 +1687,71 @@
           "source_name": "Báo Tuổi Trẻ",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T08:36:09.572232+07:00",
+          "published_at": "2026-10-23T13:32:45.906355+07:00",
           "hours_ago": 3.0,
           "relative_time": "2 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội & Ứng dụng phổ biến",
+            "name": "Mạng xã hội - App",
             "badge_color": "pink",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 9
           },
           "extracted_keyword": "Tính năng mới Facebook"
-        }
-      ],
-      "rank": 7
-    },
-    {
-      "keyword": "Cập nhật Windows 11 mới nhất",
-      "cluster_id": "windows 11",
-      "niche": {
-        "id": "HARDWARE_COMPONENT",
-        "name": "Linh kiện & Công nghệ Phần cứng",
-        "badge_color": "emerald",
-        "group": "Sát sườn ngành hàng",
-        "relevance_score": 3
-      },
-      "total_score": 73.0,
-      "score_breakdown": {
-        "coverage": 34.5,
-        "competitor": 13.5,
-        "freshness": 20.0,
-        "serpapi_trend": 5.0
-      },
-      "stats": {
-        "total_articles_found": 3,
-        "press_count": 3,
-        "competitor_count": 0,
-        "press_list": [
-          "Báo Thanh Niên",
-          "GenK",
-          "Unisba Media"
-        ],
-        "competitor_list": [],
-        "newest_hours_ago": 0.1,
-        "is_trending_now": false,
-        "google_trends_index": 0
-      },
-      "seo_suggested_keywords": [
-        {
-          "keyword": "Windows 11 nhanh hơn tới 20% sau bản cập nhật mới",
-          "intent": "Keyword Tính năng / Tin mới",
-          "based_on": "[GenK] Windows 11 nhanh hơn tới 20% sau bản cập nhật mới, máy 8 GB RAM hưởng lợi rõ nhất"
         },
         {
-          "keyword": "Windows 11 ẩn giấu menu Start thứ hai hữu ích",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Báo Thanh Niên] Windows 11 ẩn giấu menu Start thứ hai hữu ích"
-        },
-        {
-          "keyword": "WINDOWS 11 26H2 CÓ GÌ MỚI",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Unisba Media] WINDOWS 11 26H2 CÓ GÌ MỚI? (BUILD 26300.9032)-WINDOWS 11 BETA- T-M TECH Athletic Club Vs Valencia (aIma7guZaH)"
-        }
-      ],
-      "related_keywords": [
-        "Windows 11 nhanh hơn tới 20% sau bản cập nhật mới",
-        "Windows 11 ẩn giấu menu Start thứ hai hữu ích",
-        "WINDOWS 11 26H2 CÓ GÌ MỚI"
-      ],
-      "top_3_articles": [
-        {
-          "title": "Windows 11 nhanh hơn tới 20% sau bản cập nhật mới, máy 8 GB RAM hưởng lợi rõ nhất",
-          "url": "https://genk.vn/windows-11-nhanh-hon-toi-20-sau-ban-cap-nhat-moi-may-8-gb-ram-huong-loi-ro-nhat-165261810233737949.chn",
-          "summary": "Microsoft đang cải thiện cách Windows 11 quản lý bộ nhớ và tài nguyên chạy nền, giúp các thao tác quen thuộc phản hồi nhanh hơn. Thay đổi đáng chú ý nhất hướng đến những máy chỉ có 8 GB RAM, vốn dễ chậm khi mở nhiều ứng dụng hoặc tab trình duyệt.",
-          "source_name": "GenK",
+          "title": "AI đang thay đổi cách doanh nghiệp triển khai quảng cáo Facebook",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxOQ21SVmNWSlhuQi0wZzZPeTM1dlhTYnNPWWFUOHcwU3NPWWQ4UUhTd3JxMXlmQTExU2tkV09HUlRVODR4bzZzN1ZDUHlrc2pUTWtBR2lsdkQ1MXk4VGszd0hkNm1BamhmV0Q1aUl2S3AtSnhJWVE4ZEVFalB2QXFObHZxWmtBRW1wMUZKVXcyMWlTemJEQlhGQW9ub25hRU9waFhGZEJn?oc=5",
+          "summary": "AI đang thay đổi cách doanh nghiệp triển khai quảng cáo Facebook Báo An Giang Online",
+          "source_name": "Báo An Giang Online",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T11:36:10.234220+07:00",
-          "hours_ago": 0.1,
-          "relative_time": "1 phút trước",
+          "published_at": "2026-10-23T10:56:37+07:00",
+          "hours_ago": 5.6,
+          "relative_time": "5 giờ trước",
           "within_24h": true,
           "niche": {
-            "id": "HARDWARE_COMPONENT",
-            "name": "Linh kiện & Công nghệ Phần cứng",
-            "badge_color": "emerald",
-            "group": "Sát sườn ngành hàng",
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
             "relevance_score": 3
           },
-          "extracted_keyword": "Cập nhật Windows 11 mới nhất"
+          "extracted_keyword": "Tính năng mới Facebook"
         },
         {
-          "title": "Windows 11 ẩn giấu menu Start thứ hai hữu ích",
-          "url": "https://thanhnien.vn/windows-11-an-giau-menu-start-thu-hai-huu-ich-185261018115744581.htm",
-          "summary": "Cách mở menu Start ẩn trên Windows 11 để truy cập nhanh các công cụ hệ thống.",
-          "source_name": "Báo Thanh Niên",
+          "title": "Bị kết án tử hình vì một bài đăng Facebook",
+          "url": "https://tuoitre.vn/bi-ket-an-tu-hinh-vi-mot-bai-dang-facebook-100261008105818134.htm",
+          "summary": "Sri Lanka đang dốc sức can thiệp nhằm cứu một thanh niên khỏi án tử hình tại Saudi Arabia vì một bài đăng trên Facebook.",
+          "source_name": "Báo Tuổi Trẻ",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-18T15:21:00+07:00",
-          "hours_ago": 20.3,
-          "relative_time": "20 giờ trước",
+          "published_at": "2026-10-23T13:32:45.907033+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
           "within_24h": true,
           "niche": {
-            "id": "OS_SOFTWARE",
-            "name": "Hệ điều hành & Phần mềm Bản quyền",
-            "badge_color": "blue",
-            "group": "Sát sườn ngành hàng",
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
             "relevance_score": 3
           },
-          "extracted_keyword": "Windows 11"
-        },
-        {
-          "title": "WINDOWS 11 26H2 CÓ GÌ MỚI? (BUILD 26300.9032)-WINDOWS 11 BETA- T-M TECH Athletic Club Vs Valencia (aIma7guZaH)",
-          "url": "https://news.google.com/rss/articles/CBMiggFBVV95cUxPSXEyU3RmeTdqMDZoZS0xSU5Rd05DZk5LQk9xdVl3SjM1Z1ZuZl9XYU1Xb0hNcXdRMlZURnVGMFVMLWR4VXF1OUpmU1Zoald2MTY3YV9hUHlCOVUxLXpMUVZEVUg4S2JTSktHUVFEcUo2Q0NBOG5LMzNLSE93WHdPOXhn?oc=5",
-          "summary": "WINDOWS 11 26H2 CÓ GÌ MỚI? (BUILD 26300.9032)-WINDOWS 11 BETA- T-M TECH Athletic Club Vs Valencia (aIma7guZaH) Unisba Media",
-          "source_name": "Unisba Media",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-18T06:00:11+07:00",
-          "hours_ago": 29.6,
-          "relative_time": "29 giờ trước",
-          "within_24h": false,
-          "niche": {
-            "id": "OS_SOFTWARE",
-            "name": "Hệ điều hành & Phần mềm Bản quyền",
-            "badge_color": "blue",
-            "group": "Sát sườn ngành hàng",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Windows 11"
+          "extracted_keyword": "Tính năng mới Facebook"
         }
       ],
       "rank": 8
     },
     {
-      "keyword": "Google Gemini",
-      "cluster_id": "google gemini",
+      "keyword": "RTX 5090",
+      "cluster_id": "rtx 5090",
       "niche": {
-        "id": "AI_UPDATES",
-        "name": "Trí tuệ nhân tạo (AI Updates)",
-        "badge_color": "amber",
-        "group": "Tin tức Hot & Trend",
-        "relevance_score": 4
+        "id": "HARDWARE_COMPONENT",
+        "name": "Linh kiện - Phần Cứng",
+        "badge_color": "emerald",
+        "group": "Sát sườn ngành hàng",
+        "relevance_score": 3
       },
       "total_score": 72.0,
       "score_breakdown": {
@@ -1488,110 +1765,462 @@
         "press_count": 1,
         "competitor_count": 1,
         "press_list": [
-          "Báo Tuổi Trẻ"
+          "GenK"
         ],
         "competitor_list": [
-          "CellphoneS (Sforum)"
+          "GearVN"
         ],
-        "newest_hours_ago": 3.0,
+        "newest_hours_ago": 0.1,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [
         {
-          "keyword": "Google thử cho người dùng mua hàng trực tiếp qua Gemini",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Báo Tuổi Trẻ] Google thử cho người dùng mua hàng trực tiếp qua Gemini"
+          "keyword": "Giá RTX 5090",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[GenK] Lô RTX 5090 trị giá 12,4 tỷ đồng bị đánh cắp tại sân bay Brazil, một chiếc bất ngờ xuất hiện trên mạng"
         },
         {
-          "keyword": "Cách tạo ảnh 20/10 bằng Gemini đơn giản, chi tiết nhất từ A",
+          "keyword": "RTX 5090 mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        },
+        {
+          "keyword": "Hướng dẫn RTX 5090",
           "intent": "Keyword Hướng dẫn / Thủ thuật",
-          "based_on": "[CellphoneS (Sforum)] Cách tạo ảnh 20/10 bằng Gemini đơn giản, chi tiết nhất từ A - Z"
-        },
-        {
-          "keyword": "Amazon vừa làm được điều Google 15 năm chưa làm nổi",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[Tinh Tế] Amazon vừa làm được điều Google 15 năm chưa làm nổi: tablet Android dùng hằng ngày thật ngon"
+          "based_on": "Cụm tìm kiếm phổ biến"
         }
       ],
       "related_keywords": [
-        "Google thử cho người dùng mua hàng trực tiếp qua Gemini",
-        "Cách tạo ảnh 20/10 bằng Gemini đơn giản, chi tiết nhất từ A",
-        "Amazon vừa làm được điều Google 15 năm chưa làm nổi"
+        "Giá RTX 5090",
+        "RTX 5090 mới nhất",
+        "Hướng dẫn RTX 5090"
       ],
       "top_3_articles": [
         {
-          "title": "Google thử cho người dùng mua hàng trực tiếp qua Gemini",
-          "url": "https://tuoitre.vn/google-thu-cho-nguoi-dung-mua-hang-truc-tiep-qua-gemini-100260928182007667.htm",
-          "summary": "Google đang thử nghiệm nút 'Mua' của Flipkart trên Gemini và AI Mode, mở đường để AI tham gia sâu hơn vào quá trình mua sắm.",
-          "source_name": "Báo Tuổi Trẻ",
+          "title": "Lô RTX 5090 trị giá 12,4 tỷ đồng bị đánh cắp tại sân bay Brazil, một chiếc bất ngờ xuất hiện trên mạng",
+          "url": "https://genk.vn/lo-rtx-5090-tri-gia-124-ty-dong-bi-danh-cap-tai-san-bay-brazil-mot-chiec-bat-ngo-xuat-hien-tren-mang-165261023143135029.chn",
+          "summary": "Một chiếc Zotac Gaming RTX 5090 được cho là thuộc lô hàng bị đánh cắp tại Brazil xuất hiện trên sàn OLX với giá hơn 158 triệu đồng. Cảnh sát đã xác định ba nhân viên bị nghi liên quan đến vụ việc.",
+          "source_name": "GenK",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T08:36:09.573851+07:00",
-          "hours_ago": 3.0,
-          "relative_time": "2 giờ trước",
+          "published_at": "2026-10-23T16:32:45.599054+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "1 phút trước",
           "within_24h": true,
           "niche": {
-            "id": "AI_UPDATES",
-            "name": "Trí tuệ nhân tạo (AI Updates)",
-            "badge_color": "amber",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 4
-          },
-          "extracted_keyword": "Google Gemini"
-        },
-        {
-          "title": "Cách tạo ảnh 20/10 bằng Gemini đơn giản, chi tiết nhất từ A - Z",
-          "url": "https://news.google.com/rss/articles/CBMiakFVX3lxTE5SVmt2Q1R5S1lPWk1EWVVxTWZpekJRYWc2X0VqQzNzd1o4Y09wdnhLWTF0XzNFZmJaOTk0MnZvZjVGdHlYUHYyQ1puQVpraUMzVVJNX2UydTA5T294ZU9jOEU0TmthbElPalE?oc=5",
-          "summary": "Cách tạo ảnh 20/10 bằng Gemini đơn giản, chi tiết nhất từ A - Z CellphoneS",
-          "source_name": "CellphoneS (Sforum)",
-          "source_type": "COMPETITOR",
-          "source_badge": "Đối thủ",
-          "published_at": "2026-10-17T23:14:18+07:00",
-          "hours_ago": 36.4,
-          "relative_time": "36 giờ trước",
-          "within_24h": false,
-          "niche": {
-            "id": "AI_UPDATES",
-            "name": "Trí tuệ nhân tạo (AI Updates)",
-            "badge_color": "amber",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Google Gemini"
-        },
-        {
-          "title": "Amazon vừa làm được điều Google 15 năm chưa làm nổi: tablet Android dùng hằng ngày thật ngon",
-          "url": "https://tinhte.vn/thread/amazon-vua-lam-duoc-dieu-google-15-nam-chua-lam-noi-tablet-android-dung-hang-ngay-that-ngon.4184998/",
-          "summary": "[ATTACH] Bộ ba Alexa Tablet 12 Pro, Alexa Tablet 11 và Alexa Tablet 8 (từ trái qua) Mình đọc bài quan điểm của Harish Jonnalagadda bên Android Authority về dòng Alexa Tablet mới của Amazon thì...",
-          "source_name": "Tinh Tế",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-10-19T09:32:19+07:00",
-          "hours_ago": 2.1,
-          "relative_time": "2 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "BIG_TECH_EVENT",
-            "name": "Ông lớn Công nghệ & Sự kiện",
-            "badge_color": "indigo",
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
             "group": "Sát sườn ngành hàng",
             "relevance_score": 3
           },
-          "extracted_keyword": "Google 15"
+          "extracted_keyword": "RTX 5090"
+        },
+        {
+          "title": "Laptop Gaming RTX 5090 series chính hãng giá tốt",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9rVkJEOW1DV1h0bHE0TDdPb290UVFnbzNsWE9hZy1jMGxKUnJoX2I0aUhrUW44d2NQMkxDLVRMeXNycGpJRS15SlpCbTVoRWVoYWY0S0MzaEw2ZW9pbUVhT2pqc1FjcjdvY1JYMQ?oc=5",
+          "summary": "Laptop Gaming RTX 5090 series chính hãng giá tốt GEARVN",
+          "source_name": "GearVN",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T14:24:08+07:00",
+          "hours_ago": 26.1,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "RTX 5090"
+        },
+        {
+          "title": "Laptop Lenovo Legion 5 15IAX11 83VK00A3VN Ultra 7 RTX 5060",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAtN3ZwNFBHM2M1OUN5X0Z6cjVFektMaGo5VTEzT05qTTQ1T3VJUVQ3d1hPaGJBeTR3bmt1OGEwWVpkVTJxTEZkc1FfLVlhTXBObUpsWWpkSUNkc0EyX2JsMkw5a2ZMLUFtY0loRDdxdVRmWmY5aGpjVzItbFlTeFE?oc=5",
+          "summary": "Laptop Lenovo Legion 5 15IAX11 83VK00A3VN Ultra 7 RTX 5060 HACOM",
+          "source_name": "HACOM",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T08:30:29+07:00",
+          "hours_ago": 8.0,
+          "relative_time": "8 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "RTX 5060"
+        },
+        {
+          "title": "Giá xăng dầu hôm nay 22/10: Xăng giảm mạnh gần 2.000 đồng/lít, card đồ họa RTX 3060 Ti giá có hạ nhiệt?",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxONy16emNTMHM2Ym5PN2hxSVQ4dkNZRGQ2XzlIS0tGeW5BTWVWZEluWVoyR1NjOXRENlVVWHBEcWdLdHA2MzJ1Q0ZoYVU1Zk9LamptQTc4MWtrQS1TRDExNzZpc2ZFOFhNTUc1Vkl5Wk1QbnJ0SHJLdjlUdzdqM2ktalFqVHl1RHVRZnhYbU5BOGprYWpvRk5pTktjV2JzeUM3MDZZaHJVZnNyYzQzMjVlbzB5eFB2eVFqLWVUcXZUcGNpSFRzSkcxa1NhbTJDdE40NUtUQjN6a0w4X1pZWC1J?oc=5",
+          "summary": "Giá xăng dầu hôm nay 22/10: Xăng giảm mạnh gần 2.000 đồng/lít, card đồ họa RTX 3060 Ti giá có hạ nhiệt? Techz.vn",
+          "source_name": "Techz.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T19:36:00+07:00",
+          "hours_ago": 20.9,
+          "relative_time": "20 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "RTX 3060 Ti"
+        },
+        {
+          "title": "Laptop Gaming RTX 3050 series chính hãng giá tốt",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBvOVljVlV0QXUybXUtZU1XVm4wNzI4eThWZXFWQUdUU3VUTzMzbUgzT2I2VzJjWWpTOGFwa3Y0dUtGSHZtM1pXWURCekFoSmw1SXpMTHFwUlRfZXdvQUVWSm9BRlpJTVlIS0t1Ng?oc=5",
+          "summary": "Laptop Gaming RTX 3050 series chính hãng giá tốt GEARVN",
+          "source_name": "GearVN",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T14:24:04+07:00",
+          "hours_ago": 26.1,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Laptop Gaming RTX 3050"
         }
       ],
       "rank": 9
     },
     {
-      "keyword": "20/10 thứ mấy",
-      "cluster_id": "20/10 thứ mấy",
+      "keyword": "RTX 5060",
+      "cluster_id": "rtx 5060",
       "niche": {
-        "id": "BIG_TECH_EVENT",
-        "name": "Ông lớn Công nghệ & Sự kiện",
-        "badge_color": "indigo",
+        "id": "HARDWARE_COMPONENT",
+        "name": "Linh kiện - Phần Cứng",
+        "badge_color": "emerald",
         "group": "Sát sườn ngành hàng",
-        "relevance_score": 0
+        "relevance_score": 9
+      },
+      "total_score": 70.5,
+      "score_breakdown": {
+        "coverage": 23.0,
+        "competitor": 25.0,
+        "freshness": 17.5,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 2,
+        "press_count": 0,
+        "competitor_count": 2,
+        "press_list": [],
+        "competitor_list": [
+          "GearVN",
+          "HACOM"
+        ],
+        "newest_hours_ago": 8.0,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Giá RTX 5060",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[GearVN] Laptop Gaming RTX 5060 series chính hãng giá tốt"
+        },
+        {
+          "keyword": "RTX 5060 mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        },
+        {
+          "keyword": "Hướng dẫn RTX 5060",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Giá RTX 5060",
+        "RTX 5060 mới nhất",
+        "Hướng dẫn RTX 5060"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Laptop Lenovo Legion 5 15IAX11 83VK00A3VN Ultra 7 RTX 5060",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAtN3ZwNFBHM2M1OUN5X0Z6cjVFektMaGo5VTEzT05qTTQ1T3VJUVQ3d1hPaGJBeTR3bmt1OGEwWVpkVTJxTEZkc1FfLVlhTXBObUpsWWpkSUNkc0EyX2JsMkw5a2ZMLUFtY0loRDdxdVRmWmY5aGpjVzItbFlTeFE?oc=5",
+          "summary": "Laptop Lenovo Legion 5 15IAX11 83VK00A3VN Ultra 7 RTX 5060 HACOM",
+          "source_name": "HACOM",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T08:30:29+07:00",
+          "hours_ago": 8.0,
+          "relative_time": "8 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "RTX 5060"
+        },
+        {
+          "title": "Laptop Gaming RTX 5060 series chính hãng giá tốt",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE1QYUdGdk84MDN0di1tdFFzSklHekRRaUxYNWFZRTZVSVhJZXVqN0xEQVlvZF9XNlktbkYwLXNpSEl0enR5dy00clNTQnNTalMxRlVZc2R2UlBhY0FUWkNObHl1aUVqNFp0SDJTMw?oc=5",
+          "summary": "Laptop Gaming RTX 5060 series chính hãng giá tốt GEARVN",
+          "source_name": "GearVN",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T14:24:06+07:00",
+          "hours_ago": 26.1,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "RTX 5060"
+        },
+        {
+          "title": "Lô RTX 5090 trị giá 12,4 tỷ đồng bị đánh cắp tại sân bay Brazil, một chiếc bất ngờ xuất hiện trên mạng",
+          "url": "https://genk.vn/lo-rtx-5090-tri-gia-124-ty-dong-bi-danh-cap-tai-san-bay-brazil-mot-chiec-bat-ngo-xuat-hien-tren-mang-165261023143135029.chn",
+          "summary": "Một chiếc Zotac Gaming RTX 5090 được cho là thuộc lô hàng bị đánh cắp tại Brazil xuất hiện trên sàn OLX với giá hơn 158 triệu đồng. Cảnh sát đã xác định ba nhân viên bị nghi liên quan đến vụ việc.",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T16:32:45.599054+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "1 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "RTX 5090"
+        },
+        {
+          "title": "Giá xăng dầu hôm nay 22/10: Xăng giảm mạnh gần 2.000 đồng/lít, card đồ họa RTX 3060 Ti giá có hạ nhiệt?",
+          "url": "https://news.google.com/rss/articles/CBMi3wFBVV95cUxONy16emNTMHM2Ym5PN2hxSVQ4dkNZRGQ2XzlIS0tGeW5BTWVWZEluWVoyR1NjOXRENlVVWHBEcWdLdHA2MzJ1Q0ZoYVU1Zk9LamptQTc4MWtrQS1TRDExNzZpc2ZFOFhNTUc1Vkl5Wk1QbnJ0SHJLdjlUdzdqM2ktalFqVHl1RHVRZnhYbU5BOGprYWpvRk5pTktjV2JzeUM3MDZZaHJVZnNyYzQzMjVlbzB5eFB2eVFqLWVUcXZUcGNpSFRzSkcxa1NhbTJDdE40NUtUQjN6a0w4X1pZWC1J?oc=5",
+          "summary": "Giá xăng dầu hôm nay 22/10: Xăng giảm mạnh gần 2.000 đồng/lít, card đồ họa RTX 3060 Ti giá có hạ nhiệt? Techz.vn",
+          "source_name": "Techz.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T19:36:00+07:00",
+          "hours_ago": 20.9,
+          "relative_time": "20 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "RTX 3060 Ti"
+        },
+        {
+          "title": "Laptop Gaming RTX 3050 series chính hãng giá tốt",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBvOVljVlV0QXUybXUtZU1XVm4wNzI4eThWZXFWQUdUU3VUTzMzbUgzT2I2VzJjWWpTOGFwa3Y0dUtGSHZtM1pXWURCekFoSmw1SXpMTHFwUlRfZXdvQUVWSm9BRlpJTVlIS0t1Ng?oc=5",
+          "summary": "Laptop Gaming RTX 3050 series chính hãng giá tốt GEARVN",
+          "source_name": "GearVN",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T14:24:04+07:00",
+          "hours_ago": 26.1,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Laptop Gaming RTX 3050"
+        }
+      ],
+      "rank": 10
+    },
+    {
+      "keyword": "RTX 40 Series",
+      "cluster_id": "rtx 40 series",
+      "niche": {
+        "id": "HARDWARE_COMPONENT",
+        "name": "Linh kiện - Phần Cứng",
+        "badge_color": "emerald",
+        "group": "Sát sườn ngành hàng",
+        "relevance_score": 6
+      },
+      "total_score": 66.0,
+      "score_breakdown": {
+        "coverage": 23.0,
+        "competitor": 25.0,
+        "freshness": 13.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 2,
+        "press_count": 0,
+        "competitor_count": 2,
+        "press_list": [],
+        "competitor_list": [
+          "CellphoneS (Sforum)",
+          "GearVN"
+        ],
+        "newest_hours_ago": 26.1,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Giá RTX 40",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[GearVN] Laptop Gaming RTX 4050 series chính hãng giá tốt"
+        },
+        {
+          "keyword": "RTX 40 ngày ra mắt",
+          "intent": "Keyword Tính năng / Tin mới",
+          "based_on": "[GameK] Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng?"
+        },
+        {
+          "keyword": "RTX 40 mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Giá RTX 40",
+        "RTX 40 ngày ra mắt",
+        "RTX 40 mới nhất"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Laptop Gaming RTX 4050 series chính hãng giá tốt",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTE9GZDVDSDh5NGJWZzFVYmxhdHc5QXBnOE84RFRlUm0zSnE3SUhrbXJpbmJkQ1lkOU9sUlFXeG1pNW1JdTJwckpPbzRLSE9LWW15aE5yNUtCTkNaWW45WXNQZFl4Z0x4Tjk2VjJ5cA?oc=5",
+          "summary": "Laptop Gaming RTX 4050 series chính hãng giá tốt GEARVN",
+          "source_name": "GearVN",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T14:24:04+07:00",
+          "hours_ago": 26.1,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "RTX 40 Series"
+        },
+        {
+          "title": "Trên tay Acer Gaming Nitro ProPanel ANV15: Combo Core 5 210H và RTX 4050 giá 33 triệu có \"xắt ra miếng\"?",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPcUJRX1Y4RDUwTFVIckcxenZkT21RV2xsU08wcGs0RW1OR2ROZkhGSDM3aFlHVXE5RUtsZlltNGw1cmVvLTJNNUlKXzRLMno5SmE0TVBHS19YMTF6d0Rzbk1JTV9XY0huS2g5TXBITFhZc21sR1NPN0I3QnhNV3F3WlZoZFFnQU9yUFE?oc=5",
+          "summary": "Trên tay Acer Gaming Nitro ProPanel ANV15: Combo Core 5 210H và RTX 4050 giá 33 triệu có \"xắt ra miếng\"? CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T04:17:12+07:00",
+          "hours_ago": 36.3,
+          "relative_time": "36 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "RTX 40 Series"
+        },
+        {
+          "title": "Lô RTX 5090 trị giá 12,4 tỷ đồng bị đánh cắp tại sân bay Brazil, một chiếc bất ngờ xuất hiện trên mạng",
+          "url": "https://genk.vn/lo-rtx-5090-tri-gia-124-ty-dong-bi-danh-cap-tai-san-bay-brazil-mot-chiec-bat-ngo-xuat-hien-tren-mang-165261023143135029.chn",
+          "summary": "Một chiếc Zotac Gaming RTX 5090 được cho là thuộc lô hàng bị đánh cắp tại Brazil xuất hiện trên sàn OLX với giá hơn 158 triệu đồng. Cảnh sát đã xác định ba nhân viên bị nghi liên quan đến vụ việc.",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T16:32:45.599054+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "1 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "RTX 5090"
+        },
+        {
+          "title": "Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng?",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOYW5ScUJQMWM2cnRuR2RmeVYyRXlqZ3pITER0bDFlNW1OeWRzU1oxX2xlWVdnLS1VZVJpYWd2U205OGxtQkZoUU5icXBXNDFaZzhmUUI1Z0xvRUlmM2tGeS1pVkpyWnFfSGtjLTVFbWRSSU5Bc0JqWXFLNWN0Ujk4VjQ5V190a25RWG5OdGNmbXlHYWQxOWh2M1RMRkZ3TjFWZkFtek5lS0lXZUlkaWl4eVoxRkx3VXo4SFd0Q3V1Y0NUNFB4MU16VzlVWVp3NWM3elp6eGNLQy1FbmNNOU4xMXNB?oc=5",
+          "summary": "Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng? m.gamek.vn",
+          "source_name": "GameK",
+          "source_type": "PRESS",
+          "source_badge": "Báo Game",
+          "published_at": "2026-10-23T14:16:00+07:00",
+          "hours_ago": 2.3,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Nền tảng Steam"
+        },
+        {
+          "title": "Garmin Fenix 9 series chính thức hỗ trợ ứng dụng YouTube Music",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPalFORXBSWkp4X3N4eDdZNDhaOTdlQTduZHZ6WHJPQzJXVExZdVFpaXZtR0lIT1djZW5SRmgtLUxEVHFHRkQ3bUpTVk0zTWdaUHpYbjNHakhWV1JqOWFZNWtMM295empnaUJyWHhKc29nMnIyWXZZbXV0YlFORDdaQUx6SlkyT3pMdEVDb2RqbXRIdw?oc=5",
+          "summary": "Garmin Fenix 9 series chính thức hỗ trợ ứng dụng YouTube Music Thegioididong.com",
+          "source_name": "Thế Giới Di Động",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T13:34:49+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Cập nhật YouTube"
+        }
+      ],
+      "rank": 11
+    },
+    {
+      "keyword": "Màn hình iPhone Duo bao nhiêu inch",
+      "cluster_id": "màn hình iphone duo bao nhiêu inch",
+      "niche": {
+        "id": "HARDWARE_COMPONENT",
+        "name": "Linh kiện - Phần Cứng",
+        "badge_color": "emerald",
+        "group": "Sát sườn ngành hàng",
+        "relevance_score": 3
       },
       "total_score": 60.5,
       "score_breakdown": {
@@ -1606,97 +2235,1240 @@
         "competitor_count": 1,
         "press_list": [],
         "competitor_list": [
-          "CellphoneS (Sforum)"
+          "Phong Vũ"
         ],
-        "newest_hours_ago": 0.9,
+        "newest_hours_ago": 1.9,
         "is_trending_now": true,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [
         {
-          "keyword": "Đáp án cho năm 2026 và các năm",
-          "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[CellphoneS (Sforum)] 20/10 thứ mấy? Đáp án cho năm 2026 và các năm tới"
+          "keyword": "Giá Màn hình iPhone Duo",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[GenK] Chery bất ngờ đưa xe máy điện \"sao chép\" ngoại hình Yamaha Vino vào hồ sơ, dùng sản phẩm giá rẻ mở đường cho tham vọng xe hai bánh EREV"
         },
         {
-          "keyword": "Nhà máy chạy 1.400 tỷ token/ngày, ngân hàng cho vay token, sàn mua bán token",
+          "keyword": "Màn hình iPhone Duo mới nhất",
           "intent": "Keyword Tin tức SEO trọng tâm",
-          "based_on": "[GenK] Nhà máy chạy 1.400 tỷ token/ngày, ngân hàng cho vay token, sàn mua bán token: Trung Quốc đang biến AI thành thứ phải trả tiền như điện, như nước"
+          "based_on": "Cụm tìm kiếm phổ biến"
         },
         {
-          "keyword": "Alldocube chính thức ra mắt tại Việt Nam với bộ đôi máy tính bảng",
-          "intent": "Keyword Tính năng / Tin mới",
-          "based_on": "[GenK] Alldocube chính thức ra mắt tại Việt Nam với bộ đôi máy tính bảng"
+          "keyword": "Hướng dẫn Màn hình iPhone Duo",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "Cụm tìm kiếm phổ biến"
         }
       ],
       "related_keywords": [
-        "Đáp án cho năm 2026 và các năm",
-        "Nhà máy chạy 1.400 tỷ token/ngày, ngân hàng cho vay token, sàn mua bán token",
-        "Alldocube chính thức ra mắt tại Việt Nam với bộ đôi máy tính bảng"
+        "Giá Màn hình iPhone Duo",
+        "Màn hình iPhone Duo mới nhất",
+        "Hướng dẫn Màn hình iPhone Duo"
       ],
       "top_3_articles": [
         {
-          "title": "20/10 thứ mấy? Đáp án cho năm 2026 và các năm tới",
-          "url": "https://news.google.com/rss/articles/CBMiWkFVX3lxTE1NTjFfeXE1enJZZ25lWHgwOXMyZ1QxNlEtWnE3dTV3NjUxWENZRnBYQlJ3Uk12bUpiZzN6RlVZbkdsa3NORzBRd2FFSEwwS0RoeVBIZFA1LV9oZw?oc=5",
-          "summary": "20/10 thứ mấy? Đáp án cho năm 2026 và các năm tới CellphoneS",
-          "source_name": "CellphoneS (Sforum)",
+          "title": "Màn hình iPhone Duo bao nhiêu inch? Có đáng để nâng cấp?",
+          "url": "https://news.google.com/rss/articles/CBMickFVX3lxTE4zOGtDaXNud3JUUmJMZUhGaXB0STZndkFWNUlMOFdrVWNucVk0Q3BmTkVlZUN2S3VneHc2bWptYy1icDlLaFlzSTB5M1V4RmpNSVhWa3pReGM1RnBpNTh4REZWdjlTZ0FaN1pzLUU4WjExZw?oc=5",
+          "summary": "Màn hình iPhone Duo bao nhiêu inch? Có đáng để nâng cấp? Phong Vũ",
+          "source_name": "Phong Vũ",
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
-          "published_at": "2026-10-19T10:41:32+07:00",
-          "hours_ago": 0.9,
-          "relative_time": "54 phút trước",
+          "published_at": "2026-10-23T14:37:05+07:00",
+          "hours_ago": 1.9,
+          "relative_time": "1 giờ trước",
           "within_24h": true,
           "niche": {
-            "id": "BIG_TECH_EVENT",
-            "name": "Ông lớn Công nghệ & Sự kiện",
-            "badge_color": "indigo",
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
             "group": "Sát sườn ngành hàng",
-            "relevance_score": 0
+            "relevance_score": 3
           },
-          "extracted_keyword": "20/10 thứ mấy"
+          "extracted_keyword": "Màn hình iPhone Duo bao nhiêu inch"
         },
         {
-          "title": "Nhà máy chạy 1.400 tỷ token/ngày, ngân hàng cho vay token, sàn mua bán token: Trung Quốc đang biến AI thành thứ phải trả tiền như điện, như nước",
-          "url": "https://genk.vn/nha-may-chay-1400-ty-token-ngay-ngan-hang-cho-vay-token-san-mua-ban-token-trung-quoc-dang-bien-ai-thanh-thu-phai-tra-tien-nhu-dien-nhu-nuoc-165261019080601015.chn",
-          "summary": "Thay vì đua \"traffic\" như thời Internet, Trung Quốc đang mở ra kỷ nguyên \"kinh tế Token\". Tại đây, các \"nhà máy Token\" biến năng lực tính toán AI thành loại hàng hóa có thể đo lường, giao dịch và định giá sòng phẳng tương tự như nguồn điện lưới.",
+          "title": "Kawasaki KLR650 DF ABS 2027 trình làng, chiến binh ADV nồi đồng cối đá thách thức mọi địa hình",
+          "url": "https://genk.vn/kawasaki-klr650-df-abs-2027-trinh-lang-chien-binh-adv-noi-dong-coi-da-thach-thuc-moi-dia-hinh-165261020104952577.chn",
+          "summary": "Sở hữu bình xăng 23 lít cùng khung chống đổ và gác baga nguyên bản từ nhà máy, Kawasaki KLR650 DF ABS 2027 chính thức ra mắt với diện mạo đen hóa đậm chất quân sự. Mẫu xe việt dã này mang đến giải pháp thực dụng bền bỉ nhất.",
           "source_name": "GenK",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T11:36:10.234634+07:00",
+          "published_at": "2026-10-23T16:32:45.601174+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "1 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 1
+          },
+          "extracted_keyword": "Kawasaki KLR650 DF ABS"
+        },
+        {
+          "title": "Chery bất ngờ đưa xe máy điện \"sao chép\" ngoại hình Yamaha Vino vào hồ sơ, dùng sản phẩm giá rẻ mở đường cho tham vọng xe hai bánh EREV",
+          "url": "https://genk.vn/chery-bat-ngo-dua-xe-may-dien-sao-chep-ngoai-hinh-yamaha-vino-vao-ho-so-dung-san-pham-gia-re-mo-duong-cho-tham-vong-xe-hai-banh-erev-165261021103924799.chn",
+          "summary": "Một mẫu xe máy điện có kiểu dáng tương đồng Yamaha Vino vừa xuất hiện trong hồ sơ của MIIT, được xem là bước đi đầu tiên để Chery làm quen với lĩnh vực xe hai bánh trước khi tiến tới những sản phẩm EREV cao cấp hơn.",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T16:32:45.601980+07:00",
           "hours_ago": 0.1,
           "relative_time": "1 phút trước",
           "within_24h": true,
           "niche": {
             "id": "AI_UPDATES",
-            "name": "Trí tuệ nhân tạo (AI Updates)",
+            "name": "A.I",
             "badge_color": "amber",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 3
           },
-          "extracted_keyword": "Nhà máy chạy 1.400 tỷ token/ngày, ngân"
+          "extracted_keyword": "Yamaha Vino"
         },
         {
-          "title": "Alldocube chính thức ra mắt tại Việt Nam với bộ đôi máy tính bảng",
-          "url": "https://genk.vn/alldocube-chinh-thuc-ra-mat-tai-viet-nam-voi-bo-doi-may-tinh-bang-165261019035017522.chn",
-          "summary": "Alldocube chính thức gia nhập thị trường Việt Nam với bộ đôi máy tính bảng iPlay 70E và iPlay 80 Mini Turbo, mang đến trải nghiệm màn hình cùng hiệu năng ấn tượng trong tầm giá.",
+          "title": "Samsung TV và loa 2026 được chuyên gia đánh giá cao về hình ảnh, âm thanh, gaming",
+          "url": "https://genk.vn/samsung-tv-va-loa-2026-duoc-chuyen-gia-danh-gia-cao-ve-hinh-anh-am-thanh-gaming-165261023101848405.chn",
+          "summary": "TV và loa Samsung được các chuyên trang công nghệ toàn cầu đánh giá cao, khẳng định vị thế tiên phong với 20 năm liên tiếp trên thị trường TV và 12 năm trên thị trường loa thanh toàn cầu.",
           "source_name": "GenK",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-10-19T11:36:10.235214+07:00",
+          "published_at": "2026-10-23T16:32:45.602184+07:00",
           "hours_ago": 0.1,
           "relative_time": "1 phút trước",
           "within_24h": true,
           "niche": {
             "id": "BIG_TECH_EVENT",
-            "name": "Ông lớn Công nghệ & Sự kiện",
+            "name": "Có thể quan tâm",
             "badge_color": "indigo",
             "group": "Sát sườn ngành hàng",
             "relevance_score": 3
           },
-          "extracted_keyword": "Alldocube chính thức ra mắt tại Việt"
+          "extracted_keyword": "Samsung TV"
+        },
+        {
+          "title": "Công an xã Mễ Sở triển khai xây dựng mô hình “Zalo kết nối cộng đồng, bảo đảm an ninh trật tự”",
+          "url": "https://news.google.com/rss/articles/CBMizwFBVV95cUxPeG5ubURia3VVU3E2aERKaG9VYWRBakkyN0I4RGlCZkZ5V2JPOGpmY0w1QVB0Ykhqc25QY0ZfdkF6SDlEdklMbktwS2xremFyRDZnMm9MSHUxV2d0NFk2U3ZRZ042Z1ljQjJYNXhQYXBNSWU3Yzl4aGFzcHEzOUFuZlhrQzVvR05JaGNWLXV1S1FkNnh5V0lJTWZ6bVEzaFZzZ3lVaHNOWFpMRzJsaktrV0pJYWFVV2NTVE9tYlF1WjdNSXVCa2tjdndRMmdZR28?oc=5",
+          "summary": "Công an xã Mễ Sở triển khai xây dựng mô hình “Zalo kết nối cộng đồng, bảo đảm an ninh trật tự” Công an Hưng Yên",
+          "source_name": "Công an Hưng Yên",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T15:33:57+07:00",
+          "hours_ago": 1.0,
+          "relative_time": "58 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Ứng dụng Zalo"
         }
       ],
-      "rank": 10
+      "rank": 12
+    },
+    {
+      "keyword": "Cảnh báo Mã độc & Bảo mật",
+      "cluster_id": "cảnh báo mã độc & bảo mật",
+      "niche": {
+        "id": "AI_UPDATES",
+        "name": "A.I",
+        "badge_color": "amber",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 3
+      },
+      "total_score": 57.0,
+      "score_breakdown": {
+        "coverage": 23.0,
+        "competitor": 9.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 2,
+        "press_count": 2,
+        "competitor_count": 0,
+        "press_list": [
+          "Báo Nhân Dân điện tử",
+          "Báo Tuổi Trẻ"
+        ],
+        "competitor_list": [],
+        "newest_hours_ago": 1.3,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Cảnh báo mã độc",
+          "intent": "Keyword Cảnh báo & Phòng tránh",
+          "based_on": "[Báo Nhân Dân điện tử] Giải mã bộ công cụ mã độc 9 giai đoạn nhắm vào các tổ chức Việt Nam"
+        },
+        {
+          "keyword": "Mã độc 9",
+          "intent": "Keyword Cảnh báo & Phòng tránh",
+          "based_on": "[Báo Nhân Dân điện tử] Giải mã bộ công cụ mã độc 9 giai đoạn nhắm vào các tổ chức Việt Nam"
+        },
+        {
+          "keyword": "Mã độc mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Cảnh báo mã độc",
+        "Mã độc 9",
+        "Mã độc mới nhất"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Giải mã bộ công cụ mã độc 9 giai đoạn nhắm vào các tổ chức Việt Nam",
+          "url": "https://news.google.com/rss/articles/CBMipAFBVV95cUxNcEp3YVAxOUJkZzNUM0NmTHNrZFd5TGJwLU5Tb3l0Nm1uUVNBSGNzX21fOGRpVUVqX25wcGp5djN5S2F5aDc4b3dWckRhYXc0dUdTajFEcjR3MVVLRS1hTjBWUjk4My1QUmxRZUlfUnJ1eW9UYWdFeGY3WENfcFNyR1k0ODNFcVhiXzZDU0lGU1ZXYS02QXlhVG9CQUlIS29DLW1qQg?oc=5",
+          "summary": "Giải mã bộ công cụ mã độc 9 giai đoạn nhắm vào các tổ chức Việt Nam Báo Nhân Dân điện tử",
+          "source_name": "Báo Nhân Dân điện tử",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T15:15:00+07:00",
+          "hours_ago": 1.3,
+          "relative_time": "1 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Cảnh báo Mã độc & Bảo mật"
+        },
+        {
+          "title": "Mã độc tống tiền tấn công dồn dập, mỗi giờ thêm một tổ chức 'dính đòn'",
+          "url": "https://tuoitre.vn/ma-doc-tong-tien-tan-cong-don-dap-moi-gio-them-mot-to-chuc-dinh-don-100260930113137315.htm",
+          "summary": "Tháng 8-2026 ghi nhận hơn 1.000 nạn nhân bị công khai dữ liệu sau các vụ tấn công ransomware, tăng 25% so với tháng trước.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:32:45.910853+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "CYBERSECURITY_ALERT",
+            "name": "An ninh mạng",
+            "badge_color": "rose",
+            "group": "Mở rộng hữu ích",
+            "relevance_score": 4
+          },
+          "extracted_keyword": "Cảnh báo Mã độc & Bảo mật"
+        },
+        {
+          "title": "Cảnh giác chiêu lừa dụ \"cày phim AI\": Nguy cơ mất tiền, lộ dữ liệu cá nhân và sập bẫy \"nhiệm vụ\" trực tuyến",
+          "url": "https://genk.vn/canh-giac-chieu-lua-du-cay-phim-ai-nguy-co-mat-tien-lo-du-lieu-ca-nhan-va-sap-bay-nhiem-vu-truc-tuyen-165261023102516679.chn",
+          "summary": "VTV.vn - Công an Hà Nội cảnh báo các ứng dụng xem phim AI núp bóng kiếm tiền để dụ người dùng nạp tiền, cài mã độc, đánh cắp dữ liệu và chiếm đoạt tài sản.",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T16:32:45.602577+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "1 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "CYBERSECURITY_ALERT",
+            "name": "An ninh mạng",
+            "badge_color": "rose",
+            "group": "Mở rộng hữu ích",
+            "relevance_score": 4
+          },
+          "extracted_keyword": "Cảnh giác chiêu lừa dụ \"cày phim AI\""
+        },
+        {
+          "title": "Cảnh báo \"nóng\" từ Công an tới tất cả những ai nhận được tin nhắn Facebook, Zalo từ bạn bè, người thân với nội dung sau",
+          "url": "https://news.google.com/rss/articles/CBMi7AFBVV95cUxOUzZ5RFBzdjBZcjBnOE1SekFyeUJtUk0zc0kwQjBjd2pHemJ1anhkTWJUR2c5UUN4REhBSkp4Ynd4Yi1yWUE4T3VPTEpmQmpFLXNROFl5V1JqTndBOElCYmliVVVVTzRwRWJXaVQ4bjU0UGNXdFlIemwwZTRJWFlRUWN6WHktTXZOd3BUUzFVSU92eVl4eS1DZncwN1lvbjhmb0FyLUNULTROdnlWQ1ZfSWc5OG42bTZpYi1mOXlaYmNxU1RHdmNSLW1fWnRmZDRHQUFEbVBFUlBQWVU5T2lKeUxKTGkwTHV0ZGRJaQ?oc=5",
+          "summary": "Cảnh báo \"nóng\" từ Công an tới tất cả những ai nhận được tin nhắn Facebook, Zalo từ bạn bè, người thân với nội dung sau Kenh14.vn",
+          "source_name": "Kenh14.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T16:08:00+07:00",
+          "hours_ago": 0.4,
+          "relative_time": "24 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Tính năng mới Facebook"
+        },
+        {
+          "title": "Grab có thông báo quan trọng đến tất cả người dùng",
+          "url": "https://genk.vn/grab-co-thong-bao-quan-trong-den-tat-ca-nguoi-dung-165261023083343925.chn",
+          "summary": "Theo đó, tính năng AudioProtect và AudioProtect Plus sẽ được kích hoạt mặc định cho các chuyến xe GrabBike/GrabCar thực hiện từ 22:00 tối đến 06:00 sáng hôm sau.",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T16:02:00+07:00",
+          "hours_ago": 0.5,
+          "relative_time": "30 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 0
+          },
+          "extracted_keyword": "Grab có thông báo quan trọng đến"
+        }
+      ],
+      "rank": 13
+    },
+    {
+      "keyword": "Google Gemini",
+      "cluster_id": "google gemini",
+      "niche": {
+        "id": "AI_UPDATES",
+        "name": "A.I",
+        "badge_color": "amber",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 4
+      },
+      "total_score": 57.0,
+      "score_breakdown": {
+        "coverage": 23.0,
+        "competitor": 9.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 2,
+        "press_count": 2,
+        "competitor_count": 0,
+        "press_list": [
+          "Báo Tuổi Trẻ",
+          "Tinh Tế"
+        ],
+        "competitor_list": [],
+        "newest_hours_ago": 3.0,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Gemini Agent",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "[Tinh Tế] Mô hình GPT của OpenAI sắp có trên Google Cloud, Antigravity và Gemini Agent"
+        },
+        {
+          "keyword": "Gemini mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        },
+        {
+          "keyword": "Đánh giá Gemini",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Gemini Agent",
+        "Gemini mới nhất",
+        "Đánh giá Gemini"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Google thử cho người dùng mua hàng trực tiếp qua Gemini",
+          "url": "https://tuoitre.vn/google-thu-cho-nguoi-dung-mua-hang-truc-tiep-qua-gemini-100260928182007667.htm",
+          "summary": "Google đang thử nghiệm nút 'Mua' của Flipkart trên Gemini và AI Mode, mở đường để AI tham gia sâu hơn vào quá trình mua sắm.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:32:45.911714+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 4
+          },
+          "extracted_keyword": "Google Gemini"
+        },
+        {
+          "title": "Mô hình GPT của OpenAI sắp có trên Google Cloud, Antigravity và Gemini Agent",
+          "url": "https://tinhte.vn/thread/mo-hinh-gpt-cua-openai-sap-co-tren-google-cloud-antigravity-va-gemini-agent.4186077/",
+          "summary": "Mô hình GPT của OpenAI sắp có trên Google Cloud, Antigravity và Gemini Agent OpenAI và Google Cloud vừa công bố hợp tác đưa các mô hình AI tiên tiến của OpenAI cùng quy trình agent của Codex vào...",
+          "source_name": "Tinh Tế",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T13:38:47+07:00",
+          "hours_ago": 26.9,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 12
+          },
+          "extracted_keyword": "Google Gemini"
+        },
+        {
+          "title": "Google đưa quảng cáo vào câu trả lời AI, người dùng phân biệt lời khuyên với lời chào hàng ra sao?",
+          "url": "https://tuoitre.vn/google-dua-quang-cao-vao-cau-tra-loi-ai-nguoi-dung-phan-biet-loi-khuyen-voi-loi-chao-hang-ra-sao-100261021163712365.htm",
+          "summary": "Google đưa quảng cáo vào AI Mode, đặt người dùng trước câu hỏi đâu là gợi ý hữu ích, đâu là nội dung được trả tiền để xuất hiện.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:32:45.904722+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Google đưa quảng cáo vào câu trả"
+        },
+        {
+          "title": "Lượt truy cập báo chí giảm 40%, Google điều chỉnh kết quả tìm kiếm AI",
+          "url": "https://tuoitre.vn/luot-truy-cap-bao-chi-giam-40-google-dieu-chinh-ket-qua-tim-kiem-ai-100261016083850541.htm",
+          "summary": "Google sẽ hiển thị đường dẫn đến trang web và bài báo nổi bật hơn trong câu trả lời do AI tạo ra, giữa lúc lượng truy cập từ Google đến các trang tin tức giảm 40%.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:32:45.905101+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Lượt truy cập báo chí giảm 40%,"
+        },
+        {
+          "title": "Google kháng cáo yêu cầu chia sẻ dữ liệu, dịch vụ AI của EU",
+          "url": "https://tuoitre.vn/google-khang-cao-yeu-cau-chia-se-du-lieu-dich-vu-ai-cua-eu-100260930072444223.htm",
+          "summary": "Google kháng cáo hai quyết định của EU yêu cầu tập đoàn chia sẻ dữ liệu tìm kiếm và mở dịch vụ AI cho đối thủ, lo ảnh hưởng quyền riêng tư.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T13:32:45.911305+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Google kháng cáo yêu cầu chia sẻ"
+        }
+      ],
+      "rank": 14
+    },
+    {
+      "keyword": "may choi game nintendo switch",
+      "cluster_id": "may choi game nintendo switch",
+      "niche": {
+        "id": "BIG_TECH_EVENT",
+        "name": "Có thể quan tâm",
+        "badge_color": "indigo",
+        "group": "Sát sườn ngành hàng",
+        "relevance_score": 3
+      },
+      "total_score": 54.5,
+      "score_breakdown": {
+        "coverage": 11.5,
+        "competitor": 18.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 1,
+        "press_count": 0,
+        "competitor_count": 1,
+        "press_list": [],
+        "competitor_list": [
+          "HACOM"
+        ],
+        "newest_hours_ago": 0.2,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Giá may choi game nintendo",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[GameK] Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng?"
+        },
+        {
+          "keyword": "Cách tải may choi game nintendo",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "[Phụ nữ Mới] Steam vừa có thêm loạt game miễn phí mới, nhiều cái tên nhận rating rất tích cực, tải về chơi không mất tiền"
+        },
+        {
+          "keyword": "May choi game nintendo miễn phí",
+          "intent": "Keyword Săn ưu đãi / Game miễn phí",
+          "based_on": "[Phụ nữ Mới] Steam vừa có thêm loạt game miễn phí mới, nhiều cái tên nhận rating rất tích cực, tải về chơi không mất tiền"
+        }
+      ],
+      "related_keywords": [
+        "Giá may choi game nintendo",
+        "Cách tải may choi game nintendo",
+        "May choi game nintendo miễn phí"
+      ],
+      "top_3_articles": [
+        {
+          "title": "may choi game nintendo switch",
+          "url": "https://news.google.com/rss/articles/CBMidEFVX3lxTE5ibVZDMmVJX0ZJVFZyckNiQUEwbjZ3QXBQLVNMNTdYdVpxODRFYUJ5MnR6dk1scVh6WlNXcV9BeWxzaDJtbTZGQWNwbDNkeUZGLTlUd3BWaWJUTVBrNVZ2NGp1enNlNmZLX1VWcUp2WmpsLW1C?oc=5",
+          "summary": "may choi game nintendo switch HACOM",
+          "source_name": "HACOM",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T16:22:17+07:00",
+          "hours_ago": 0.2,
+          "relative_time": "10 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "may choi game nintendo switch"
+        },
+        {
+          "title": "Máy chơi game của tôi, chơi phê thật chứ không chỉ là hoài cổ, là quay về tuổi thơ...",
+          "url": "https://tinhte.vn/thread/may-choi-game-cua-toi-choi-phe-that-chu-khong-chi-la-hoai-co-la-quay-ve-tuoi-tho.4186177/",
+          "summary": "Mình theo @htevn mua cái máy này và quá hài lòng. Lúc đầu mình chỉ định có một cái máy vui vẻ làm mình nhớ lại hồi đó hay chơi game ngoài tiệm thôi. Tuy nhiên sau khi chơi vài ngày thì mình thực...",
+          "source_name": "Tinh Tế",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T14:40:46+07:00",
+          "hours_ago": 1.9,
+          "relative_time": "1 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Máy chơi game của tôi, chơi phê"
+        },
+        {
+          "title": "Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng?",
+          "url": "https://news.google.com/rss/articles/CBMi4gFBVV95cUxOYW5ScUJQMWM2cnRuR2RmeVYyRXlqZ3pITER0bDFlNW1OeWRzU1oxX2xlWVdnLS1VZVJpYWd2U205OGxtQkZoUU5icXBXNDFaZzhmUUI1Z0xvRUlmM2tGeS1pVkpyWnFfSGtjLTVFbWRSSU5Bc0JqWXFLNWN0Ujk4VjQ5V190a25RWG5OdGNmbXlHYWQxOWh2M1RMRkZ3TjFWZkFtek5lS0lXZUlkaWl4eVoxRkx3VXo4SFd0Q3V1Y0NUNFB4MU16VzlVWVp3NWM3elp6eGNLQy1FbmNNOU4xMXNB?oc=5",
+          "summary": "Review sớm bom tấn có giá tiền triệu sắp ra mắt trên Steam, series game huyền thoại thêm một lần nữa tỏa sáng? m.gamek.vn",
+          "source_name": "GameK",
+          "source_type": "PRESS",
+          "source_badge": "Báo Game",
+          "published_at": "2026-10-23T14:16:00+07:00",
+          "hours_ago": 2.3,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Nền tảng Steam"
+        },
+        {
+          "title": "Hé Lộ Game Kinh Dị Lấy Cảm Hứng Từ Silent Hill Đổ Bộ Ngày 9 Tháng 12 Tới Đây",
+          "url": "https://news.google.com/rss/articles/CBMiswFBVV95cUxNUUgxV1NIZmNHV1o4ZHdlbnh2MGs5U09ReFIyM1VLVlJDeHppVmUzS1lVcGJ1M24wc0NTSnBoNW93a0x0TC1Za2p4NkJ1TW9iNlFDeWpDZjlVemU3QnRYR2tleDBHdng3cXpzNFhJWGdibVR2MHg4MmQ1M0NHZkRqcVc2VDRfaFpnT3dHOVdtczhWeFVrTEo0QWpEZkw2V09OZE1FMWRGZngtbUhCMUFMVTFiNNIBsgFBVV95cUxQT1p3V1JQaFp0SzBxMldUdXFRaGdxWTRrRW9MbDFyN2lzb2ZSQ2x4VDRYUDdPUXVRcWVGeGd5Ni1WYVRnd0ZISUJJMnU5VC1XS20taWFYbG4teWRxVU1SeWhkaEswS3VGTHN2cmZ1TXFySlpDU3BQZ2FQNXNfSW44Y21tZWFXdjU3VWt0VGFwVmN6VnVCcGZTVFJ0Y3RqNjBPaUxNT3VIZF9SUGtXSjlNYk5B?oc=5",
+          "summary": "Hé Lộ Game Kinh Dị Lấy Cảm Hứng Từ Silent Hill Đổ Bộ Ngày 9 Tháng 12 Tới Đây Lag.vn",
+          "source_name": "Lag.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T12:31:27+07:00",
+          "hours_ago": 4.0,
+          "relative_time": "4 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Game Kinh"
+        },
+        {
+          "title": "Steam vừa có thêm loạt game miễn phí mới, nhiều cái tên nhận rating rất tích cực, tải về chơi không mất tiền",
+          "url": "https://news.google.com/rss/articles/CBMi2wFBVV95cUxPMldKN2VYeUY3RFNSOTVGNHl0aEllcFRjakR1X0wwMktoamxFTVlpYlN1UU1MM01ueDBZNk5oNll3cV9tX3M4ZVo5Ml8xeFdNQVg3Zm10eTlDQW80NDlaRlYxdUFjczcxcFc1MjhwQzJHTlY3NjM3djEtODBRUng0WUZyeG1YbndiNVNYeVZBNW8xcDFrNEh1OFVFa0ctVVNiODBseTdRODk3TUdaaXVISHpWU251UlpJcGtwUGxtZmZ3X0ZDVmJFNExDSHVhNG5KbUJLSEx2NzV4Nmc?oc=5",
+          "summary": "Steam vừa có thêm loạt game miễn phí mới, nhiều cái tên nhận rating rất tích cực, tải về chơi không mất tiền Phụ nữ Mới",
+          "source_name": "Phụ nữ Mới",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T11:41:00+07:00",
+          "hours_ago": 4.9,
+          "relative_time": "4 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Nền tảng Steam"
+        }
+      ],
+      "rank": 15
+    },
+    {
+      "keyword": "Laptop 25-30",
+      "cluster_id": "laptop 25-30",
+      "niche": {
+        "id": "GAME_TREND",
+        "name": "Game",
+        "badge_color": "purple",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 6
+      },
+      "total_score": 54.5,
+      "score_breakdown": {
+        "coverage": 11.5,
+        "competitor": 18.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 1,
+        "press_count": 0,
+        "competitor_count": 1,
+        "press_list": [],
+        "competitor_list": [
+          "CellphoneS (Sforum)"
+        ],
+        "newest_hours_ago": 5.1,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Giá Laptop 25-30",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[GearVN] Laptop Gaming RTX 3050 series chính hãng giá tốt"
+        },
+        {
+          "keyword": "So sánh Laptop 25-30",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "[CellphoneS (Sforum)] Đừng vội chốt laptop văn phòng 25 triệu nếu chưa xem kèo này: Acer Swift Air 14 \"đối đầu\" Dell 15 DC15250!"
+        },
+        {
+          "keyword": "Laptop 25-30 mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Giá Laptop 25-30",
+        "So sánh Laptop 25-30",
+        "Laptop 25-30 mới nhất"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Laptop 25-30 triệu: Sáng làm văn phòng, tối chiến game Esports cực mượt!",
+          "url": "https://news.google.com/rss/articles/CBMiiAFBVV95cUxQTXJkODJrQXVheW80ZThGVkhpUktjbDctUEZHeHA2SW9INXA2bzRLcFFMQ1FoVnFvX3Y1czJjQXNJT196VlVyN1JMOTQyaGF4NTRRTGVJdS1BNXJFSXpIbU01M3pPdWxpdGNTYW5RdzZ5eDhkYnBEdTdUNk12RUpNN053b3NxTm1u?oc=5",
+          "summary": "Laptop 25-30 triệu: Sáng làm văn phòng, tối chiến game Esports cực mượt! CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T11:29:07+07:00",
+          "hours_ago": 5.1,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "GAME_TREND",
+            "name": "Game",
+            "badge_color": "purple",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Laptop 25-30"
+        },
+        {
+          "title": "Laptop Lenovo Legion 5 15IAX11 83VK00A3VN Ultra 7 RTX 5060",
+          "url": "https://news.google.com/rss/articles/CBMif0FVX3lxTFAtN3ZwNFBHM2M1OUN5X0Z6cjVFektMaGo5VTEzT05qTTQ1T3VJUVQ3d1hPaGJBeTR3bmt1OGEwWVpkVTJxTEZkc1FfLVlhTXBObUpsWWpkSUNkc0EyX2JsMkw5a2ZMLUFtY0loRDdxdVRmWmY5aGpjVzItbFlTeFE?oc=5",
+          "summary": "Laptop Lenovo Legion 5 15IAX11 83VK00A3VN Ultra 7 RTX 5060 HACOM",
+          "source_name": "HACOM",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T08:30:29+07:00",
+          "hours_ago": 8.0,
+          "relative_time": "8 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "RTX 5060"
+        },
+        {
+          "title": "Đừng vội chốt laptop văn phòng 25 triệu nếu chưa xem kèo này: Acer Swift Air 14 \"đối đầu\" Dell 15 DC15250!",
+          "url": "https://news.google.com/rss/articles/CBMigwFBVV95cUxPTl92ckszR0p3dGZEN1UwTkRNOFVJTmwtWjF3OGVMYmRtd0d5amNYajc0TlRDdV9NUlBTczJMczFaTVVZek4wQlVxRmRSUm9YWHBJeGNpdWwtYTIxUUZVYkZtSndfYWtIRmYxbTBiWnJ3T3FVMTBYYWRFallraG44STFEdw?oc=5",
+          "summary": "Đừng vội chốt laptop văn phòng 25 triệu nếu chưa xem kèo này: Acer Swift Air 14 \"đối đầu\" Dell 15 DC15250! CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T17:29:54+07:00",
+          "hours_ago": 23.0,
+          "relative_time": "23 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "Acer Swift Air 14"
+        },
+        {
+          "title": "TOP 10 LAPTOP VĂN PHÒNG MỎNG NHẸ ĐÁNG MUA 2026",
+          "url": "https://news.google.com/rss/articles/CBMiaEFVX3lxTE9DZFZEbm51OFRBckNIamo4S1dNYlFkdUxHZWJyQ0NjaFNZakxmUGZfSExJRTJieUU3dUhUNl9vdWc0UWhWeHQ1Y3BGRGxTR3lpTWg1R0xaeDFxVmlLcmNQajRBcFVySnVD?oc=5",
+          "summary": "TOP 10 LAPTOP VĂN PHÒNG MỎNG NHẸ ĐÁNG MUA 2026 HACOM",
+          "source_name": "HACOM",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T17:05:03+07:00",
+          "hours_ago": 23.5,
+          "relative_time": "23 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "TOP 10 LAPTOP"
+        },
+        {
+          "title": "Laptop Gaming RTX 3050 series chính hãng giá tốt",
+          "url": "https://news.google.com/rss/articles/CBMibEFVX3lxTFBvOVljVlV0QXUybXUtZU1XVm4wNzI4eThWZXFWQUdUU3VUTzMzbUgzT2I2VzJjWWpTOGFwa3Y0dUtGSHZtM1pXWURCekFoSmw1SXpMTHFwUlRfZXdvQUVWSm9BRlpJTVlIS0t1Ng?oc=5",
+          "summary": "Laptop Gaming RTX 3050 series chính hãng giá tốt GEARVN",
+          "source_name": "GearVN",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T14:24:04+07:00",
+          "hours_ago": 26.1,
+          "relative_time": "26 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Laptop Gaming RTX 3050"
+        }
+      ],
+      "rank": 16
+    },
+    {
+      "keyword": "ASUS ROG Pelta Core",
+      "cluster_id": "asus rog pelta core",
+      "niche": {
+        "id": "HARDWARE_COMPONENT",
+        "name": "Linh kiện - Phần Cứng",
+        "badge_color": "emerald",
+        "group": "Sát sườn ngành hàng",
+        "relevance_score": 9
+      },
+      "total_score": 54.5,
+      "score_breakdown": {
+        "coverage": 11.5,
+        "competitor": 18.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 1,
+        "press_count": 0,
+        "competitor_count": 1,
+        "press_list": [],
+        "competitor_list": [
+          "CellphoneS (Sforum)"
+        ],
+        "newest_hours_ago": 5.5,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Giá ASUS ROG Pelta Core",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[Thuonghieucongluan.com.vn] Asus đưa dòng laptop ProArt chạy chip AI của NVIDIA về Việt Nam với giá gần 200 triệu đồng"
+        },
+        {
+          "keyword": "ASUS ROG Pelta Core mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        },
+        {
+          "keyword": "Hướng dẫn ASUS ROG Pelta Core",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Giá ASUS ROG Pelta Core",
+        "ASUS ROG Pelta Core mới nhất",
+        "Hướng dẫn ASUS ROG Pelta Core"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Trên tay ASUS ROG Pelta Core: Tai nghe gaming 2.69 triệu giúp bạn \"bắt bài\" mọi tiếng bước chân!",
+          "url": "https://news.google.com/rss/articles/CBMibkFVX3lxTE5xZmFjR0ktTW95VkV6aHFzYi1CejZob0NveENSeTBSZ1dnSXZrX1VVVGVBMmhjTi1RMkhhV3FHLURsMFp6Yl9vUzdzUXJpV3NyaHJXb2M2aEQ3RmQ0akswbWhzM2IzZ1B3SVJKZ29n?oc=5",
+          "summary": "Trên tay ASUS ROG Pelta Core: Tai nghe gaming 2.69 triệu giúp bạn \"bắt bài\" mọi tiếng bước chân! CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T11:04:20+07:00",
+          "hours_ago": 5.5,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "ASUS ROG Pelta Core"
+        },
+        {
+          "title": "Giải mã ma trận màn hình ASUS: Bạn thực sự cần Lumina OLED hay đang bị \"thao túng\" bởi ROG Nebula?",
+          "url": "https://news.google.com/rss/articles/CBMihgFBVV95cUxNNkZ6N2xvekNzY3lvbG9HdjQ5X3ZHdE01WHpLelRUOVdKTVVwelgwbnM1ODFQdngwcFVNalhBcnpIR1A5NG50NXhqanlCNzJibm1iOXhWbUVsYW9XcHV5UTBydWs3TFBzbnJ6TXFxT24tVGNaREVPcHRFNjJpNEo2ZHp2a0lndw?oc=5",
+          "summary": "Giải mã ma trận màn hình ASUS: Bạn thực sự cần Lumina OLED hay đang bị \"thao túng\" bởi ROG Nebula? CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T09:49:16+07:00",
+          "hours_ago": 6.7,
+          "relative_time": "6 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 12
+          },
+          "extracted_keyword": "Lumina OLED"
+        },
+        {
+          "title": "Asus đưa dòng laptop ProArt chạy chip AI của NVIDIA về Việt Nam với giá gần 200 triệu đồng",
+          "url": "https://news.google.com/rss/articles/CBMi0wFBVV95cUxPOTBvdFlnb1hqU3BQcXRPWjNLSDlPeTJQdFN5OHdoTWZfZW5yTmFyOXhYRGM5NW04WkRUVTNkWWplcXdhS2tVY0xNNjlIbGhWY1hhV3ZuN3hGc25LNFBVajBuZmEycXNGcjE2QjRRek1NZTJScnIxaEh0VUVzUk4weHM4NU5OdWxLUVNpalRNOXhyOFg5cEJLN3k5YVdhMTE5T0l1cXFYTWlWdzJaSF9rNmJJVU9MejBOZkQ1aWNCczJJZGFHbGFwZWJwMElCVEY5VWpB?oc=5",
+          "summary": "Asus đưa dòng laptop ProArt chạy chip AI của NVIDIA về Việt Nam với giá gần 200 triệu đồng Thuonghieucongluan.com.vn",
+          "source_name": "Thuonghieucongluan.com.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T08:14:00+07:00",
+          "hours_ago": 32.3,
+          "relative_time": "32 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 12
+          },
+          "extracted_keyword": "Asus đưa dòng laptop ProArt chạy chip"
+        },
+        {
+          "title": "Trên tay Acer Gaming Nitro ProPanel ANV15: Combo Core 5 210H và RTX 4050 giá 33 triệu có \"xắt ra miếng\"?",
+          "url": "https://news.google.com/rss/articles/CBMiigFBVV95cUxPcUJRX1Y4RDUwTFVIckcxenZkT21RV2xsU08wcGs0RW1OR2ROZkhGSDM3aFlHVXE5RUtsZlltNGw1cmVvLTJNNUlKXzRLMno5SmE0TVBHS19YMTF6d0Rzbk1JTV9XY0huS2g5TXBITFhZc21sR1NPN0I3QnhNV3F3WlZoZFFnQU9yUFE?oc=5",
+          "summary": "Trên tay Acer Gaming Nitro ProPanel ANV15: Combo Core 5 210H và RTX 4050 giá 33 triệu có \"xắt ra miếng\"? CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T04:17:12+07:00",
+          "hours_ago": 36.3,
+          "relative_time": "36 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "RTX 40 Series"
+        },
+        {
+          "title": "Laptop RTX Spark: ASUS, Microsoft, Dell cạnh tranh ra sao ở phân khúc AI 128 GB?",
+          "url": "https://news.google.com/rss/articles/CBMioAFBVV95cUxPT2k3b1dFREVCWnJnWUk4WnJVLWx6WnRjVGhUY21GVXlhOFhkQ1hWdVJMV1RtdkRkSzAyUTNWd0l1NVBOc0YtaTFnbXpaWFFfM0hiUVFObGJrUnZ6QmN0b2pUbVBOR3JLVFNGRktpTHJxQjlJaHBtSHFLeHo5UnBMRkhYTGtlYzNhYVZyajhtYm5VbEdncUhBcmo1ajdMZkpo?oc=5",
+          "summary": "Laptop RTX Spark: ASUS, Microsoft, Dell cạnh tranh ra sao ở phân khúc AI 128 GB? Vietnam.vn",
+          "source_name": "Vietnam.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-21T18:53:23+07:00",
+          "hours_ago": 45.7,
+          "relative_time": "45 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 12
+          },
+          "extracted_keyword": "Laptop RTX Spark"
+        }
+      ],
+      "rank": 17
+    },
+    {
+      "keyword": "Shopee Food",
+      "cluster_id": "shopee food",
+      "niche": {
+        "id": "BIG_TECH_EVENT",
+        "name": "Có thể quan tâm",
+        "badge_color": "indigo",
+        "group": "Sát sườn ngành hàng",
+        "relevance_score": 0
+      },
+      "total_score": 54.5,
+      "score_breakdown": {
+        "coverage": 11.5,
+        "competitor": 18.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 1,
+        "press_count": 0,
+        "competitor_count": 1,
+        "press_list": [],
+        "competitor_list": [
+          "CellphoneS (Sforum)"
+        ],
+        "newest_hours_ago": 1.8,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Hướng dẫn Shopee Food",
+          "intent": "Keyword Hướng dẫn / Thủ thuật",
+          "based_on": "[CellphoneS (Sforum)] Shopee Xử Lý là gì? Cách mua hàng và đăng ký cho người bán"
+        },
+        {
+          "keyword": "Đánh giá Shopee Food",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "[CellphoneS (Sforum)] Có thể xóa đánh giá trên Shopee Food được không?"
+        },
+        {
+          "keyword": "Shopee Food mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Hướng dẫn Shopee Food",
+        "Đánh giá Shopee Food",
+        "Shopee Food mới nhất"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Có thể xóa đánh giá trên Shopee Food được không?",
+          "url": "https://news.google.com/rss/articles/CBMifkFVX3lxTE1ONnJtWVhWMlZhUU1HM01TdDB3TTZnTUllTFJrSjF6OUNJTWlqUnJnS2FLU2E4ODdTdkF6V3RSZHpQN0haWmhhcTlOYTI2M3VlWFRSLUlwQUVQQnB2aUdTc0h5Z0t3XzZ2YnZGT0w0UlRZRFJYNWRiUTladTlqZw?oc=5",
+          "summary": "Có thể xóa đánh giá trên Shopee Food được không? CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T14:44:10+07:00",
+          "hours_ago": 1.8,
+          "relative_time": "1 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 0
+          },
+          "extracted_keyword": "Shopee Food"
+        },
+        {
+          "title": "Hàng giả trên Shopee, Zalo: Ai chịu trách nhiệm khi người mua bị thiệt hại?",
+          "url": "https://news.google.com/rss/articles/CBMivAFBVV95cUxPalFvbEkyUElnT1hkb0lnZks0Y281QVA2ek13QUlNV3ZXeEZ1UGJWMTN2a2FVOW4yQjJZQnNQaWVNdFVrQnFzZEkyajk4OXJZclpWekxjMjROR3llbE0wQ2piUm5tU3NpZGFHazFvVFREQmVOenA0RGR0S0JpeGhpRXVoa1lpelliMWloNVZLNTI2QWpwWUo4RXZlRURwWEJZcHBnZzM0QkdXaU5xVGx5WFVfZGZBVy0xdGxEbQ?oc=5",
+          "summary": "Hàng giả trên Shopee, Zalo: Ai chịu trách nhiệm khi người mua bị thiệt hại? Báo Sức Khỏe và Đời Sống",
+          "source_name": "Báo Sức Khỏe và Đời Sống",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T11:12:00+07:00",
+          "hours_ago": 5.3,
+          "relative_time": "5 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "AI_UPDATES",
+            "name": "A.I",
+            "badge_color": "amber",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Ứng dụng Zalo"
+        },
+        {
+          "title": "Shopee Xử Lý là gì? Cách mua hàng và đăng ký cho người bán",
+          "url": "https://news.google.com/rss/articles/CBMiYEFVX3lxTE9na3hFRXp1eHpXZ0Z2Y05Bbk1XeklzTzN0ODJORDVCQ2NRWHo1Qy0tMG9yS0dpVXhmWlVYa1kyaF9NTkNXY2h4UDl0TzA1N2hTTUZDdFpaMlc5NUZQN0ZmUg?oc=5",
+          "summary": "Shopee Xử Lý là gì? Cách mua hàng và đăng ký cho người bán CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T16:55:29+07:00",
+          "hours_ago": 23.6,
+          "relative_time": "23 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 0
+          },
+          "extracted_keyword": "Shopee Xử Lý là gì"
+        },
+        {
+          "title": "Tag video Shopee là gì? Cách tìm mua và gắn tag video Shopee",
+          "url": "https://news.google.com/rss/articles/CBMiY0FVX3lxTE5RRHBlaUlQTUh3MzJDX3J1cjdNQVR6LVVoMUR6dllwdURkbm9OUTdSR3hBNGdPcnd3Z3ZHb2JZX3pIR3kzYzAxS1RhWXBJWk5CZHo3LXZhalhXQmhOV0JmYXo0Zw?oc=5",
+          "summary": "Tag video Shopee là gì? Cách tìm mua và gắn tag video Shopee CellphoneS",
+          "source_name": "CellphoneS (Sforum)",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-22T16:48:00+07:00",
+          "hours_ago": 23.7,
+          "relative_time": "23 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 0
+          },
+          "extracted_keyword": "Tag video Shopee là gì"
+        }
+      ],
+      "rank": 18
+    },
+    {
+      "keyword": "Windows 11",
+      "cluster_id": "windows 11",
+      "niche": {
+        "id": "HARDWARE_COMPONENT",
+        "name": "Linh kiện - Phần Cứng",
+        "badge_color": "emerald",
+        "group": "Sát sườn ngành hàng",
+        "relevance_score": 3
+      },
+      "total_score": 54.5,
+      "score_breakdown": {
+        "coverage": 23.0,
+        "competitor": 9.0,
+        "freshness": 17.5,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 2,
+        "press_count": 2,
+        "competitor_count": 0,
+        "press_list": [
+          "Báo Công Lý",
+          "Samsung Magazine"
+        ],
+        "competitor_list": [],
+        "newest_hours_ago": 8.1,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Giá Windows 11",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[Samsung Magazine] Windows 11 Pro với giá vài trăm đô la và Office 2024 Với giá cực rẻ! Godeal24 đã tung ra các chương trình giảm giá lớn."
+        },
+        {
+          "keyword": "Windows 11 Pro",
+          "intent": "Keyword Giá bán / Mua hàng",
+          "based_on": "[Samsung Magazine] Windows 11 Pro với giá vài trăm đô la và Office 2024 Với giá cực rẻ! Godeal24 đã tung ra các chương trình giảm giá lớn."
+        },
+        {
+          "keyword": "Windows 11 mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "Giá Windows 11",
+        "Windows 11 Pro",
+        "Windows 11 mới nhất"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Microsoft cải thiện hiệu suất Windows 11 trên máy tính RAM 8 GB",
+          "url": "https://news.google.com/rss/articles/CBMinAFBVV95cUxQaENIOGU2TkFKcWxZNkdsUVQtTEF5ZHlYQnJSbXZ6VjJUODFtLTJqSEhJeFFNcnRJQ1czOWRIcXJBSWMtdDIwZXZtTXoyNTdQSTFFeXdDLWtEaU1Tb05EZjJTUU5ZQ0s2NktZRWswVllac3Aya0h6YU9zVzIyQmcyVlNfU0p2NnpNMnhSbTdyLXVoTU9YSloydHNubEc?oc=5",
+          "summary": "Microsoft cải thiện hiệu suất Windows 11 trên máy tính RAM 8 GB Báo Công Lý",
+          "source_name": "Báo Công Lý",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T08:24:21+07:00",
+          "hours_ago": 8.1,
+          "relative_time": "8 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Windows 11"
+        },
+        {
+          "title": "Windows 11 Pro với giá vài trăm đô la và Office 2024 Với giá cực rẻ! Godeal24 đã tung ra các chương trình giảm giá lớn.",
+          "url": "https://news.google.com/rss/articles/CBMiwAFBVV95cUxOaXlkZEw1YWlfcUpzN1gtTlhTdWljdUd6RFNNSkVoa1JUUkZZdXNnWXBLWWNfbnktczZTXy14Mk9ZUWFVQzBFZ0dlTUdqVWhXdzItbV8tUWlQbWVHNGpoMWZ3T0N4Mk1FdF9zMkVEMUl1SEY4WGJOclFGRXAzZzd4eFhwWEEzb01EaE1tcm9MRlJobFByc0VRenVJNUxQVnBzcmhVYnV4dGx4UExQdE9lNmF6YlFBXzVNeXlJdjFhRHM?oc=5",
+          "summary": "Windows 11 Pro với giá vài trăm đô la và Office 2024 Với giá cực rẻ! Godeal24 đã tung ra các chương trình giảm giá lớn. Samsung Magazine",
+          "source_name": "Samsung Magazine",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-23T00:04:18+07:00",
+          "hours_ago": 16.5,
+          "relative_time": "16 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "OS_SOFTWARE",
+            "name": "HĐH - Phần mềm",
+            "badge_color": "blue",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Windows 11"
+        },
+        {
+          "title": "Vibe coding đưa Windows 98 “du hành tới tương lai”, thử nghiệm cả Thunderbolt 4",
+          "url": "https://news.google.com/rss/articles/CBMitgFBVV95cUxNMDREWjlRTmNfQWVXZ1Jldk9COFNSTDFjckNHWFNWLVVaMWtiNVNCY0pyOThwRVJsdllZek03ZE9jR25GUExRd0NCcENxaVE3c3duSEppQjkwWjRhTVBwWW1sRjdwSHBlN29uVTk0dDNVQTZjWm5BZ2NsZjlwWklmdm9XUXNGRmhMdmZQWmdSWG55ekEwZWt4UXd2c0VvNzdXbExIWXFVSVZNMzNvQ3NSTkdPLTFEUQ?oc=5",
+          "summary": "Vibe coding đưa Windows 98 “du hành tới tương lai”, thử nghiệm cả Thunderbolt 4 GenK.vn",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-10-22T10:00:00+07:00",
+          "hours_ago": 30.5,
+          "relative_time": "30 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "HARDWARE_COMPONENT",
+            "name": "Linh kiện - Phần Cứng",
+            "badge_color": "emerald",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Windows 98"
+        }
+      ],
+      "rank": 19
+    },
+    {
+      "keyword": "Cập nhật YouTube",
+      "cluster_id": "cập nhật youtube",
+      "niche": {
+        "id": "SOCIAL_APPS",
+        "name": "Mạng xã hội - App",
+        "badge_color": "pink",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 6
+      },
+      "total_score": 54.5,
+      "score_breakdown": {
+        "coverage": 11.5,
+        "competitor": 18.0,
+        "freshness": 20.0,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 1,
+        "press_count": 0,
+        "competitor_count": 1,
+        "press_list": [],
+        "competitor_list": [
+          "Thế Giới Di Động"
+        ],
+        "newest_hours_ago": 3.0,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [
+        {
+          "keyword": "YouTube Music",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "[Thế Giới Di Động] Garmin Fenix 9 series chính thức hỗ trợ ứng dụng YouTube Music"
+        },
+        {
+          "keyword": "YouTube mới nhất",
+          "intent": "Keyword Tin tức SEO trọng tâm",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        },
+        {
+          "keyword": "Đánh giá YouTube",
+          "intent": "Keyword Cấu hình / Đánh giá",
+          "based_on": "Cụm tìm kiếm phổ biến"
+        }
+      ],
+      "related_keywords": [
+        "YouTube Music",
+        "YouTube mới nhất",
+        "Đánh giá YouTube"
+      ],
+      "top_3_articles": [
+        {
+          "title": "Garmin Fenix 9 series chính thức hỗ trợ ứng dụng YouTube Music",
+          "url": "https://news.google.com/rss/articles/CBMikgFBVV95cUxPalFORXBSWkp4X3N4eDdZNDhaOTdlQTduZHZ6WHJPQzJXVExZdVFpaXZtR0lIT1djZW5SRmgtLUxEVHFHRkQ3bUpTVk0zTWdaUHpYbjNHakhWV1JqOWFZNWtMM295empnaUJyWHhKc29nMnIyWXZZbXV0YlFORDdaQUx6SlkyT3pMdEVDb2RqbXRIdw?oc=5",
+          "summary": "Garmin Fenix 9 series chính thức hỗ trợ ứng dụng YouTube Music Thegioididong.com",
+          "source_name": "Thế Giới Di Động",
+          "source_type": "COMPETITOR",
+          "source_badge": "Đối thủ",
+          "published_at": "2026-10-23T13:34:49+07:00",
+          "hours_ago": 3.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 6
+          },
+          "extracted_keyword": "Cập nhật YouTube"
+        }
+      ],
+      "rank": 20
     }
   ]
 }

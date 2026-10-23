@@ -1,0 +1,583 @@
+{
+  "date": "2026-10-23 16:18:31",
+  "from_cache": false,
+  "apis_called": {
+    "google_trends_trending_now": {
+      "status": "success",
+      "count": 40
+    },
+    "google_autocomplete": {
+      "status": "success",
+      "seed_query": "Cập nhật tính năng VNeID mới nhất",
+      "count": 5
+    },
+    "google_search": {
+      "status": "success",
+      "query": "\"Cập nhật tính năng VNeID mới nhất\" OR \"Claude AI\" OR \"Ứng dụng Zalo\"",
+      "count": 8
+    },
+    "google_trends": {
+      "status": "success",
+      "query": "Cập nhật tính năng VNeID mới nhất,Claude AI,Ứng dụng Zalo,Liên Minh Huyền Thoại,Nền tảng Steam",
+      "scores": {
+        "cập nhật tính năng vneid mới nhất": 0,
+        "claude ai": 54,
+        "ứng dụng zalo": 1,
+        "liên minh huyền thoại": 5,
+        "nền tảng steam": 0
+      }
+    }
+  },
+  "trending_now_items": [
+    {
+      "query": "nhà cao tầng",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "lại văn sâm",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "fifa",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thứ hạng của cahn gặp câu lạc bộ bóng đá đông á thanh hóa",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "xổ số miền nam ngày 22 tháng 10",
+      "search_volume": 200000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Games"
+      ],
+      "related_queries": [
+        "xsmn hôm xổ số miền nam 22 10",
+        "xổ số ngày 22 tháng 10",
+        "xổ số bình thuận ngày 22 tháng 10",
+        "xổ số miền nam ngày 21 tháng 10",
+        "xổ số ngày 21 tháng 10"
+      ]
+    },
+    {
+      "query": "iphone duo",
+      "search_volume": 5000,
+      "increase_percentage": 200,
+      "categories": [
+        "Technology"
+      ],
+      "related_queries": [
+        "iphone dou",
+        "giá iphone duo"
+      ]
+    },
+    {
+      "query": "gả kim thoa tập 16",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": [
+        "phim gả kim thoa tập 16",
+        "ga kim thoa",
+        "xem phim gả kim thoa",
+        "phim giả kim thoa"
+      ]
+    },
+    {
+      "query": "supachok sarachat",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thuế",
+      "search_volume": 10000,
+      "increase_percentage": 600,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "công an thành phố đồng nai"
+      ]
+    },
+    {
+      "query": "định danh điện tử",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "vneid"
+      ]
+    },
+    {
+      "query": "trường cao đẳng công nghệ quốc tế lilama 2",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "sinh viên"
+      ]
+    },
+    {
+      "query": "concert bigbang",
+      "search_volume": 2000,
+      "increase_percentage": 300,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": [
+        "bigbang"
+      ]
+    },
+    {
+      "query": "trợ cấp",
+      "search_volume": 2000,
+      "increase_percentage": 800,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "sầu riêng",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "bão",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": [
+        "cơn bão champi",
+        "biển đông",
+        "bão champi"
+      ]
+    },
+    {
+      "query": "tập đoàn điện lực việt nam",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "tiết kiệm",
+      "search_volume": 2000,
+      "increase_percentage": 500,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "tàu sân bay",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government",
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "cty cp tm dầu khí đồng tháp",
+      "search_volume": 10000,
+      "increase_percentage": 500,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "petimex",
+        "xăng"
+      ]
+    },
+    {
+      "query": "thượng tá",
+      "search_volume": 500,
+      "increase_percentage": 500,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "án mạng karaoke",
+      "search_volume": 2000,
+      "increase_percentage": 200,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "nguyễn anh đức",
+      "search_volume": 500,
+      "increase_percentage": 900,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "đỗ xe",
+      "search_volume": 1000,
+      "increase_percentage": 500,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "giải bóng đá vô địch thế giới",
+      "search_volume": 1000,
+      "increase_percentage": 600,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "đông nam á"
+      ]
+    },
+    {
+      "query": "hải phòng",
+      "search_volume": 500,
+      "increase_percentage": 400,
+      "categories": [
+        "Hobbies and Leisure"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "juventus đấu với rennes",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "thứ hạng của juventus gặp rennes",
+        "juventus vs",
+        "juve vs",
+        "tỷ số juventus"
+      ]
+    },
+    {
+      "query": "vỉa hè",
+      "search_volume": 200,
+      "increase_percentage": 400,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thứ hạng của bayern gặp arsenal",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "bayern đấu với arsenal",
+        "bayern vs ars",
+        "arsenal",
+        "arsenal vs bayern",
+        "bayern vs arsenal"
+      ]
+    },
+    {
+      "query": "thứ hạng của real madrid gặp rb leipzig",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "real madrid đấu với leipzig",
+        "real madrid – leipzig",
+        "real madrid vs rb leipzig",
+        "real",
+        "real vs"
+      ]
+    },
+    {
+      "query": "iphone 18 pro",
+      "search_volume": 200,
+      "increase_percentage": 300,
+      "categories": [
+        "Technology"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thứ hạng của bournemouth gặp ac milan",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "c2",
+        "ac milan",
+        "cup c2",
+        "ac milan vs",
+        "kết quả c2"
+      ]
+    },
+    {
+      "query": "chi lợn",
+      "search_volume": 200,
+      "increase_percentage": 500,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "giá heo hơi hôm nay"
+      ]
+    },
+    {
+      "query": "phú thọ",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "máy bay tiêm kích đánh chặn",
+      "search_volume": 100,
+      "increase_percentage": 500,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "gió mùa đông bắc",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": [
+        "miền bắc (việt nam)",
+        "dự báo thời tiết hôm",
+        "dự báo",
+        "thời tiết thành phố hồ chí minh",
+        "dự báo thời tiết hà nội hôm nay"
+      ]
+    },
+    {
+      "query": "công đoàn",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance",
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "calcio como đấu với man utd",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "ofi đấu với leverkusen",
+      "search_volume": 1000,
+      "increase_percentage": 700,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "mu vs como",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "mu",
+        "mu vs",
+        "como vs man utd",
+        "c1",
+        "ket qua bong da"
+      ]
+    },
+    {
+      "query": "thứ hạng của beşiktaş gặp crystal palace",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    }
+  ],
+  "autocomplete_suggestions": [
+    "vneid tính năng mới",
+    "cập nhật vneid mức độ 2 online",
+    "cập nhật vneid lên mức 2",
+    "cập nhật vneid mức độ 2",
+    "cập nhật vneid mức độ 1"
+  ],
+  "google_search_articles": [
+    {
+      "title": "🚀 LÀM CHỦ CLAUDE AI – BIẾN CÁCH LÀM CỦA BẠN ...",
+      "url": "https://www.facebook.com/cesglobalacademy/videos/l%C3%A0m-ch%E1%BB%A7-s%E1%BB%A9c-m%E1%BA%A1nh-c%E1%BB%A7a-claude-ai/28797210529951411/",
+      "summary": "LÀM CHỦ CLAUDE AI – BIẾN CÁCH LÀM CỦA BẠN THÀNH QUY TRÌNH TỰ ĐỘNG Giá trị lâu dài của AI nằm ở khả năng tiếp nhận kiến thức, tiêu chuẩn và cách làm của bạn ...",
+      "source_name": "Facebook · Cesglobal AI",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-22T04:18:36.557198+07:00",
+      "hours_ago": 36.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": false,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Làm sao nâng cấp Claude AI từ gói free lên gói pro và ...",
+      "url": "https://www.facebook.com/groups/2403721346759140/posts/2601546630309943/",
+      "summary": "mng cho em hỏi với ạ,em muốn nâng cấp claude ai gói free lên gói pro thì làm sao để thanh toán vậy mng?",
+      "source_name": "Facebook · Claude VN",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-22T04:18:36.557234+07:00",
+      "hours_ago": 36.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": false,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Claude AI giải mã bí ẩn 17 năm của Satoshi về Bitcoin",
+      "url": "https://vn.beincrypto.com/ai-cracks-satoshi-bitcoin-17-year-mystery/",
+      "summary": "Claude AI giúp một nhà phát triển tái tạo phần mềm Bitcoin gốc của Satoshi Nakamoto từ năm 2009. Chương trình được xây dựng lại hoàn toàn trùng khớp, ...",
+      "source_name": "BeInCrypto",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-23T04:18:36.557262+07:00",
+      "hours_ago": 12.0,
+      "relative_time": "12 giờ trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Khóa học Claude AI và Vibe Coding thực chiến tạo công ...",
+      "url": "https://www.facebook.com/Trungtamtinhockhtn/posts/-d%C3%B9ng-ai-x%E1%BB%AD-l%C3%BD-c%C3%B4ng-vi%E1%BB%87c-t%E1%BB%B1-t%E1%BA%A1o-c%C3%B4ng-c%E1%BB%A5-theo-nhu-c%E1%BA%A7um%E1%BB%97i-ng%C3%A0y-b%E1%BA%A1n-v%E1%BB%ABa-ph%E1%BA%A3i-so%E1%BA%A1n-t/1609319641229696/",
+      "summary": "Combo Claude AI Thực Chiến + Vibe Coding Thực Chiến giúp bạn từng bước: ✓ Dùng Claude hỗ trợ viết email, phân tích tài liệu và dữ liệu. ✓ Chuẩn hóa cách giao ...",
+      "source_name": "Facebook",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-22T04:18:36.557281+07:00",
+      "hours_ago": 36.0,
+      "relative_time": "Mới cập nhật (trong 48h)",
+      "within_24h": false,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Claude AI for Work, Business & Marketing Specialization",
+      "url": "https://www.coursera.org/specializations/claude-ai-work-business-marketing",
+      "summary": "Unlock the Full Potential of Claude AI. Develop practical Claude AI skills for research, content, marketing, SEO, business & productivity. LearnKartS.",
+      "source_name": "Coursera",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-22T16:18:36.557298+07:00",
+      "hours_ago": 24.0,
+      "relative_time": "1 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Claude AI down? Current problems and outages - Downdetector",
+      "url": "https://downdetector.com.ar/en/status/claude-ai/",
+      "summary": "User reports show no current problems with Claude AI. Claude AI by Anthropic is an AI assistant platform offering conversational models including Opus, Sonnet ...",
+      "source_name": "downdetector.com.ar",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-22T23:18:36.557314+07:00",
+      "hours_ago": 17.0,
+      "relative_time": "17 giờ trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Claude AI Predicts Something Big Could be on the Way for ...",
+      "url": "https://fr.tradingview.com/news/99Bitcoins:6ba57e5b9094b:0-claude-ai-predicts-something-big-could-be-on-the-way-for-solana/",
+      "summary": "Anthropic's Claude AI predicts that something potentially enormous could be lining up for Solana (SOL) by January 1, 2027. When prompted, Claude said it ...",
+      "source_name": "TradingView",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-22T16:18:36.557329+07:00",
+      "hours_ago": 24.0,
+      "relative_time": "1 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    },
+    {
+      "title": "Claude AI集成/ Claude AI for Odoo AI Center",
+      "url": "https://apps.odoo.com/apps/modules/20.0/app_claude",
+      "summary": "Chat with Claude AI (Anthropic) in Odoo, leveraging Claude language model for human-like responses. Multi Claude robot connector with chat and training ...",
+      "source_name": "Odoo Apps Store",
+      "source_type": "PRESS",
+      "source_badge": "Báo chí",
+      "published_at": "2026-10-22T16:18:36.557343+07:00",
+      "hours_ago": 24.0,
+      "relative_time": "1 ngày trước",
+      "within_24h": true,
+      "from_serpapi_search": true
+    }
+  ],
+  "google_trends_scores": {
+    "cập nhật tính năng vneid mới nhất": 0,
+    "claude ai": 54,
+    "ứng dụng zalo": 1,
+    "liên minh huyền thoại": 5,
+    "nền tảng steam": 0
+  }
+}

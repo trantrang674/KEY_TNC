@@ -7,9 +7,5 @@ __pycache__/
 *.pyc
 .venv/
 
-# Database cục bộ
-data/tnc.db
-data/tnc.db-*
-
 # Trang tĩnh sinh tự động
 site/

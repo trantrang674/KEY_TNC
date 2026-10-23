@@ -18,72 +18,117 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --primary: #2563eb;
+      --primary-deep: #1d4ed8;
+      --primary-soft: #eff4ff;
+      --accent: #f97316;
+      --accent-soft: #fff4ec;
+      --line: #e3eaf7;
+      --page: #f6f8fe;
+    }
     body {
       font-family: 'Be Vietnam Pro', sans-serif;
-      background-color: #f4f8f5;
       color: #0f172a;
+      background:
+        radial-gradient(900px 480px at 100% -5%, rgba(37, 99, 235, 0.10), transparent 60%),
+        radial-gradient(700px 420px at -5% 30%, rgba(59, 130, 246, 0.07), transparent 60%),
+        var(--page);
+      background-attachment: fixed;
     }
     .pro-card {
       background: #ffffff;
-      border: 1px solid #d1e7dd;
-      box-shadow: 0 4px 16px -4px rgba(13, 92, 46, 0.06);
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 30px -18px rgba(30, 64, 175, 0.18);
     }
     .brand-gradient {
-      background: linear-gradient(135deg, #0d5c2e 0%, #4ca634 100%);
+      background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
     }
     .brand-btn {
-      background: linear-gradient(135deg, #106b35 0%, #459c2f 100%);
-      box-shadow: 0 4px 12px rgba(22, 101, 52, 0.22);
+      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
+      box-shadow: 0 8px 18px -6px rgba(37, 99, 235, 0.45);
     }
     .brand-btn:hover {
-      background: linear-gradient(135deg, #0b4f26 0%, #388524 100%);
+      background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
     }
-    .rank-badge-1 {
-      background: linear-gradient(135deg, #0d5c2e 0%, #4ca634 100%);
-      box-shadow: 0 4px 12px rgba(13, 92, 46, 0.3);
+    .accent-btn {
+      background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
+      box-shadow: 0 8px 18px -6px rgba(249, 115, 22, 0.5);
     }
-    .rank-badge-2 {
-      background: linear-gradient(135deg, #15803d 0%, #22c55e 100%);
-      box-shadow: 0 4px 12px rgba(21, 128, 61, 0.25);
+    .accent-btn:hover {
+      background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
     }
-    .rank-badge-3 {
-      background: linear-gradient(135deg, #047857 0%, #10b981 100%);
-      box-shadow: 0 4px 12px rgba(4, 120, 87, 0.25);
+    .rank-top {
+      background: linear-gradient(135deg, #f97316 0%, #fdba74 100%);
+      color: #fff;
+      box-shadow: 0 4px 10px -3px rgba(249, 115, 22, 0.55);
     }
-    .rank-badge-other {
-      background: #ecfdf5;
-      border: 1px solid #a7f3d0;
-      color: #065f46;
+    .rank-other {
+      background: var(--primary-soft);
+      color: #1e3a8a;
     }
+    .text-gradient {
+      background: linear-gradient(90deg, #1d4ed8, #3b82f6);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    /* LEFT NAVIGATION */
+    .side-shell {
+      box-shadow: 0 18px 40px -22px rgba(30, 64, 175, 0.35);
+    }
+    .side-rail {
+      background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
+    }
+    .nav-rail-btn {
+      width: 2.6rem; height: 2.6rem; border-radius: 0.85rem;
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(219, 234, 254, 0.85); transition: background .15s, color .15s;
+      position: relative;
+    }
+    .nav-rail-btn:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
+    .nav-rail-btn.is-active { background: rgba(255, 255, 255, 0.22); color: #fff; }
+    .nav-rail-btn.is-active::after {
+      content: ""; position: absolute; right: -0.95rem; top: 50%; transform: translateY(-50%);
+      width: 4px; height: 1.4rem; border-radius: 4px 0 0 4px; background: #fff;
+    }
+    .nav-item {
+      width: 100%; height: 2.6rem; display: flex; align-items: center; justify-content: space-between; gap: .5rem;
+      padding: 0 0.75rem; border-radius: 0.75rem; text-align: left; white-space: nowrap;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.01em; color: #334155;
+      transition: background .15s, color .15s;
+    }
+    .nav-item:hover { background: #f5f8ff; color: var(--primary-deep); }
+    .nav-item .nav-dot { width: 7px; height: 7px; border-radius: 999px; background: transparent; }
+    .nav-item.is-active { background: var(--primary-soft); color: var(--primary); font-weight: 800; }
+    .nav-item.is-active .nav-dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.18); }
+    .nav-pill {
+      white-space: nowrap; padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700;
+      background: #fff; border: 1px solid var(--line); color: #334155;
+    }
+    .nav-pill.is-active { background: var(--primary); border-color: var(--primary); color: #fff; }
+
     /* Chưa đăng nhập: ẩn toàn bộ giao diện chính */
     html.locked body > header,
-    html.locked body > main { display: none; }
+    html.locked body > .app-shell { display: none; }
     .auth-bg {
       background:
-        radial-gradient(1000px 500px at 15% 10%, rgba(76, 166, 52, 0.18), transparent 60%),
-        radial-gradient(900px 500px at 90% 90%, rgba(13, 92, 46, 0.16), transparent 60%),
-        #f4f8f5;
+        radial-gradient(1000px 500px at 15% 10%, rgba(59, 130, 246, 0.18), transparent 60%),
+        radial-gradient(900px 500px at 90% 90%, rgba(249, 115, 22, 0.10), transparent 60%),
+        var(--page);
     }
     .auth-input {
       width: 100%; padding: 0.7rem 0.9rem; border-radius: 0.75rem; font-size: 0.875rem;
-      border: 1px solid #a7d7bd; background: #fff; outline: none; transition: box-shadow .15s, border-color .15s;
+      border: 1px solid #bfd3f6; background: #fff; outline: none; transition: box-shadow .15s, border-color .15s;
     }
-    .auth-input:focus { border-color: #16a34a; box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2); }
-    /* Custom scrollbar cho cột dọc Trending Now */
-    .custom-scroll::-webkit-scrollbar {
-      width: 6px;
-    }
-    .custom-scroll::-webkit-scrollbar-track {
-      background: #f1f5f9;
-      border-radius: 8px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb {
-      background: #86efac;
-      border-radius: 8px;
-    }
-    .custom-scroll::-webkit-scrollbar-thumb:hover {
-      background: #22c55e;
-    }
+    .auth-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18); }
+    /* Custom scrollbar */
+    .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
+    .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
   </style>
 </head>
 <body class="min-h-screen pb-16">
@@ -92,33 +137,33 @@
     <div class="min-h-full flex items-center justify-center px-4 py-10">
       <div class="w-full max-w-md">
         <div class="text-center mb-6">
-          <div class="w-16 h-16 mx-auto rounded-2xl bg-white border border-emerald-200 p-2 shadow-sm flex items-center justify-center">
+          <div class="w-16 h-16 mx-auto rounded-2xl bg-white border border-blue-100 p-2 shadow-sm flex items-center justify-center">
             <img src="logo.png" alt="Logo" class="w-full h-full object-contain" />
           </div>
-          <h2 class="mt-4 text-xl font-extrabold tracking-tight text-emerald-950">LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT</h2>
+          <h2 class="mt-4 text-xl font-extrabold tracking-tight text-slate-900">LỌC KEYWORD TIN TỨC CÔNG NGHỆ <span class="text-orange-500">HOT</span></h2>
           <p class="text-xs text-slate-600 mt-1">Hệ thống nội bộ. Vui lòng đăng nhập để xem báo cáo.</p>
         </div>
 
         <!-- Form đăng nhập / đăng ký / quên mật khẩu / đặt lại mật khẩu -->
         <div id="authFormCard" class="pro-card rounded-2xl p-6">
-          <h3 id="authHeading" class="hidden text-base font-extrabold text-emerald-950 mb-1"></h3>
+          <h3 id="authHeading" class="hidden text-base font-extrabold text-slate-900 mb-1"></h3>
           <p id="authHint" class="hidden text-xs text-slate-600 mb-4"></p>
 
           <form id="authForm" onsubmit="submitAuth(event)" class="space-y-3.5" novalidate>
             <div id="fieldEmail">
-              <label for="authEmail" class="block text-xs font-bold text-emerald-900 mb-1.5">Email</label>
+              <label for="authEmail" class="block text-xs font-bold text-slate-800 mb-1.5">Email</label>
               <input id="authEmail" type="email" autocomplete="email" placeholder="ten@congty.com" class="auth-input" />
             </div>
 
             <div id="fieldPassword">
               <div class="flex items-center justify-between mb-1.5">
-                <label id="authPasswordLabel" for="authPassword" class="block text-xs font-bold text-emerald-900">Mật khẩu</label>
-                <button type="button" id="linkForgot" onclick="setAuthMode('forgot')" class="text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">Quên mật khẩu?</button>
+                <label id="authPasswordLabel" for="authPassword" class="block text-xs font-bold text-slate-800">Mật khẩu</label>
+                <button type="button" id="linkForgot" onclick="setAuthMode('forgot')" class="text-[11px] font-semibold text-blue-600 hover:text-blue-800 underline">Quên mật khẩu?</button>
               </div>
               <div class="relative">
                 <input id="authPassword" type="password" autocomplete="current-password" placeholder="Nhập mật khẩu" class="auth-input pr-11" />
                 <button type="button" onclick="togglePassword()" id="btnTogglePw" aria-label="Hiện hoặc ẩn mật khẩu"
-                        class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-emerald-700 hover:text-emerald-950">
+                        class="absolute right-2.5 top-1/2 -translate-y-1/2 p-1 text-blue-600 hover:text-blue-900">
                   <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path>
@@ -128,7 +173,7 @@
             </div>
 
             <div id="fieldConfirm" class="hidden">
-              <label for="authConfirm" class="block text-xs font-bold text-emerald-900 mb-1.5">Nhập lại mật khẩu</label>
+              <label for="authConfirm" class="block text-xs font-bold text-slate-800 mb-1.5">Nhập lại mật khẩu</label>
               <input id="authConfirm" type="password" autocomplete="new-password" placeholder="Nhập lại mật khẩu" class="auth-input" />
             </div>
 
@@ -139,7 +184,7 @@
               <span id="authSubmitText">Đăng nhập</span>
             </button>
 
-            <button type="button" id="linkBack" onclick="setAuthMode('login')" class="hidden w-full text-xs font-semibold text-emerald-700 hover:text-emerald-900 underline">
+            <button type="button" id="linkBack" onclick="setAuthMode('login')" class="hidden w-full text-xs font-semibold text-blue-600 hover:text-blue-800 underline">
               ← Quay lại đăng nhập
             </button>
           </form>
@@ -147,19 +192,19 @@
 
         <!-- Màn hình chờ duyệt -->
         <div id="authPendingCard" class="hidden pro-card rounded-2xl p-7 text-center">
-          <div class="w-14 h-14 mx-auto rounded-full bg-amber-50 border border-amber-200 flex items-center justify-center">
-            <svg class="w-7 h-7 text-amber-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <div class="w-14 h-14 mx-auto rounded-full bg-orange-50 border border-orange-200 flex items-center justify-center">
+            <svg class="w-7 h-7 text-orange-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
             </svg>
           </div>
-          <h3 class="mt-4 text-base font-extrabold text-emerald-950">Chưa có quyền truy cập</h3>
+          <h3 class="mt-4 text-base font-extrabold text-slate-900">Chưa có quyền truy cập</h3>
           <p class="text-xs text-slate-600 mt-2 leading-relaxed">
-            Tài khoản <strong id="pendingEmail" class="text-emerald-900"></strong> chưa được cấp quyền xem báo cáo.<br />
+            Tài khoản <strong id="pendingEmail" class="text-blue-700"></strong> chưa được cấp quyền xem báo cáo.<br />
             Vui lòng liên hệ quản trị viên để được cấp quyền.
           </p>
           <div class="mt-5 grid grid-cols-2 gap-2.5">
             <button type="button" onclick="recheckApproval()" id="btnRecheck" class="py-2.5 rounded-xl brand-btn text-white font-bold text-xs">Kiểm tra lại</button>
-            <button type="button" onclick="doLogout()" class="py-2.5 rounded-xl bg-white hover:bg-emerald-50 border border-emerald-300 text-emerald-900 font-bold text-xs">Đăng xuất</button>
+            <button type="button" onclick="doLogout()" class="py-2.5 rounded-xl bg-white hover:bg-blue-50 border border-blue-200 text-blue-800 font-bold text-xs">Đăng xuất</button>
           </div>
         </div>
 
@@ -169,17 +214,17 @@
   </div>
 
   <!-- TOP NAVBAR -->
-  <header class="sticky top-0 z-40 border-b border-[#003d21] bg-[#004f2b] shadow-sm">
-    <div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+  <header class="sticky top-0 z-40 border-b border-blue-100/80 bg-white/85 backdrop-blur-md">
+    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       <div class="flex items-center gap-3.5">
-        <div class="w-12 h-12 rounded-xl bg-white border border-emerald-200 p-1.5 flex items-center justify-center shadow-sm shrink-0">
+        <div class="w-11 h-11 rounded-xl bg-white border border-blue-100 p-1.5 flex items-center justify-center shadow-sm shrink-0">
           <img id="brandLogo" src="logo.png" alt="Logo" class="w-full h-full object-contain" />
         </div>
         <div>
-          <h1 class="text-lg sm:text-xl font-extrabold tracking-tight text-white">
-            LỌC KEYWORD TIN TỨC CÔNG NGHỆ HOT
+          <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900">
+            LỌC KEYWORD TIN TỨC CÔNG NGHỆ <span class="text-orange-500">HOT</span>
           </h1>
-          <p class="text-xs text-emerald-100 mt-0.5">
+          <p class="text-xs text-slate-500 mt-0.5">
             Hệ thống nghiên cứu Keyword Tin tức Công nghệ hằng ngày
           </p>
         </div>
@@ -187,182 +232,320 @@
 
       <!-- QUOTA & ACTIONS -->
       <div class="flex flex-wrap items-center gap-2.5">
-        <div id="quotaBox" class="px-3.5 py-2 rounded-xl bg-white/10 border border-white/25 flex items-center gap-2 text-xs">
-          <span class="w-2 h-2 rounded-full bg-emerald-300 animate-pulse"></span>
-          <span class="text-emerald-50 font-medium">SerpApi Quota:</span>
-          <span id="quotaText" class="font-extrabold text-white">-- / 250 lượt</span>
+        <div id="quotaBox" class="px-3.5 py-2 rounded-full bg-blue-50 border border-blue-100 flex items-center gap-2 text-xs">
+          <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
+          <span class="text-slate-600 font-medium">SerpApi Quota:</span>
+          <span id="quotaText" class="font-extrabold text-blue-700">-- / 250 lượt</span>
         </div>
 
-        <button onclick="scanLatestNews(false)" id="btnScanNews" class="px-4 py-2.5 rounded-xl brand-btn text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2">
-          <svg id="scanIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
-          </svg>
+        <button onclick="scanLatestNews(false)" id="btnScanNews" class="pl-4 pr-1.5 py-1.5 rounded-full accent-btn text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2.5">
           <span>Quét Tin Mới & Cập Nhật Top 20</span>
+          <span class="w-7 h-7 rounded-full bg-white/25 flex items-center justify-center">
+            <svg id="scanIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
+            </svg>
+          </span>
         </button>
 
-        <button onclick="exportReportCSV()" class="px-3.5 py-2.5 rounded-xl bg-white hover:bg-emerald-50 text-emerald-900 font-semibold text-xs sm:text-sm border border-emerald-300 transition flex items-center gap-1.5 shadow-sm">
-          <svg class="w-4 h-4 text-emerald-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <button onclick="exportReportCSV()" class="px-3.5 py-2.5 rounded-full bg-white hover:bg-blue-50 text-blue-700 font-semibold text-xs sm:text-sm border border-blue-200 transition flex items-center gap-1.5 shadow-sm">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
           </svg>
           <span>Xuất CSV</span>
         </button>
 
         <!-- Người dùng đang đăng nhập (chỉ hiện ở chế độ GitHub Pages) -->
-        <div id="userBox" class="hidden items-center gap-2 pl-3 pr-1.5 py-1.5 rounded-xl bg-white border border-emerald-300 shadow-sm text-xs">
-          <span class="w-6 h-6 rounded-full brand-gradient text-white font-extrabold flex items-center justify-center text-[11px]" id="userInitial">U</span>
-          <span id="userEmail" class="font-semibold text-emerald-950 max-w-[160px] truncate"></span>
-          <button type="button" onclick="doLogout()" class="px-2.5 py-1.5 rounded-lg bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 text-emerald-900 font-bold">Đăng xuất</button>
+        <div id="userBox" class="hidden items-center gap-2 pl-1.5 pr-1.5 py-1.5 rounded-full bg-white border border-blue-100 shadow-sm text-xs">
+          <span class="w-7 h-7 rounded-full brand-gradient text-white font-extrabold flex items-center justify-center text-[11px]" id="userInitial">U</span>
+          <span id="userEmail" class="font-semibold text-slate-800 max-w-[160px] truncate"></span>
+          <button type="button" onclick="doLogout()" class="px-3 py-1.5 rounded-full bg-blue-50 hover:bg-blue-100 text-blue-700 font-bold">Đăng xuất</button>
         </div>
       </div>
     </div>
   </header>
 
-  <main class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 mt-6 space-y-6">
-    <!-- MAIN 2-COLUMN LAYOUT: LEFT (FILTERS + TOP 10 KEYWORDS) & RIGHT SIDEBAR (THÔNG TIN LỌC KEYWORD + GOOGLE TRENDING NOW) -->
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-      <!-- CỘT DỌC BÊN PHẢI: THÔNG TIN LỌC KEYWORD + GOOGLE TRENDING NOW (VN) -->
-      <aside class="lg:col-span-3 lg:order-2 lg:sticky lg:top-24 space-y-4 lg:max-h-[calc(100vh-7rem)] lg:overflow-y-auto custom-scroll">
-        <div class="pro-card rounded-2xl p-4 border-t-4 border-t-emerald-600">
-          <h2 class="text-xs font-extrabold uppercase tracking-wider text-emerald-900 mb-3">Thông tin lọc keyword</h2>
+  <div class="app-shell max-w-[1600px] mx-auto px-4 sm:px-6 mt-6 flex gap-6 items-start">
+    <!-- LEFT NAVIGATION MENU -->
+    <aside class="hidden lg:block w-[272px] shrink-0 sticky top-24">
+      <nav aria-label="Menu chính" class="side-shell flex h-[calc(100vh-8rem)] min-h-[520px] rounded-[24px] overflow-hidden bg-white border border-blue-100">
+        <!-- Rail icon -->
+        <div class="side-rail w-[68px] shrink-0 flex flex-col items-center py-4 gap-2">
+          <div class="w-10 h-10 rounded-full bg-white p-1.5 flex items-center justify-center mb-4 shadow">
+            <img src="logo.png" alt="" class="w-full h-full object-contain brand-logo-alt" />
+          </div>
+          <button type="button" class="nav-rail-btn" data-tab="dashboard" title="Dashboard Keyword" onclick="switchTab('dashboard')">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h5v7H4V5zm10-1h5a1 1 0 011 1v4h-6V4zM4 15h6v5H5a1 1 0 01-1-1v-4zm10-2h6v6a1 1 0 01-1 1h-5v-7z"/></svg>
+          </button>
+          <button type="button" class="nav-rail-btn" data-tab="duyet" title="Keyword Duyệt" onclick="switchTab('duyet')">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          </button>
+          <button type="button" class="nav-rail-btn" data-tab="workflow" title="Workflow" onclick="switchTab('workflow')">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h4v4H4V6zm12 8h4v4h-4v-4zM8 8h5a3 3 0 013 3v3M6 10v5a3 3 0 003 3h7"/></svg>
+          </button>
+          <button type="button" class="nav-rail-btn" data-tab="baocao" title="Báo cáo" onclick="switchTab('baocao')">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-4m3 4V9m3 8v-6M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          </button>
+          <button type="button" class="nav-rail-btn" data-tab="dexuat" title="Đề xuất" onclick="switchTab('dexuat')">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          </button>
+        </div>
 
-          <div class="space-y-2.5">
-            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
-              <div class="text-xs font-medium text-slate-500">Cập nhật lần cuối</div>
-              <div id="statGeneratedAt" class="text-base font-extrabold text-emerald-950 mt-1">Đang tải...</div>
-              <div id="statTimeWindow" class="text-xs font-semibold text-emerald-700 mt-1">Khung thời gian: 48 giờ qua</div>
+        <!-- Panel nhãn -->
+        <div class="flex-1 min-w-0 flex flex-col py-4 px-3">
+          <!-- Cao bằng ô logo bên rail để từng mục menu thẳng hàng với icon -->
+          <div class="h-10 mb-6 px-1 flex items-center">
+            <div class="text-sm font-extrabold text-slate-900 leading-tight">TNC SEO Team</div>
+          </div>
+
+          <div class="flex flex-col gap-2">
+            <button type="button" class="nav-item" data-tab="dashboard" onclick="switchTab('dashboard')"><span>DASHBOARD KEYWORD</span><span class="nav-dot"></span></button>
+            <button type="button" class="nav-item" data-tab="duyet" onclick="switchTab('duyet')"><span>KEYWORD DUYỆT</span><span class="nav-dot"></span></button>
+            <button type="button" class="nav-item" data-tab="workflow" onclick="switchTab('workflow')"><span>WORKFLOW</span><span class="nav-dot"></span></button>
+            <button type="button" class="nav-item" data-tab="baocao" onclick="switchTab('baocao')"><span>BÁO CÁO</span><span class="nav-dot"></span></button>
+            <button type="button" class="nav-item" data-tab="dexuat" onclick="switchTab('dexuat')"><span>ĐỀ XUẤT</span><span class="nav-dot"></span></button>
+          </div>
+
+          <div class="mt-auto rounded-2xl p-3.5 bg-gradient-to-br from-blue-50 to-white border border-blue-100">
+            <div class="flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-orange-500"></span>
+              <span class="text-[10px] font-extrabold uppercase tracking-wider text-orange-600">Báo cáo mới nhất</span>
             </div>
-            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
-              <div class="text-xs font-medium text-slate-500">Bài báo & Đối thủ đã quét</div>
-              <div class="flex items-baseline gap-2 mt-1">
-                <span id="statTotalArticles" class="text-2xl font-extrabold text-emerald-700">--</span>
-                <span class="text-xs text-slate-500 font-medium">bài mới</span>
+            <div id="sideReportDate" class="text-xs font-bold text-slate-800 mt-1.5">--</div>
+            <button type="button" onclick="switchTab('dashboard')" class="mt-3 w-full py-2 rounded-xl brand-btn text-white text-xs font-bold flex items-center justify-center gap-1.5">
+              Xem Top Keyword
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5-5 5M6 12h12"/></svg>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </aside>
+
+    <main class="flex-1 min-w-0 space-y-6">
+      <!-- Menu dạng thanh ngang cho màn hình nhỏ -->
+      <nav aria-label="Menu chính" class="lg:hidden flex gap-2 overflow-x-auto no-scrollbar -mx-1 px-1">
+        <button type="button" class="nav-pill" data-tab="dashboard" onclick="switchTab('dashboard')">DASHBOARD KEYWORD</button>
+        <button type="button" class="nav-pill" data-tab="duyet" onclick="switchTab('duyet')">KEYWORD DUYỆT</button>
+        <button type="button" class="nav-pill" data-tab="workflow" onclick="switchTab('workflow')">WORKFLOW</button>
+        <button type="button" class="nav-pill" data-tab="baocao" onclick="switchTab('baocao')">BÁO CÁO</button>
+        <button type="button" class="nav-pill" data-tab="dexuat" onclick="switchTab('dexuat')">ĐỀ XUẤT</button>
+      </nav>
+
+      <!-- ============ TAB 1: DASHBOARD KEYWORD ============ -->
+      <section data-view="dashboard" class="space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+          Dashboard <span class="text-gradient">Keyword</span>
+        </h2>
+
+        <!-- MAIN 2-COLUMN LAYOUT: LEFT (FILTERS + TOP KEYWORDS) & RIGHT (TRENDING NOW + SERPAPI + THÔNG TIN CẬP NHẬT) -->
+        <div class="grid grid-cols-1 xl:grid-cols-12 gap-6 items-start">
+          <!-- CỘT PHẢI: GOOGLE TRENDING NOW (VN) -> TRẠNG THÁI SERPAPI -> THÔNG TIN CẬP NHẬT -->
+          <aside class="xl:col-span-4 2xl:col-span-3 xl:order-2 xl:sticky xl:top-24 flex flex-col gap-4 xl:max-h-[calc(100vh-7rem)] xl:overflow-y-auto custom-scroll">
+            <div class="pro-card rounded-2xl p-4 order-2">
+              <div class="flex items-center justify-between gap-2">
+                <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Trạng thái 4 cổng SerpApi</h2>
               </div>
-              <div id="statTotalClusters" class="text-xs text-slate-600 mt-1">Gom thành -- chủ đề</div>
-            </div>
-
-            <!-- 4 SerpApi Engines Status -->
-            <div class="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/80">
-              <div class="text-xs font-extrabold uppercase tracking-wider text-emerald-900">Trạng thái 4 Cổng SerpApi Hàng Ngày</div>
-              <span id="serpCacheBadge" class="inline-block mt-1.5 px-2.5 py-0.5 text-[11px] font-semibold rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200">
+              <span id="serpCacheBadge" class="inline-block mt-2 px-2.5 py-0.5 text-[11px] font-semibold rounded-full bg-blue-50 text-blue-700 border border-blue-100">
                 Đang kiểm tra...
               </span>
-              <div class="grid grid-cols-2 gap-2 text-xs mt-2.5">
-                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
-                  <div class="text-slate-600 text-[11px] font-medium">1. Trending Now</div>
-                  <div id="apiStatus1" class="font-bold text-emerald-800 mt-0.5">--</div>
+              <div class="grid grid-cols-2 gap-2 text-xs mt-3">
+                <div class="p-2.5 rounded-xl bg-slate-50/70 border border-blue-50">
+                  <div class="text-slate-500 text-[11px] font-medium">1. Trending Now</div>
+                  <div id="apiStatus1" class="font-bold text-blue-700 mt-0.5">--</div>
                 </div>
-                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
-                  <div class="text-slate-600 text-[11px] font-medium">2. Autocomplete</div>
-                  <div id="apiStatus2" class="font-bold text-emerald-800 mt-0.5">--</div>
+                <div class="p-2.5 rounded-xl bg-slate-50/70 border border-blue-50">
+                  <div class="text-slate-500 text-[11px] font-medium">2. Autocomplete</div>
+                  <div id="apiStatus2" class="font-bold text-blue-700 mt-0.5">--</div>
                 </div>
-                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
-                  <div class="text-slate-600 text-[11px] font-medium">3. Google Search</div>
-                  <div id="apiStatus3" class="font-bold text-emerald-800 mt-0.5">--</div>
+                <div class="p-2.5 rounded-xl bg-slate-50/70 border border-blue-50">
+                  <div class="text-slate-500 text-[11px] font-medium">3. Google Search</div>
+                  <div id="apiStatus3" class="font-bold text-blue-700 mt-0.5">--</div>
                 </div>
-                <div class="p-2.5 rounded-xl bg-white border border-emerald-200/80">
-                  <div class="text-slate-600 text-[11px] font-medium">4. Google Trends</div>
-                  <div id="apiStatus4" class="font-bold text-emerald-800 mt-0.5">--</div>
+                <div class="p-2.5 rounded-xl bg-slate-50/70 border border-blue-50">
+                  <div class="text-slate-500 text-[11px] font-medium">4. Google Trends</div>
+                  <div id="apiStatus4" class="font-bold text-blue-700 mt-0.5">--</div>
                 </div>
               </div>
-              <button onclick="scanLatestNews(true)" id="btnForceSerp" class="mt-2.5 text-[11px] font-semibold text-emerald-700 hover:text-emerald-900 underline">
+              <button onclick="scanLatestNews(true)" id="btnForceSerp" class="mt-3 text-[11px] font-semibold text-blue-600 hover:text-blue-800 underline">
                 Gọi mới lại 4 cổng SerpApi (-4 lượt)
               </button>
             </div>
+
+            <!-- GOOGLE TRENDING NOW (VN): thu gọn, bấm mũi tên để xem top 12 -->
+            <div id="trendingNowBar" class="pro-card rounded-2xl p-4 order-1">
+              <button type="button" onclick="toggleTrending()" id="btnTrendingToggle" aria-expanded="false" aria-controls="trendingNowBody"
+                      class="w-full flex items-center justify-between gap-2 text-left">
+                <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Google Trending Now (VN)</h2>
+                <span class="flex items-center gap-1.5 text-blue-600 shrink-0">
+                  <span class="text-[11px] font-bold whitespace-nowrap">Live 48h</span>
+                  <svg id="trendingChevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+                  </svg>
+                </span>
+              </button>
+              <div id="trendingNowBody" class="hidden mt-3">
+                <p class="text-xs text-slate-600 mb-3 leading-relaxed">
+                  Top 12 truy vấn đang tăng trưởng đột biến tại Việt Nam được lấy từ SerpApi:
+                </p>
+                <div id="trendingNowChips" class="flex flex-col gap-2 max-h-[60vh] overflow-y-auto pr-1 custom-scroll">
+                  <div class="text-xs text-slate-400 py-4 text-center">Đang tải xu hướng...</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- THÔNG TIN CẬP NHẬT -->
+            <div class="pro-card rounded-2xl p-4 order-3">
+              <h2 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Thông tin cập nhật</h2>
+              <div class="mt-3 space-y-2.5">
+                <div class="p-3 rounded-xl bg-slate-50/70 border border-blue-50 flex gap-3">
+                  <span class="w-9 h-9 shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  </span>
+                  <div class="min-w-0">
+                    <div class="text-[11px] font-semibold text-slate-500">Cập nhật lần cuối</div>
+                    <div id="statGeneratedAt" class="text-sm font-extrabold text-slate-900 mt-0.5">Đang tải...</div>
+                    <div id="statTimeWindow" class="text-[11px] font-semibold text-blue-600 mt-0.5">Khung thời gian: 48 giờ qua</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50/70 border border-blue-50 flex gap-3">
+                  <span class="w-9 h-9 shrink-0 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z"/></svg>
+                  </span>
+                  <div class="min-w-0">
+                    <div class="text-[11px] font-semibold text-slate-500">Bài báo & Đối thủ đã quét</div>
+                    <div class="flex items-baseline gap-1.5 mt-0.5">
+                      <span id="statTotalArticles" class="text-lg font-extrabold text-slate-900">--</span>
+                      <span class="text-[11px] text-slate-500 font-medium">bài mới</span>
+                    </div>
+                    <div id="statTotalClusters" class="text-[11px] font-semibold text-blue-600 mt-0.5">Gom thành -- chủ đề</div>
+                  </div>
+                </div>
+                <div class="p-3 rounded-xl bg-slate-50/70 border border-blue-50 flex gap-3">
+                  <span class="w-9 h-9 shrink-0 rounded-xl bg-orange-50 text-orange-500 flex items-center justify-center">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+                  </span>
+                  <div class="min-w-0">
+                    <div class="text-[11px] font-semibold text-slate-500">Top keyword hôm nay</div>
+                    <div class="flex items-baseline gap-1.5 mt-0.5">
+                      <span id="statTopCount" class="text-lg font-extrabold text-slate-900">--</span>
+                      <span class="text-[11px] text-slate-500 font-medium">keyword</span>
+                    </div>
+                    <div id="statTrendingCount" class="text-[11px] font-semibold text-orange-600 mt-0.5">-- keyword đang Trending</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          <!-- CỘT TRÁI: BỘ LỌC & DANH SÁCH TOP KEYWORD -->
+          <div class="xl:col-span-8 2xl:col-span-9 xl:order-1 space-y-5">
+            <!-- FILTER CONTROLS -->
+            <section class="pro-card rounded-2xl p-4 flex flex-col 2xl:flex-row 2xl:items-center justify-between gap-3.5">
+              <div class="flex flex-wrap items-center gap-2.5">
+                <!-- Date filter: xem lại báo cáo các ngày đã lọc (chỉ ở bản GitHub Pages, dữ liệu lưu trong Supabase) -->
+                <div id="dateFilterBox" class="hidden items-center gap-2 bg-blue-50 px-2.5 py-1 rounded-xl border border-blue-100 text-xs">
+                  <label for="filterDate" class="font-bold text-slate-800">Ngày lọc</label>
+                  <input type="date" id="filterDate" onchange="loadReport(false, false)"
+                         class="bg-white border border-blue-100 rounded-lg px-2 py-1 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500" />
+                  <button type="button" onclick="resetToLatestDate()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-orange-50 border border-orange-200 text-orange-600 font-bold">Mới nhất</button>
+                  <span id="dateFilterHint" class="text-[11px] text-slate-500"></span>
+                </div>
+
+                <!-- Time window selector -->
+                <div class="flex items-center bg-blue-50 p-1 rounded-xl border border-blue-100 text-xs">
+                  <button onclick="changeHoursWindow(24)" id="btnHours24" class="px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-blue-700">
+                    Trong 24h qua
+                  </button>
+                  <button onclick="changeHoursWindow(48)" id="btnHours48" class="px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm">
+                    Trong 48h qua (Khuyên dùng)
+                  </button>
+                </div>
+
+                <!-- Source filter -->
+                <select id="filterSource" onchange="renderKeywords()" class="bg-white border border-blue-100 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500">
+                  <option value="ALL">Nguồn: Tất cả</option>
+                  <option value="COMPETITOR">Đối thủ</option>
+                  <option value="PRESS">Báo</option>
+                </select>
+
+                <!-- Niche filter -->
+                <select id="filterNiche" onchange="renderKeywords()" class="bg-white border border-blue-100 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500">
+                  <option value="ALL">Ngách Nội Dung: Tất cả</option>
+                </select>
+              </div>
+
+              <!-- Search input -->
+              <div class="relative w-full 2xl:w-64">
+                <input
+                  type="text"
+                  id="searchInput"
+                  oninput="renderKeywords()"
+                  placeholder="Tìm nhanh keyword hoặc tên báo..."
+                  class="w-full bg-slate-50 border border-blue-100 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-500 focus:bg-white"
+                />
+                <svg class="w-4 h-4 text-blue-500 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                </svg>
+              </div>
+            </section>
+
+            <!-- LOADING INDICATOR -->
+            <div id="loadingBox" class="pro-card rounded-2xl py-16 text-center hidden">
+              <div class="inline-block w-10 h-10 border-4 border-blue-600 border-t-transparent rounded-full animate-spin mb-3"></div>
+              <p class="text-sm font-bold text-slate-900">Đang quét tin tức từ các Báo lớn, Đối thủ và đồng bộ 4 cổng SerpApi...</p>
+              <p class="text-xs text-slate-500 mt-1">Quá trình này mất khoảng 5 - 10 giây.</p>
+            </div>
+
+            <!-- TOP KEYWORDS LIST -->
+            <section id="keywordsContainer" class="space-y-5"></section>
           </div>
         </div>
+      </section>
 
-        <!-- GOOGLE TRENDING NOW (VN): thu gọn, bấm mũi tên để xem top 12 -->
-        <div id="trendingNowBar" class="pro-card rounded-2xl p-4 border-t-4 border-t-emerald-600">
-          <button type="button" onclick="toggleTrending()" id="btnTrendingToggle" aria-expanded="false" aria-controls="trendingNowBody"
-                  class="w-full flex items-center justify-between gap-2 text-left">
-            <span class="px-2.5 py-1 text-[11px] font-extrabold rounded-md bg-emerald-700 text-white tracking-wide">
-              GOOGLE TRENDING NOW (VN)
-            </span>
-            <span class="flex items-center gap-1.5 text-emerald-700">
-              <span class="text-[11px] font-bold">Live 48h</span>
-              <svg id="trendingChevron" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
-              </svg>
-            </span>
+      <!-- ============ TAB 2-5: ĐANG PHÁT TRIỂN ============ -->
+      <!-- ============ TAB 2: KEYWORD DUYỆT ============ -->
+      <section data-view="duyet" class="hidden space-y-6">
+        <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+          Keyword <span class="text-gradient">Duyệt</span>
+        </h2>
+        <div class="pro-card rounded-2xl overflow-hidden">
+          <div class="px-4 py-3.5 flex items-center justify-between border-b border-blue-50">
+            <h3 class="text-sm font-extrabold text-slate-900">Danh sách keyword đã duyệt</h3>
+            <span id="approvedCount" class="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-600 text-[11px] font-bold">0 keyword</span>
+          </div>
+          <div id="approvedTableWrap">
+            <div class="py-16 text-center text-xs text-slate-400">Đang tải...</div>
+          </div>
+        </div>
+      </section>
+      <section data-view="workflow" class="hidden"></section>
+      <section data-view="baocao" class="hidden"></section>
+      <section data-view="dexuat" class="hidden"></section>
+    </main>
+  </div>
+
+  <!-- POPUP CHI TIẾT KEYWORD -->
+  <div id="kwModal" class="hidden fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-labelledby="kwModalTitle">
+    <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-sm" onclick="closeKeywordModal()"></div>
+    <div class="relative h-full flex items-center justify-center p-3 sm:p-6 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-5xl max-h-full flex flex-col bg-white rounded-3xl shadow-2xl border border-blue-100 overflow-hidden">
+        <div class="px-5 sm:px-6 py-4 border-b border-blue-50 flex items-start gap-3.5">
+          <span id="kwModalRank" class="w-10 h-10 shrink-0 rounded-xl rank-other text-sm font-extrabold flex items-center justify-center"></span>
+          <div class="min-w-0 flex-1">
+            <h3 id="kwModalTitle" class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900"></h3>
+            <div id="kwModalMeta" class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-xs"></div>
+          </div>
+          <button type="button" id="kwModalClose" onclick="closeKeywordModal()" aria-label="Đóng"
+                  class="w-9 h-9 shrink-0 rounded-full bg-slate-50 hover:bg-orange-50 text-slate-500 hover:text-orange-600 flex items-center justify-center transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
           </button>
-          <div id="trendingNowBody" class="hidden mt-3">
-            <p class="text-xs text-slate-600 mb-3 leading-relaxed">
-              Top 12 truy vấn đang tăng trưởng đột biến tại Việt Nam được lấy từ SerpApi:
-            </p>
-            <div id="trendingNowChips" class="flex flex-col gap-2 max-h-[60vh] overflow-y-auto pr-1 custom-scroll">
-              <div class="text-xs text-slate-400 py-4 text-center">Đang tải xu hướng...</div>
-            </div>
-          </div>
         </div>
-      </aside>
-
-      <!-- CỘT BÊN TRÁI: BỘ LỌC & DANH SÁCH TOP 10 KEYWORD -->
-      <div class="lg:col-span-9 lg:order-1 space-y-5">
-        <!-- FILTER CONTROLS -->
-        <section class="pro-card rounded-2xl p-4 flex flex-col xl:flex-row xl:items-center justify-between gap-3.5">
-          <div class="flex flex-wrap items-center gap-2.5">
-            <!-- Date filter: xem lại báo cáo các ngày đã lọc (chỉ ở bản GitHub Pages, dữ liệu lưu trong Supabase) -->
-            <div id="dateFilterBox" class="hidden items-center gap-2 bg-emerald-50 px-2.5 py-1 rounded-xl border border-emerald-200 text-xs">
-              <label for="filterDate" class="font-bold text-emerald-900">Ngày lọc</label>
-              <input type="date" id="filterDate" onchange="loadReport(false, false)"
-                     class="bg-white border border-emerald-200 rounded-lg px-2 py-1 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600" />
-              <button type="button" onclick="resetToLatestDate()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-emerald-100 border border-emerald-300 text-emerald-900 font-bold">Mới nhất</button>
-              <span id="dateFilterHint" class="text-[11px] text-slate-500"></span>
-            </div>
-
-            <!-- Time window selector -->
-            <div class="flex items-center bg-emerald-50 p-1 rounded-xl border border-emerald-200 text-xs">
-              <button onclick="changeHoursWindow(24)" id="btnHours24" class="px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-emerald-900">
-                Trong 24h qua
-              </button>
-              <button onclick="changeHoursWindow(48)" id="btnHours48" class="px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm">
-                Trong 48h qua (Khuyên dùng)
-              </button>
-            </div>
-
-            <!-- Source filter -->
-            <select id="filterSource" onchange="renderKeywords()" class="bg-white border border-emerald-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600">
-              <option value="ALL">Nguồn: Tất cả</option>
-              <option value="COMPETITOR">Đối thủ</option>
-              <option value="PRESS">Báo</option>
-            </select>
-
-            <!-- Niche filter -->
-            <select id="filterNiche" onchange="renderKeywords()" class="bg-white border border-emerald-200 rounded-xl px-3 py-2 text-xs font-medium text-slate-800 focus:outline-none focus:border-emerald-600">
-              <option value="ALL">Ngách Nội Dung: Tất cả</option>
-            </select>
-          </div>
-
-          <!-- Search input -->
-          <div class="relative w-full xl:w-64">
-            <input
-              type="text"
-              id="searchInput"
-              oninput="renderKeywords()"
-              placeholder="Tìm nhanh keyword hoặc tên báo..."
-              class="w-full bg-emerald-50/50 border border-emerald-200 rounded-xl pl-9 pr-3 py-2 text-xs text-slate-900 placeholder-slate-400 focus:outline-none focus:border-emerald-600 focus:bg-white"
-            />
-            <svg class="w-4 h-4 text-emerald-700 absolute left-3 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-            </svg>
-          </div>
-        </section>
-
-        <!-- LOADING INDICATOR -->
-        <div id="loadingBox" class="pro-card rounded-2xl py-16 text-center hidden">
-          <div class="inline-block w-10 h-10 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin mb-3"></div>
-          <p class="text-sm font-bold text-emerald-950">Đang quét tin tức từ các Báo lớn, Đối thủ và đồng bộ 4 cổng SerpApi...</p>
-          <p class="text-xs text-slate-500 mt-1">Quá trình này mất khoảng 5 - 10 giây.</p>
-        </div>
-
-        <!-- TOP 10 KEYWORDS LIST -->
-        <section id="keywordsContainer" class="space-y-5"></section>
+        <div id="kwModalBody" class="px-5 sm:px-6 py-5 overflow-y-auto custom-scroll"></div>
       </div>
     </div>
-  </main>
+  </div>
 
   <!-- TOAST NOTIFICATION -->
-  <div id="toast" class="fixed bottom-5 right-5 z-50 hidden px-4 py-3 rounded-xl brand-gradient text-white text-xs font-bold shadow-xl">
+  <div id="toast" class="fixed bottom-5 right-5 z-[70] hidden px-4 py-3 rounded-xl brand-gradient text-white text-xs font-bold shadow-xl">
     Đã sao chép vào bộ nhớ tạm!
   </div>
 
@@ -370,25 +553,54 @@
     let currentReport = null;
     let currentHours = 48;
 
-    const NICHE_COLORS = {
-      emerald: "bg-emerald-100 text-emerald-800 border-emerald-300",
-      blue: "bg-teal-100 text-teal-800 border-teal-300",
-      indigo: "bg-emerald-50 text-emerald-900 border-emerald-300",
-      purple: "bg-green-100 text-green-800 border-green-300",
-      amber: "bg-lime-100 text-lime-900 border-lime-300",
-      pink: "bg-emerald-100 text-emerald-800 border-emerald-300",
-      red: "bg-amber-100 text-amber-900 border-amber-300",
-      rose: "bg-rose-100 text-rose-800 border-rose-300",
-      teal: "bg-teal-100 text-teal-800 border-teal-300"
-    };
-
     const API_BASE = window.location.protocol === "file:" ? "http://127.0.0.1:8000" : "";
 
     // Đảm bảo logo hiển thị tốt dù mở bằng http://127.0.0.1:8000 hay file://
-    const logoEl = document.getElementById("brandLogo");
     if (!STATIC_MODE && window.location.protocol !== "file:") {
-      logoEl.src = "/logo.png";
+      document.querySelectorAll("#brandLogo, .brand-logo-alt").forEach(el => el.src = "/logo.png");
     }
+
+    // =====================================================================
+    // LEFT NAVIGATION: chuyển tab
+    // =====================================================================
+    const TABS = {
+      dashboard: { title: "Dashboard Keyword" },
+      duyet:     { title: "Keyword Duyệt", desc: "Nơi duyệt và chốt danh sách keyword sẽ triển khai viết bài." },
+      workflow:  { title: "Workflow", desc: "Theo dõi tiến độ từng keyword: lên kế hoạch, đang viết, đã đăng." },
+      baocao:    { title: "Báo cáo", desc: "Tổng hợp hiệu quả keyword và bài viết theo ngày, tuần, tháng." },
+      dexuat:    { title: "Đề xuất", desc: "Gợi ý chủ đề và keyword tiềm năng cho đội nội dung." }
+    };
+
+    function renderPlaceholders() {
+      Object.entries(TABS).forEach(([tab, cfg]) => {
+        if (tab === "dashboard" || tab === "duyet") return;
+        const icon = document.querySelector(`.nav-rail-btn[data-tab="${tab}"] svg`).outerHTML.replace('class="w-5 h-5"', 'class="w-8 h-8"');
+        document.querySelector(`[data-view="${tab}"]`).innerHTML = `
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">${escapeHtml(cfg.title)}</h2>
+          <div class="pro-card rounded-3xl mt-5 py-20 px-6 text-center">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center">${icon}</div>
+            <span class="inline-block mt-5 px-3 py-1 rounded-full bg-orange-50 border border-orange-200 text-orange-600 text-[11px] font-extrabold tracking-wide">SẮP RA MẮT</span>
+            <p class="mt-3 text-base font-bold text-slate-900">Tính năng đang được phát triển</p>
+            <p class="mt-1.5 text-sm text-slate-500 max-w-md mx-auto">${escapeHtml(cfg.desc)}</p>
+          </div>`;
+      });
+    }
+
+    function switchTab(tab, updateHash = true) {
+      if (!TABS[tab]) tab = "dashboard";
+      document.querySelectorAll("[data-view]").forEach(v => v.classList.toggle("hidden", v.dataset.view !== tab));
+      document.querySelectorAll("[data-tab]").forEach(b => {
+        const on = b.dataset.tab === tab;
+        b.classList.toggle("is-active", on);
+        if (on) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
+      });
+      if (updateHash) history.replaceState(null, "", window.location.pathname + "#" + tab);
+      window.scrollTo({ top: 0 });
+    }
+
+    renderPlaceholders();
+    // Chỉ đọc hash khi đó là tên tab (không đụng tới hash khôi phục mật khẩu của Supabase)
+    switchTab(TABS[window.location.hash.slice(1)] ? window.location.hash.slice(1) : "dashboard", false);
 
     if (STATIC_MODE) {
       // Trang tĩnh không có server: ẩn các nút cần backend (quét lại, gọi lại SerpApi, đổi khung giờ, quota)
@@ -447,7 +659,7 @@
             <p class="text-xs text-slate-500 mt-2">${escapeHtml(err.message)}</p>
             ${STATIC_MODE
               ? `<p class="text-xs text-slate-700 mt-3">Báo cáo chưa được tạo. Hãy chạy workflow <strong>Cập nhật báo cáo hằng ngày</strong> trong tab Actions của repo.</p>`
-              : `<p class="text-xs text-slate-700 mt-3">Hãy chạy <code class="px-1.5 py-0.5 bg-emerald-50 border border-emerald-200 rounded font-mono">python run_dashboard.py</code> rồi mở <strong>http://127.0.0.1:8000</strong></p>`}
+              : `<p class="text-xs text-slate-700 mt-3">Hãy chạy <code class="px-1.5 py-0.5 bg-blue-50 border border-blue-100 rounded font-mono">python run_dashboard.py</code> rồi mở <strong>http://127.0.0.1:8000</strong></p>`}
           </div>`;
       } finally {
         loadingBox.classList.add("hidden");
@@ -494,24 +706,29 @@
     function showNoDataForDate(isoDate) {
       const [y, m, d] = isoDate.split("-");
       currentReport = null;
-      ["statGeneratedAt", "statTotalArticles"].forEach(id => byId(id).textContent = "--");
+      ["statGeneratedAt", "statTotalArticles", "statTopCount", "sideReportDate"].forEach(id => byId(id).textContent = "--");
       byId("statTimeWindow").textContent = "Khung thời gian: --";
       byId("statTotalClusters").textContent = "Gom thành -- chủ đề";
+      byId("statTrendingCount").textContent = "-- keyword đang Trending";
       byId("serpCacheBadge").textContent = "Không có dữ liệu";
       ["apiStatus1", "apiStatus2", "apiStatus3", "apiStatus4"].forEach(id => setApiStatus(id, null));
       byId("trendingNowChips").innerHTML = `<div class="text-xs text-slate-500 py-4 text-center">Chưa có dữ liệu xu hướng.</div>`;
       byId("keywordsContainer").innerHTML = `
         <div class="pro-card rounded-2xl p-10 text-center">
-          <p class="text-base font-bold text-emerald-950">Không có dữ liệu đã quét trong ngày này</p>
+          <p class="text-base font-bold text-slate-900">Không có dữ liệu đã quét trong ngày này</p>
           <p class="text-xs text-slate-500 mt-2">Ngày ${d}/${m}/${y} chưa có báo cáo nào được lọc.</p>
         </div>`;
     }
 
     function updateDashboardHeader(data) {
+      const top = data.top_10_keywords || [];
       document.getElementById("statGeneratedAt").textContent = data.generated_at || "--";
+      document.getElementById("sideReportDate").textContent = data.generated_at || "--";
       document.getElementById("statTimeWindow").textContent = `Khung thời gian: ${data.time_window_hours || 48} giờ qua`;
       document.getElementById("statTotalArticles").textContent = data.total_articles_scanned || 0;
       document.getElementById("statTotalClusters").textContent = `Phát hiện ${data.total_clusters_detected || 0} cụm chủ đề`;
+      document.getElementById("statTopCount").textContent = top.length;
+      document.getElementById("statTrendingCount").textContent = `${top.filter(k => k.stats?.is_trending_now).length} keyword đang Trending`;
 
       const serp = data.serpapi_status || {};
       const acc = serp.account || {};
@@ -522,10 +739,10 @@
       const cacheBadge = document.getElementById("serpCacheBadge");
       if (serp.daily_suite_from_cache) {
         cacheBadge.textContent = "Đã lưu Cache hôm nay (0 tốn thêm lượt)";
-        cacheBadge.className = "px-2.5 py-0.5 text-[11px] font-bold rounded-md bg-emerald-100 text-emerald-800 border border-emerald-300";
+        cacheBadge.className = "inline-block mt-2 px-2.5 py-0.5 text-[11px] font-bold rounded-full bg-blue-50 text-blue-700 border border-blue-200";
       } else {
         cacheBadge.textContent = "Vừa đồng bộ trực tiếp 4 API";
-        cacheBadge.className = "px-2.5 py-0.5 text-[11px] font-bold rounded-md bg-green-100 text-green-800 border border-green-300";
+        cacheBadge.className = "inline-block mt-2 px-2.5 py-0.5 text-[11px] font-bold rounded-full bg-orange-50 text-orange-700 border border-orange-200";
       }
 
       const apis = serp.apis_called || {};
@@ -541,17 +758,17 @@
         chips.innerHTML = highlights.map((item, idx) => `
           <div onclick="copyText('${escapeAttr(item.query)}')"
                title="Bấm để copy từ khóa xu hướng"
-               class="cursor-pointer group p-2.5 rounded-xl bg-emerald-50/60 hover:bg-emerald-100/80 border border-emerald-200/80 transition flex items-center justify-between gap-2">
+               class="cursor-pointer group p-2.5 rounded-xl bg-slate-50/70 hover:bg-blue-50 border border-blue-50 hover:border-blue-200 transition flex items-center justify-between gap-2">
             <div class="flex items-center gap-2.5 min-w-0">
-              <span class="w-6 h-6 rounded-lg bg-emerald-700 text-white text-[11px] font-extrabold flex items-center justify-center shrink-0">
+              <span class="w-6 h-6 rounded-lg ${idx < 3 ? "rank-top" : "rank-other"} text-[11px] font-extrabold flex items-center justify-center shrink-0">
                 ${idx + 1}
               </span>
-              <span class="font-bold text-xs text-slate-800 group-hover:text-emerald-950 truncate">
+              <span class="font-bold text-xs text-slate-800 group-hover:text-blue-700 truncate">
                 ${escapeHtml(item.query)}
               </span>
             </div>
             ${item.search_volume ? `
-              <span class="px-2 py-0.5 rounded-md bg-white border border-emerald-200 text-[10px] font-bold text-emerald-700 shrink-0">
+              <span class="px-2 py-0.5 rounded-full bg-white border border-blue-100 text-[10px] font-bold text-blue-600 shrink-0">
                 ${item.search_volume.toLocaleString()}+
               </span>
             ` : ""}
@@ -579,10 +796,10 @@
       if (info.status === "success") {
         const count = info.count !== undefined ? `${info.count} ${unit}` : "Hoạt động tốt";
         el.textContent = `✓ ${count}`;
-        el.className = "font-bold text-emerald-700 mt-0.5";
+        el.className = "font-bold text-blue-700 mt-0.5";
       } else {
         el.textContent = info.status;
-        el.className = "font-bold text-amber-600 mt-0.5";
+        el.className = "font-bold text-orange-600 mt-0.5";
       }
     }
 
@@ -632,32 +849,58 @@
 
       container.innerHTML = `
         <div class="pro-card rounded-2xl overflow-hidden">
+          <div class="px-4 py-3.5 flex items-center justify-between border-b border-blue-50">
+            <h3 class="text-sm font-extrabold text-slate-900">Top Keyword Thu Thập</h3>
+            <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold">${filtered.length} keyword</span>
+          </div>
           <div class="overflow-x-auto">
             <table class="w-full text-sm">
               <thead>
-                <tr class="bg-emerald-50 text-[11px] font-extrabold uppercase tracking-wider text-emerald-900 border-b border-emerald-200">
-                  <th class="px-3 py-3 text-center w-12">#</th>
-                  <th class="px-3 py-3 text-left">Keyword thu thập</th>
-                  <th class="px-3 py-3 text-left">Nhóm chủ đề</th>
-                  <th class="px-3 py-3 text-center">Độ phủ</th>
-                  <th class="px-3 py-3 text-center">Kênh báo đã đăng</th>
-                  <th class="px-3 py-3 text-center">Đối thủ đã đăng</th>
+                <tr class="bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-blue-50">
+                  <th class="px-3 py-3 text-center w-14">#</th>
+                  <th class="px-3 py-3 text-left min-w-[240px]">Keyword thu thập</th>
+                  <th class="px-3 py-3 text-left whitespace-nowrap">Nhóm chủ đề</th>
+                  <th class="px-3 py-3 text-center whitespace-nowrap">Độ phủ</th>
+                  <th class="px-3 py-3 text-center min-w-[104px]">Kênh báo đã đăng</th>
+                  <th class="px-3 py-3 text-center min-w-[104px]">Đối thủ đã đăng</th>
                   <th class="px-3 py-3 w-10"></th>
                 </tr>
               </thead>
               <tbody>${filtered.map(item => renderKeywordRow(item)).join("")}</tbody>
             </table>
           </div>
-        </div>
-        <p class="text-[11px] text-slate-500 mt-2">Bấm vào từng keyword để xem Top 5 bài viết và Keyword gợi ý viết bài SEO.</p>`;
+        </div>`;
     }
 
-    function toggleRow(rank) {
-      const detail = document.getElementById(`detail-${rank}`);
-      const open = detail.classList.toggle("hidden") === false;
-      document.getElementById(`chev-${rank}`).classList.toggle("rotate-180", open);
-      document.getElementById(`row-${rank}`).classList.toggle("bg-emerald-50/60", open);
+    // Popup chi tiết keyword (Top 5 bài viết + gợi ý keyword SEO)
+    function openKeywordModal(rank) {
+      const item = (currentReport?.top_10_keywords || []).find(k => k.rank === rank);
+      if (!item) return;
+      const stats = item.stats || {};
+      byId("kwModalRank").textContent = rank;
+      byId("kwModalRank").className = `w-10 h-10 shrink-0 rounded-xl ${rank <= 3 ? "rank-top" : "rank-other"} text-sm font-extrabold flex items-center justify-center`;
+      byId("kwModalTitle").textContent = item.keyword;
+      byId("kwModalMeta").innerHTML = `
+        <span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 font-semibold">${escapeHtml(item.niche?.name || "Công nghệ")}</span>
+        ${stats.is_trending_now ? `<span class="px-2.5 py-1 rounded-full bg-orange-50 border border-orange-200 font-bold text-orange-600">⚡ Trending</span>` : ""}
+        <span class="text-slate-500">Độ phủ <strong class="text-slate-800">${stats.total_articles_found || 0} bài</strong></span>
+        <span class="text-slate-500" title="${escapeHtml((stats.press_list || []).join(", "))}">Kênh báo <strong class="text-slate-800">${stats.press_count || 0}</strong></span>
+        <span class="text-slate-500" title="${escapeHtml((stats.competitor_list || []).join(", "))}">Đối thủ <strong class="text-slate-800">${stats.competitor_count || 0}</strong></span>`;
+      byId("kwModalBody").innerHTML = renderKeywordDetail(item);
+      byId("kwModalBody").scrollTop = 0;
+      show("kwModal", true);
+      document.body.classList.add("overflow-hidden");
+      byId("kwModalClose").focus();
     }
+
+    function closeKeywordModal() {
+      show("kwModal", false);
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !byId("kwModal").classList.contains("hidden")) closeKeywordModal();
+    });
 
     function renderKeywordRow(item) {
       const rank = item.rank;
@@ -667,24 +910,23 @@
       const compTip = escapeHtml((item.stats?.competitor_list || []).join(", "));
 
       return `
-        <tr id="row-${rank}" onclick="toggleRow(${rank})" class="cursor-pointer hover:bg-emerald-50/60 border-b border-emerald-100 transition">
-          <td class="px-3 py-3 text-center text-slate-600">${rank}</td>
-          <td class="px-3 py-3 font-semibold text-emerald-950">
-            ${escapeHtml(item.keyword)}
-            ${item.stats?.is_trending_now ? `<span class="ml-1 text-xs font-medium text-amber-700">⚡ Trending</span>` : ""}
+        <tr id="row-${rank}" onclick="openKeywordModal(${rank})" class="group cursor-pointer hover:bg-blue-50/50 border-b border-slate-100 transition">
+          <td class="px-3 py-3 text-center">
+            <span class="inline-flex w-7 h-7 rounded-lg ${rank <= 3 ? "rank-top" : "rank-other"} text-xs font-extrabold items-center justify-center">${rank}</span>
           </td>
-          <td class="px-3 py-3 text-slate-700">${escapeHtml(item.niche?.name || "Công nghệ")}</td>
+          <td class="px-3 py-3 font-semibold text-slate-900">
+            ${escapeHtml(item.keyword)}
+            ${item.stats?.is_trending_now ? `<span class="ml-1.5 px-2 py-0.5 rounded-full bg-orange-50 border border-orange-200 text-[11px] font-bold text-orange-600 whitespace-nowrap">⚡ Trending</span>` : ""}
+          </td>
+          <td class="px-3 py-3"><span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold whitespace-nowrap">${escapeHtml(item.niche?.name || "Công nghệ")}</span></td>
           <td class="px-3 py-3 text-center whitespace-nowrap text-slate-700">${item.stats?.total_articles_found || 0} bài</td>
           <td class="px-3 py-3 text-center text-slate-700" title="${pressTip}">${pressCount}</td>
           <td class="px-3 py-3 text-center text-slate-700" title="${compTip}">${compCount}</td>
-          <td class="px-3 py-3 text-emerald-700">
-            <svg id="chev-${rank}" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"></path>
+          <td class="px-3 py-3 text-blue-500">
+            <svg class="w-4 h-4 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
             </svg>
           </td>
-        </tr>
-        <tr id="detail-${rank}" class="hidden border-b border-emerald-100 bg-white">
-          <td colspan="7" class="px-4 py-4">${renderKeywordDetail(item)}</td>
         </tr>`;
     }
 
@@ -692,27 +934,27 @@
       const articlesHtml = (item.top_3_articles || []).map((art, idx) => {
         const isComp = art.source_type === "COMPETITOR";
         const srcBadgeClass = isComp
-          ? "bg-amber-100 text-amber-900 border-amber-300"
-          : "bg-emerald-100 text-emerald-900 border-emerald-300";
+          ? "bg-orange-50 text-orange-700 border-orange-200"
+          : "bg-blue-50 text-blue-700 border-blue-200";
 
         return `
           <a href="${escapeAttr(art.url)}" target="_blank" rel="noopener noreferrer"
-             class="group block p-3.5 rounded-xl bg-emerald-50/40 hover:bg-emerald-50 border border-emerald-200/90 hover:border-emerald-500 transition flex flex-col justify-between shadow-sm">
+             class="group block p-3.5 rounded-xl bg-white hover:bg-blue-50/40 border border-blue-100 hover:border-blue-400 transition flex flex-col justify-between shadow-sm">
             <div>
               <div class="flex items-center justify-between gap-2 mb-2">
-                <span class="px-2 py-0.5 text-[11px] font-bold rounded border ${srcBadgeClass}">
+                <span class="px-2 py-0.5 text-[11px] font-bold rounded-full border ${srcBadgeClass}">
                   [${escapeHtml(art.source_badge)}] ${escapeHtml(art.source_name)}
                 </span>
                 <span class="text-[11px] font-medium text-slate-500 flex items-center gap-1">
                   🕒 ${escapeHtml(art.relative_time)}
                 </span>
               </div>
-              <h4 class="text-sm font-bold text-slate-900 group-hover:text-emerald-800 transition line-clamp-2">
+              <h4 class="text-sm font-bold text-slate-900 group-hover:text-blue-700 transition line-clamp-2">
                 Bài #${idx + 1}: ${escapeHtml(art.title)}
               </h4>
               ${art.summary ? `<p class="text-xs text-slate-600 mt-1.5 line-clamp-2">${escapeHtml(art.summary)}</p>` : ""}
             </div>
-            <div class="mt-3 pt-2 border-t border-emerald-200/60 flex items-center justify-between text-[11px] font-bold text-emerald-700">
+            <div class="mt-3 pt-2 border-t border-blue-50 flex items-center justify-between text-[11px] font-bold text-blue-600">
               <span>Mở đọc bài viết gốc</span>
               <span class="group-hover:translate-x-1 transition-transform">→</span>
             </div>
@@ -720,46 +962,42 @@
         `;
       }).join("");
 
-      const seoList = item.seo_suggested_keywords && item.seo_suggested_keywords.length > 0
-        ? item.seo_suggested_keywords
-        : (item.related_keywords || []).map(rk => ({ keyword: rk, intent: "Keyword Gợi ý", based_on: "Tổng hợp từ Top 5 bài viết" }));
-
-      const seoSuggestionsHtml = seoList.map((s, idx) => `
-        <div class="p-3.5 rounded-xl bg-emerald-50/80 border border-emerald-300 hover:border-emerald-600 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      const seoSuggestionsHtml = getSeoList(item).map((s, idx) => `
+        <div class="p-3.5 rounded-xl bg-blue-50/50 border border-blue-100 hover:border-blue-400 transition flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div class="space-y-1">
             <div class="flex flex-wrap items-center gap-2">
-              <span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-[11px] font-bold">
+              <span class="px-2 py-0.5 rounded-full bg-blue-600 text-white text-[11px] font-bold">
                 Gợi ý SEO #${idx + 1}
               </span>
-              <span class="text-[11px] text-emerald-900 font-semibold">
+              <span class="text-[11px] text-slate-600 font-semibold">
                 • ${escapeHtml(s.intent || "Keyword Tin tức SEO")}
               </span>
             </div>
-            <div class="text-sm sm:text-base font-extrabold text-emerald-950">
+            <div class="text-sm sm:text-base font-extrabold text-slate-900">
               “${escapeHtml(s.keyword)}”
             </div>
-            ${s.based_on ? `<div class="text-[11px] text-slate-600">📌 Dựa trên: ${escapeHtml(s.based_on)}</div>` : ""}
+            ${s.based_on ? `<div class="text-[11px] text-slate-500">📌 Dựa trên: ${escapeHtml(s.based_on)}</div>` : ""}
           </div>
-          <button onclick="copyText('${escapeAttr(s.keyword)}')"
-                  class="shrink-0 px-3.5 py-2 rounded-lg brand-btn text-white text-xs font-bold transition">
-            Copy Keyword SEO
-          </button>
+          <div class="shrink-0 flex items-center gap-2">
+            <button onclick="copyText('${escapeAttr(s.keyword)}')"
+                    class="px-3.5 py-2 rounded-full bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 text-xs font-bold transition">
+              Copy Keyword SEO
+            </button>
+            ${isApproved(s.keyword) ? APPROVED_BTN_HTML : `
+            <button onclick="approveKeyword(${item.rank}, ${idx}, this)"
+                    class="min-w-[124px] px-3.5 py-2 rounded-full accent-btn text-white text-xs font-extrabold tracking-wide transition disabled:opacity-60">
+              LẤY KEYWORD
+            </button>`}
+          </div>
         </div>
       `).join("");
 
       return `
         <div>
-          <!-- TOP 3 BÀI VIẾT ĐANG CHỨA KEYWORD -->
-          <div class="pb-5 border-b border-emerald-100">
+          <!-- TOP 5 BÀI VIẾT ĐANG CHỨA KEYWORD -->
+          <div class="pb-5 border-b border-blue-50">
             <div class="flex items-center justify-between mb-2.5">
-              <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-900 border border-emerald-300 text-[10px] font-bold uppercase tracking-wider">
-                  2. Top 5 Bài Viết
-                </span>
-                <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-700">
-                  Top 5 Bài Viết Mới Nhất Đang Chứa Keyword (24h - 48h qua)
-                </h3>
-              </div>
+              <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Top 5 bài viết mới nhất chứa keyword</h3>
               <span class="text-[11px] font-medium text-slate-500">
                 Bài mới nhất: ${item.stats?.newest_hours_ago || 1} giờ trước
               </span>
@@ -771,20 +1009,165 @@
 
           <!-- BƯỚC 3: GỢI Ý KEYWORD CHỊ SẼ DÙNG CHO BÀI VIẾT SEO WEBSITE -->
           <div class="mt-4">
-            <div class="flex items-center gap-2 mb-3">
-              <span class="px-2 py-0.5 rounded bg-emerald-700 text-white text-[10px] font-bold uppercase tracking-wider">
-                3. Gợi Ý Keyword Viết Bài SEO
-              </span>
-              <h3 class="text-xs font-extrabold uppercase tracking-wider text-emerald-800">
-                Keyword Gợi Ý Bám Sát Vấn Đề Của Top 5 Bài Viết Để Triển Khai Lên Website:
-              </h3>
-            </div>
+            <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-800 mb-3">Keyword gợi ý triển khai</h3>
             <div class="grid grid-cols-1 gap-2.5">
               ${seoSuggestionsHtml}
             </div>
           </div>
         </div>
       `;
+    }
+
+    function getSeoList(item) {
+      return item.seo_suggested_keywords && item.seo_suggested_keywords.length > 0
+        ? item.seo_suggested_keywords
+        : (item.related_keywords || []).map(rk => ({ keyword: rk, intent: "Keyword Gợi ý", based_on: "Tổng hợp từ Top 5 bài viết" }));
+    }
+
+    // =====================================================================
+    // KEYWORD DUYỆT: bấm "LẤY KEYWORD" -> lưu vào Supabase (bản GitHub Pages)
+    // Bản xem thử local không có Supabase nên lưu tạm trong trình duyệt này.
+    // =====================================================================
+    let approvedKeywords = [];
+    let approvedError = null;
+    const LOCAL_APPROVED_KEY = "tnc_approved_keywords";
+    const APPROVED_BTN_HTML = `
+      <span class="min-w-[124px] px-3.5 py-2 rounded-full bg-blue-600 text-white text-xs font-extrabold tracking-wide inline-flex items-center justify-center gap-1.5 cursor-default">
+        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
+        ĐÃ DUYỆT
+      </span>`;
+
+    const normKeyword = (kw) => String(kw || "").trim().toLowerCase();
+    const isApproved = (kw) => approvedKeywords.some(a => normKeyword(a.keyword) === normKeyword(kw));
+
+    function readLocalApproved() {
+      try { return JSON.parse(localStorage.getItem(LOCAL_APPROVED_KEY) || "[]"); } catch { return []; }
+    }
+
+    async function loadApprovedKeywords() {
+      try {
+        if (STATIC_MODE) {
+          const { data, error } = await sb.from("approved_keywords").select("*").order("approved_at", { ascending: false });
+          if (error) throw new Error(error.message);
+          approvedKeywords = data || [];
+        } else {
+          approvedKeywords = readLocalApproved();
+        }
+        approvedError = null;
+      } catch (err) {
+        console.error(err);
+        approvedError = err.message;
+      }
+      renderApprovedTable();
+    }
+
+    // Ngày của báo cáo đang xem (YYYY-MM-DD)
+    function currentReportDate() {
+      if (STATIC_MODE && byId("filterDate").value) return byId("filterDate").value;
+      const m = /^(\d{2})\/(\d{2})\/(\d{4})/.exec(currentReport?.generated_at || "");
+      return m ? `${m[3]}-${m[2]}-${m[1]}` : null;
+    }
+
+    async function approveKeyword(rank, idx, btn) {
+      const item = (currentReport?.top_10_keywords || []).find(k => k.rank === rank);
+      const s = item && getSeoList(item)[idx];
+      if (!s) return;
+      if (isApproved(s.keyword)) { btn.outerHTML = APPROVED_BTN_HTML; return; }
+
+      const record = {
+        keyword: s.keyword.trim(),
+        source_keyword: item.keyword,
+        niche: item.niche?.name || null,
+        intent: s.intent || null,
+        based_on: s.based_on || null,
+        report_date: currentReportDate()
+      };
+      btn.disabled = true;
+      btn.textContent = "Đang lưu...";
+      try {
+        if (STATIC_MODE) {
+          const { data, error } = await sb.from("approved_keywords").insert(record).select().single();
+          if (error && error.code === "23505") {
+            await loadApprovedKeywords(); // đã có người khác duyệt keyword này
+          } else if (error) {
+            throw new Error(error.message);
+          } else {
+            approvedKeywords.unshift(data);
+          }
+        } else {
+          approvedKeywords.unshift({ ...record, id: Date.now(), approved_by_email: null, approved_at: new Date().toISOString() });
+          localStorage.setItem(LOCAL_APPROVED_KEY, JSON.stringify(approvedKeywords));
+        }
+        btn.outerHTML = APPROVED_BTN_HTML;
+        renderApprovedTable();
+        showToast(`Đã duyệt: "${record.keyword}"`);
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        btn.textContent = "LẤY KEYWORD";
+        showToast("Không lưu được keyword: " + err.message, true);
+      }
+    }
+
+    function renderApprovedTable() {
+      const wrap = byId("approvedTableWrap");
+      byId("approvedCount").textContent = `${approvedKeywords.length} keyword`;
+      if (approvedError) {
+        wrap.innerHTML = `
+          <div class="p-10 text-center">
+            <p class="text-sm font-bold text-rose-600">Không tải được danh sách keyword đã duyệt</p>
+            <p class="text-xs text-slate-500 mt-2">${escapeHtml(approvedError)}</p>
+          </div>`;
+        return;
+      }
+      if (approvedKeywords.length === 0) {
+        wrap.innerHTML = `
+          <div class="py-16 px-6 text-center">
+            <p class="text-sm font-bold text-slate-900">Chưa có keyword nào được duyệt</p>
+            <p class="text-xs text-slate-500 mt-1.5">Mở một keyword ở Dashboard, bấm <strong class="text-orange-600">LẤY KEYWORD</strong> ở phần Keyword gợi ý triển khai.</p>
+          </div>`;
+        return;
+      }
+      const fmtDate = (iso) => iso ? iso.split("-").reverse().join("/") : "--";
+      const fmtTime = (iso) => iso ? new Date(iso).toLocaleString("vi-VN", { hour: "2-digit", minute: "2-digit", day: "2-digit", month: "2-digit", year: "numeric" }) : "--";
+      wrap.innerHTML = `
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-blue-50">
+                <th class="px-3 py-3 text-center w-14">#</th>
+                <th class="px-3 py-3 text-left min-w-[240px]">Keyword triển khai</th>
+                <th class="px-3 py-3 text-left min-w-[180px]">Từ keyword gốc</th>
+                <th class="px-3 py-3 text-left whitespace-nowrap">Nhóm chủ đề</th>
+                <th class="px-3 py-3 text-center whitespace-nowrap">Ngày báo cáo</th>
+                <th class="px-3 py-3 text-center whitespace-nowrap">Thời gian duyệt</th>
+                ${STATIC_MODE ? `<th class="px-3 py-3 text-left whitespace-nowrap">Người duyệt</th>` : ""}
+                <th class="px-3 py-3 w-12"></th>
+              </tr>
+            </thead>
+            <tbody>
+              ${approvedKeywords.map((a, i) => `
+                <tr class="border-b border-slate-100 hover:bg-blue-50/40 transition">
+                  <td class="px-3 py-3 text-center"><span class="inline-flex w-7 h-7 rounded-lg rank-other text-xs font-extrabold items-center justify-center">${i + 1}</span></td>
+                  <td class="px-3 py-3">
+                    <div class="font-bold text-slate-900">${escapeHtml(a.keyword)}</div>
+                    ${a.intent ? `<div class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(a.intent)}</div>` : ""}
+                  </td>
+                  <td class="px-3 py-3 text-slate-700">${escapeHtml(a.source_keyword || "--")}</td>
+                  <td class="px-3 py-3">${a.niche ? `<span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold whitespace-nowrap">${escapeHtml(a.niche)}</span>` : "--"}</td>
+                  <td class="px-3 py-3 text-center whitespace-nowrap text-slate-700">${fmtDate(a.report_date)}</td>
+                  <td class="px-3 py-3 text-center whitespace-nowrap text-slate-700">${fmtTime(a.approved_at)}</td>
+                  ${STATIC_MODE ? `<td class="px-3 py-3 text-slate-700 whitespace-nowrap">${escapeHtml(a.approved_by_email || "--")}</td>` : ""}
+                  <td class="px-3 py-3 text-center">
+                    <button onclick="copyText('${escapeAttr(a.keyword)}')" title="Copy keyword" aria-label="Copy keyword"
+                            class="w-8 h-8 rounded-full hover:bg-orange-50 text-slate-400 hover:text-orange-600 inline-flex items-center justify-center transition">
+                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                    </button>
+                  </td>
+                </tr>`).join("")}
+            </tbody>
+          </table>
+        </div>`;
     }
 
     function scanLatestNews(forceSerpapi = false) {
@@ -795,22 +1178,27 @@
       currentHours = hours;
       const b24 = document.getElementById("btnHours24");
       const b48 = document.getElementById("btnHours48");
-      if (hours === 24) {
-        b24.className = "px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm";
-        b48.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-emerald-900";
-      } else {
-        b48.className = "px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm";
-        b24.className = "px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-emerald-900";
-      }
+      const on = "px-3 py-1.5 rounded-lg font-bold transition brand-gradient text-white shadow-sm";
+      const off = "px-3 py-1.5 rounded-lg font-medium transition text-slate-600 hover:text-blue-700";
+      b24.className = hours === 24 ? on : off;
+      b48.className = hours === 24 ? off : on;
       loadReport(true, false);
     }
 
     function copyText(text) {
       navigator.clipboard.writeText(text);
+      showToast(`Đã copy: "${text}"`);
+    }
+
+    let toastTimer = null;
+    function showToast(text, isError = false) {
       const toast = document.getElementById("toast");
-      toast.textContent = `Đã copy: "${text}"`;
+      toast.textContent = text;
+      toast.classList.toggle("brand-gradient", !isError);
+      toast.classList.toggle("bg-rose-600", isError);
       toast.classList.remove("hidden");
-      setTimeout(() => toast.classList.add("hidden"), 2200);
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.add("hidden"), isError ? 4000 : 2200);
     }
 
     function exportReportCSV() {
@@ -882,7 +1270,7 @@
       if (!text) { box.classList.add("hidden"); return; }
       box.textContent = text;
       box.className = "text-xs font-semibold rounded-xl px-3.5 py-2.5 border " + (type === "ok"
-        ? "bg-emerald-50 text-emerald-800 border-emerald-300"
+        ? "bg-blue-50 text-blue-800 border-blue-200"
         : "bg-rose-50 text-rose-700 border-rose-300");
     }
 
@@ -981,6 +1369,8 @@
       authState.unlocked = false;
       authState.userId = null;
       currentReport = null;
+      approvedKeywords = [];
+      closeKeywordModal();
       byId("keywordsContainer").innerHTML = "";
       show("userBox", false);
       byId("userBox").classList.remove("flex");
@@ -1028,6 +1418,7 @@
       show("userBox", true);
       byId("userBox").classList.add("flex");
       loadReport(false, false);
+      loadApprovedKeywords();
     }
 
     async function recheckApproval() {
@@ -1078,6 +1469,7 @@
       initAuth();
     } else {
       loadReport(false, false);
+      loadApprovedKeywords();
     }
   </script>
 </body>
