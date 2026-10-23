@@ -2,6 +2,11 @@ name: Cập nhật báo cáo hằng ngày
 
 on:
   workflow_dispatch:        # chỉ chạy khi bấm "Run workflow" tay trong tab Actions
+    inputs:
+      ui_only:
+        description: "Chỉ cập nhật giao diện (không quét tin, không tốn lượt SerpApi)"
+        type: boolean
+        default: false
 
 # Chỉ chạy tay (KHÔNG chạy theo lịch, KHÔNG chạy khi push) để không tốn lượt SerpApi (4 lượt mỗi lần chạy).
 
@@ -34,7 +39,7 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
-        run: python build_static.py
+        run: python build_static.py ${{ inputs.ui_only && '--ui-only' || '' }}
 
       - uses: actions/configure-pages@v5
 

@@ -10,6 +10,7 @@ Biến môi trường cần có:
   SERPAPI_API_KEY                   (khi chạy engine)
 Chạy cục bộ:  python build_static.py             (dùng .env)
 Cờ --reuse:   dùng data/latest_top10_report.json có sẵn, không chạy engine (không tốn lượt SerpApi).
+Cờ --ui-only: chỉ xuất lại giao diện, giữ nguyên các báo cáo đã có trên Supabase (không chạy engine, không ghi báo cáo).
 Xem thử cục bộ: python -m http.server -d site 8080
 """
 import json
@@ -65,11 +66,14 @@ def main() -> None:
     load_dotenv(ROOT / ".env")
     url = need("SUPABASE_URL").rstrip("/")
     anon_key = need("SUPABASE_ANON_KEY")
-    service_key = need("SUPABASE_SERVICE_KEY")
+    ui_only = "--ui-only" in sys.argv
+    service_key = os.getenv("SUPABASE_SERVICE_KEY", "").strip() if ui_only else need("SUPABASE_SERVICE_KEY")
     if anon_key == service_key:
         sys.exit("SUPABASE_ANON_KEY đang trùng SUPABASE_SERVICE_KEY. Khóa bí mật tuyệt đối không được nhúng vào trang web.")
 
-    if "--reuse" in sys.argv:
+    if ui_only:
+        report = None
+    elif "--reuse" in sys.argv:
         report = json.loads((ROOT / "data" / "latest_top10_report.json").read_text(encoding="utf-8"))
     else:
         from backend.engine import build_daily_top10_report
@@ -83,7 +87,7 @@ def main() -> None:
         if bad:
             print(f"CẢNH BÁO: một số cổng SerpApi lỗi: {bad}")
 
-    if not report.get("top_10_keywords"):
+    if report is not None and not report.get("top_10_keywords"):
         sys.exit("Báo cáo rỗng (không có keyword nào). Không xuất bản để tránh ghi đè bằng dữ liệu trống.")
 
     html = (ROOT / "frontend" / "index.html").read_text(encoding="utf-8")
@@ -94,7 +98,8 @@ def main() -> None:
     html = html.replace(MARKERS["URL"][0], MARKERS["URL"][1].format(value=json.dumps(url)))
     html = html.replace(MARKERS["KEY"][0], MARKERS["KEY"][1].format(value=json.dumps(anon_key)))
 
-    publish_report(report, url, service_key)
+    if report is not None:
+        publish_report(report, url, service_key)
 
     if SITE.exists():
         shutil.rmtree(SITE)
@@ -102,7 +107,10 @@ def main() -> None:
     (SITE / "index.html").write_text(html, encoding="utf-8")
     shutil.copy(ROOT / "frontend" / "logo.png", SITE / "logo.png")
     (SITE / ".nojekyll").write_text("", encoding="utf-8")
-    print(f"Đã xuất {SITE} — {len(report['top_10_keywords'])} keyword, cập nhật {report.get('generated_at')}")
+    if report is None:
+        print(f"Đã xuất {SITE} — chỉ giao diện, dùng các báo cáo đã có trên Supabase")
+    else:
+        print(f"Đã xuất {SITE} — {len(report['top_10_keywords'])} keyword, cập nhật {report.get('generated_at')}")
 
 
 if __name__ == "__main__":
