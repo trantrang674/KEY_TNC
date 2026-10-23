@@ -1109,6 +1109,29 @@
       }
     }
 
+    async function deleteApprovedKeyword(id, btn) {
+      const target = approvedKeywords.find(a => Number(a.id) === id);
+      if (!target) return;
+      if (!confirm(`Xóa keyword "${target.keyword}" khỏi danh sách đã duyệt?`)) return;
+      btn.disabled = true;
+      try {
+        if (STATIC_MODE) {
+          const { data, error } = await sb.from("approved_keywords").delete().eq("id", id).select("id");
+          if (error) throw new Error(error.message);
+          // RLS chặn thì Supabase không báo lỗi mà chỉ không xóa dòng nào
+          if (!data || data.length === 0) throw new Error("Tài khoản chưa có quyền xóa (cần chạy lại database/approved_keywords.sql).");
+        }
+        approvedKeywords = approvedKeywords.filter(a => Number(a.id) !== id);
+        if (!STATIC_MODE) localStorage.setItem(LOCAL_APPROVED_KEY, JSON.stringify(approvedKeywords));
+        renderApprovedTable();
+        showToast(`Đã xóa: "${target.keyword}"`);
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        showToast("Không xóa được keyword: " + err.message, true);
+      }
+    }
+
     function renderApprovedTable() {
       const wrap = byId("approvedTableWrap");
       byId("approvedCount").textContent = `${approvedKeywords.length} keyword`;
@@ -1142,7 +1165,7 @@
                 <th class="px-3 py-3 text-center whitespace-nowrap">Ngày báo cáo</th>
                 <th class="px-3 py-3 text-center whitespace-nowrap">Thời gian duyệt</th>
                 ${STATIC_MODE ? `<th class="px-3 py-3 text-left whitespace-nowrap">Người duyệt</th>` : ""}
-                <th class="px-3 py-3 w-12"></th>
+                <th class="px-3 py-3 w-36 sticky right-0 bg-slate-50"></th>
               </tr>
             </thead>
             <tbody>
@@ -1158,11 +1181,18 @@
                   <td class="px-3 py-3 text-center whitespace-nowrap text-slate-700">${fmtDate(a.report_date)}</td>
                   <td class="px-3 py-3 text-center whitespace-nowrap text-slate-700">${fmtTime(a.approved_at)}</td>
                   ${STATIC_MODE ? `<td class="px-3 py-3 text-slate-700 whitespace-nowrap">${escapeHtml(a.approved_by_email || "--")}</td>` : ""}
-                  <td class="px-3 py-3 text-center">
-                    <button onclick="copyText('${escapeAttr(a.keyword)}')" title="Copy keyword" aria-label="Copy keyword"
-                            class="w-8 h-8 rounded-full hover:bg-orange-50 text-slate-400 hover:text-orange-600 inline-flex items-center justify-center transition">
-                      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-                    </button>
+                  <td class="px-3 py-3 sticky right-0 bg-white shadow-[-8px_0_12px_-10px_rgba(30,64,175,0.25)]">
+                    <div class="flex items-center justify-end gap-1.5">
+                      <button onclick="copyText('${escapeAttr(a.keyword)}')" title="Copy keyword" aria-label="Copy keyword"
+                              class="w-8 h-8 rounded-full hover:bg-blue-50 text-slate-400 hover:text-blue-600 inline-flex items-center justify-center transition">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+                      </button>
+                      <button onclick="deleteApprovedKeyword(${Number(a.id)}, this)"
+                              class="px-3 py-1.5 rounded-full bg-white hover:bg-rose-50 border border-rose-200 text-rose-600 text-[11px] font-extrabold tracking-wide inline-flex items-center gap-1 transition disabled:opacity-60">
+                        <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"/></svg>
+                        XÓA
+                      </button>
+                    </div>
                   </td>
                 </tr>`).join("")}
             </tbody>

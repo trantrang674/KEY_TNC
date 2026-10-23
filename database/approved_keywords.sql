@@ -3,7 +3,7 @@
 -- Cách dùng: chạy auth_postgres.sql trước, sau đó dán file này vào Supabase > SQL Editor > Run
 -- (chạy lại nhiều lần an toàn).
 -- Cơ chế:
---   * Chỉ tài khoản approved = true mới xem / thêm keyword duyệt.
+--   * Chỉ tài khoản approved = true mới xem / thêm / xóa keyword duyệt.
 --   * Người duyệt và email được tự điền từ phiên đăng nhập, client không tự khai được.
 --   * Mỗi keyword chỉ duyệt 1 lần (không phân biệt hoa thường).
 -- =====================================================================
@@ -39,4 +39,10 @@ CREATE POLICY "approved_keywords_insert_approved" ON public.approved_keywords
         AND approved_by_email IS NOT DISTINCT FROM (auth.jwt() ->> 'email')
     );
 
-GRANT SELECT, INSERT ON public.approved_keywords TO authenticated;
+-- Nút "XÓA" trong tab Keyword Duyệt: tài khoản đã duyệt nào cũng xóa được (dùng chung cho cả team)
+DROP POLICY IF EXISTS "approved_keywords_delete_approved" ON public.approved_keywords;
+CREATE POLICY "approved_keywords_delete_approved" ON public.approved_keywords
+    FOR DELETE TO authenticated
+    USING (public.is_approved());
+
+GRANT SELECT, INSERT, DELETE ON public.approved_keywords TO authenticated;
