@@ -449,9 +449,7 @@
                     <input type="date" id="filterTo" onchange="loadReport(false, false)" aria-label="Đến ngày"
                            class="bg-white border border-blue-100 rounded-lg px-2 py-1 text-xs font-medium text-slate-800 focus:outline-none focus:border-blue-500" />
                   </span>
-                  <button type="button" onclick="resetToLatestDate()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-orange-50 border border-orange-200 text-orange-600 font-bold">Mới nhất</button>
-                  <span id="dateFilterHint" class="text-[11px] text-slate-500"></span>
-                </div>
+                  <button type="button" onclick="resetToLatestDate()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-orange-50 border border-orange-200 text-orange-600 font-bold">Mới nhất</button>                </div>
 
                 <!-- Time window selector -->
                 <div class="flex items-center bg-blue-50 p-1 rounded-xl border border-blue-100 text-xs">
@@ -709,7 +707,6 @@
     async function loadAvailableDates() {
       const { data } = await sb.from("daily_reports").select("report_date").order("report_date", { ascending: false }).limit(400);
       const dates = (data || []).map(r => r.report_date);
-      byId("dateFilterHint").textContent = dates.length ? `Đã lưu ${dates.length} ngày` : "";
       if (dates.length) {
         ["filterDate", "filterFrom", "filterTo"].forEach(id => {
           byId(id).max = dates[0];
