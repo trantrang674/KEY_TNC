@@ -74,31 +74,37 @@ src_rows = rows("SELECT * FROM sources")
 res = post("sources", [{"name": s["name"], "source_type": s["source_type"], "badge": s["badge"],
                         "domain": s["domain"], "feed_url": s["feed_url"], "is_active": b(s["is_active"])}
                        for s in src_rows], "name", ret=True)
-src_map = {s["id"]: next(x["id"] for x in res if x["name"] == s["name"]) for s in src_rows}
+_by_name = {x["name"]: x["id"] for x in res}
+src_map = {s["id"]: _by_name[s["name"]] for s in src_rows}
 
 # 3. SerpApi: runs -> calls -> children (xóa calls cũ của các run này để chạy lại không nhân đôi)
 run_rows = rows("SELECT * FROM serpapi_runs")
 res = post("serpapi_runs", [{"run_date": r["run_date"], "executed_at": r["executed_at"], "forced": b(r["forced"])}
                             for r in run_rows], "run_date", ret=True)
-run_map = {r["id"]: next(x["id"] for x in res if x["run_date"] == r["run_date"]) for r in run_rows}
-for new_id in run_map.values():
-    delete("serpapi_calls", f"serpapi_run=eq.{new_id}")
+_by_date = {x["run_date"]: x["id"] for x in res}
+run_map = {r["id"]: _by_date[r["run_date"]] for r in run_rows}
 
 call_rows = rows("SELECT * FROM serpapi_calls")
+# Chỉ xóa calls cũ khi local có dữ liệu thay thế, tránh mất dữ liệu trên Supabase nếu SQLite rỗng
+if call_rows:
+    for new_id in run_map.values():
+        delete("serpapi_calls", f"serpapi_run=eq.{new_id}")
+
 res = post("serpapi_calls", [{
     "serpapi_run": run_map[c["serpapi_run"]], "engine": c["engine"], "query": c["query"], "status": c["status"],
     "result_count": c["result_count"], "error_message": c["error_message"],
     "raw_json": json.loads(c["raw_json"]) if c["raw_json"] else None} for c in call_rows],
     "serpapi_run,engine", ret=True)
-call_map = {c["id"]: next(x["id"] for x in res if x["serpapi_run"] == run_map[c["serpapi_run"]]
-                          and x["engine"] == c["engine"]) for c in call_rows}
+_by_call = {(x["serpapi_run"], x["engine"]): x["id"] for x in res}
+call_map = {c["id"]: _by_call[(run_map[c["serpapi_run"]], c["engine"])] for c in call_rows}
 
 tq_rows = rows("SELECT * FROM trending_queries ORDER BY id")
 res = post("trending_queries", [{
     "call_id": call_map[t["call_id"]], "query": t["query"], "search_volume": t["search_volume"],
     "increase_percentage": t["increase_percentage"],
     "categories": json.loads(t["categories"]) if t["categories"] else None} for t in tq_rows], ret=True)
-assert len(res) == len(tq_rows) and all(x["query"] == t["query"] for x, t in zip(res, tq_rows)), "lệch thứ tự trending_queries"
+if len(res) != len(tq_rows) or any(x["query"] != t["query"] for x, t in zip(res, tq_rows)):
+    sys.exit("Lệch thứ tự trending_queries giữa SQLite và Supabase, dừng để tránh gán sai khóa.")
 tq_map = {t["id"]: x["id"] for t, x in zip(tq_rows, res)}
 
 post("trending_related_queries",
@@ -122,7 +128,8 @@ kw_rows = rows("SELECT * FROM keywords")
 res = post("keywords", [{"cluster_id": k["cluster_id"], "display_keyword": k["display_keyword"],
                          "niche_id": k["niche_id"], "first_seen_at": k["first_seen_at"],
                          "last_seen_at": k["last_seen_at"]} for k in kw_rows], "cluster_id", ret=True)
-kw_map = {k["id"]: next(x["id"] for x in res if x["cluster_id"] == k["cluster_id"]) for k in kw_rows}
+_by_cluster = {x["cluster_id"]: x["id"] for x in res}
+kw_map = {k["id"]: _by_cluster[k["cluster_id"]] for k in kw_rows}
 
 art_rows = rows("SELECT * FROM articles")
 res = post("articles", [{
@@ -131,7 +138,8 @@ res = post("articles", [{
     "fetched_at": a["fetched_at"], "origin": a["origin"], "niche_id": a["niche_id"],
     "niche_relevance": a["niche_relevance"], "is_noise": b(a["is_noise"]), "noise_reason": a["noise_reason"]}
     for a in art_rows], "url", ret=True)
-art_map = {a["id"]: next(x["id"] for x in res if x["url"] == a["url"]) for a in art_rows}
+_by_url = {x["url"]: x["id"] for x in res}
+art_map = {a["id"]: _by_url[a["url"]] for a in art_rows}
 
 post("article_keywords", [{"article_id": art_map[x["article_id"]], "keyword_id": kw_map[x["keyword_id"]]}
                           for x in rows("SELECT * FROM article_keywords")], "article_id,keyword_id", ignore=True)
@@ -158,8 +166,8 @@ res = post("keyword_rankings", [{
     "press_count": k["press_count"], "competitor_count": k["competitor_count"],
     "newest_hours_ago": k["newest_hours_ago"], "is_trending_now": b(k["is_trending_now"]),
     "google_trends_index": k["google_trends_index"] or 0} for k in rk_rows], "run_id,keyword_id", ret=True)
-rk_map = {k["id"]: next(x["id"] for x in res if x["run_id"] == rr_map[k["run_id"]]
-                        and x["keyword_id"] == kw_map[k["keyword_id"]]) for k in rk_rows}
+_by_rank = {(x["run_id"], x["keyword_id"]): x["id"] for x in res}
+rk_map = {k["id"]: _by_rank[(rr_map[k["run_id"]], kw_map[k["keyword_id"]])] for k in rk_rows}
 
 post("ranking_articles", [{"ranking_id": rk_map[x["ranking_id"]], "article_id": art_map[x["article_id"]],
                            "position": x["position"]} for x in rows("SELECT * FROM ranking_articles")],

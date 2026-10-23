@@ -39,6 +39,36 @@ TOP_ARTICLES = 5     # số bài viết đại diện cho mỗi keyword
 SEO_SUGGESTIONS = 3  # số keyword gợi ý viết bài SEO cho mỗi keyword
 
 
+GENERIC_TOKENS = {
+    "mới", "nhất", "cập", "nhật", "tính", "năng", "cách", "lỗi", "giá", "tin", "tức",
+    "của", "cho", "các", "một", "những", "với", "trên", "được", "này", "new", "the", "and",
+}
+
+
+def _tokens(text: str) -> List[str]:
+    return [t for t in re.split(r"\W+", text.lower()) if len(t) >= 3 and t not in GENERIC_TOKENS]
+
+
+def phrase_in(needle: str, haystack: str) -> bool:
+    """Cụm `needle` xuất hiện nguyên vẹn (theo ranh giới từ) trong `haystack`."""
+    needle, haystack = needle.strip().lower(), haystack.lower()
+    if not needle:
+        return False
+    return re.search(r"(?<!\w)" + re.escape(needle) + r"(?!\w)", haystack) is not None
+
+
+def keywords_match(a: str, b: str) -> bool:
+    """Hai cụm từ khóa được coi là cùng chủ đề khi: cụm này chứa nguyên cụm kia,
+    hoặc chia sẻ >= 2 từ đặc trưng (hoặc toàn bộ từ đặc trưng nếu cụm chỉ có 1 từ)."""
+    if phrase_in(a, b) or phrase_in(b, a):
+        return True
+    ta, tb = set(_tokens(a)), set(_tokens(b))
+    if not ta or not tb:
+        return False
+    common = ta & tb
+    return len(common) >= 2 or (len(common) >= 1 and min(len(ta), len(tb)) == 1)
+
+
 def select_top_articles(articles: List[Dict], all_pool: List[Dict], keyword: str, limit: int = TOP_ARTICLES) -> List[Dict]:
     """
     Chọn ra đúng Top `limit` bài viết tốt nhất cho 1 Keyword trong vòng 24h - 48h:
@@ -78,10 +108,7 @@ def select_top_articles(articles: List[Dict], all_pool: List[Dict], keyword: str
 
     # Lượt 3: Nếu vẫn chưa đủ bài, tìm mở rộng trong toàn bộ kho bài viết 48h theo từ khóa con
     if len(selected) < limit:
-        kw_tokens = [
-            tok.lower() for tok in re.split(r"\W+", keyword)
-            if len(tok) >= 3 and tok.lower() not in {"mới", "nhất", "cập", "nhật", "tính", "năng", "cách"}
-        ]
+        kw_tokens = _tokens(keyword)
         for art in all_pool:
             if len(selected) >= limit:
                 break
@@ -228,7 +255,7 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
         # Kiểm tra xem có khớp với cụm sẵn có nào không
         matched_cid = None
         for cid, cl in clusters.items():
-            if cid in title.lower() or cl["keyword"].lower() in title.lower():
+            if phrase_in(cid, title) or phrase_in(cl["keyword"], title):
                 matched_cid = cid
                 break
         target_cid = matched_cid or cluster_id
@@ -240,10 +267,14 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
                 "articles": [],
                 "press_sources": set(),
                 "competitor_sources": set(),
-                "has_24h_article": True,
-                "min_hours_ago": 6.0
+                "has_24h_article": False,
+                "min_hours_ago": 99.0
             }
-        clusters[target_cid]["articles"].append(s_art)
+        tcl = clusters[target_cid]
+        tcl["articles"].append(s_art)
+        if s_art.get("within_24h", False):
+            tcl["has_24h_article"] = True
+        tcl["min_hours_ago"] = min(tcl["min_hours_ago"], s_art.get("hours_ago", 48.0))
         if s_art["source_type"] == "COMPETITOR":
             clusters[target_cid]["competitor_sources"].add(s_art["source_name"])
         else:
@@ -291,7 +322,7 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
         # Kiểm tra khớp với Google Trends Trending Now
         is_trending_now = False
         for tq in trending_now_queries:
-            if tq and (tq in kw_lower or kw_lower in tq or any(w in tq for w in kw_lower.split() if len(w) >= 4)):
+            if tq and keywords_match(tq, kw_lower):
                 serp_score += 6.0
                 is_trending_now = True
                 break
@@ -299,7 +330,7 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
         # Kiểm tra điểm Google Trends Timeseries
         gt_val = 0
         for g_k, g_v in gtrends_scores.items():
-            if g_k in kw_lower or kw_lower in g_k:
+            if keywords_match(g_k, kw_lower):
                 gt_val = g_v
                 serp_score += min(5.0, (g_v / 100.0) * 6.0)
                 break
@@ -392,7 +423,7 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
     try:
         with open(latest_report_path, "w", encoding="utf-8") as f:
             json.dump(report, f, ensure_ascii=False, indent=2)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"[engine] Không ghi được {latest_report_path.name}: {e}")
 
     return report

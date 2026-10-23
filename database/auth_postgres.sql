@@ -2,7 +2,9 @@
 -- ĐĂNG NHẬP BẢO MẬT cho dashboard (Supabase Auth + RLS)
 -- Cách dùng: dán toàn bộ vào Supabase > SQL Editor > Run (chạy lại nhiều lần an toàn).
 -- Cơ chế:
---   * Ai cũng có thể ĐĂNG KÝ, nhưng tài khoản mới mặc định approved = false (chờ duyệt).
+--   * Chế độ CHỈ-ADMIN-TẠO-TÀI-KHOẢN: tài khoản mới mặc định approved = TRUE, nên BẮT BUỘC tắt
+--     "Allow new users to sign up" trong Supabase Dashboard (xem database/admin_only_users.sql).
+--     Muốn chế độ "đăng ký tự do + chờ duyệt" thì đổi DEFAULT của cột approved thành FALSE.
 --   * Chỉ tài khoản approved = true mới đọc được báo cáo (daily_reports).
 --   * Người dùng KHÔNG tự duyệt được mình (không có policy UPDATE trên profiles).
 --   * Việc ghi báo cáo do GitHub Actions làm bằng service_role key (bỏ qua RLS).

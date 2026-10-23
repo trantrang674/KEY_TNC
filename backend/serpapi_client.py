@@ -8,6 +8,7 @@ Module tích hợp 4 cổng SerpApi (đúng 1 lượt gọi cho mỗi API mỗi 
 """
 
 import os
+import re
 import json
 from datetime import datetime, timezone, timedelta
 from pathlib import Path
@@ -23,6 +24,22 @@ load_dotenv()
 VN_TZ = timezone(timedelta(hours=7))
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
+
+
+_REL_UNITS = {
+    "minute": 1 / 60, "phút": 1 / 60, "hour": 1.0, "giờ": 1.0, "tiếng": 1.0,
+    "day": 24.0, "ngày": 24.0, "week": 168.0, "tuần": 168.0,
+}
+_REL_RE = re.compile(r"(\d+)\s*(minute|phút|hour|giờ|tiếng|day|ngày|week|tuần)", re.IGNORECASE)
+UNKNOWN_AGE_HOURS = 36.0  # không đọc được ngày đăng: coi là bài cũ trong khung 48h, KHÔNG thưởng điểm "tươi"
+
+
+def parse_hours_ago(date_text: str) -> float:
+    """Đổi chuỗi ngày của Google ('5 hours ago', '2 ngày trước'...) thành số giờ; không đọc được -> UNKNOWN_AGE_HOURS."""
+    m = _REL_RE.search(date_text or "")
+    if not m:
+        return UNKNOWN_AGE_HOURS
+    return round(int(m.group(1)) * _REL_UNITS[m.group(2).lower()], 1)
 
 
 def get_api_key() -> str:
@@ -78,8 +95,8 @@ def run_daily_4_serpapi_suite(candidate_keywords: List[str], force_refresh: bool
                 cached = json.load(f)
                 cached["from_cache"] = True
                 return cached
-        except Exception:
-            pass
+        except Exception as e:
+            print(f"[serpapi] Cache hỏng, sẽ gọi lại API: {e}")
 
     api_key = get_api_key()
     result = {
@@ -209,6 +226,7 @@ def run_daily_4_serpapi_suite(candidate_keywords: List[str], force_refresh: bool
                 if not title or not link:
                     continue
                 src_info = detect_source_info(source, link, "PRESS")
+                hours_ago = parse_hours_ago(item.get("date", ""))
                 search_articles.append({
                     "title": title,
                     "url": link,
@@ -216,10 +234,10 @@ def run_daily_4_serpapi_suite(candidate_keywords: List[str], force_refresh: bool
                     "source_name": src_info["name"],
                     "source_type": src_info["type"],
                     "source_badge": src_info["badge"],
-                    "published_at": datetime.now(VN_TZ).isoformat(),
-                    "hours_ago": 6.0,
+                    "published_at": (datetime.now(VN_TZ) - timedelta(hours=hours_ago)).isoformat(),
+                    "hours_ago": hours_ago,
                     "relative_time": date_str,
-                    "within_24h": True,
+                    "within_24h": hours_ago <= 24,
                     "from_serpapi_search": True
                 })
             result["google_search_articles"] = search_articles
@@ -292,7 +310,7 @@ def run_daily_4_serpapi_suite(candidate_keywords: List[str], force_refresh: bool
     try:
         with open(cache_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
-    except Exception:
-        pass
+    except Exception as e:
+        print(f"[serpapi] Không ghi được cache ngày: {e}")
 
     return result
