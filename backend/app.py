@@ -38,7 +38,7 @@ class Handler(BaseHTTPRequestHandler):
         # ── API: /api/report ──────────────────────────────────────────────
         if path == "/api/report":
             try:
-                data = json.loads(REPORT_FILE.read_text(encoding="utf-8"))
+                data = json.loads(REPORT_FILE.read_text(encoding="utf-8-sig"))
                 body = json.dumps(data, ensure_ascii=False).encode("utf-8")
                 self.send_response(200)
                 self.send_cors()
@@ -55,7 +55,7 @@ class Handler(BaseHTTPRequestHandler):
             try:
                 data = {}
                 if WORKFLOW_FILE.exists():
-                    data = json.loads(WORKFLOW_FILE.read_text(encoding="utf-8"))
+                    data = json.loads(WORKFLOW_FILE.read_text(encoding="utf-8-sig"))
                 body = json.dumps(data, ensure_ascii=False).encode("utf-8")
                 self.send_response(200)
                 self.send_cors()

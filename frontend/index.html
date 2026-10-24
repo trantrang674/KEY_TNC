@@ -554,12 +554,12 @@
           </div>
 
           <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-extrabold text-base shrink-0">
-              ⏳
+            <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-extrabold text-base shrink-0">
+              ✓
             </span>
             <div class="min-w-0">
-              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Chờ Duyệt</div>
-              <div id="wfStatPending" class="text-xl font-extrabold text-orange-600 mt-0.5">0</div>
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đã Duyệt Bài</div>
+              <div id="wfStatApproved" class="text-xl font-extrabold text-blue-600 mt-0.5">0</div>
             </div>
           </div>
 
@@ -568,7 +568,7 @@
               🚀
             </span>
             <div class="min-w-0">
-              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đã Đăng</div>
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đã Đăng Bài</div>
               <div id="wfStatPublished" class="text-xl font-extrabold text-emerald-600 mt-0.5">0</div>
             </div>
           </div>
@@ -587,8 +587,10 @@
                 <option value="UNCONFIRMED">Chưa nhận keyword</option>
                 <option value="WRITING">Đang viết bài</option>
                 <option value="HAS_ARTICLE">Đã có file bài viết (.md)</option>
-                <option value="PENDING">Chờ duyệt bài</option>
+                <option value="APPROVED">Đã duyệt bài</option>
+                <option value="UNAPPROVED">Chưa duyệt bài</option>
                 <option value="PUBLISHED">Đã đăng</option>
+                <option value="HAS_PUB_LINK">Đã có link bài đăng</option>
               </select>
               <div class="relative w-40 sm:w-56">
                 <input type="text" id="wfSearchInput" oninput="renderWorkflowTable()" placeholder="Lọc keyword..." class="w-full bg-white border border-blue-100 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500" />
@@ -705,6 +707,42 @@
         <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
           <button type="button" onclick="closeArtEditModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-xs font-bold hover:bg-slate-200 transition">Hủy</button>
           <button type="button" onclick="saveArtEditModal()" class="px-4 py-2 rounded-xl brand-btn text-white text-xs font-bold transition">Lưu Bài Viết</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL THÊM / SỬA LINK BÀI ĐÃ ĐĂNG -->
+  <div id="publishLinkModal" class="hidden fixed inset-0 z-[75]" role="dialog" aria-modal="true" aria-labelledby="pubLinkKw">
+    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closePublishLinkModal()"></div>
+    <div class="relative h-full flex items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-md bg-white rounded-2xl shadow-2xl border border-blue-100 p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 font-bold flex items-center justify-center">🔗</span>
+            <h3 class="text-base font-extrabold text-slate-900">Link Bài Đã Đăng</h3>
+          </div>
+          <button type="button" onclick="closePublishLinkModal()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center">✕</button>
+        </div>
+        <p class="text-xs text-slate-500">
+          Dán đường dẫn (URL) bài viết đã được đăng tải chính thức trên website:
+        </p>
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-800 mb-1">Keyword:</label>
+            <div id="pubLinkKw" class="text-xs font-extrabold text-blue-700 bg-blue-50 px-3 py-2 rounded-xl truncate"></div>
+          </div>
+          <div>
+            <label for="pubLinkInput" class="block text-xs font-bold text-slate-800 mb-1">Link bài đăng (URL):</label>
+            <input type="url" id="pubLinkInput" placeholder="https://tnc.vn/tin-tuc/bai-viet-moi" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs font-medium text-slate-900 focus:outline-none focus:border-blue-500" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between pt-2 border-t border-slate-100">
+          <button type="button" id="btnDeletePubLink" onclick="deletePublishLink()" class="px-3 py-2 rounded-xl bg-rose-50 text-rose-600 hover:bg-rose-100 text-xs font-bold transition hidden">Xóa link</button>
+          <div class="flex items-center gap-2 ml-auto">
+            <button type="button" onclick="closePublishLinkModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-xs font-bold hover:bg-slate-200 transition">Hủy</button>
+            <button type="button" onclick="savePublishLinkModal()" class="px-4 py-2 rounded-xl brand-btn text-white text-xs font-bold transition">Lưu Link Bài Đăng</button>
+          </div>
         </div>
       </div>
     </div>
@@ -1510,28 +1548,35 @@
           writing: false,
           article_url: "",
           article_content: "",
-          pending_approval: false,
+          approved: false, // Trạng thái duyệt: true = Đã duyệt, false = Chưa duyệt
           published: false,
+          published_url: "", // Link bài đã đăng
           updated_at: new Date().toISOString()
         };
+      }
+      if (workflowMap[key].approved === undefined) {
+        workflowMap[key].approved = !!workflowMap[key].pending_approval;
+      }
+      if (workflowMap[key].published_url === undefined) {
+        workflowMap[key].published_url = "";
       }
       return workflowMap[key];
     }
 
-    // 2. Trạng thái "XÁC NHẬN KEYWORD": khi tick chọn -> auto tick vào trạng thái "đang viết bài"
-    // 3. Trạng thái "ĐANG VIẾT BÀI": chạy giống với xác nhận keyword
-    // 5. Trạng thái "CHỜ DUYỆT"
-    // 6. Trạng thái "ĐÃ ĐĂNG"
+    // Toggle trạng thái:
+    // - Xác nhận keyword: tick chọn -> auto tick đang viết bài
+    // - Đang viết bài: toggle
+    // - Trạng thái duyệt: Đã duyệt / Chưa duyệt
+    // - Đã đăng: Đã đăng / Chưa đăng
     function toggleWfField(keyword, field) {
       const wf = getWfItem(keyword);
       if (field === "confirmed") {
         wf.confirmed = !wf.confirmed;
         if (wf.confirmed) {
-          // Rule yêu cầu: đã tick ô xác nhận keyword thì AUTO TICK vào trạng thái "đang viết bài"
           wf.writing = true;
           showToast(`Đã nhận keyword: "${keyword}" (Bắt đầu viết bài)`);
         } else {
-          if (!wf.published && !wf.pending_approval) {
+          if (!wf.published && !wf.approved) {
             wf.writing = false;
           }
         }
@@ -1540,18 +1585,22 @@
         if (wf.writing && !wf.confirmed) {
           wf.confirmed = true;
         }
-      } else if (field === "pending_approval") {
-        wf.pending_approval = !wf.pending_approval;
-        if (wf.pending_approval) {
+      } else if (field === "approved" || field === "pending_approval") {
+        wf.approved = !wf.approved;
+        wf.pending_approval = wf.approved;
+        if (wf.approved) {
           wf.confirmed = true;
           wf.writing = false;
-          showToast(`Đã chuyển sang Chờ duyệt: "${keyword}"`);
+          showToast(`Đã duyệt bài viết: "${keyword}" ✓`);
+        } else {
+          showToast(`Đã chuyển về Chưa duyệt: "${keyword}"`);
         }
       } else if (field === "published") {
         wf.published = !wf.published;
         if (wf.published) {
           wf.confirmed = true;
           wf.writing = false;
+          wf.approved = true;
           wf.pending_approval = true;
           showToast(`Bài viết đã xuất bản: "${keyword}" 🎉`);
         }
@@ -1561,7 +1610,7 @@
       renderWorkflowTable();
     }
 
-    // 1. DANH SÁCH KEYWORD: LẤY TRỰC TIẾP TỪ TAB "KEYWORD DUYỆT"
+    // Bảng Workflow
     function renderWorkflowTable() {
       const wrap = byId("workflowTableWrap");
       if (!wrap) return;
@@ -1572,18 +1621,19 @@
       byId("workflowBadgeStats").textContent = `${totalCount} nhiệm vụ`;
 
       let writingCount = 0;
-      let pendingCount = 0;
+      let approvedCount = 0;
       let publishedCount = 0;
 
       list.forEach(k => {
         const wf = getWfItem(k.keyword);
-        if (wf.published) publishedCount++;
-        else if (wf.pending_approval) pendingCount++;
+        if (wf.published || wf.published_url) publishedCount++;
+        if (wf.approved) approvedCount++;
         else if (wf.writing) writingCount++;
       });
 
       byId("wfStatWriting").textContent = writingCount;
-      byId("wfStatPending").textContent = pendingCount;
+      const elAppr = byId("wfStatApproved");
+      if (elAppr) elAppr.textContent = approvedCount;
       byId("wfStatPublished").textContent = publishedCount;
 
       if (totalCount === 0) {
@@ -1613,10 +1663,12 @@
           return false;
         }
         if (statusFilter === "UNCONFIRMED" && wf.confirmed) return false;
-        if (statusFilter === "WRITING" && (!wf.writing || wf.published || wf.pending_approval)) return false;
+        if (statusFilter === "WRITING" && (!wf.writing || wf.published || wf.approved)) return false;
         if (statusFilter === "HAS_ARTICLE" && (!wf.article_url && !wf.article_content)) return false;
-        if (statusFilter === "PENDING" && !wf.pending_approval) return false;
-        if (statusFilter === "PUBLISHED" && !wf.published) return false;
+        if (statusFilter === "APPROVED" && !wf.approved) return false;
+        if (statusFilter === "UNAPPROVED" && wf.approved) return false;
+        if (statusFilter === "PUBLISHED" && (!wf.published && !wf.published_url)) return false;
+        if (statusFilter === "HAS_PUB_LINK" && !wf.published_url) return false;
         return true;
       });
 
@@ -1638,12 +1690,13 @@
             <thead>
               <tr class="bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-blue-50">
                 <th class="px-3 py-3 text-center w-12">#</th>
-                <th class="px-3 py-3 text-left min-w-[240px]">1. Keyword (Từ Keyword Duyệt)</th>
-                <th class="px-3 py-3 text-center w-36">2. Xác Nhận Keyword</th>
-                <th class="px-3 py-3 text-center w-36">3. Đang Viết Bài</th>
-                <th class="px-3 py-3 text-left min-w-[190px]">4. Bài Viết (.md)</th>
-                <th class="px-3 py-3 text-center w-32">5. Chờ Duyệt</th>
-                <th class="px-3 py-3 text-center w-32">6. Đã Đăng</th>
+                <th class="px-3 py-3 text-left min-w-[220px]">Keyword</th>
+                <th class="px-3 py-3 text-center w-36">Xác nhận Keyword</th>
+                <th class="px-3 py-3 text-center w-36">Đang viết bài</th>
+                <th class="px-3 py-3 text-left min-w-[180px]">Bài viết (.md)</th>
+                <th class="px-3 py-3 text-center w-36">Trạng thái duyệt</th>
+                <th class="px-3 py-3 text-center w-32">Đã đăng</th>
+                <th class="px-3 py-3 text-center min-w-[190px]">Link bài đăng</th>
               </tr>
             </thead>
             <tbody>
@@ -1652,6 +1705,7 @@
                 const kEsc = escapeAttr(item.keyword);
                 const hasArticle = !!(wf.article_url || wf.article_content);
                 const fileName = wf.article_url ? wf.article_url.split(/[\\/]/).pop() : (hasArticle ? "article.md" : "");
+                const isPublished = wf.published || !!wf.published_url;
 
                 return `
                   <tr class="border-b border-slate-100 hover:bg-blue-50/30 transition">
@@ -1660,7 +1714,7 @@
                       <span class="inline-flex w-7 h-7 rounded-lg rank-other text-xs font-extrabold items-center justify-center">${idx + 1}</span>
                     </td>
 
-                    <!-- 1. KEYWORD DUYỆT -->
+                    <!-- Keyword -->
                     <td class="px-3 py-3">
                       <div class="font-bold text-slate-900">${escapeHtml(item.keyword)}</div>
                       <div class="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]">
@@ -1669,10 +1723,10 @@
                       </div>
                     </td>
 
-                    <!-- 2. XÁC NHẬN KEYWORD (khi agent lấy keyword viết thì ô đã Tick chọn) -->
+                    <!-- Xác nhận Keyword -->
                     <td class="px-3 py-3 text-center">
                       <button type="button" onclick="toggleWfField('${kEsc}', 'confirmed')"
-                              title="${wf.confirmed ? 'Đã tick: Agent đã lấy keyword viết bài. Bấm để bỏ chọn.' : 'Chưa tick: Bấm để xác nhận nhận keyword'}"
+                              title="${wf.confirmed ? 'Đã tick: Agent đã nhận keyword. Bấm để bỏ chọn.' : 'Chưa tick: Bấm để xác nhận nhận keyword'}"
                               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
                                 wf.confirmed
                                   ? 'bg-blue-50 border border-blue-300 text-blue-700 hover:bg-blue-100'
@@ -1684,7 +1738,7 @@
                       </button>
                     </td>
 
-                    <!-- 3. ĐANG VIẾT BÀI (auto tick khi xác nhận keyword) -->
+                    <!-- Đang viết bài (auto tick khi xác nhận keyword) -->
                     <td class="px-3 py-3 text-center">
                       <button type="button" onclick="toggleWfField('${kEsc}', 'writing')"
                               title="${wf.writing ? 'Đang viết bài' : 'Chưa viết bài'}"
@@ -1699,7 +1753,7 @@
                       </button>
                     </td>
 
-                    <!-- 4. BÀI VIẾT (.MD & NÚT MỞ) -->
+                    <!-- Bài viết (.md & Nút Mở) -->
                     <td class="px-3 py-3">
                       ${hasArticle ? `
                         <div class="flex items-center gap-2">
@@ -1725,32 +1779,58 @@
                       `}
                     </td>
 
-                    <!-- 5. CHỜ DUYỆT -->
+                    <!-- Trạng thái duyệt (2 lựa chọn: Đã duyệt khi đã tick, Chưa duyệt khi chưa tick) -->
                     <td class="px-3 py-3 text-center">
-                      <button type="button" onclick="toggleWfField('${kEsc}', 'pending_approval')"
+                      <button type="button" onclick="toggleWfField('${kEsc}', 'approved')"
+                              title="${wf.approved ? 'Trạng thái: Đã duyệt. Bấm để đổi sang Chưa duyệt' : 'Trạng thái: Chưa duyệt. Bấm để duyệt bài'}"
                               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
-                                wf.pending_approval
-                                  ? 'bg-orange-50 border border-orange-300 text-orange-700 hover:bg-orange-100'
-                                  : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
+                                wf.approved
+                                  ? 'bg-blue-50 border border-blue-300 text-blue-700 hover:bg-blue-100'
+                                  : 'bg-white border border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
                               }">
-                        ${wf.pending_approval
-                          ? `<svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Chờ duyệt`
-                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> --`}
+                        ${wf.approved
+                          ? `<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã duyệt`
+                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa duyệt`}
                       </button>
                     </td>
 
-                    <!-- 6. ĐÃ ĐĂNG -->
+                    <!-- Đã đăng -->
                     <td class="px-3 py-3 text-center">
                       <button type="button" onclick="toggleWfField('${kEsc}', 'published')"
+                              title="${isPublished ? 'Đã xuất bản' : 'Chưa đăng'}"
                               class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
-                                wf.published
+                                isPublished
                                   ? 'bg-emerald-50 border border-emerald-300 text-emerald-700 hover:bg-emerald-100'
                                   : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
                               }">
-                        ${wf.published
+                        ${isPublished
                           ? `<svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã đăng`
-                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> --`}
+                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa đăng`}
                       </button>
+                    </td>
+
+                    <!-- Link bài đăng (popup add link, đã có link thì hiện trạng thái 'Đã đăng (Xem link)') -->
+                    <td class="px-3 py-3 text-center">
+                      ${wf.published_url ? `
+                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 shadow-sm">
+                          <span class="text-xs font-bold text-emerald-700">Đã đăng</span>
+                          <a href="${escapeAttr(wf.published_url)}" target="_blank" rel="noopener noreferrer"
+                             class="text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-0.5"
+                             title="${escapeAttr(wf.published_url)}">
+                            (Xem link)
+                            <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+                          </a>
+                          <button type="button" onclick="openPublishLinkModal('${kEsc}')" title="Sửa link bài đăng" class="p-0.5 text-slate-400 hover:text-blue-600 transition">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                          </button>
+                        </div>
+                      ` : `
+                        <button type="button" onclick="openPublishLinkModal('${kEsc}')"
+                                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-blue-200 hover:border-blue-300 text-blue-700 text-xs font-semibold shadow-sm transition">
+                          <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
+                          + Thêm link
+                        </button>
+                      `}
                     </td>
                   </tr>`;
               }).join("")}
@@ -1867,6 +1947,60 @@
       closeArtEditModal();
       renderWorkflowTable();
       showToast(`Đã lưu bài viết cho: "${currentEditKw}"`);
+    }
+
+    // Modal Thêm / Sửa Link Bài Đã Đăng
+    let currentPubKw = null;
+
+    function openPublishLinkModal(keyword) {
+      const wf = getWfItem(keyword);
+      currentPubKw = keyword;
+      byId("pubLinkKw").textContent = keyword;
+      byId("pubLinkInput").value = wf.published_url || "";
+      const btnDel = byId("btnDeletePubLink");
+      if (btnDel) {
+        btnDel.classList.toggle("hidden", !wf.published_url);
+      }
+      show("publishLinkModal", true);
+      setTimeout(() => byId("pubLinkInput").focus(), 60);
+    }
+
+    function closePublishLinkModal() {
+      show("publishLinkModal", false);
+      currentPubKw = null;
+    }
+
+    async function savePublishLinkModal() {
+      if (!currentPubKw) return;
+      const wf = getWfItem(currentPubKw);
+      let url = byId("pubLinkInput").value.trim();
+      if (url && !/^https?:\/\//i.test(url) && !url.startsWith("/")) {
+        url = "https://" + url;
+      }
+      wf.published_url = url;
+      if (url) {
+        wf.published = true;
+        wf.approved = true;
+        wf.pending_approval = true;
+        wf.confirmed = true;
+        wf.writing = false;
+      }
+      wf.updated_at = new Date().toISOString();
+      await saveWorkflowData();
+      closePublishLinkModal();
+      renderWorkflowTable();
+      showToast(url ? `Đã lưu link bài đăng cho "${currentPubKw}"` : `Đã gỡ link bài đăng`);
+    }
+
+    async function deletePublishLink() {
+      if (!currentPubKw) return;
+      const wf = getWfItem(currentPubKw);
+      wf.published_url = "";
+      wf.updated_at = new Date().toISOString();
+      await saveWorkflowData();
+      closePublishLinkModal();
+      renderWorkflowTable();
+      showToast(`Đã xóa link bài đăng của: "${currentPubKw}"`);
     }
 
     // Markdown Parser hiển thị Markdown bài viết
