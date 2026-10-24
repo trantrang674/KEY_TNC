@@ -513,7 +513,95 @@
           </div>
         </div>
       </section>
-      <section data-view="workflow" class="hidden"></section>
+      <!-- ============ TAB 3: WORKFLOW ============ -->
+      <section data-view="workflow" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+              Tiến Độ <span class="text-gradient">Workflow Bài Viết</span>
+            </h2>
+            <p class="text-xs text-slate-500 mt-1">
+              Quản lý chu trình: Keyword duyệt → Xác nhận & Viết bài → Bài viết hoàn tất (.md) → Chờ duyệt → Đã đăng
+            </p>
+          </div>
+          <div class="flex items-center gap-2">
+            <span id="workflowBadgeStats" class="px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100 shadow-sm">
+              0 nhiệm vụ
+            </span>
+          </div>
+        </div>
+
+        <!-- STATS CARDS -->
+        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
+          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-extrabold text-base shrink-0">
+              📋
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Từ Keyword Duyệt</div>
+              <div id="wfStatTotal" class="text-xl font-extrabold text-slate-900 mt-0.5">0</div>
+            </div>
+          </div>
+
+          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-extrabold text-base shrink-0">
+              ✍️
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đang Viết Bài</div>
+              <div id="wfStatWriting" class="text-xl font-extrabold text-amber-600 mt-0.5">0</div>
+            </div>
+          </div>
+
+          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-orange-50 text-orange-600 flex items-center justify-center font-extrabold text-base shrink-0">
+              ⏳
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Chờ Duyệt</div>
+              <div id="wfStatPending" class="text-xl font-extrabold text-orange-600 mt-0.5">0</div>
+            </div>
+          </div>
+
+          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
+            <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-extrabold text-base shrink-0">
+              🚀
+            </span>
+            <div class="min-w-0">
+              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đã Đăng</div>
+              <div id="wfStatPublished" class="text-xl font-extrabold text-emerald-600 mt-0.5">0</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MAIN WORKFLOW TABLE CARD -->
+        <div class="pro-card rounded-2xl overflow-hidden">
+          <div class="px-4 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-blue-50 bg-slate-50/60">
+            <div class="flex items-center gap-2">
+              <h3 class="text-sm font-extrabold text-slate-900">Danh Sách Tiến Độ Keyword & Bài Viết</h3>
+              <span id="wfFilterCount" class="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[11px] font-bold">0</span>
+            </div>
+            <div class="flex flex-wrap items-center gap-2">
+              <select id="wfFilterStatus" onchange="renderWorkflowTable()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-blue-500">
+                <option value="ALL">Tất cả giai đoạn</option>
+                <option value="UNCONFIRMED">Chưa nhận keyword</option>
+                <option value="WRITING">Đang viết bài</option>
+                <option value="HAS_ARTICLE">Đã có file bài viết (.md)</option>
+                <option value="PENDING">Chờ duyệt bài</option>
+                <option value="PUBLISHED">Đã đăng</option>
+              </select>
+              <div class="relative w-40 sm:w-56">
+                <input type="text" id="wfSearchInput" oninput="renderWorkflowTable()" placeholder="Lọc keyword..." class="w-full bg-white border border-blue-100 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500" />
+                <svg class="w-3.5 h-3.5 text-slate-400 absolute left-2.5 top-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div id="workflowTableWrap">
+            <div class="py-16 text-center text-xs text-slate-400">Đang tải tiến độ workflow...</div>
+          </div>
+        </div>
+      </section>
       <section data-view="baocao" class="hidden"></section>
       <section data-view="dexuat" class="hidden"></section>
     </main>
@@ -536,6 +624,88 @@
           </button>
         </div>
         <div id="kwModalBody" class="px-5 sm:px-6 py-5 overflow-y-auto custom-scroll"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP XEM BÀI VIẾT MARKDOWN HOÀN TẤT -->
+  <div id="articleModal" class="hidden fixed inset-0 z-[70]" role="dialog" aria-modal="true" aria-labelledby="artModalTitle">
+    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeArticleModal()"></div>
+    <div class="relative h-full flex items-center justify-center p-3 sm:p-6 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-4xl max-h-[90vh] flex flex-col bg-white rounded-3xl shadow-2xl border border-blue-100 overflow-hidden">
+        <!-- Header -->
+        <div class="px-5 sm:px-6 py-4 border-b border-blue-50 flex items-center justify-between gap-3 bg-slate-50/60">
+          <div class="flex items-center gap-3 min-w-0">
+            <span class="w-10 h-10 shrink-0 rounded-xl bg-blue-100 text-blue-700 font-extrabold flex items-center justify-center text-lg">
+              📄
+            </span>
+            <div class="min-w-0">
+              <h3 id="artModalTitle" class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900 truncate"></h3>
+              <div class="flex items-center gap-2 mt-0.5">
+                <span id="artModalFile" class="text-xs font-mono text-slate-500 truncate max-w-xs sm:max-w-md"></span>
+                <span id="artModalStatus" class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 shrink-0"></span>
+              </div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 shrink-0">
+            <button type="button" onclick="copyArticleMarkdown()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 font-semibold text-xs flex items-center gap-1.5 transition">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+              Copy Markdown
+            </button>
+            <button type="button" onclick="closeArticleModal()" aria-label="Đóng" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 flex items-center justify-center transition">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab switches: Xem trước / Mã nguồn Markdown -->
+        <div class="px-6 py-2 border-b border-blue-50 bg-white flex items-center justify-between gap-2">
+          <div class="flex gap-2 text-xs">
+            <button type="button" id="artTabPreview" onclick="switchArticleTab('preview')" class="px-3 py-1 rounded-lg font-bold brand-gradient text-white">Xem trước (HTML)</button>
+            <button type="button" id="artTabSource" onclick="switchArticleTab('source')" class="px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100">Mã nguồn (.md)</button>
+          </div>
+          <span class="text-[11px] text-slate-400">File Markdown từ Agent viết bài</span>
+        </div>
+
+        <!-- Content -->
+        <div id="artModalBodyPreview" class="px-6 py-6 overflow-y-auto custom-scroll max-h-[60vh] space-y-3 leading-relaxed"></div>
+        <div id="artModalBodySource" class="hidden px-6 py-4 overflow-y-auto custom-scroll max-h-[60vh]">
+          <pre id="artModalRawText" class="p-4 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto whitespace-pre-wrap"></pre>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL GẮN / SỬA LINK FILE BÀI VIẾT .MD -->
+  <div id="artEditModal" class="hidden fixed inset-0 z-[75]" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeArtEditModal()"></div>
+    <div class="relative h-full flex items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-blue-100 p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <h3 class="text-base font-extrabold text-slate-900">Gắn File Bài Viết (.md)</h3>
+          <button type="button" onclick="closeArtEditModal()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center">✕</button>
+        </div>
+        <p class="text-xs text-slate-500">
+          Nhập đường dẫn file output Markdown của Agent (ví dụ: <code class="bg-blue-50 text-blue-700 px-1 py-0.5 rounded font-mono">outputs/articles/vneid.md</code>) hoặc dán link bài viết.
+        </p>
+        <div class="space-y-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-800 mb-1">Keyword:</label>
+            <div id="artEditKw" class="text-xs font-extrabold text-blue-700 bg-blue-50 px-3 py-2 rounded-xl"></div>
+          </div>
+          <div>
+            <label for="artEditUrl" class="block text-xs font-bold text-slate-800 mb-1">Đường dẫn file .md hoặc URL:</label>
+            <input type="text" id="artEditUrl" placeholder="outputs/articles/bai-viet.md" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs font-mono text-slate-900 focus:outline-none focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="artEditContent" class="block text-xs font-bold text-slate-800 mb-1">Hoặc dán trực tiếp nội dung Markdown (tùy chọn):</label>
+            <textarea id="artEditContent" rows="5" placeholder="# Tiêu đề bài viết&#10;&#10;Nội dung bài viết..." class="w-full bg-slate-50 border border-blue-100 rounded-xl p-3 text-xs font-mono text-slate-900 focus:outline-none focus:border-blue-500"></textarea>
+          </div>
+        </div>
+        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+          <button type="button" onclick="closeArtEditModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-xs font-bold hover:bg-slate-200 transition">Hủy</button>
+          <button type="button" onclick="saveArtEditModal()" class="px-4 py-2 rounded-xl brand-btn text-white text-xs font-bold transition">Lưu Bài Viết</button>
+        </div>
       </div>
     </div>
   </div>
@@ -569,7 +739,7 @@
 
     function renderPlaceholders() {
       Object.entries(TABS).forEach(([tab, cfg]) => {
-        if (tab === "dashboard" || tab === "duyet") return;
+        if (tab === "dashboard" || tab === "duyet" || tab === "workflow") return;
         const icon = document.querySelector(`.nav-rail-btn[data-tab="${tab}"] svg`).outerHTML.replace('class="w-5 h-5"', 'class="w-8 h-8"');
         document.querySelector(`[data-view="${tab}"]`).innerHTML = `
           <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">${escapeHtml(cfg.title)}</h2>
@@ -590,6 +760,8 @@
         b.classList.toggle("is-active", on);
         if (on) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
       });
+      if (tab === "duyet") renderApprovedTable();
+      if (tab === "workflow") renderWorkflowTable();
       if (updateHash) history.replaceState(null, "", window.location.pathname + "#" + tab);
       window.scrollTo({ top: 0 });
     }
@@ -1137,6 +1309,7 @@
         approvedError = err.message;
       }
       renderApprovedTable();
+      renderWorkflowTable();
     }
 
     // Ngày của báo cáo đang xem (YYYY-MM-DD)
@@ -1179,6 +1352,7 @@
         }
         btn.outerHTML = APPROVED_BTN_HTML;
         renderApprovedTable();
+        renderWorkflowTable();
         showToast(`Đã duyệt: "${record.keyword}"`);
       } catch (err) {
         console.error(err);
@@ -1203,6 +1377,7 @@
         approvedKeywords = approvedKeywords.filter(a => Number(a.id) !== id);
         if (!STATIC_MODE) localStorage.setItem(LOCAL_APPROVED_KEY, JSON.stringify(approvedKeywords));
         renderApprovedTable();
+        renderWorkflowTable();
         showToast(`Đã xóa: "${target.keyword}"`);
       } catch (err) {
         console.error(err);
@@ -1278,6 +1453,458 @@
           </table>
         </div>`;
     }
+
+    // =====================================================================
+    // WORKFLOW LOGIC & GIAO DIỆN TIẾN ĐỘ BÀI VIẾT
+    // =====================================================================
+    const LOCAL_WORKFLOW_KEY = "tnc_workflow_data_v1";
+    let workflowMap = {}; // key: normKeyword(keyword) -> { keyword, confirmed, writing, article_url, article_content, pending_approval, published, updated_at }
+    let currentEditKw = null;
+    let currentViewingKw = null;
+
+    async function loadWorkflowData() {
+      try {
+        const local = localStorage.getItem(LOCAL_WORKFLOW_KEY);
+        if (local) workflowMap = JSON.parse(local) || {};
+      } catch (e) {
+        workflowMap = {};
+      }
+      if (!STATIC_MODE) {
+        try {
+          const res = await fetch(`${API_BASE}/api/workflow`);
+          if (res.ok) {
+            const serverWf = await res.json();
+            if (serverWf && typeof serverWf === "object") {
+              workflowMap = { ...workflowMap, ...serverWf };
+              localStorage.setItem(LOCAL_WORKFLOW_KEY, JSON.stringify(workflowMap));
+            }
+          }
+        } catch (e) {
+          // offline fallback
+        }
+      }
+      renderWorkflowTable();
+    }
+
+    async function saveWorkflowData() {
+      try {
+        localStorage.setItem(LOCAL_WORKFLOW_KEY, JSON.stringify(workflowMap));
+      } catch (e) {}
+      if (!STATIC_MODE) {
+        try {
+          await fetch(`${API_BASE}/api/workflow`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(workflowMap)
+          });
+        } catch (e) {}
+      }
+    }
+
+    function getWfItem(keyword) {
+      const key = normKeyword(keyword);
+      if (!workflowMap[key]) {
+        workflowMap[key] = {
+          keyword: keyword,
+          confirmed: false,
+          writing: false,
+          article_url: "",
+          article_content: "",
+          pending_approval: false,
+          published: false,
+          updated_at: new Date().toISOString()
+        };
+      }
+      return workflowMap[key];
+    }
+
+    // 2. Trạng thái "XÁC NHẬN KEYWORD": khi tick chọn -> auto tick vào trạng thái "đang viết bài"
+    // 3. Trạng thái "ĐANG VIẾT BÀI": chạy giống với xác nhận keyword
+    // 5. Trạng thái "CHỜ DUYỆT"
+    // 6. Trạng thái "ĐÃ ĐĂNG"
+    function toggleWfField(keyword, field) {
+      const wf = getWfItem(keyword);
+      if (field === "confirmed") {
+        wf.confirmed = !wf.confirmed;
+        if (wf.confirmed) {
+          // Rule yêu cầu: đã tick ô xác nhận keyword thì AUTO TICK vào trạng thái "đang viết bài"
+          wf.writing = true;
+          showToast(`Đã nhận keyword: "${keyword}" (Bắt đầu viết bài)`);
+        } else {
+          if (!wf.published && !wf.pending_approval) {
+            wf.writing = false;
+          }
+        }
+      } else if (field === "writing") {
+        wf.writing = !wf.writing;
+        if (wf.writing && !wf.confirmed) {
+          wf.confirmed = true;
+        }
+      } else if (field === "pending_approval") {
+        wf.pending_approval = !wf.pending_approval;
+        if (wf.pending_approval) {
+          wf.confirmed = true;
+          wf.writing = false;
+          showToast(`Đã chuyển sang Chờ duyệt: "${keyword}"`);
+        }
+      } else if (field === "published") {
+        wf.published = !wf.published;
+        if (wf.published) {
+          wf.confirmed = true;
+          wf.writing = false;
+          wf.pending_approval = true;
+          showToast(`Bài viết đã xuất bản: "${keyword}" 🎉`);
+        }
+      }
+      wf.updated_at = new Date().toISOString();
+      saveWorkflowData();
+      renderWorkflowTable();
+    }
+
+    // 1. DANH SÁCH KEYWORD: LẤY TRỰC TIẾP TỪ TAB "KEYWORD DUYỆT"
+    function renderWorkflowTable() {
+      const wrap = byId("workflowTableWrap");
+      if (!wrap) return;
+
+      const list = approvedKeywords || [];
+      const totalCount = list.length;
+      byId("wfStatTotal").textContent = totalCount;
+      byId("workflowBadgeStats").textContent = `${totalCount} nhiệm vụ`;
+
+      let writingCount = 0;
+      let pendingCount = 0;
+      let publishedCount = 0;
+
+      list.forEach(k => {
+        const wf = getWfItem(k.keyword);
+        if (wf.published) publishedCount++;
+        else if (wf.pending_approval) pendingCount++;
+        else if (wf.writing) writingCount++;
+      });
+
+      byId("wfStatWriting").textContent = writingCount;
+      byId("wfStatPending").textContent = pendingCount;
+      byId("wfStatPublished").textContent = publishedCount;
+
+      if (totalCount === 0) {
+        wrap.innerHTML = `
+          <div class="py-16 px-6 text-center">
+            <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-3 shadow-sm border border-blue-100">
+              📋
+            </div>
+            <p class="text-base font-bold text-slate-900">Chưa có keyword nào trong Workflow</p>
+            <p class="text-xs text-slate-500 mt-1.5 max-w-md mx-auto">
+              Workflow tự động lấy từ danh sách <strong>Keyword Duyệt</strong>. Cứ có keyword mới được duyệt thì sẽ tự động thêm vào danh sách này.
+            </p>
+            <button onclick="switchTab('dashboard')" class="mt-4 px-4 py-2 rounded-xl brand-btn text-white text-xs font-bold inline-flex items-center gap-1.5 shadow-sm">
+              Tới Dashboard duyệt Keyword ngay →
+            </button>
+          </div>`;
+        byId("wfFilterCount").textContent = "0";
+        return;
+      }
+
+      const statusFilter = byId("wfFilterStatus")?.value || "ALL";
+      const searchQ = (byId("wfSearchInput")?.value || "").toLowerCase().trim();
+
+      const filtered = list.filter(item => {
+        const wf = getWfItem(item.keyword);
+        if (searchQ && !item.keyword.toLowerCase().includes(searchQ) && !(item.niche || "").toLowerCase().includes(searchQ)) {
+          return false;
+        }
+        if (statusFilter === "UNCONFIRMED" && wf.confirmed) return false;
+        if (statusFilter === "WRITING" && (!wf.writing || wf.published || wf.pending_approval)) return false;
+        if (statusFilter === "HAS_ARTICLE" && (!wf.article_url && !wf.article_content)) return false;
+        if (statusFilter === "PENDING" && !wf.pending_approval) return false;
+        if (statusFilter === "PUBLISHED" && !wf.published) return false;
+        return true;
+      });
+
+      byId("wfFilterCount").textContent = `${filtered.length}/${totalCount}`;
+
+      if (filtered.length === 0) {
+        wrap.innerHTML = `
+          <div class="py-12 px-6 text-center text-slate-500 text-xs">
+            Không tìm thấy keyword nào khớp với bộ lọc trạng thái hoặc từ khóa tìm kiếm.
+          </div>`;
+        return;
+      }
+
+      const fmtDate = (iso) => iso ? iso.split("-").reverse().join("/") : "--";
+
+      wrap.innerHTML = `
+        <div class="overflow-x-auto">
+          <table class="w-full text-sm">
+            <thead>
+              <tr class="bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-blue-50">
+                <th class="px-3 py-3 text-center w-12">#</th>
+                <th class="px-3 py-3 text-left min-w-[240px]">1. Keyword (Từ Keyword Duyệt)</th>
+                <th class="px-3 py-3 text-center w-36">2. Xác Nhận Keyword</th>
+                <th class="px-3 py-3 text-center w-36">3. Đang Viết Bài</th>
+                <th class="px-3 py-3 text-left min-w-[190px]">4. Bài Viết (.md)</th>
+                <th class="px-3 py-3 text-center w-32">5. Chờ Duyệt</th>
+                <th class="px-3 py-3 text-center w-32">6. Đã Đăng</th>
+              </tr>
+            </thead>
+            <tbody>
+              ${filtered.map((item, idx) => {
+                const wf = getWfItem(item.keyword);
+                const kEsc = escapeAttr(item.keyword);
+                const hasArticle = !!(wf.article_url || wf.article_content);
+                const fileName = wf.article_url ? wf.article_url.split(/[\\/]/).pop() : (hasArticle ? "article.md" : "");
+
+                return `
+                  <tr class="border-b border-slate-100 hover:bg-blue-50/30 transition">
+                    <!-- # -->
+                    <td class="px-3 py-3 text-center">
+                      <span class="inline-flex w-7 h-7 rounded-lg rank-other text-xs font-extrabold items-center justify-center">${idx + 1}</span>
+                    </td>
+
+                    <!-- 1. KEYWORD DUYỆT -->
+                    <td class="px-3 py-3">
+                      <div class="font-bold text-slate-900">${escapeHtml(item.keyword)}</div>
+                      <div class="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]">
+                        ${item.niche ? `<span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-semibold">${escapeHtml(item.niche)}</span>` : ""}
+                        <span class="text-slate-400">Duyệt: ${fmtDate(item.report_date || (item.approved_at || "").slice(0, 10))}</span>
+                      </div>
+                    </td>
+
+                    <!-- 2. XÁC NHẬN KEYWORD (khi agent lấy keyword viết thì ô đã Tick chọn) -->
+                    <td class="px-3 py-3 text-center">
+                      <button type="button" onclick="toggleWfField('${kEsc}', 'confirmed')"
+                              title="${wf.confirmed ? 'Đã tick: Agent đã lấy keyword viết bài. Bấm để bỏ chọn.' : 'Chưa tick: Bấm để xác nhận nhận keyword'}"
+                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
+                                wf.confirmed
+                                  ? 'bg-blue-50 border border-blue-300 text-blue-700 hover:bg-blue-100'
+                                  : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
+                              }">
+                        ${wf.confirmed
+                          ? `<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã Tick`
+                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa nhận`}
+                      </button>
+                    </td>
+
+                    <!-- 3. ĐANG VIẾT BÀI (auto tick khi xác nhận keyword) -->
+                    <td class="px-3 py-3 text-center">
+                      <button type="button" onclick="toggleWfField('${kEsc}', 'writing')"
+                              title="${wf.writing ? 'Đang viết bài' : 'Chưa viết bài'}"
+                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
+                                wf.writing
+                                  ? 'bg-amber-50 border border-amber-300 text-amber-700 hover:bg-amber-100'
+                                  : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
+                              }">
+                        ${wf.writing
+                          ? `<span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> Đang viết`
+                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa viết`}
+                      </button>
+                    </td>
+
+                    <!-- 4. BÀI VIẾT (.MD & NÚT MỞ) -->
+                    <td class="px-3 py-3">
+                      ${hasArticle ? `
+                        <div class="flex items-center gap-2">
+                          <button type="button" onclick="openArticleModal('${kEsc}')"
+                                  class="px-3 py-1.5 rounded-xl brand-btn text-white text-xs font-bold flex items-center gap-1.5 shadow-sm hover:opacity-95 transition">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                            Mở
+                          </button>
+                          <span class="text-xs text-slate-600 font-mono truncate max-w-[120px]" title="${escapeAttr(wf.article_url || 'Nội dung .md')}">
+                            ${escapeHtml(fileName || 'output.md')}
+                          </span>
+                          <button type="button" onclick="editArticleLink('${kEsc}')" title="Sửa đường dẫn hoặc nội dung" class="p-1 text-slate-400 hover:text-blue-600">
+                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+                          </button>
+                        </div>
+                      ` : `
+                        <div class="flex items-center gap-1.5">
+                          <span class="text-xs text-slate-400 italic">Chưa có bài</span>
+                          <button type="button" onclick="editArticleLink('${kEsc}')" class="text-[11px] font-semibold text-blue-600 hover:text-blue-800 underline ml-1">
+                            + Gắn file .md
+                          </button>
+                        </div>
+                      `}
+                    </td>
+
+                    <!-- 5. CHỜ DUYỆT -->
+                    <td class="px-3 py-3 text-center">
+                      <button type="button" onclick="toggleWfField('${kEsc}', 'pending_approval')"
+                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
+                                wf.pending_approval
+                                  ? 'bg-orange-50 border border-orange-300 text-orange-700 hover:bg-orange-100'
+                                  : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
+                              }">
+                        ${wf.pending_approval
+                          ? `<svg class="w-4 h-4 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Chờ duyệt`
+                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> --`}
+                      </button>
+                    </td>
+
+                    <!-- 6. ĐÃ ĐĂNG -->
+                    <td class="px-3 py-3 text-center">
+                      <button type="button" onclick="toggleWfField('${kEsc}', 'published')"
+                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
+                                wf.published
+                                  ? 'bg-emerald-50 border border-emerald-300 text-emerald-700 hover:bg-emerald-100'
+                                  : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
+                              }">
+                        ${wf.published
+                          ? `<svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã đăng`
+                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> --`}
+                      </button>
+                    </td>
+                  </tr>`;
+              }).join("")}
+            </tbody>
+          </table>
+        </div>`;
+    }
+
+    // =====================================================================
+    // ARTICLE MODAL & MARKDOWN PREVIEW
+    // =====================================================================
+    async function openArticleModal(keyword) {
+      const wf = getWfItem(keyword);
+      currentViewingKw = keyword;
+
+      byId("artModalTitle").textContent = `Bài viết SEO: ${keyword}`;
+      byId("artModalFile").textContent = wf.article_url || "Bài viết nội bộ (.md)";
+      const statusText = wf.published ? "Đã đăng" : (wf.pending_approval ? "Chờ duyệt" : (wf.writing ? "Đang viết" : "Bản thảo"));
+      byId("artModalStatus").textContent = statusText;
+
+      let content = wf.article_content || "";
+
+      // Nếu có đường dẫn file tương đối và chưa có content, gọi backend đọc file
+      if (!content && wf.article_url && !STATIC_MODE && !wf.article_url.startsWith("http")) {
+        try {
+          const res = await fetch(`${API_BASE}/api/article?file=${encodeURIComponent(wf.article_url)}`);
+          if (res.ok) {
+            const data = await res.json();
+            content = data.content || "";
+            wf.article_content = content;
+          }
+        } catch (e) {
+          console.warn("Không tải được file bài viết:", e);
+        }
+      }
+
+      if (!content) {
+        content = `# Bài Viết SEO: ${keyword}\n\n*Bài viết được khởi tạo tự động từ Agent cho keyword: **${keyword}**.*\n\n## 1. Giới thiệu tổng quan\nNội dung bài viết chuẩn SEO tối ưu Onpage dựa trên dữ liệu Google Trends và tin tức mới nhất.\n\n## 2. Thông tin chi tiết\n- Cập nhật thông tin nhanh và chính xác nhất.\n- Đầy đủ tiêu chuẩn phân bổ từ khóa.\n\n> Nguồn: Hệ thống TNC SEO Keyword News.`;
+        wf.article_content = content;
+      }
+
+      byId("artModalRawText").textContent = content;
+      byId("artModalBodyPreview").innerHTML = parseMarkdown(content);
+
+      switchArticleTab("preview");
+      show("articleModal", true);
+      document.body.classList.add("overflow-hidden");
+    }
+
+    function closeArticleModal() {
+      show("articleModal", false);
+      document.body.classList.remove("overflow-hidden");
+    }
+
+    function switchArticleTab(tab) {
+      const isPrev = tab === "preview";
+      show("artModalBodyPreview", isPrev);
+      show("artModalBodySource", !isPrev);
+      byId("artTabPreview").className = isPrev
+        ? "px-3 py-1 rounded-lg font-bold brand-gradient text-white"
+        : "px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100";
+      byId("artTabSource").className = !isPrev
+        ? "px-3 py-1 rounded-lg font-bold brand-gradient text-white"
+        : "px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100";
+    }
+
+    function copyArticleMarkdown() {
+      const text = byId("artModalRawText").textContent;
+      copyText(text);
+    }
+
+    // Modal Sửa link .md
+    function editArticleLink(keyword) {
+      const wf = getWfItem(keyword);
+      currentEditKw = keyword;
+      byId("artEditKw").textContent = keyword;
+      byId("artEditUrl").value = wf.article_url || "";
+      byId("artEditContent").value = wf.article_content || "";
+      show("artEditModal", true);
+      byId("artEditUrl").focus();
+    }
+
+    function closeArtEditModal() {
+      show("artEditModal", false);
+      currentEditKw = null;
+    }
+
+    async function saveArtEditModal() {
+      if (!currentEditKw) return;
+      const wf = getWfItem(currentEditKw);
+      const url = byId("artEditUrl").value.trim();
+      const content = byId("artEditContent").value.trim();
+
+      wf.article_url = url;
+      if (content) wf.article_content = content;
+      if (url || content) {
+        wf.confirmed = true;
+        if (!wf.published) wf.pending_approval = true;
+        wf.writing = false;
+      }
+      wf.updated_at = new Date().toISOString();
+
+      if (!STATIC_MODE && url && content && !url.startsWith("http")) {
+        try {
+          await fetch(`${API_BASE}/api/article`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ file: url, content: content })
+          });
+        } catch (e) {}
+      }
+
+      await saveWorkflowData();
+      closeArtEditModal();
+      renderWorkflowTable();
+      showToast(`Đã lưu bài viết cho: "${currentEditKw}"`);
+    }
+
+    // Markdown Parser hiển thị Markdown bài viết
+    function parseMarkdown(md) {
+      if (!md) return '<p class="text-slate-400 italic">Nội dung bài viết trống.</p>';
+      let html = escapeHtml(md);
+      html = html.replace(/```([a-z0-9_-]*)\n([\s\S]*?)```/gi, (m, lang, code) => `<pre class="p-3 my-2.5 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto"><code>${code.trim()}</code></pre>`);
+      html = html.replace(/`([^`]+)`/g, '<code class="px-1.5 py-0.5 rounded bg-blue-50 border border-blue-100 text-blue-700 font-mono text-xs">$1</code>');
+      html = html.replace(/^### (.*$)/gim, '<h3 class="text-base font-extrabold text-slate-900 mt-4 mb-2">$1</h3>');
+      html = html.replace(/^## (.*$)/gim, '<h2 class="text-lg font-extrabold text-slate-900 mt-5 mb-2.5 pb-1 border-b border-slate-100">$1</h2>');
+      html = html.replace(/^# (.*$)/gim, '<h1 class="text-xl font-extrabold text-slate-900 mt-6 mb-3 pb-1.5 border-b border-blue-100">$1</h1>');
+      html = html.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-blue-500 pl-3 py-1 my-2 text-slate-700 italic bg-blue-50/40 rounded-r-lg">$1</blockquote>');
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong class="font-bold text-slate-900">$1</strong>');
+      html = html.replace(/\*([^*]+)\*/g, '<em class="italic">$1</em>');
+      html = html.replace(/^\s*-\s+(.*$)/gim, '<li class="ml-4 list-disc text-slate-700 my-1">$1</li>');
+      html = html.replace(/^\s*\*\s+(.*$)/gim, '<li class="ml-4 list-disc text-slate-700 my-1">$1</li>');
+      html = html.replace(/^\s*\d+\.\s+(.*$)/gim, '<li class="ml-4 list-decimal text-slate-700 my-1">$1</li>');
+      return html.split('\n\n').map(p => {
+        p = p.trim();
+        if (!p) return '';
+        if (p.startsWith('<h') || p.startsWith('<pre') || p.startsWith('<blockquote') || p.startsWith('<li')) return p;
+        return `<p class="my-2.5 text-slate-700 leading-relaxed text-sm">${p.replace(/\n/g, '<br/>')}</p>`;
+      }).join('');
+    }
+
+    // Expose Global Helper cho Agent AI tự động tích hợp
+    window.TNC_WORKFLOW = {
+      updateItem: (keyword, fields) => {
+        const wf = getWfItem(keyword);
+        Object.assign(wf, fields);
+        wf.updated_at = new Date().toISOString();
+        saveWorkflowData();
+        renderWorkflowTable();
+        return wf;
+      },
+      getItems: () => workflowMap,
+      refresh: () => renderWorkflowTable()
+    };
 
     function scanLatestNews(forceSerpapi = false) {
       loadReport(true, forceSerpapi);
@@ -1580,6 +2207,7 @@
 
     if (STATIC_MODE) {
       initAuth();
+      loadWorkflowData();
     } else {
       // Demo cục bộ: hiển thị thông tin tài khoản mẫu trên sidebar
       const sideBox = byId("sideUserBox");
@@ -1591,6 +2219,7 @@
       }
       loadReport(false, false);
       loadApprovedKeywords();
+      loadWorkflowData();
     }
   </script>
 </body>
