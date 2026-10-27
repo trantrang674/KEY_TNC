@@ -94,7 +94,7 @@ async function handleCommand(text: string, chatId: string) {
   if (cmd === "/top") {
     const { data } = await supabase.from("daily_reports").select("report").order("report_date", { ascending: false }).limit(1).maybeSingle();
     if (!data) return sendZalo(chatId, "Chưa có báo cáo nào.");
-    return sendZalo(chatId, `💥 Helu, em vừa quét xong website Keyword_Ngành xong lúc ${data.report?.generated_at ?? ""}\n👉 Chị vào xem báo cáo trong link này: ${REPORT_URL}`);
+    return sendZalo(chatId, `💥 Helu, em vừa quét Keyword_Ngành vào Website của chị - Xong lúc ${data.report?.generated_at ?? ""}\n👉 Chị vào xem báo cáo trong link này: ${REPORT_URL}`);
   }
   if (cmd === "/quet") {
     if (!GITHUB_TOKEN) return sendZalo(chatId, "Chưa cấu hình GITHUB_TOKEN nên chưa gọi quét được.");

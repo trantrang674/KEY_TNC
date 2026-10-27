@@ -70,7 +70,7 @@ def notify_zalo(report: dict) -> None:
         return
     owner, _, repo = os.getenv("GITHUB_REPOSITORY", "").partition("/")
     link = os.getenv("ZALO_REPORT_URL", "").strip() or (f"https://{owner}.github.io/{repo}/" if repo else "")
-    text = (f"💥 Helu, em vừa quét xong website Keyword_Ngành xong lúc {report.get('generated_at', '')}\n"
+    text = (f"💥 Helu, em vừa quét Keyword_Ngành vào Website của chị - Xong lúc {report.get('generated_at', '')}\n"
             f"👉 Chị vào xem báo cáo trong link này: {link}")
     try:
         requests.post(f"https://bot-api.zaloplatforms.com/bot{token}/sendMessage",
