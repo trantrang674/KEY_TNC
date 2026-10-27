@@ -62,6 +62,23 @@ def publish_report(report: dict, url: str, service_key: str) -> None:
     print(f"Đã đẩy báo cáo ngày {report_date} lên Supabase.")
 
 
+def notify_zalo(report: dict) -> None:
+    """Báo Top keyword qua Zalo Bot sau mỗi lần quét. Bỏ qua êm nếu chưa cấu hình; lỗi không làm hỏng bản dựng."""
+    token = os.getenv("ZALO_BOT_TOKEN", "").strip()
+    chat_id = os.getenv("ZALO_CHAT_ID", "").strip()
+    if not token or not chat_id:
+        return
+    owner, _, repo = os.getenv("GITHUB_REPOSITORY", "").partition("/")
+    link = os.getenv("ZALO_REPORT_URL", "").strip() or (f"https://{owner}.github.io/{repo}/" if repo else "")
+    text = f"Quét keyword xong lúc {report.get('generated_at', '')}. Xem báo cáo tại: {link}".strip()
+    try:
+        requests.post(f"https://bot-api.zaloplatforms.com/bot{token}/sendMessage",
+                      json={"chat_id": chat_id, "text": text}, timeout=30)
+        print("Đã báo kết quả qua Zalo.")
+    except Exception as e:
+        print(f"CẢNH BÁO: không gửi được tin Zalo ({type(e).__name__}).")
+
+
 def main() -> None:
     load_dotenv(ROOT / ".env")
     url = need("SUPABASE_URL").rstrip("/")
@@ -100,6 +117,7 @@ def main() -> None:
 
     if report is not None:
         publish_report(report, url, service_key)
+        notify_zalo(report)
 
     if SITE.exists():
         shutil.rmtree(SITE)

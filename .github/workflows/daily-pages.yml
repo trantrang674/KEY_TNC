@@ -1,14 +1,16 @@
 name: Cập nhật báo cáo hằng ngày
 
 on:
-  workflow_dispatch:        # chỉ chạy khi bấm "Run workflow" tay trong tab Actions
+  schedule:
+    - cron: "0 5 * * 1,3,5"   # 05:00 UTC = 12:00 trưa giờ Việt Nam, thứ 2, 4, 6
+  workflow_dispatch:        # hoặc bấm "Run workflow" tay trong tab Actions
     inputs:
       ui_only:
         description: "Chỉ cập nhật giao diện (không quét tin, không tốn lượt SerpApi)"
         type: boolean
         default: false
 
-# Chỉ chạy tay (KHÔNG chạy theo lịch, KHÔNG chạy khi push) để không tốn lượt SerpApi (4 lượt mỗi lần chạy).
+# Chạy theo lịch 12:00 trưa (giờ VN) thứ 2, 4, 6 hoặc chạy tay; KHÔNG chạy khi push. Mỗi lần quét tốn 4 lượt SerpApi.
 
 permissions:
   contents: read
@@ -39,6 +41,8 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
           SUPABASE_SERVICE_KEY: ${{ secrets.SUPABASE_SERVICE_KEY }}
+          ZALO_BOT_TOKEN: ${{ secrets.ZALO_BOT_TOKEN }}
+          ZALO_CHAT_ID: ${{ secrets.ZALO_CHAT_ID }}
         run: python build_static.py ${{ inputs.ui_only && '--ui-only' || '' }}
 
       - uses: actions/configure-pages@v5
