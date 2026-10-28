@@ -268,6 +268,9 @@
           <button type="button" class="nav-rail-btn" data-tab="workflow" title="Workflow" onclick="switchTab('workflow')">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h4v4H4V6zm12 8h4v4h-4v-4zM8 8h5a3 3 0 013 3v3M6 10v5a3 3 0 003 3h7"/></svg>
           </button>
+          <button type="button" class="nav-rail-btn" data-tab="baiviet" title="Bài viết" onclick="switchTab('baiviet')">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+          </button>
           <button type="button" class="nav-rail-btn" data-tab="baocao" title="Báo cáo" onclick="switchTab('baocao')">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-4m3 4V9m3 8v-6M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
           </button>
@@ -287,6 +290,7 @@
             <button type="button" class="nav-item" data-tab="dashboard" onclick="switchTab('dashboard')"><span>DASHBOARD KEYWORD</span><span class="nav-dot"></span></button>
             <button type="button" class="nav-item" data-tab="duyet" onclick="switchTab('duyet')"><span>KEYWORD DUYỆT</span><span class="nav-dot"></span></button>
             <button type="button" class="nav-item" data-tab="workflow" onclick="switchTab('workflow')"><span>WORKFLOW</span><span class="nav-dot"></span></button>
+            <button type="button" class="nav-item" data-tab="baiviet" onclick="switchTab('baiviet')"><span>BÀI VIẾT</span><span id="seoPendingDot" class="nav-dot"></span></button>
             <button type="button" class="nav-item" data-tab="baocao" onclick="switchTab('baocao')"><span>BÁO CÁO</span><span class="nav-dot"></span></button>
             <button type="button" class="nav-item" data-tab="dexuat" onclick="switchTab('dexuat')"><span>ĐỀ XUẤT</span><span class="nav-dot"></span></button>
           </div>
@@ -319,6 +323,7 @@
         <button type="button" class="nav-pill" data-tab="dashboard" onclick="switchTab('dashboard')">DASHBOARD KEYWORD</button>
         <button type="button" class="nav-pill" data-tab="duyet" onclick="switchTab('duyet')">KEYWORD DUYỆT</button>
         <button type="button" class="nav-pill" data-tab="workflow" onclick="switchTab('workflow')">WORKFLOW</button>
+        <button type="button" class="nav-pill" data-tab="baiviet" onclick="switchTab('baiviet')">BÀI VIẾT</button>
         <button type="button" class="nav-pill" data-tab="baocao" onclick="switchTab('baocao')">BÁO CÁO</button>
         <button type="button" class="nav-pill" data-tab="dexuat" onclick="switchTab('dexuat')">ĐỀ XUẤT</button>
       </nav>
@@ -511,6 +516,33 @@
           <div id="approvedTableWrap">
             <div class="py-16 text-center text-xs text-slate-400">Đang tải...</div>
           </div>
+        </div>
+      </section>
+      <!-- ============ TAB: BÀI VIẾT (outline + bài do Cowork viết, chờ duyệt) ============ -->
+      <section data-view="baiviet" class="hidden space-y-6">
+        <div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+            Outline <span class="text-gradient">&amp; Bài Viết</span>
+          </h2>
+          <p class="text-xs text-slate-500 mt-1">Cowork lập outline từ keyword đã duyệt → bạn duyệt outline → Cowork viết bài → bạn duyệt bài.</p>
+        </div>
+        <div class="pro-card rounded-2xl overflow-hidden">
+          <div class="px-4 py-3.5 flex items-center justify-between gap-2 border-b border-blue-50">
+            <h3 class="text-sm font-extrabold text-slate-900">1. Outline</h3>
+            <select id="outlineFilter" onchange="renderSeoContent()" class="text-xs font-semibold border border-blue-100 rounded-lg px-2 py-1 bg-white text-slate-700">
+              <option value="pending">Chưa duyệt</option><option value="approved">Đã duyệt</option><option value="rejected">Đã từ chối</option><option value="all">Tất cả</option>
+            </select>
+          </div>
+          <div id="outlineList"><div class="py-12 text-center text-xs text-slate-400">Đang tải...</div></div>
+        </div>
+        <div class="pro-card rounded-2xl overflow-hidden">
+          <div class="px-4 py-3.5 flex items-center justify-between gap-2 border-b border-blue-50">
+            <h3 class="text-sm font-extrabold text-slate-900">2. Bài viết</h3>
+            <select id="articleFilter" onchange="renderSeoContent()" class="text-xs font-semibold border border-blue-100 rounded-lg px-2 py-1 bg-white text-slate-700">
+              <option value="pending">Chưa duyệt</option><option value="approved">Đã duyệt</option><option value="rejected">Đã từ chối</option><option value="all">Tất cả</option>
+            </select>
+          </div>
+          <div id="articleList"><div class="py-12 text-center text-xs text-slate-400">Đang tải...</div></div>
         </div>
       </section>
       <!-- ============ TAB 3: WORKFLOW ============ -->
@@ -776,13 +808,14 @@
       dashboard: { title: "Dashboard Keyword" },
       duyet:     { title: "Keyword Duyệt", desc: "Nơi duyệt và chốt danh sách keyword sẽ triển khai viết bài." },
       workflow:  { title: "Workflow", desc: "Theo dõi tiến độ từng keyword: lên kế hoạch, đang viết, đã đăng." },
+      baiviet:   { title: "Bài viết" },
       baocao:    { title: "Báo cáo", desc: "Tổng hợp hiệu quả keyword và bài viết theo ngày, tuần, tháng." },
       dexuat:    { title: "Đề xuất", desc: "Gợi ý chủ đề và keyword tiềm năng cho đội nội dung." }
     };
 
     function renderPlaceholders() {
       Object.entries(TABS).forEach(([tab, cfg]) => {
-        if (tab === "dashboard" || tab === "duyet" || tab === "workflow") return;
+        if (tab === "dashboard" || tab === "duyet" || tab === "workflow" || tab === "baiviet") return;
         const icon = document.querySelector(`.nav-rail-btn[data-tab="${tab}"] svg`).outerHTML.replace('class="w-5 h-5"', 'class="w-8 h-8"');
         document.querySelector(`[data-view="${tab}"]`).innerHTML = `
           <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">${escapeHtml(cfg.title)}</h2>
@@ -805,6 +838,7 @@
       });
       if (tab === "duyet") renderApprovedTable();
       if (tab === "workflow") renderWorkflowTable();
+      if (tab === "baiviet") loadSeoContent();
       if (updateHash) history.replaceState(null, "", window.location.pathname + "#" + tab);
       window.scrollTo({ top: 0 });
     }
@@ -1495,6 +1529,105 @@
             </tbody>
           </table>
         </div>`;
+    }
+
+    // =====================================================================
+    // OUTLINE & BÀI VIẾT do Cowork tạo: bấm DUYỆT / TỪ CHỐI (bảng seo_outlines, seo_articles)
+    // =====================================================================
+    let seoOutlines = [];
+    let seoArticles = [];
+    let seoError = null;
+
+    async function loadSeoContent() {
+      if (!STATIC_MODE) {
+        seoError = "Cần mở bản GitHub Pages (có Supabase) để xem outline và bài viết.";
+        renderSeoContent();
+        return;
+      }
+      try {
+        const [o, a] = await Promise.all([
+          sb.from("seo_outlines").select("*").order("created_at", { ascending: false }),
+          sb.from("seo_articles").select("*").order("created_at", { ascending: false })
+        ]);
+        if (o.error) throw new Error(o.error.message);
+        if (a.error) throw new Error(a.error.message);
+        seoOutlines = o.data || [];
+        seoArticles = a.data || [];
+        seoError = null;
+      } catch (err) {
+        console.error(err);
+        seoError = err.message + " (đã chạy database/seo_content.sql chưa?)";
+      }
+      renderSeoContent();
+    }
+
+    async function reviewSeoItem(table, id, status, btn) {
+      const label = status === "approved" ? "duyệt" : "từ chối";
+      const list = table === "seo_outlines" ? seoOutlines : seoArticles;
+      const item = list.find(x => Number(x.id) === id);
+      if (!item) return;
+      if (!confirm(`Bạn muốn ${label} ${table === "seo_outlines" ? "outline" : "bài viết"} "${item.keyword}"?`)) return;
+      btn.disabled = true;
+      try {
+        const { data, error } = await sb.from(table).update({ status }).eq("id", id).select().single();
+        if (error) throw new Error(error.message);
+        Object.assign(item, data);
+        renderSeoContent();
+        showToast(status === "approved" ? `Đã duyệt: "${item.keyword}"` : `Đã từ chối: "${item.keyword}"`);
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        showToast("Không cập nhật được: " + err.message, true);
+      }
+    }
+
+    function renderSeoContent() {
+      const badge = {
+        pending: `<span class="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-600 text-[11px] font-bold">CHƯA DUYỆT</span>`,
+        approved: `<span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold">ĐÃ DUYỆT</span>`,
+        rejected: `<span class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-600 text-[11px] font-bold">TỪ CHỐI</span>`
+      };
+      const pendingCount = seoOutlines.filter(x => x.status === "pending").length + seoArticles.filter(x => x.status === "pending").length;
+      const dot = byId("seoPendingDot");
+      if (dot) dot.classList.toggle("hidden", pendingCount === 0);
+
+      const draw = (wrapId, items, filterId, table, extra) => {
+        const wrap = byId(wrapId);
+        if (seoError) {
+          wrap.innerHTML = `<div class="p-8 text-center"><p class="text-sm font-bold text-rose-600">Không tải được dữ liệu</p><p class="text-xs text-slate-500 mt-2">${escapeHtml(seoError)}</p></div>`;
+          return;
+        }
+        const f = byId(filterId).value;
+        const rows = items.filter(x => f === "all" || x.status === f);
+        if (!rows.length) {
+          wrap.innerHTML = `<div class="py-12 text-center text-xs text-slate-400">Chưa có mục nào.</div>`;
+          return;
+        }
+        wrap.innerHTML = rows.map(x => `
+          <details class="border-b border-slate-100 group">
+            <summary class="px-4 py-3 flex flex-wrap items-center gap-3 cursor-pointer hover:bg-blue-50/40 list-none">
+              <div class="flex-1 min-w-[220px]">
+                <div class="font-bold text-slate-900">${escapeHtml(x.title || x.keyword)}</div>
+                <div class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(x.keyword)} · ${new Date(x.created_at).toLocaleString("vi-VN")}${extra(x)}${x.reviewed_by_email ? " · " + escapeHtml(x.reviewed_by_email) : ""}</div>
+              </div>
+              ${badge[x.status] || ""}
+              ${x.status === "pending" ? `
+                <button onclick="event.preventDefault(); reviewSeoItem('${table}', ${Number(x.id)}, 'approved', this)"
+                        class="px-3.5 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-extrabold tracking-wide transition disabled:opacity-60">DUYỆT</button>
+                <button onclick="event.preventDefault(); reviewSeoItem('${table}', ${Number(x.id)}, 'rejected', this)"
+                        class="px-3 py-1.5 rounded-full bg-white hover:bg-rose-50 border border-rose-200 text-rose-600 text-[11px] font-extrabold tracking-wide transition disabled:opacity-60">TỪ CHỐI</button>` : ""}
+            </summary>
+            <div class="px-4 pb-4">
+              <pre class="whitespace-pre-wrap break-words text-[13px] leading-relaxed text-slate-800 bg-slate-50 border border-blue-50 rounded-xl p-4 max-h-[520px] overflow-auto font-sans">${escapeHtml(x.outline_md || x.content_md || "")}</pre>
+              ${x.meta_description ? `<p class="mt-2 text-xs text-slate-600"><strong>Meta description:</strong> ${escapeHtml(x.meta_description)}</p>` : ""}
+              <button onclick="copyText(${JSON.stringify(x.outline_md || x.content_md || "").replace(/"/g, "&quot;")})" class="mt-2 text-[11px] font-semibold text-blue-600 hover:text-blue-800 underline">Copy nội dung</button>
+            </div>
+          </details>`).join("");
+      };
+      draw("outlineList", seoOutlines, "outlineFilter", "seo_outlines",
+        x => ` · ${(x.short_kws || []).length + (x.long_kws || []).length} key phụ`);
+      draw("articleList", seoArticles, "articleFilter", "seo_articles",
+        x => ` · ${x.word_count || "?"} từ · SEO ${x.seo_score ?? "?"}`);
     }
 
     // =====================================================================
@@ -2398,6 +2531,7 @@
       loadReport(false, false);
       loadApprovedKeywords();
       loadWorkflowData();
+      loadSeoContent();
     }
   </script>
 </body>
