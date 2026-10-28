@@ -268,9 +268,6 @@
           <button type="button" class="nav-rail-btn" data-tab="workflow" title="Workflow" onclick="switchTab('workflow')">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h4v4H4V6zm12 8h4v4h-4v-4zM8 8h5a3 3 0 013 3v3M6 10v5a3 3 0 003 3h7"/></svg>
           </button>
-          <button type="button" class="nav-rail-btn" data-tab="baiviet" title="Bài viết" onclick="switchTab('baiviet')">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
-          </button>
           <button type="button" class="nav-rail-btn" data-tab="baocao" title="Báo cáo" onclick="switchTab('baocao')">
             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-4m3 4V9m3 8v-6M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
           </button>
@@ -289,8 +286,7 @@
           <div class="flex flex-col gap-2">
             <button type="button" class="nav-item" data-tab="dashboard" onclick="switchTab('dashboard')"><span>DASHBOARD KEYWORD</span><span class="nav-dot"></span></button>
             <button type="button" class="nav-item" data-tab="duyet" onclick="switchTab('duyet')"><span>KEYWORD DUYỆT</span><span class="nav-dot"></span></button>
-            <button type="button" class="nav-item" data-tab="workflow" onclick="switchTab('workflow')"><span>WORKFLOW</span><span class="nav-dot"></span></button>
-            <button type="button" class="nav-item" data-tab="baiviet" onclick="switchTab('baiviet')"><span>BÀI VIẾT</span><span id="seoPendingDot" class="nav-dot"></span></button>
+            <button type="button" class="nav-item" data-tab="workflow" onclick="switchTab('workflow')"><span class="flex items-center gap-2">WORKFLOW<span id="wfPendingBadge" class="hidden px-1.5 min-w-[18px] h-[18px] rounded-full bg-orange-500 text-white text-[10px] font-extrabold items-center justify-center"></span></span><span class="nav-dot"></span></button>
             <button type="button" class="nav-item" data-tab="baocao" onclick="switchTab('baocao')"><span>BÁO CÁO</span><span class="nav-dot"></span></button>
             <button type="button" class="nav-item" data-tab="dexuat" onclick="switchTab('dexuat')"><span>ĐỀ XUẤT</span><span class="nav-dot"></span></button>
           </div>
@@ -323,7 +319,6 @@
         <button type="button" class="nav-pill" data-tab="dashboard" onclick="switchTab('dashboard')">DASHBOARD KEYWORD</button>
         <button type="button" class="nav-pill" data-tab="duyet" onclick="switchTab('duyet')">KEYWORD DUYỆT</button>
         <button type="button" class="nav-pill" data-tab="workflow" onclick="switchTab('workflow')">WORKFLOW</button>
-        <button type="button" class="nav-pill" data-tab="baiviet" onclick="switchTab('baiviet')">BÀI VIẾT</button>
         <button type="button" class="nav-pill" data-tab="baocao" onclick="switchTab('baocao')">BÁO CÁO</button>
         <button type="button" class="nav-pill" data-tab="dexuat" onclick="switchTab('dexuat')">ĐỀ XUẤT</button>
       </nav>
@@ -518,99 +513,34 @@
           </div>
         </div>
       </section>
-      <!-- ============ TAB: BÀI VIẾT (outline + bài do Cowork viết, chờ duyệt) ============ -->
-      <section data-view="baiviet" class="hidden space-y-6">
-        <div>
-          <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-            Outline <span class="text-gradient">&amp; Bài Viết</span>
-          </h2>
-          <p class="text-xs text-slate-500 mt-1">Cowork lập outline từ keyword đã duyệt → bạn duyệt outline → Cowork viết bài → bạn duyệt bài.</p>
-        </div>
-        <div class="pro-card rounded-2xl overflow-hidden">
-          <div class="px-4 py-3.5 flex items-center justify-between gap-2 border-b border-blue-50">
-            <h3 class="text-sm font-extrabold text-slate-900">1. Outline</h3>
-            <select id="outlineFilter" onchange="renderSeoContent()" class="text-xs font-semibold border border-blue-100 rounded-lg px-2 py-1 bg-white text-slate-700">
-              <option value="pending">Chưa duyệt</option><option value="approved">Đã duyệt</option><option value="rejected">Đã từ chối</option><option value="all">Tất cả</option>
-            </select>
-          </div>
-          <div id="outlineList"><div class="py-12 text-center text-xs text-slate-400">Đang tải...</div></div>
-        </div>
-        <div class="pro-card rounded-2xl overflow-hidden">
-          <div class="px-4 py-3.5 flex items-center justify-between gap-2 border-b border-blue-50">
-            <h3 class="text-sm font-extrabold text-slate-900">2. Bài viết</h3>
-            <select id="articleFilter" onchange="renderSeoContent()" class="text-xs font-semibold border border-blue-100 rounded-lg px-2 py-1 bg-white text-slate-700">
-              <option value="pending">Chưa duyệt</option><option value="approved">Đã duyệt</option><option value="rejected">Đã từ chối</option><option value="all">Tất cả</option>
-            </select>
-          </div>
-          <div id="articleList"><div class="py-12 text-center text-xs text-slate-400">Đang tải...</div></div>
-        </div>
-      </section>
-      <!-- ============ TAB 3: WORKFLOW ============ -->
+      <!-- ============ TAB 3: WORKFLOW (keyword -> outline -> bài viết -> đăng) ============ -->
       <section data-view="workflow" class="hidden space-y-6">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
             <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
-              Tiến Độ <span class="text-gradient">Workflow Bài Viết</span>
+              <span class="text-gradient">Workflow</span>
             </h2>
             <p class="text-xs text-slate-500 mt-1">
-              Quản lý chu trình: Keyword duyệt → Xác nhận & Viết bài → Bài viết hoàn tất (.md) → Chờ duyệt → Đã đăng
+              Keyword duyệt → Cowork lập outline → Bạn duyệt outline → Cowork viết bài → Bạn duyệt bài → Đăng
             </p>
           </div>
           <div class="flex items-center gap-2">
-            <span id="workflowBadgeStats" class="px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100 shadow-sm">
-              0 nhiệm vụ
-            </span>
+            <button type="button" onclick="setWfStage('ACTION')" id="workflowBadgeStats" class="px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100 shadow-sm">
+              0 keyword
+            </button>
           </div>
         </div>
 
-        <!-- STATS CARDS -->
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3.5">
-          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-extrabold text-base shrink-0">
-              📋
-            </span>
-            <div class="min-w-0">
-              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Từ Keyword Duyệt</div>
-              <div id="wfStatTotal" class="text-xl font-extrabold text-slate-900 mt-0.5">0</div>
-            </div>
-          </div>
+        <!-- 6 GIAI ĐOẠN: bấm để lọc, ô cam = đang chờ bạn xử lý -->
+        <div id="wfStageCards" class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-3"></div>
 
-          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center font-extrabold text-base shrink-0">
-              ✍️
-            </span>
-            <div class="min-w-0">
-              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đang Viết Bài</div>
-              <div id="wfStatWriting" class="text-xl font-extrabold text-amber-600 mt-0.5">0</div>
-            </div>
-          </div>
+        <div id="wfSeoNotice" class="hidden rounded-xl bg-amber-50 border border-amber-200 text-amber-800 text-xs px-4 py-3"></div>
 
-          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center font-extrabold text-base shrink-0">
-              ✓
-            </span>
-            <div class="min-w-0">
-              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đã Duyệt Bài</div>
-              <div id="wfStatApproved" class="text-xl font-extrabold text-blue-600 mt-0.5">0</div>
-            </div>
-          </div>
-
-          <div class="pro-card rounded-2xl p-4 flex items-center gap-3">
-            <span class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-extrabold text-base shrink-0">
-              🚀
-            </span>
-            <div class="min-w-0">
-              <div class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Đã Đăng Bài</div>
-              <div id="wfStatPublished" class="text-xl font-extrabold text-emerald-600 mt-0.5">0</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- MAIN WORKFLOW TABLE CARD -->
+        <!-- BẢNG TIẾN ĐỘ -->
         <div class="pro-card rounded-2xl overflow-hidden">
           <div class="px-4 py-3.5 flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-blue-50 bg-slate-50/60">
             <div class="flex items-center gap-2">
-              <h3 class="text-sm font-extrabold text-slate-900">Danh Sách Tiến Độ Keyword & Bài Viết</h3>
+              <h3 class="text-sm font-extrabold text-slate-900">Tiến độ từng keyword</h3>
               <span id="wfFilterCount" class="px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[11px] font-bold">0</span>
             </div>
             <div class="flex flex-wrap items-center gap-2">
@@ -619,15 +549,13 @@
               </select>
               <select id="wfFilterStatus" onchange="renderWorkflowTable()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-blue-500">
                 <option value="ALL">Tất cả giai đoạn</option>
-                <option value="UNCONFIRMED">Chưa nhận keyword</option>
-                <option value="NOT_WRITTEN">Chưa viết</option>
-                <option value="WRITING">Đang viết</option>
-                <option value="WRITTEN">Đã viết</option>
-                <option value="HAS_ARTICLE">Đã có file bài viết (.md)</option>
-                <option value="APPROVED">Đã duyệt bài</option>
-                <option value="UNAPPROVED">Chưa duyệt bài</option>
+                <option value="ACTION">Cần tôi xử lý (chờ duyệt)</option>
+                <option value="NEW">Chờ lập outline</option>
+                <option value="OUTLINE_REVIEW">Chờ duyệt outline</option>
+                <option value="WRITING">Chờ viết bài</option>
+                <option value="ARTICLE_REVIEW">Chờ duyệt bài</option>
+                <option value="READY">Sẵn sàng đăng</option>
                 <option value="PUBLISHED">Đã đăng</option>
-                <option value="HAS_PUB_LINK">Đã có link bài đăng</option>
               </select>
               <div class="relative w-40 sm:w-56">
                 <input type="text" id="wfSearchInput" oninput="renderWorkflowTable()" placeholder="Lọc keyword..." class="w-full bg-white border border-blue-100 rounded-xl pl-8 pr-3 py-1.5 text-xs text-slate-800 placeholder-slate-400 focus:outline-none focus:border-blue-500" />
@@ -667,7 +595,7 @@
     </div>
   </div>
 
-  <!-- POPUP XEM BÀI VIẾT MARKDOWN HOÀN TẤT -->
+  <!-- POPUP XEM OUTLINE / BÀI VIẾT -->
   <div id="articleModal" class="hidden fixed inset-0 z-[70]" role="dialog" aria-modal="true" aria-labelledby="artModalTitle">
     <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeArticleModal()"></div>
     <div class="relative h-full flex items-center justify-center p-3 sm:p-6 pointer-events-none">
@@ -687,6 +615,7 @@
             </div>
           </div>
           <div class="flex items-center gap-2 shrink-0">
+            <div id="artModalActions" class="flex items-center gap-1.5"></div>
             <button type="button" onclick="copyArticleMarkdown()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 font-semibold text-xs flex items-center gap-1.5 transition">
               <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
               Copy Markdown
@@ -703,47 +632,13 @@
             <button type="button" id="artTabPreview" onclick="switchArticleTab('preview')" class="px-3 py-1 rounded-lg font-bold brand-gradient text-white">Xem trước (HTML)</button>
             <button type="button" id="artTabSource" onclick="switchArticleTab('source')" class="px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100">Mã nguồn (.md)</button>
           </div>
-          <span class="text-[11px] text-slate-400">File Markdown từ Agent viết bài</span>
+          <span class="text-[11px] text-slate-400">Nội dung Markdown do Cowork viết</span>
         </div>
 
         <!-- Content -->
         <div id="artModalBodyPreview" class="px-6 py-6 overflow-y-auto custom-scroll max-h-[60vh] space-y-3 leading-relaxed"></div>
         <div id="artModalBodySource" class="hidden px-6 py-4 overflow-y-auto custom-scroll max-h-[60vh]">
           <pre id="artModalRawText" class="p-4 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto whitespace-pre-wrap"></pre>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- MODAL GẮN / SỬA LINK FILE BÀI VIẾT .MD -->
-  <div id="artEditModal" class="hidden fixed inset-0 z-[75]" role="dialog" aria-modal="true">
-    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeArtEditModal()"></div>
-    <div class="relative h-full flex items-center justify-center p-4 pointer-events-none">
-      <div class="pointer-events-auto w-full max-w-lg bg-white rounded-2xl shadow-2xl border border-blue-100 p-6 space-y-4">
-        <div class="flex items-center justify-between">
-          <h3 class="text-base font-extrabold text-slate-900">Gắn File Bài Viết (.md)</h3>
-          <button type="button" onclick="closeArtEditModal()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center">✕</button>
-        </div>
-        <p class="text-xs text-slate-500">
-          Nhập đường dẫn file output Markdown của Agent (ví dụ: <code class="bg-blue-50 text-blue-700 px-1 py-0.5 rounded font-mono">outputs/articles/vneid.md</code>) hoặc dán link bài viết.
-        </p>
-        <div class="space-y-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-800 mb-1">Keyword:</label>
-            <div id="artEditKw" class="text-xs font-extrabold text-blue-700 bg-blue-50 px-3 py-2 rounded-xl"></div>
-          </div>
-          <div>
-            <label for="artEditUrl" class="block text-xs font-bold text-slate-800 mb-1">Đường dẫn file .md hoặc URL:</label>
-            <input type="text" id="artEditUrl" placeholder="outputs/articles/bai-viet.md" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs font-mono text-slate-900 focus:outline-none focus:border-blue-500" />
-          </div>
-          <div>
-            <label for="artEditContent" class="block text-xs font-bold text-slate-800 mb-1">Hoặc dán trực tiếp nội dung Markdown (tùy chọn):</label>
-            <textarea id="artEditContent" rows="5" placeholder="# Tiêu đề bài viết&#10;&#10;Nội dung bài viết..." class="w-full bg-slate-50 border border-blue-100 rounded-xl p-3 text-xs font-mono text-slate-900 focus:outline-none focus:border-blue-500"></textarea>
-          </div>
-        </div>
-        <div class="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
-          <button type="button" onclick="closeArtEditModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-xs font-bold hover:bg-slate-200 transition">Hủy</button>
-          <button type="button" onclick="saveArtEditModal()" class="px-4 py-2 rounded-xl brand-btn text-white text-xs font-bold transition">Lưu Bài Viết</button>
         </div>
       </div>
     </div>
@@ -808,14 +703,13 @@
       dashboard: { title: "Dashboard Keyword" },
       duyet:     { title: "Keyword Duyệt", desc: "Nơi duyệt và chốt danh sách keyword sẽ triển khai viết bài." },
       workflow:  { title: "Workflow", desc: "Theo dõi tiến độ từng keyword: lên kế hoạch, đang viết, đã đăng." },
-      baiviet:   { title: "Bài viết" },
       baocao:    { title: "Báo cáo", desc: "Tổng hợp hiệu quả keyword và bài viết theo ngày, tuần, tháng." },
       dexuat:    { title: "Đề xuất", desc: "Gợi ý chủ đề và keyword tiềm năng cho đội nội dung." }
     };
 
     function renderPlaceholders() {
       Object.entries(TABS).forEach(([tab, cfg]) => {
-        if (tab === "dashboard" || tab === "duyet" || tab === "workflow" || tab === "baiviet") return;
+        if (tab === "dashboard" || tab === "duyet" || tab === "workflow") return;
         const icon = document.querySelector(`.nav-rail-btn[data-tab="${tab}"] svg`).outerHTML.replace('class="w-5 h-5"', 'class="w-8 h-8"');
         document.querySelector(`[data-view="${tab}"]`).innerHTML = `
           <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">${escapeHtml(cfg.title)}</h2>
@@ -837,8 +731,7 @@
         if (on) b.setAttribute("aria-current", "page"); else b.removeAttribute("aria-current");
       });
       if (tab === "duyet") renderApprovedTable();
-      if (tab === "workflow") renderWorkflowTable();
-      if (tab === "baiviet") loadSeoContent();
+      if (tab === "workflow") { renderWorkflowTable(); loadSeoContent(); }
       if (updateHash) history.replaceState(null, "", window.location.pathname + "#" + tab);
       window.scrollTo({ top: 0 });
     }
@@ -1532,111 +1425,16 @@
     }
 
     // =====================================================================
-    // OUTLINE & BÀI VIẾT do Cowork tạo: bấm DUYỆT / TỪ CHỐI (bảng seo_outlines, seo_articles)
+    // WORKFLOW: keyword duyệt -> outline -> bài viết -> đăng
+    // Outline và bài viết do Cowork đẩy lên Supabase (seo_outlines, seo_articles); người dùng bấm DUYỆT / TỪ CHỐI.
+    // Link bài đã đăng lưu cùng bài viết (seo_articles.published_url) để cả team cùng thấy.
     // =====================================================================
+    const LOCAL_WORKFLOW_KEY = "tnc_workflow_data_v1";
+    let workflowMap = {}; // dữ liệu cũ lưu trong trình duyệt: key = normKeyword(keyword) -> { keyword, published_url, ... }
     let seoOutlines = [];
     let seoArticles = [];
     let seoError = null;
-
-    async function loadSeoContent() {
-      if (!STATIC_MODE) {
-        seoError = "Cần mở bản GitHub Pages (có Supabase) để xem outline và bài viết.";
-        renderSeoContent();
-        return;
-      }
-      try {
-        const [o, a] = await Promise.all([
-          sb.from("seo_outlines").select("*").order("created_at", { ascending: false }),
-          sb.from("seo_articles").select("*").order("created_at", { ascending: false })
-        ]);
-        if (o.error) throw new Error(o.error.message);
-        if (a.error) throw new Error(a.error.message);
-        seoOutlines = o.data || [];
-        seoArticles = a.data || [];
-        seoError = null;
-      } catch (err) {
-        console.error(err);
-        seoError = err.message + " (đã chạy database/seo_content.sql chưa?)";
-      }
-      renderSeoContent();
-    }
-
-    async function reviewSeoItem(table, id, status, btn) {
-      const label = status === "approved" ? "duyệt" : "từ chối";
-      const list = table === "seo_outlines" ? seoOutlines : seoArticles;
-      const item = list.find(x => Number(x.id) === id);
-      if (!item) return;
-      if (!confirm(`Bạn muốn ${label} ${table === "seo_outlines" ? "outline" : "bài viết"} "${item.keyword}"?`)) return;
-      btn.disabled = true;
-      try {
-        const { data, error } = await sb.from(table).update({ status }).eq("id", id).select().single();
-        if (error) throw new Error(error.message);
-        Object.assign(item, data);
-        renderSeoContent();
-        showToast(status === "approved" ? `Đã duyệt: "${item.keyword}"` : `Đã từ chối: "${item.keyword}"`);
-      } catch (err) {
-        console.error(err);
-        btn.disabled = false;
-        showToast("Không cập nhật được: " + err.message, true);
-      }
-    }
-
-    function renderSeoContent() {
-      const badge = {
-        pending: `<span class="px-2.5 py-0.5 rounded-full bg-orange-50 text-orange-600 text-[11px] font-bold">CHƯA DUYỆT</span>`,
-        approved: `<span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold">ĐÃ DUYỆT</span>`,
-        rejected: `<span class="px-2.5 py-0.5 rounded-full bg-rose-50 text-rose-600 text-[11px] font-bold">TỪ CHỐI</span>`
-      };
-      const pendingCount = seoOutlines.filter(x => x.status === "pending").length + seoArticles.filter(x => x.status === "pending").length;
-      const dot = byId("seoPendingDot");
-      if (dot) dot.classList.toggle("hidden", pendingCount === 0);
-
-      const draw = (wrapId, items, filterId, table, extra) => {
-        const wrap = byId(wrapId);
-        if (seoError) {
-          wrap.innerHTML = `<div class="p-8 text-center"><p class="text-sm font-bold text-rose-600">Không tải được dữ liệu</p><p class="text-xs text-slate-500 mt-2">${escapeHtml(seoError)}</p></div>`;
-          return;
-        }
-        const f = byId(filterId).value;
-        const rows = items.filter(x => f === "all" || x.status === f);
-        if (!rows.length) {
-          wrap.innerHTML = `<div class="py-12 text-center text-xs text-slate-400">Chưa có mục nào.</div>`;
-          return;
-        }
-        wrap.innerHTML = rows.map(x => `
-          <details class="border-b border-slate-100 group">
-            <summary class="px-4 py-3 flex flex-wrap items-center gap-3 cursor-pointer hover:bg-blue-50/40 list-none">
-              <div class="flex-1 min-w-[220px]">
-                <div class="font-bold text-slate-900">${escapeHtml(x.title || x.keyword)}</div>
-                <div class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(x.keyword)} · ${new Date(x.created_at).toLocaleString("vi-VN")}${extra(x)}${x.reviewed_by_email ? " · " + escapeHtml(x.reviewed_by_email) : ""}</div>
-              </div>
-              ${badge[x.status] || ""}
-              ${x.status === "pending" ? `
-                <button onclick="event.preventDefault(); reviewSeoItem('${table}', ${Number(x.id)}, 'approved', this)"
-                        class="px-3.5 py-1.5 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-extrabold tracking-wide transition disabled:opacity-60">DUYỆT</button>
-                <button onclick="event.preventDefault(); reviewSeoItem('${table}', ${Number(x.id)}, 'rejected', this)"
-                        class="px-3 py-1.5 rounded-full bg-white hover:bg-rose-50 border border-rose-200 text-rose-600 text-[11px] font-extrabold tracking-wide transition disabled:opacity-60">TỪ CHỐI</button>` : ""}
-            </summary>
-            <div class="px-4 pb-4">
-              <pre class="whitespace-pre-wrap break-words text-[13px] leading-relaxed text-slate-800 bg-slate-50 border border-blue-50 rounded-xl p-4 max-h-[520px] overflow-auto font-sans">${escapeHtml(x.outline_md || x.content_md || "")}</pre>
-              ${x.meta_description ? `<p class="mt-2 text-xs text-slate-600"><strong>Meta description:</strong> ${escapeHtml(x.meta_description)}</p>` : ""}
-              <button onclick="copyText(${JSON.stringify(x.outline_md || x.content_md || "").replace(/"/g, "&quot;")})" class="mt-2 text-[11px] font-semibold text-blue-600 hover:text-blue-800 underline">Copy nội dung</button>
-            </div>
-          </details>`).join("");
-      };
-      draw("outlineList", seoOutlines, "outlineFilter", "seo_outlines",
-        x => ` · ${(x.short_kws || []).length + (x.long_kws || []).length} key phụ`);
-      draw("articleList", seoArticles, "articleFilter", "seo_articles",
-        x => ` · ${x.word_count || "?"} từ · SEO ${x.seo_score ?? "?"}`);
-    }
-
-    // =====================================================================
-    // WORKFLOW LOGIC & GIAO DIỆN TIẾN ĐỘ BÀI VIẾT
-    // =====================================================================
-    const LOCAL_WORKFLOW_KEY = "tnc_workflow_data_v1";
-    let workflowMap = {}; // key: normKeyword(keyword) -> { keyword, confirmed, writing, article_url, article_content, pending_approval, published, updated_at }
-    let currentEditKw = null;
-    let currentViewingKw = null;
+    let currentPubKw = null;
 
     async function loadWorkflowData() {
       try {
@@ -1680,105 +1478,187 @@
     function getWfItem(keyword) {
       const key = normKeyword(keyword);
       if (!workflowMap[key]) {
-        workflowMap[key] = {
-          keyword: keyword,
-          confirmed: false,
-          writing: false,
-          article_url: "",
-          article_content: "",
-          approved: false, // Trạng thái duyệt: true = Đã duyệt, false = Chưa duyệt
-          published: false,
-          published_url: "", // Link bài đã đăng
-          updated_at: new Date().toISOString()
-        };
-      }
-      if (workflowMap[key].approved === undefined) {
-        workflowMap[key].approved = !!workflowMap[key].pending_approval;
-      }
-      if (workflowMap[key].published_url === undefined) {
-        workflowMap[key].published_url = "";
+        workflowMap[key] = { keyword, article_url: "", article_content: "", published: false, published_url: "", updated_at: new Date().toISOString() };
       }
       const w = workflowMap[key];
-      if (w.written === undefined) {
-        w.written = !!(w.article_url || w.article_content || w.approved || w.published || w.published_url);
-      }
-      syncWfWriting(w);
+      if (w.published_url === undefined) w.published_url = "";
       return w;
     }
 
-    // Trạng thái viết bài: Chưa viết (chưa nhận keyword) -> Đang viết (đã nhận) -> Đã viết (đã có bài ở cột Bài viết)
-    function wfWritingState(wf) {
-      if (!wf.confirmed) return "none";
-      return wf.written ? "done" : "writing";
-    }
-    function syncWfWriting(wf) {
-      wf.writing = wfWritingState(wf) === "writing";
-    }
-    // Xóa link bài đăng -> bỏ tick toàn bộ các bước phía trước (về ô trống)
-    function resetWfProgress(wf) {
-      wf.published_url = "";
-      wf.published = false;
-      wf.approved = false;
-      wf.pending_approval = false;
-      wf.confirmed = false;
-      wf.written = false;
-      wf.writing = false;
-    }
-    // Có link bài đăng thì mọi bước trước đó đều đã hoàn tất và bị khóa
-    function isWfLinkLocked(wf) {
-      return !!wf.published_url;
-    }
-
-    // Toggle trạng thái:
-    // - Xác nhận keyword: tick chọn = Đã nhận (trạng thái viết bài tự chuyển Đang viết)
-    // - Trạng thái viết bài: tự tính, không toggle
-    // - Trạng thái duyệt: Đã duyệt / Chưa duyệt
-    // - Đã đăng: Đã đăng / Chưa đăng
-    function toggleWfField(keyword, field) {
-      const wf = getWfItem(keyword);
-      if (isWfLinkLocked(wf)) {
-        showToast(`Đã có link bài đăng. Hãy bấm "Xóa link" để chỉnh lại các bước trước.`);
+    async function loadSeoContent() {
+      if (!STATIC_MODE) {
+        seoError = "Bản chạy local chưa nối Supabase: outline và bài viết chỉ hiện trên bản GitHub Pages.";
+        renderWorkflowTable();
         return;
       }
-      if (field === "confirmed") {
-        wf.confirmed = !wf.confirmed;
-        if (wf.confirmed) {
-          showToast(`Đã nhận keyword: "${keyword}" (Bắt đầu viết bài)`);
-        } else {
-          wf.written = false;
-        }
-      } else if (field === "approved" || field === "pending_approval") {
-        wf.approved = !wf.approved;
-        wf.pending_approval = wf.approved;
-        if (wf.approved) {
-          wf.confirmed = true;
-          showToast(`Đã duyệt bài viết: "${keyword}" ✓`);
-        } else {
-          showToast(`Đã chuyển về Chưa duyệt: "${keyword}"`);
-        }
-      } else if (field === "published") {
-        wf.published = !wf.published;
-        if (wf.published) {
-          wf.confirmed = true;
-          wf.written = true;
-          wf.approved = true;
-          wf.pending_approval = true;
-          showToast(`Bài viết đã xuất bản: "${keyword}" 🎉`);
-        }
+      try {
+        const [o, a] = await Promise.all([
+          sb.from("seo_outlines").select("*").order("created_at", { ascending: false }),
+          sb.from("seo_articles").select("*").order("created_at", { ascending: false })
+        ]);
+        if (o.error) throw new Error(o.error.message);
+        if (a.error) throw new Error(a.error.message);
+        seoOutlines = o.data || [];
+        seoArticles = a.data || [];
+        seoError = null;
+      } catch (err) {
+        console.error(err);
+        seoError = `Không tải được outline và bài viết: ${err.message} (đã chạy database/seo_content.sql chưa?)`;
       }
-      syncWfWriting(wf);
-      wf.updated_at = new Date().toISOString();
-      saveWorkflowData();
       renderWorkflowTable();
     }
 
-    // Bảng Workflow
+    // 6 giai đoạn của một keyword. done = số bước đã xong trên thanh tiến độ; action = đang chờ người dùng duyệt.
+    const WF_STAGES = [
+      { id: "NEW",            label: "Chờ lập outline",   hint: "Cowork lập ở lần chạy sau", tone: "slate",   done: 0 },
+      { id: "OUTLINE_REVIEW", label: "Chờ duyệt outline", hint: "Đang chờ bạn duyệt",        tone: "orange",  done: 1, action: true },
+      { id: "WRITING",        label: "Chờ viết bài",      hint: "Cowork viết ở lần chạy sau", tone: "blue",    done: 2 },
+      { id: "ARTICLE_REVIEW", label: "Chờ duyệt bài",     hint: "Đang chờ bạn duyệt",        tone: "orange",  done: 3, action: true },
+      { id: "READY",          label: "Sẵn sàng đăng",     hint: "Bài đã duyệt, chưa có link", tone: "blue",   done: 4 },
+      { id: "PUBLISHED",      label: "Đã đăng",           hint: "Đã có link bài đăng",       tone: "emerald", done: 5 }
+    ];
+    const WF_TONES = {
+      slate:   { card: "bg-white border-slate-200",       num: "text-slate-700",   badge: "bg-slate-100 text-slate-600 border-slate-200" },
+      orange:  { card: "bg-orange-50 border-orange-300",  num: "text-orange-600",  badge: "bg-orange-50 text-orange-700 border-orange-300" },
+      blue:    { card: "bg-white border-blue-200",        num: "text-blue-600",    badge: "bg-blue-50 text-blue-700 border-blue-200" },
+      emerald: { card: "bg-white border-emerald-200",     num: "text-emerald-600", badge: "bg-emerald-50 text-emerald-700 border-emerald-200" }
+    };
+    const WF_STEP_LABELS = ["Outline", "Duyệt outline", "Viết bài", "Duyệt bài", "Đăng"];
+    const WF_SORT = { OUTLINE_REVIEW: 0, ARTICLE_REVIEW: 0, READY: 1, WRITING: 2, NEW: 3, PUBLISHED: 4 };
+    const wfStage = (id) => WF_STAGES.find(s => s.id === id);
+
+    // Outline / bài viết "đang sống" của keyword (bỏ qua bản đã từ chối: từ chối = quay lại bước trước để Cowork làm lại)
+    function wfLookup(keyword) {
+      const key = normKeyword(keyword);
+      const outline = seoOutlines.find(o => normKeyword(o.keyword) === key && o.status !== "rejected") || null;
+      const article = outline ? (seoArticles.find(a => a.outline_id === outline.id && a.status !== "rejected") || null) : null;
+      const publishedUrl = article?.published_url || workflowMap[key]?.published_url || "";
+      let stage;
+      if (publishedUrl) stage = "PUBLISHED";
+      else if (!outline) stage = "NEW";
+      else if (outline.status === "pending") stage = "OUTLINE_REVIEW";
+      else if (!article) stage = "WRITING";
+      else if (article.status === "pending") stage = "ARTICLE_REVIEW";
+      else stage = "READY";
+      return { outline, article, publishedUrl, stage };
+    }
+
+    function setWfStage(id) {
+      byId("wfFilterStatus").value = id;
+      renderWorkflowTable();
+    }
+
+    async function reviewSeoItem(table, id, status, btn) {
+      const isOutline = table === "seo_outlines";
+      const item = (isOutline ? seoOutlines : seoArticles).find(x => Number(x.id) === id);
+      if (!item) return;
+      const what = isOutline ? "outline" : "bài viết";
+      if (!confirm(`Bạn muốn ${status === "approved" ? "duyệt" : "từ chối"} ${what} "${item.title || item.keyword}"?`)) return;
+      btn.disabled = true;
+      try {
+        const { data, error } = await sb.from(table).update({ status }).eq("id", id).select().single();
+        if (error) throw new Error(error.message);
+        Object.assign(item, data);
+        closeArticleModal();
+        renderWorkflowTable();
+        if (status === "approved") {
+          showToast(isOutline ? `Đã duyệt outline: "${item.keyword}". Cowork sẽ viết bài ở lần chạy sau.` : `Đã duyệt bài viết: "${item.keyword}"`);
+        } else {
+          showToast(isOutline ? `Đã từ chối outline: "${item.keyword}". Cowork sẽ lập lại ở lần chạy sau.` : `Đã từ chối bài viết: "${item.keyword}". Cowork sẽ viết lại ở lần chạy sau.`);
+        }
+      } catch (err) {
+        console.error(err);
+        btn.disabled = false;
+        showToast("Không cập nhật được: " + err.message, true);
+      }
+    }
+
+    const wfReviewButtons = (table, id) => `
+      <button type="button" onclick="reviewSeoItem('${table}', ${Number(id)}, 'approved', this)"
+              class="px-3 py-1 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-[11px] font-extrabold tracking-wide transition disabled:opacity-60">DUYỆT</button>
+      <button type="button" onclick="reviewSeoItem('${table}', ${Number(id)}, 'rejected', this)"
+              class="px-2.5 py-1 rounded-full bg-white hover:bg-rose-50 border border-rose-200 text-rose-600 text-[11px] font-extrabold tracking-wide transition disabled:opacity-60">TỪ CHỐI</button>`;
+
+    const wfViewButton = (kind, id) => `
+      <button type="button" onclick="openSeoViewer('${kind}', ${Number(id)})"
+              class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-bold transition">Xem</button>`;
+
+    function wfStepper(stageId) {
+      const st = wfStage(stageId);
+      const tone = stageId === "PUBLISHED" ? "bg-emerald-500" : "bg-blue-500";
+      return `
+        <div class="flex gap-1">
+          ${WF_STEP_LABELS.map((label, i) => {
+            const cls = i < st.done ? tone : (i === st.done ? (st.action ? "bg-orange-400 animate-pulse" : "bg-blue-200") : "bg-slate-200");
+            return `<div class="flex-1 min-w-[38px]"><div class="h-1.5 rounded-full ${cls}"></div><div class="mt-1 text-[9px] leading-tight text-slate-400 text-center">${label}</div></div>`;
+          }).join("")}
+        </div>`;
+    }
+
+    function wfOutlineCell(info) {
+      const o = info.outline;
+      if (!o) return `<span class="text-xs text-slate-400 italic">Chưa có</span>`;
+      const kws = (o.short_kws || []).length + (o.long_kws || []).length;
+      return `
+        <div class="flex flex-wrap items-center gap-1.5">
+          ${wfViewButton("outline", o.id)}
+          ${o.status === "pending" ? wfReviewButtons("seo_outlines", o.id) : `<span class="text-[11px] font-bold text-blue-700">✓ Đã duyệt</span>`}
+        </div>
+        <div class="text-[10px] text-slate-400 mt-1">${kws} key phụ${o.reviewed_by_email ? " · " + escapeHtml(o.reviewed_by_email) : ""}</div>`;
+    }
+
+    function wfArticleCell(info) {
+      const a = info.article;
+      if (!a) {
+        return info.outline?.status === "approved"
+          ? `<span class="inline-flex items-center gap-1.5 text-xs text-blue-700 font-semibold"><span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>Cowork đang chờ viết</span>`
+          : `<span class="text-xs text-slate-300">--</span>`;
+      }
+      return `
+        <div class="flex flex-wrap items-center gap-1.5">
+          ${wfViewButton("article", a.id)}
+          ${a.status === "pending" ? wfReviewButtons("seo_articles", a.id) : `<span class="text-[11px] font-bold text-blue-700">✓ Đã duyệt</span>`}
+        </div>
+        <div class="text-[10px] text-slate-400 mt-1">${a.word_count || "?"} từ · SEO ${a.seo_score ?? "?"}${a.reviewed_by_email ? " · " + escapeHtml(a.reviewed_by_email) : ""}</div>`;
+    }
+
+    function wfLinkCell(info, kEsc) {
+      if (info.publishedUrl) {
+        return `
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 shadow-sm">
+            <a href="${escapeAttr(info.publishedUrl)}" target="_blank" rel="noopener noreferrer"
+               class="text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-0.5" title="${escapeAttr(info.publishedUrl)}">
+              Xem link
+              <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <button type="button" onclick="openPublishLinkModal('${kEsc}')" title="Sửa link bài đăng" class="p-0.5 text-slate-400 hover:text-blue-600 transition">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
+            </button>
+          </div>`;
+      }
+      if (info.stage === "READY") {
+        return `
+          <button type="button" onclick="openPublishLinkModal('${kEsc}')"
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 text-xs font-semibold shadow-sm transition">+ Thêm link</button>`;
+      }
+      return `<span class="text-xs text-slate-300">--</span>`;
+    }
+
     function renderWorkflowTable() {
       const wrap = byId("workflowTableWrap");
       if (!wrap) return;
 
       const allList = approvedKeywords || [];
       const monthOf = (it) => (it.report_date || (it.approved_at || "").slice(0, 10) || "").slice(0, 7);
+
+      // Số việc chờ duyệt trên toàn bộ keyword (không phụ thuộc bộ lọc tháng) hiện ở menu bên trái
+      const actionTotal = allList.filter(k => wfStage(wfLookup(k.keyword).stage).action).length;
+      const navBadge = byId("wfPendingBadge");
+      if (navBadge) {
+        navBadge.textContent = actionTotal;
+        navBadge.classList.toggle("hidden", actionTotal === 0);
+        navBadge.classList.toggle("inline-flex", actionTotal > 0);
+      }
 
       // Bộ lọc theo tháng: dựng danh sách tháng từ ngày duyệt, giữ lựa chọn hiện tại
       const monthSel = byId("wfFilterMonth");
@@ -1792,32 +1672,43 @@
         monthFilter = monthSel.value;
       }
       const list = monthFilter === "ALL" ? allList : allList.filter(it => monthOf(it) === monthFilter);
-      const totalCount = list.length;
-      byId("wfStatTotal").textContent = totalCount;
-      byId("workflowBadgeStats").textContent = `${totalCount} nhiệm vụ`;
+      const rows = list.map(item => ({ item, info: wfLookup(item.keyword) }));
+      const totalCount = rows.length;
 
-      let writingCount = 0;
-      let approvedCount = 0;
-      let publishedCount = 0;
+      const notice = byId("wfSeoNotice");
+      notice.textContent = seoError || "";
+      notice.classList.toggle("hidden", !seoError);
 
-      list.forEach(k => {
-        const wf = getWfItem(k.keyword);
-        if (wf.published || wf.published_url) publishedCount++;
-        if (wf.approved) approvedCount++;
-        else if (wfWritingState(wf) === "writing") writingCount++;
-      });
+      const counts = {};
+      WF_STAGES.forEach(s => { counts[s.id] = 0; });
+      rows.forEach(r => { counts[r.info.stage]++; });
+      const actionCount = counts.OUTLINE_REVIEW + counts.ARTICLE_REVIEW;
 
-      byId("wfStatWriting").textContent = writingCount;
-      const elAppr = byId("wfStatApproved");
-      if (elAppr) elAppr.textContent = approvedCount;
-      byId("wfStatPublished").textContent = publishedCount;
+      const badge = byId("workflowBadgeStats");
+      badge.textContent = actionCount > 0 ? `${actionCount} việc cần duyệt` : `${totalCount} keyword`;
+      badge.className = actionCount > 0
+        ? "px-3.5 py-1.5 rounded-full bg-orange-500 hover:bg-orange-600 text-white text-xs font-extrabold shadow-sm transition"
+        : "px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold border border-blue-100 shadow-sm";
+
+      const statusFilter = byId("wfFilterStatus")?.value || "ALL";
+      byId("wfStageCards").innerHTML = WF_STAGES.map((s, i) => {
+        const t = WF_TONES[counts[s.id] > 0 ? s.tone : "slate"];
+        const card = s.action && counts[s.id] > 0 ? t.card : "bg-white border-slate-200";
+        return `
+          <button type="button" onclick="setWfStage('${statusFilter === s.id ? "ALL" : s.id}')"
+                  class="pro-card rounded-2xl p-3.5 text-left border transition hover:shadow-md ${card} ${statusFilter === s.id ? "ring-2 ring-blue-400" : ""}">
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] font-extrabold text-slate-400">${i + 1}</span>
+              <span class="text-2xl font-extrabold ${counts[s.id] > 0 ? t.num : "text-slate-300"}">${counts[s.id]}</span>
+            </div>
+            <div class="mt-1 text-xs font-bold text-slate-800 leading-tight">${s.label}</div>
+            <div class="mt-0.5 text-[10px] text-slate-400 leading-tight">${s.hint}</div>
+          </button>`;
+      }).join("");
 
       if (totalCount === 0) {
         wrap.innerHTML = `
           <div class="py-16 px-6 text-center">
-            <div class="w-16 h-16 mx-auto rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-2xl mb-3 shadow-sm border border-blue-100">
-              📋
-            </div>
             <p class="text-base font-bold text-slate-900">Chưa có keyword nào trong Workflow</p>
             <p class="text-xs text-slate-500 mt-1.5 max-w-md mx-auto">
               Workflow tự động lấy từ danh sách <strong>Keyword Duyệt</strong>. Cứ có keyword mới được duyệt thì sẽ tự động thêm vào danh sách này.
@@ -1830,38 +1721,24 @@
         return;
       }
 
-      const statusFilter = byId("wfFilterStatus")?.value || "ALL";
       const searchQ = (byId("wfSearchInput")?.value || "").toLowerCase().trim();
-
-      const filtered = list.filter(item => {
-        const wf = getWfItem(item.keyword);
-        if (searchQ && !item.keyword.toLowerCase().includes(searchQ) && !(item.niche || "").toLowerCase().includes(searchQ)) {
-          return false;
-        }
-        if (statusFilter === "UNCONFIRMED" && wf.confirmed) return false;
-        if (statusFilter === "NOT_WRITTEN" && wfWritingState(wf) !== "none") return false;
-        if (statusFilter === "WRITING" && wfWritingState(wf) !== "writing") return false;
-        if (statusFilter === "WRITTEN" && wfWritingState(wf) !== "done") return false;
-        if (statusFilter === "HAS_ARTICLE" && (!wf.article_url && !wf.article_content)) return false;
-        if (statusFilter === "APPROVED" && !wf.approved) return false;
-        if (statusFilter === "UNAPPROVED" && wf.approved) return false;
-        if (statusFilter === "PUBLISHED" && (!wf.published && !wf.published_url)) return false;
-        if (statusFilter === "HAS_PUB_LINK" && !wf.published_url) return false;
+      const filtered = rows.filter(({ item, info }) => {
+        if (searchQ && !item.keyword.toLowerCase().includes(searchQ) && !(item.niche || "").toLowerCase().includes(searchQ)) return false;
+        if (statusFilter === "ACTION") return !!wfStage(info.stage).action;
+        if (statusFilter !== "ALL") return info.stage === statusFilter;
         return true;
       });
+      // Việc cần bạn xử lý lên đầu, bài đã đăng xuống cuối; trong cùng nhóm giữ thứ tự duyệt mới nhất trước
+      filtered.sort((a, b) => WF_SORT[a.info.stage] - WF_SORT[b.info.stage]);
 
       byId("wfFilterCount").textContent = `${filtered.length}/${totalCount}`;
 
       if (filtered.length === 0) {
-        wrap.innerHTML = `
-          <div class="py-12 px-6 text-center text-slate-500 text-xs">
-            Không tìm thấy keyword nào khớp với bộ lọc trạng thái hoặc từ khóa tìm kiếm.
-          </div>`;
+        wrap.innerHTML = `<div class="py-12 px-6 text-center text-slate-500 text-xs">Không có keyword nào khớp với bộ lọc.</div>`;
         return;
       }
 
       const fmtDate = (iso) => iso ? iso.split("-").reverse().join("/") : "--";
-
       wrap.innerHTML = `
         <div class="overflow-x-auto">
           <table class="w-full text-sm">
@@ -1869,30 +1746,21 @@
               <tr class="bg-slate-50/80 text-[11px] font-bold uppercase tracking-wider text-slate-500 border-b border-blue-50">
                 <th class="px-3 py-3 text-center w-12">#</th>
                 <th class="px-3 py-3 text-left min-w-[220px]">Keyword</th>
-                <th class="px-3 py-3 text-center w-36">Xác nhận Keyword</th>
-                <th class="px-3 py-3 text-center w-40">Trạng thái viết bài</th>
-                <th class="px-3 py-3 text-left min-w-[180px]">Bài viết (.md)</th>
-                <th class="px-3 py-3 text-center w-36">Trạng thái duyệt</th>
-                <th class="px-3 py-3 text-center w-32">Đã đăng</th>
-                <th class="px-3 py-3 text-center min-w-[190px]">Link bài đăng</th>
+                <th class="px-3 py-3 text-left min-w-[250px]">Tiến độ</th>
+                <th class="px-3 py-3 text-left min-w-[190px]">Outline</th>
+                <th class="px-3 py-3 text-left min-w-[190px]">Bài viết</th>
+                <th class="px-3 py-3 text-center min-w-[150px]">Link bài đăng</th>
               </tr>
             </thead>
             <tbody>
-              ${filtered.map((item, idx) => {
-                const wf = getWfItem(item.keyword);
+              ${filtered.map(({ item, info }, idx) => {
+                const st = wfStage(info.stage);
                 const kEsc = escapeAttr(item.keyword);
-                const hasArticle = !!(wf.article_url || wf.article_content);
-                const fileName = wf.article_url ? wf.article_url.split(/[\\/]/).pop() : (hasArticle ? "article.md" : "");
-                const isPublished = wf.published || !!wf.published_url;
-
                 return `
-                  <tr class="border-b border-slate-100 hover:bg-blue-50/30 transition">
-                    <!-- # -->
+                  <tr class="border-b border-slate-100 hover:bg-blue-50/30 transition ${st.action ? "bg-orange-50/40" : ""}">
                     <td class="px-3 py-3 text-center">
                       <span class="inline-flex w-7 h-7 rounded-lg rank-other text-xs font-extrabold items-center justify-center">${idx + 1}</span>
                     </td>
-
-                    <!-- Keyword -->
                     <td class="px-3 py-3">
                       <div class="font-bold text-slate-900">${escapeHtml(item.keyword)}</div>
                       <div class="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]">
@@ -1900,111 +1768,13 @@
                         <span class="text-slate-400">Duyệt: ${fmtDate(item.report_date || (item.approved_at || "").slice(0, 10))}</span>
                       </div>
                     </td>
-
-                    <!-- Xác nhận Keyword -->
-                    <td class="px-3 py-3 text-center">
-                      <button type="button" onclick="toggleWfField('${kEsc}', 'confirmed')"
-                              title="${wf.confirmed ? 'Đã tick: Agent đã nhận keyword. Bấm để bỏ chọn.' : 'Chưa tick: Bấm để xác nhận nhận keyword'}"
-                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
-                                wf.confirmed
-                                  ? 'bg-blue-50 border border-blue-300 text-blue-700 hover:bg-blue-100'
-                                  : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
-                              }">
-                        ${wf.confirmed
-                          ? `<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã nhận`
-                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa nhận`}
-                      </button>
-                    </td>
-
-                    <!-- Trạng thái viết bài (tự động): Chưa viết / Đang viết / Đã viết -->
-                    <td class="px-3 py-3 text-center">
-                      ${(() => {
-                        const st = wfWritingState(wf);
-                        if (st === "done") return `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-emerald-50 border border-emerald-300 text-emerald-700 shadow-sm"><svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã viết</span>`;
-                        if (st === "writing") return `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-amber-50 border border-amber-300 text-amber-700 shadow-sm"><span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span> Đang viết</span>`;
-                        return `<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-slate-200 text-slate-400 shadow-sm"><span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa viết</span>`;
-                      })()}
-                    </td>
-
-                    <!-- Bài viết (.md & Nút Mở) -->
                     <td class="px-3 py-3">
-                      ${hasArticle ? `
-                        <div class="flex items-center gap-2">
-                          <button type="button" onclick="openArticleModal('${kEsc}')"
-                                  class="px-3 py-1.5 rounded-xl brand-btn text-white text-xs font-bold flex items-center gap-1.5 shadow-sm hover:opacity-95 transition">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
-                            Mở
-                          </button>
-                          <span class="text-xs text-slate-600 font-mono truncate max-w-[120px]" title="${escapeAttr(wf.article_url || 'Nội dung .md')}">
-                            ${escapeHtml(fileName || 'output.md')}
-                          </span>
-                          <button type="button" onclick="editArticleLink('${kEsc}')" title="Sửa đường dẫn hoặc nội dung" class="p-1 text-slate-400 hover:text-blue-600">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
-                          </button>
-                        </div>
-                      ` : `
-                        <div class="flex items-center gap-1.5">
-                          <span class="text-xs text-slate-400 italic">Chưa có bài</span>
-                          <button type="button" onclick="editArticleLink('${kEsc}')" class="text-[11px] font-semibold text-blue-600 hover:text-blue-800 underline ml-1">
-                            + Gắn file .md
-                          </button>
-                        </div>
-                      `}
+                      ${wfStepper(info.stage)}
+                      <span class="inline-block mt-1.5 px-2.5 py-0.5 rounded-full border text-[11px] font-bold ${WF_TONES[st.tone].badge}">${st.label}</span>
                     </td>
-
-                    <!-- Trạng thái duyệt (2 lựa chọn: Đã duyệt khi đã tick, Chưa duyệt khi chưa tick) -->
-                    <td class="px-3 py-3 text-center">
-                      <button type="button" onclick="toggleWfField('${kEsc}', 'approved')"
-                              title="${wf.approved ? 'Trạng thái: Đã duyệt. Bấm để đổi sang Chưa duyệt' : 'Trạng thái: Chưa duyệt. Bấm để duyệt bài'}"
-                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
-                                wf.approved
-                                  ? 'bg-blue-50 border border-blue-300 text-blue-700 hover:bg-blue-100'
-                                  : 'bg-white border border-slate-200 text-slate-500 hover:border-slate-300 hover:bg-slate-50'
-                              }">
-                        ${wf.approved
-                          ? `<svg class="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã duyệt`
-                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa duyệt`}
-                      </button>
-                    </td>
-
-                    <!-- Đã đăng -->
-                    <td class="px-3 py-3 text-center">
-                      <button type="button" onclick="toggleWfField('${kEsc}', 'published')"
-                              title="${isPublished ? 'Đã xuất bản' : 'Chưa đăng'}"
-                              class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold transition shadow-sm ${
-                                isPublished
-                                  ? 'bg-emerald-50 border border-emerald-300 text-emerald-700 hover:bg-emerald-100'
-                                  : 'bg-white border border-slate-200 text-slate-400 hover:border-slate-300 hover:bg-slate-50'
-                              }">
-                        ${isPublished
-                          ? `<svg class="w-4 h-4 text-emerald-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg> Đã đăng`
-                          : `<span class="w-3.5 h-3.5 rounded border border-slate-300 inline-block"></span> Chưa đăng`}
-                      </button>
-                    </td>
-
-                    <!-- Link bài đăng (popup add link, đã có link thì hiện trạng thái 'Đã đăng (Xem link)') -->
-                    <td class="px-3 py-3 text-center">
-                      ${wf.published_url ? `
-                        <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200 shadow-sm">
-                          <span class="text-xs font-bold text-emerald-700">Đã đăng</span>
-                          <a href="${escapeAttr(wf.published_url)}" target="_blank" rel="noopener noreferrer"
-                             class="text-xs font-bold text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center gap-0.5"
-                             title="${escapeAttr(wf.published_url)}">
-                            (Xem link)
-                            <svg class="w-3 h-3 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-                          </a>
-                          <button type="button" onclick="openPublishLinkModal('${kEsc}')" title="Sửa link bài đăng" class="p-0.5 text-slate-400 hover:text-blue-600 transition">
-                            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"/></svg>
-                          </button>
-                        </div>
-                      ` : `
-                        <button type="button" onclick="openPublishLinkModal('${kEsc}')"
-                                class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-white hover:bg-blue-50 border border-blue-200 hover:border-blue-300 text-blue-700 text-xs font-semibold shadow-sm transition">
-                          <svg class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"/></svg>
-                          + Thêm link
-                        </button>
-                      `}
-                    </td>
+                    <td class="px-3 py-3">${wfOutlineCell(info)}</td>
+                    <td class="px-3 py-3">${wfArticleCell(info)}</td>
+                    <td class="px-3 py-3 text-center">${wfLinkCell(info, kEsc)}</td>
                   </tr>`;
               }).join("")}
             </tbody>
@@ -2013,40 +1783,34 @@
     }
 
     // =====================================================================
-    // ARTICLE MODAL & MARKDOWN PREVIEW
+    // XEM OUTLINE / BÀI VIẾT (popup Markdown, có nút Duyệt khi còn chờ)
     // =====================================================================
-    async function openArticleModal(keyword) {
-      const wf = getWfItem(keyword);
-      currentViewingKw = keyword;
+    function openSeoViewer(kind, id) {
+      const isOutline = kind === "outline";
+      const table = isOutline ? "seo_outlines" : "seo_articles";
+      const item = (isOutline ? seoOutlines : seoArticles).find(x => Number(x.id) === id);
+      if (!item) return;
 
-      byId("artModalTitle").textContent = `Bài viết SEO: ${keyword}`;
-      byId("artModalFile").textContent = wf.article_url || "Bài viết nội bộ (.md)";
-      const statusText = wf.published ? "Đã đăng" : (wf.pending_approval ? "Chờ duyệt" : ({ done: "Đã viết", writing: "Đang viết", none: "Chưa viết" })[wfWritingState(wf)]);
-      byId("artModalStatus").textContent = statusText;
+      byId("artModalTitle").textContent = `${isOutline ? "Outline" : "Bài viết"}: ${item.title || item.keyword}`;
+      byId("artModalFile").textContent = isOutline
+        ? `${(item.short_kws || []).length + (item.long_kws || []).length} key phụ`
+        : `${item.word_count ?? "?"} từ · SEO ${item.seo_score ?? "?"}`;
+      byId("artModalStatus").textContent = ({ pending: "Chưa duyệt", approved: "Đã duyệt", rejected: "Đã từ chối" })[item.status] || item.status;
+      byId("artModalActions").innerHTML = item.status === "pending" ? wfReviewButtons(table, item.id) : "";
 
-      let content = wf.article_content || "";
-
-      // Nếu có đường dẫn file tương đối và chưa có content, gọi backend đọc file
-      if (!content && wf.article_url && !STATIC_MODE && !wf.article_url.startsWith("http")) {
-        try {
-          const res = await fetch(`${API_BASE}/api/article?file=${encodeURIComponent(wf.article_url)}`);
-          if (res.ok) {
-            const data = await res.json();
-            content = data.content || "";
-            wf.article_content = content;
-          }
-        } catch (e) {
-          console.warn("Không tải được file bài viết:", e);
-        }
+      const content = (isOutline ? item.outline_md : item.content_md) || "";
+      let extra = "";
+      if (isOutline) {
+        const chips = (list) => (list || []).map(k => `<span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold">${escapeHtml(k)}</span>`).join(" ") || "--";
+        extra = `<div class="mt-4 p-3 rounded-xl bg-slate-50 border border-blue-50 text-xs text-slate-700 space-y-2">
+          <div><strong>Key phụ ngắn:</strong> ${chips(item.short_kws)}</div>
+          <div><strong>Key phụ dài:</strong> ${chips(item.long_kws)}</div></div>`;
+      } else if (item.meta_description) {
+        extra = `<div class="mt-4 p-3 rounded-xl bg-slate-50 border border-blue-50 text-xs text-slate-700">
+          <strong>Meta description (${item.meta_description.length} ký tự):</strong> ${escapeHtml(item.meta_description)}</div>`;
       }
-
-      if (!content) {
-        content = `# Bài Viết SEO: ${keyword}\n\n*Bài viết được khởi tạo tự động từ Agent cho keyword: **${keyword}**.*\n\n## 1. Giới thiệu tổng quan\nNội dung bài viết chuẩn SEO tối ưu Onpage dựa trên dữ liệu Google Trends và tin tức mới nhất.\n\n## 2. Thông tin chi tiết\n- Cập nhật thông tin nhanh và chính xác nhất.\n- Đầy đủ tiêu chuẩn phân bổ từ khóa.\n\n> Nguồn: Hệ thống TNC SEO Keyword News.`;
-        wf.article_content = content;
-      }
-
       byId("artModalRawText").textContent = content;
-      byId("artModalBodyPreview").innerHTML = parseMarkdown(content);
+      byId("artModalBodyPreview").innerHTML = parseMarkdown(content) + extra;
 
       switchArticleTab("preview");
       show("articleModal", true);
@@ -2071,70 +1835,20 @@
     }
 
     function copyArticleMarkdown() {
-      const text = byId("artModalRawText").textContent;
-      copyText(text);
-    }
-
-    // Modal Sửa link .md
-    function editArticleLink(keyword) {
-      const wf = getWfItem(keyword);
-      currentEditKw = keyword;
-      byId("artEditKw").textContent = keyword;
-      byId("artEditUrl").value = wf.article_url || "";
-      byId("artEditContent").value = wf.article_content || "";
-      show("artEditModal", true);
-      byId("artEditUrl").focus();
-    }
-
-    function closeArtEditModal() {
-      show("artEditModal", false);
-      currentEditKw = null;
-    }
-
-    async function saveArtEditModal() {
-      if (!currentEditKw) return;
-      const wf = getWfItem(currentEditKw);
-      const url = byId("artEditUrl").value.trim();
-      const content = byId("artEditContent").value.trim();
-
-      wf.article_url = url;
-      if (content) wf.article_content = content;
-      if (url || content) {
-        wf.confirmed = true;
-        wf.written = true;
-        if (!wf.published) wf.pending_approval = true;
-      }
-      syncWfWriting(wf);
-      wf.updated_at = new Date().toISOString();
-
-      if (!STATIC_MODE && url && content && !url.startsWith("http")) {
-        try {
-          await fetch(`${API_BASE}/api/article`, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ file: url, content: content })
-          });
-        } catch (e) {}
-      }
-
-      await saveWorkflowData();
-      closeArtEditModal();
-      renderWorkflowTable();
-      showToast(`Đã lưu bài viết cho: "${currentEditKw}"`);
+      copyText(byId("artModalRawText").textContent);
     }
 
     // Modal Thêm / Sửa Link Bài Đã Đăng
-    let currentPubKw = null;
-
     function openPublishLinkModal(keyword) {
-      const wf = getWfItem(keyword);
+      const info = wfLookup(keyword);
+      if (!info.article && !info.publishedUrl) {
+        showToast("Cần có bài viết đã duyệt trước khi thêm link bài đăng.", true);
+        return;
+      }
       currentPubKw = keyword;
       byId("pubLinkKw").textContent = keyword;
-      byId("pubLinkInput").value = wf.published_url || "";
-      const btnDel = byId("btnDeletePubLink");
-      if (btnDel) {
-        btnDel.classList.toggle("hidden", !wf.published_url);
-      }
+      byId("pubLinkInput").value = info.publishedUrl || "";
+      byId("btnDeletePubLink").classList.toggle("hidden", !info.publishedUrl);
       show("publishLinkModal", true);
       setTimeout(() => byId("pubLinkInput").focus(), 60);
     }
@@ -2144,40 +1858,52 @@
       currentPubKw = null;
     }
 
+    // Lưu link vào bài viết trên Supabase; keyword chỉ có link cũ trong trình duyệt (chưa có bài) thì lưu tại chỗ
+    async function setPublishedUrl(keyword, url) {
+      const info = wfLookup(keyword);
+      if (info.article) {
+        if (!STATIC_MODE) throw new Error("Cần mở bản GitHub Pages để lưu link bài đăng.");
+        const { data, error } = await sb.from("seo_articles").update({ published_url: url || null }).eq("id", info.article.id).select().single();
+        if (error) throw new Error(error.message + " (đã chạy lại database/seo_content.sql chưa?)");
+        Object.assign(info.article, data);
+      }
+      const legacy = info.article ? workflowMap[normKeyword(keyword)] : getWfItem(keyword);
+      if (legacy && (!info.article ? true : !url)) {
+        legacy.published_url = url;
+        legacy.published = !!url;
+        legacy.updated_at = new Date().toISOString();
+        await saveWorkflowData();
+      }
+    }
+
     async function savePublishLinkModal() {
       if (!currentPubKw) return;
-      const wf = getWfItem(currentPubKw);
+      const keyword = currentPubKw;
       let url = byId("pubLinkInput").value.trim();
-      if (url && !/^https?:\/\//i.test(url) && !url.startsWith("/")) {
-        url = "https://" + url;
+      if (url && !/^https?:\/\//i.test(url) && !url.startsWith("/")) url = "https://" + url;
+      try {
+        await setPublishedUrl(keyword, url);
+        closePublishLinkModal();
+        renderWorkflowTable();
+        showToast(url ? `Đã lưu link bài đăng cho "${keyword}"` : `Đã gỡ link bài đăng`);
+      } catch (err) {
+        console.error(err);
+        showToast("Không lưu được link: " + err.message, true);
       }
-      wf.published_url = url;
-      if (url) {
-        wf.published = true;
-        wf.approved = true;
-        wf.pending_approval = true;
-        wf.confirmed = true;
-        wf.written = true;
-      } else {
-        resetWfProgress(wf);
-      }
-      syncWfWriting(wf);
-      wf.updated_at = new Date().toISOString();
-      await saveWorkflowData();
-      closePublishLinkModal();
-      renderWorkflowTable();
-      showToast(url ? `Đã lưu link bài đăng cho "${currentPubKw}"` : `Đã gỡ link bài đăng`);
     }
 
     async function deletePublishLink() {
       if (!currentPubKw) return;
-      const wf = getWfItem(currentPubKw);
-      resetWfProgress(wf);
-      wf.updated_at = new Date().toISOString();
-      await saveWorkflowData();
-      closePublishLinkModal();
-      renderWorkflowTable();
-      showToast(`Đã xóa link bài đăng của: "${currentPubKw}"`);
+      const keyword = currentPubKw;
+      try {
+        await setPublishedUrl(keyword, "");
+        closePublishLinkModal();
+        renderWorkflowTable();
+        showToast(`Đã xóa link bài đăng của: "${keyword}"`);
+      } catch (err) {
+        console.error(err);
+        showToast("Không xóa được link: " + err.message, true);
+      }
     }
 
     // Markdown Parser hiển thị Markdown bài viết

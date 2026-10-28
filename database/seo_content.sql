@@ -50,6 +50,9 @@ CREATE UNIQUE INDEX IF NOT EXISTS seo_articles_outline_active_uniq
     ON public.seo_articles (outline_id) WHERE status <> 'rejected';
 CREATE INDEX IF NOT EXISTS seo_articles_status_idx ON public.seo_articles (status, created_at DESC);
 
+-- Link bài đã đăng chính thức (tab WORKFLOW), lưu chung để cả team cùng thấy
+ALTER TABLE public.seo_articles ADD COLUMN IF NOT EXISTS published_url TEXT;
+
 -- Tự điền người duyệt / thời điểm duyệt khi đổi trạng thái (client không tự khai được)
 CREATE OR REPLACE FUNCTION public.set_reviewer()
 RETURNS TRIGGER
@@ -98,4 +101,4 @@ CREATE POLICY "seo_articles_update_approved" ON public.seo_articles
 REVOKE ALL ON public.seo_outlines, public.seo_articles FROM anon, authenticated;
 GRANT SELECT ON public.seo_outlines, public.seo_articles TO authenticated;
 GRANT UPDATE (status, review_note, outline_md) ON public.seo_outlines TO authenticated;
-GRANT UPDATE (status, review_note, content_md, title, meta_description) ON public.seo_articles TO authenticated;
+GRANT UPDATE (status, review_note, content_md, title, meta_description, published_url) ON public.seo_articles TO authenticated;
