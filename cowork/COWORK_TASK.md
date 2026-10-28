@@ -46,6 +46,7 @@ PHẦN B, viết bài:
 4. GET {COWORK_API_URL}/outlines/approved. Với mỗi outline (tối đa 5):
 5. Viết bài theo Bước 4 của skill, dùng đúng 100% key phụ trong outline đã duyệt; chạy evaluate_seo.py
    và sửa đến khi điểm >= 90; tạo meta description 160-170 ký tự (Bước 5).
+   Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
 6. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count.
 
 Nếu một lời gọi trả 409 (đã có) thì bỏ qua mục đó. Cuối cùng báo cáo: số outline đã đẩy, số bài đã đẩy, lỗi nếu có.
