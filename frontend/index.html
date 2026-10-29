@@ -16,119 +16,178 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
+    /* ===== Bảng màu: nền pastel đào - tím nhạt, mực tím đậm, điểm nhấn tím + san hô ===== */
     :root {
-      --primary: #2563eb;
-      --primary-deep: #1d4ed8;
-      --primary-soft: #eff4ff;
-      --accent: #f97316;
-      --accent-soft: #fff4ec;
-      --line: #e3eaf7;
-      --page: #f6f8fe;
+      --ink: #2a2340;
+      --ink-soft: #6f6785;
+      --primary: #6f5fd9;
+      --primary-deep: #5644c4;
+      --primary-soft: #f0ecfc;
+      --accent: #f08a5d;
+      --accent-soft: #fff0e7;
+      --mint: #d6f0e1;
+      --butter: #fbefc4;
+      --sky: #dce9fb;
+      --line: #ece6f6;
+      --page: #d9d4e3;
+      --radius-card: 22px;
+      --tint-1: #f3effc;
+      --tint-2: #e8e1fa;
+      --btn-b: #8f80ea;
+      --shell-a: #fdeee6;
+      --shell-b: #f8ebee;
+      --shell-c: #efe8f7;
+      --shell-glow: rgba(214, 205, 244, 0.75);
+      --side-a: #e3dbf7;
+      --side-b: #f6dfe3;
+      --shadow-rgb: 80, 55, 140;
     }
+    html { background: var(--page); }
     body {
-      font-family: 'Be Vietnam Pro', sans-serif;
-      color: #0f172a;
+      font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
+      color: var(--ink);
       background:
-        radial-gradient(900px 480px at 100% -5%, rgba(37, 99, 235, 0.10), transparent 60%),
-        radial-gradient(700px 420px at -5% 30%, rgba(59, 130, 246, 0.07), transparent 60%),
+        radial-gradient(1100px 600px at 0% 0%, #e7e0ee 0%, transparent 60%),
+        radial-gradient(900px 600px at 100% 100%, #cfcadb 0%, transparent 60%),
         var(--page);
       background-attachment: fixed;
     }
+
+    /* Khung ứng dụng bo tròn lớn như mẫu */
+    .stage { padding: 20px; }
+    .shell {
+      max-width: 1640px; margin: 0 auto; border-radius: 40px; padding: 14px 16px 22px;
+      background:
+        radial-gradient(700px 420px at 100% 100%, var(--shell-glow), transparent 65%),
+        linear-gradient(165deg, var(--shell-a) 0%, var(--shell-b) 42%, var(--shell-c) 100%);
+      border: 3px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 40px 80px -40px rgba(60, 40, 110, 0.45);
+      animation: shell-in .55s cubic-bezier(.2, .8, .2, 1) both;
+    }
+    @keyframes shell-in { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+
+    /* Thanh trên dạng viên thuốc */
+    .topbar {
+      background: #fff; border-radius: 26px; padding: 10px 14px 10px 14px;
+      box-shadow: 0 10px 26px -18px rgba(70, 50, 130, 0.4);
+    }
+    .brand-mark {
+      width: 2.5rem; height: 2.5rem; border-radius: 14px; background: var(--primary-soft);
+      display: flex; align-items: center; justify-content: center; padding: .35rem; flex-shrink: 0;
+    }
+    .quota-pill {
+      background: #f6f3fc; border-radius: 999px; padding: .55rem .95rem; font-size: .75rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+    .avatar-dot {
+      width: 2.25rem; height: 2.25rem; border-radius: 999px; background: var(--ink); color: #fff;
+      font-size: .75rem; font-weight: 800; display: flex; align-items: center; justify-content: center;
+    }
+
+    /* Thẻ */
     .pro-card {
       background: #ffffff;
-      border: 1px solid var(--line);
-      box-shadow: 0 10px 30px -18px rgba(30, 64, 175, 0.18);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      border-radius: var(--radius-card);
+      box-shadow: 0 14px 30px -20px rgba(var(--shadow-rgb), 0.35);
     }
-    .brand-gradient {
-      background: linear-gradient(135deg, #1d4ed8 0%, #3b82f6 100%);
-    }
+    .brand-gradient { background: linear-gradient(135deg, var(--primary) 0%, var(--btn-b) 100%); }
     .brand-btn {
-      background: linear-gradient(135deg, #2563eb 0%, #3b82f6 100%);
-      box-shadow: 0 8px 18px -6px rgba(37, 99, 235, 0.45);
+      background: linear-gradient(135deg, var(--primary) 0%, var(--btn-b) 100%);
+      box-shadow: 0 10px 20px -10px var(--primary);
     }
-    .brand-btn:hover {
-      background: linear-gradient(135deg, #1d4ed8 0%, #2563eb 100%);
-    }
+    .brand-btn:hover { background: linear-gradient(135deg, var(--primary-deep) 0%, var(--primary) 100%); }
     .accent-btn {
-      background: linear-gradient(135deg, #f97316 0%, #fb923c 100%);
-      box-shadow: 0 8px 18px -6px rgba(249, 115, 22, 0.5);
+      background: var(--ink);
+      box-shadow: 0 10px 20px -10px rgba(42, 35, 64, 0.65);
     }
-    .accent-btn:hover {
-      background: linear-gradient(135deg, #ea580c 0%, #f97316 100%);
-    }
+    .accent-btn:hover { background: #413660; }
     .rank-top {
-      background: linear-gradient(135deg, #f97316 0%, #fdba74 100%);
-      color: #fff;
-      box-shadow: 0 4px 10px -3px rgba(249, 115, 22, 0.55);
+      background: linear-gradient(135deg, #f08a5d 0%, #f6b08a 100%);
+      color: #fff; box-shadow: 0 6px 12px -6px rgba(240, 138, 93, 0.7);
     }
-    .rank-other {
-      background: var(--primary-soft);
-      color: #1e3a8a;
-    }
-    .text-gradient {
-      background: linear-gradient(90deg, #1d4ed8, #3b82f6);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .rank-other { background: var(--tint-1); color: var(--primary-deep); }
+    .text-gradient { color: var(--primary); }
+
+    /* Tiêu đề trang */
+    [data-view] > h2, [data-view] h2.text-2xl, [data-view] h2.sm\:text-3xl {
+      font-size: clamp(1.7rem, 2.6vw, 2.35rem); letter-spacing: -0.03em; line-height: 1.1;
     }
 
-    /* LEFT NAVIGATION */
-    .side-shell {
-      box-shadow: 0 18px 40px -22px rgba(30, 64, 175, 0.35);
-    }
-    .side-rail {
-      background: linear-gradient(180deg, #2563eb 0%, #1d4ed8 100%);
-    }
-    .nav-rail-btn {
-      width: 2.6rem; height: 2.6rem; border-radius: 0.85rem;
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(219, 234, 254, 0.85); transition: background .15s, color .15s;
-      position: relative;
-    }
-    .nav-rail-btn:hover { background: rgba(255, 255, 255, 0.12); color: #fff; }
-    .nav-rail-btn.is-active { background: rgba(255, 255, 255, 0.22); color: #fff; }
-    .nav-rail-btn.is-active::after {
-      content: ""; position: absolute; right: -0.95rem; top: 50%; transform: translateY(-50%);
-      width: 4px; height: 1.4rem; border-radius: 4px 0 0 4px; background: #fff;
-    }
+    /* Điều hướng trái */
+    .side-nav { display: flex; flex-direction: column; height: calc(100vh - 8.5rem); min-height: 520px; padding: 6px 4px 0; }
     .nav-item {
-      width: 100%; height: 2.6rem; display: flex; align-items: center; justify-content: space-between; gap: .5rem;
-      padding: 0 0.75rem; border-radius: 0.75rem; text-align: left; white-space: nowrap;
-      font-size: 0.75rem; font-weight: 600; letter-spacing: 0.01em; color: #334155;
-      transition: background .15s, color .15s;
+      width: 100%; height: 2.9rem; display: flex; align-items: center; gap: .75rem;
+      padding: 0 .9rem; border-radius: 16px; text-align: left; white-space: nowrap;
+      font-size: .85rem; font-weight: 600; color: var(--ink-soft);
+      transition: background .15s, color .15s, box-shadow .15s;
     }
-    .nav-item:hover { background: #f5f8ff; color: var(--primary-deep); }
-    .nav-item .nav-dot { width: 7px; height: 7px; border-radius: 999px; background: transparent; }
-    .nav-item.is-active { background: var(--primary-soft); color: var(--primary); font-weight: 800; }
-    .nav-item.is-active .nav-dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.18); }
+    .nav-item svg { width: 1.15rem; height: 1.15rem; flex-shrink: 0; }
+    .nav-item:hover { background: rgba(255, 255, 255, 0.6); color: var(--ink); }
+    .nav-item.is-active {
+      background: #fff; color: var(--ink); font-weight: 800;
+      box-shadow: 0 8px 18px -12px rgba(70, 50, 130, 0.55);
+    }
+    .nav-item.is-active svg { color: var(--primary); }
     .nav-pill {
-      white-space: nowrap; padding: 0.5rem 0.9rem; border-radius: 999px; font-size: 0.72rem; font-weight: 700;
-      background: #fff; border: 1px solid var(--line); color: #334155;
+      white-space: nowrap; padding: .55rem 1rem; border-radius: 999px; font-size: .78rem; font-weight: 700;
+      background: #fff; color: var(--ink-soft);
     }
-    .nav-pill.is-active { background: var(--primary); border-color: var(--primary); color: #fff; }
+    .nav-pill.is-active { background: var(--ink); color: #fff; }
+    .side-card {
+      border-radius: 26px; padding: 1.1rem; color: var(--ink);
+      background: linear-gradient(160deg, var(--side-a) 0%, var(--side-b) 100%);
+    }
+
+    /* Chuyển màu xanh Tailwind cũ sang tím pastel, áp dụng cho cả nội dung do JS vẽ và popup */
+    body .bg-blue-50 { background-color: var(--tint-1); }
+    body .bg-blue-100 { background-color: var(--tint-2); }
+    body .border-blue-50 { border-color: var(--line); }
+    body .border-blue-100 { border-color: var(--line); }
+    body .border-blue-200 { border-color: var(--tint-2); }
+    body .text-blue-500, body .text-blue-600 { color: var(--primary); }
+    body .text-blue-700, body .text-blue-800, body .text-blue-900 { color: var(--primary-deep); }
+    body .bg-slate-50\/70, body .bg-slate-50\/60 { background-color: #faf8fd; }
+    body .hover\:bg-blue-50:hover { background-color: var(--tint-1); }
+    body .bg-blue-600 { background-color: var(--primary); }
+    body .border-blue-600 { border-color: var(--primary); }
+    body .shadow-2xl { box-shadow: 0 40px 80px -30px rgba(60, 40, 110, 0.5); }
+    body .rounded-3xl { border-radius: 30px; }
+    body input:not([type=checkbox]):not([type=radio]), body select { border-radius: 14px; }
+    body input:focus-visible, body select:focus-visible, body textarea:focus-visible {
+      outline: 2px solid var(--primary); outline-offset: 1px;
+    }
+    body button:focus-visible, body a:focus-visible { outline: 2px solid var(--primary); outline-offset: 2px; }
 
     /* Chưa đăng nhập: ẩn toàn bộ giao diện chính */
-    html.locked body > header,
-    html.locked body > .app-shell { display: none; }
+    html.locked body > .stage { display: none; }
     .auth-bg {
       background:
-        radial-gradient(1000px 500px at 15% 10%, rgba(59, 130, 246, 0.18), transparent 60%),
-        radial-gradient(900px 500px at 90% 90%, rgba(249, 115, 22, 0.10), transparent 60%),
+        radial-gradient(900px 500px at 10% 10%, var(--shell-a), transparent 60%),
+        radial-gradient(900px 500px at 90% 90%, var(--side-a), transparent 60%),
         var(--page);
     }
     .auth-input {
-      width: 100%; padding: 0.7rem 0.9rem; border-radius: 0.75rem; font-size: 0.875rem;
-      border: 1px solid #bfd3f6; background: #fff; outline: none; transition: box-shadow .15s, border-color .15s;
+      width: 100%; padding: .75rem 1rem; border-radius: 14px; font-size: .875rem;
+      border: 1px solid #ddd3f3; background: #fff; outline: none; transition: box-shadow .15s, border-color .15s;
     }
-    .auth-input:focus { border-color: #2563eb; box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18); }
-    /* Custom scrollbar */
+    .auth-input:focus { border-color: var(--primary); box-shadow: 0 0 0 3px var(--tint-2); }
+
+    /* Thanh cuộn */
     .custom-scroll::-webkit-scrollbar { width: 6px; height: 6px; }
-    .custom-scroll::-webkit-scrollbar-track { background: #f1f5f9; border-radius: 8px; }
-    .custom-scroll::-webkit-scrollbar-thumb { background: #bfdbfe; border-radius: 8px; }
-    .custom-scroll::-webkit-scrollbar-thumb:hover { background: #3b82f6; }
+    .custom-scroll::-webkit-scrollbar-track { background: #f4f0fa; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb { background: #d3c9f0; border-radius: 8px; }
+    .custom-scroll::-webkit-scrollbar-thumb:hover { background: var(--primary); }
     .no-scrollbar::-webkit-scrollbar { display: none; }
+
+
+    @media (max-width: 1023px) {
+      .stage { padding: 8px; }
+      .shell { border-radius: 26px; padding: 8px 8px 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .shell { animation: none; } }
   </style>
 </head>
 <body class="min-h-screen pb-16">
@@ -213,34 +272,32 @@
     </div>
   </div>
 
-  <!-- TOP NAVBAR -->
-  <header class="sticky top-0 z-40 border-b border-blue-100/80 bg-white/85 backdrop-blur-md">
-    <div class="max-w-[1600px] mx-auto px-4 sm:px-6 py-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
-      <div class="flex items-center gap-3.5">
-        <div class="w-11 h-11 rounded-xl bg-white border border-blue-100 p-1.5 flex items-center justify-center shadow-sm shrink-0">
+  <div class="stage">
+  <div class="shell">
+  <!-- TOP BAR -->
+  <header class="topbar sticky top-3 z-40">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <div class="brand-mark">
           <img id="brandLogo" src="logo.png" alt="Logo" class="w-full h-full object-contain" />
         </div>
         <div>
-          <h1 class="text-base sm:text-lg font-extrabold tracking-tight text-slate-900">
-            LỌC KEYWORD TIN TỨC CÔNG NGHỆ <span class="text-orange-500">HOT</span>
-          </h1>
-          <p class="text-xs text-slate-500 mt-0.5">
-            Hệ thống nghiên cứu Keyword Tin tức Công nghệ hằng ngày
-          </p>
+          <h1 class="text-base font-extrabold tracking-tight text-slate-900">TNC Keyword Hot</h1>
+          <p class="text-xs text-slate-500">Nghiên cứu keyword tin tức công nghệ hằng ngày</p>
         </div>
       </div>
 
       <!-- QUOTA & ACTIONS -->
       <div class="flex flex-wrap items-center gap-2.5">
-        <div id="quotaBox" class="px-3.5 py-2 rounded-full bg-blue-50 border border-blue-100 flex items-center gap-2 text-xs">
+        <div id="quotaBox" class="quota-pill">
           <span class="w-2 h-2 rounded-full bg-orange-500 animate-pulse"></span>
           <span class="text-slate-600 font-medium">SerpApi Quota:</span>
           <span id="quotaText" class="font-extrabold text-blue-700">-- / 250 lượt</span>
         </div>
 
         <button onclick="scanLatestNews(false)" id="btnScanNews" class="pl-4 pr-1.5 py-1.5 rounded-full accent-btn text-white font-semibold text-xs sm:text-sm transition flex items-center gap-2.5">
-          <span>Quét Tin Mới & Cập Nhật Top 20</span>
-          <span class="w-7 h-7 rounded-full bg-white/25 flex items-center justify-center">
+          <span>Quét tin mới &amp; cập nhật Top 20</span>
+          <span class="w-7 h-7 rounded-full bg-white/20 flex items-center justify-center">
             <svg id="scanIcon" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"></path>
             </svg>
@@ -250,64 +307,52 @@
     </div>
   </header>
 
-  <div class="app-shell max-w-[1600px] mx-auto px-4 sm:px-6 mt-6 flex gap-6 items-start">
+  <div class="app-shell mt-5 flex gap-6 items-start">
     <!-- LEFT NAVIGATION MENU -->
-    <aside class="hidden lg:block w-[272px] shrink-0 sticky top-24">
-      <nav aria-label="Menu chính" class="side-shell flex h-[calc(100vh-8rem)] min-h-[520px] rounded-[24px] overflow-hidden bg-white border border-blue-100">
-        <!-- Rail icon -->
-        <div class="side-rail w-[68px] shrink-0 flex flex-col items-center py-4 gap-2">
-          <div class="w-10 h-10 rounded-full bg-white p-1.5 flex items-center justify-center mb-4 shadow">
-            <img src="logo.png" alt="" class="w-full h-full object-contain brand-logo-alt" />
-          </div>
-          <button type="button" class="nav-rail-btn" data-tab="dashboard" title="Dashboard Keyword" onclick="switchTab('dashboard')">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h5v7H4V5zm10-1h5a1 1 0 011 1v4h-6V4zM4 15h6v5H5a1 1 0 01-1-1v-4zm10-2h6v6a1 1 0 01-1 1h-5v-7z"/></svg>
+    <aside class="hidden lg:block w-[236px] shrink-0 sticky top-28">
+      <nav aria-label="Menu chính" class="side-nav">
+        <div class="flex flex-col gap-1.5">
+          <button type="button" class="nav-item" data-tab="dashboard" onclick="switchTab('dashboard')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h5v7H4V5zm10-1h5a1 1 0 011 1v4h-6V4zM4 15h6v5H5a1 1 0 01-1-1v-4zm10-2h6v6a1 1 0 01-1 1h-5v-7z"/></svg>
+            <span>Dashboard keyword</span>
           </button>
-          <button type="button" class="nav-rail-btn" data-tab="duyet" title="Keyword Duyệt" onclick="switchTab('duyet')">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+          <button type="button" class="nav-item" data-tab="duyet" onclick="switchTab('duyet')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
+            <span>Keyword duyệt</span>
           </button>
-          <button type="button" class="nav-rail-btn" data-tab="workflow" title="Workflow" onclick="switchTab('workflow')">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h4v4H4V6zm12 8h4v4h-4v-4zM8 8h5a3 3 0 013 3v3M6 10v5a3 3 0 003 3h7"/></svg>
+          <button type="button" class="nav-item" data-tab="workflow" onclick="switchTab('workflow')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h4v4H4V6zm12 8h4v4h-4v-4zM8 8h5a3 3 0 013 3v3M6 10v5a3 3 0 003 3h7"/></svg>
+            <span class="flex items-center gap-2">Workflow<span id="wfPendingBadge" class="hidden px-1.5 min-w-[18px] h-[18px] rounded-full bg-orange-500 text-white text-[10px] font-extrabold items-center justify-center"></span></span>
           </button>
-          <button type="button" class="nav-rail-btn" data-tab="baocao" title="Báo cáo" onclick="switchTab('baocao')">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-4m3 4V9m3 8v-6M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+          <button type="button" class="nav-item" data-tab="baocao" onclick="switchTab('baocao')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-4m3 4V9m3 8v-6M6 21h12a2 2 0 002-2V5a2 2 0 00-2-2H6a2 2 0 00-2 2v14a2 2 0 002 2z"/></svg>
+            <span>Báo cáo</span>
           </button>
-          <button type="button" class="nav-rail-btn" data-tab="dexuat" title="Đề xuất" onclick="switchTab('dexuat')">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+          <button type="button" class="nav-item" data-tab="dexuat" onclick="switchTab('dexuat')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
+            <span>Đề xuất</span>
           </button>
         </div>
 
-        <!-- Panel nhãn -->
-        <div class="flex-1 min-w-0 flex flex-col py-4 px-3">
-          <!-- Cao bằng ô logo bên rail để từng mục menu thẳng hàng với icon -->
-          <div class="h-10 mb-6 px-1 flex items-center">
-            <div class="text-sm font-extrabold text-slate-900 leading-tight">TNC SEO Team</div>
-          </div>
-
-          <div class="flex flex-col gap-2">
-            <button type="button" class="nav-item" data-tab="dashboard" onclick="switchTab('dashboard')"><span>DASHBOARD KEYWORD</span><span class="nav-dot"></span></button>
-            <button type="button" class="nav-item" data-tab="duyet" onclick="switchTab('duyet')"><span>KEYWORD DUYỆT</span><span class="nav-dot"></span></button>
-            <button type="button" class="nav-item" data-tab="workflow" onclick="switchTab('workflow')"><span class="flex items-center gap-2">WORKFLOW<span id="wfPendingBadge" class="hidden px-1.5 min-w-[18px] h-[18px] rounded-full bg-orange-500 text-white text-[10px] font-extrabold items-center justify-center"></span></span><span class="nav-dot"></span></button>
-            <button type="button" class="nav-item" data-tab="baocao" onclick="switchTab('baocao')"><span>BÁO CÁO</span><span class="nav-dot"></span></button>
-            <button type="button" class="nav-item" data-tab="dexuat" onclick="switchTab('dexuat')"><span>ĐỀ XUẤT</span><span class="nav-dot"></span></button>
-          </div>
-
-          <div class="mt-auto flex flex-col gap-2.5">
-            <!-- Xuất CSV -->
-            <button onclick="exportReportCSV()" class="w-full px-3 py-2 rounded-xl bg-white hover:bg-blue-50 text-blue-700 font-semibold text-xs border border-blue-200 transition flex items-center gap-2 shadow-sm">
-              <svg class="w-4 h-4 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-              Xuất CSV
-            </button>
-
-            <!-- Tài khoản đăng nhập (chỉ hiện ở STATIC_MODE hoặc khi đã đăng nhập) -->
-            <div id="sideUserBox" class="hidden rounded-xl bg-blue-50 border border-blue-100 p-2.5 flex-col gap-2">
-              <div class="flex items-center gap-2 min-w-0">
-                <span class="w-7 h-7 rounded-full brand-gradient text-white font-extrabold flex items-center justify-center text-[11px] shrink-0" id="sideUserInitial">U</span>
-                <span id="sideUserEmail" class="text-xs font-semibold text-slate-800 truncate flex-1 min-w-0"></span>
-              </div>
-              <button type="button" onclick="doLogout()" class="w-full py-1.5 rounded-lg bg-white hover:bg-red-50 border border-blue-200 hover:border-red-200 text-blue-700 hover:text-red-600 font-bold text-xs transition">Đăng xuất</button>
+        <div class="mt-auto flex flex-col gap-3">
+          <!-- Tài khoản đăng nhập (chỉ hiện ở STATIC_MODE hoặc khi đã đăng nhập) -->
+          <div id="sideUserBox" class="hidden rounded-2xl bg-white/70 p-2.5 flex-col gap-2">
+            <div class="flex items-center gap-2 min-w-0">
+              <span class="avatar-dot shrink-0" id="sideUserInitial">U</span>
+              <span id="sideUserEmail" class="text-xs font-semibold text-slate-800 truncate flex-1 min-w-0"></span>
             </div>
+            <button type="button" onclick="doLogout()" class="w-full py-1.5 rounded-xl bg-white hover:bg-red-50 text-slate-600 hover:text-red-600 font-bold text-xs transition">Đăng xuất</button>
+          </div>
+
+          <!-- Xuất CSV -->
+          <div class="side-card">
+            <p class="text-sm font-bold leading-snug">Mang danh sách keyword ra bảng tính của bạn.</p>
+            <button onclick="exportReportCSV()" aria-label="Xuất CSV" class="mt-4 inline-flex items-center gap-2 pl-3 pr-1.5 py-1.5 rounded-full bg-[#2a2340] text-white text-xs font-bold">
+              Xuất CSV
+              <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v10m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
+              </span>
+            </button>
           </div>
         </div>
       </nav>
@@ -586,6 +631,8 @@
       <section data-view="dexuat" class="hidden"></section>
     </main>
   </div>
+  </div>
+  </div>
 
   <!-- POPUP CHI TIẾT KEYWORD -->
   <div id="kwModal" class="hidden fixed inset-0 z-[60]" role="dialog" aria-modal="true" aria-labelledby="kwModalTitle">
@@ -721,7 +768,7 @@
     function renderPlaceholders() {
       Object.entries(TABS).forEach(([tab, cfg]) => {
         if (tab === "dashboard" || tab === "duyet" || tab === "workflow") return;
-        const icon = document.querySelector(`.nav-rail-btn[data-tab="${tab}"] svg`).outerHTML.replace('class="w-5 h-5"', 'class="w-8 h-8"');
+        const icon = document.querySelector(`.nav-item[data-tab="${tab}"] svg`).outerHTML.replace('<svg', '<svg class="w-8 h-8"');
         document.querySelector(`[data-view="${tab}"]`).innerHTML = `
           <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">${escapeHtml(cfg.title)}</h2>
           <div class="pro-card rounded-3xl mt-5 py-20 px-6 text-center">
