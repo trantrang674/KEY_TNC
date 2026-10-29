@@ -3,8 +3,8 @@
 Module thu thập tin tức công nghệ, phần mềm, game, chính sách số từ Báo chí VN & Đối thủ (trong 24h - 48h).
 """
 
+import calendar
 import re
-import time
 import urllib.parse
 from datetime import datetime, timezone, timedelta
 from email.utils import parsedate_to_datetime
@@ -62,15 +62,15 @@ RSS_SOURCES = [
         "domain": "tuoitre.vn"
     },
     {
-        "name": "Dân Trí Sức Mạnh Số",
-        "url": "https://dantri.com.vn/rss/suc-manh-so.rss",
+        "name": "Dân Trí Công Nghệ",
+        "url": "https://dantri.com.vn/rss/cong-nghe.rss",  # chuyên mục "Sức mạnh số" đã đổi tên (feed cũ đứng từ 2/2025)
         "source_type": "PRESS",
         "source_badge": "Báo chí",
         "domain": "dantri.com.vn"
     },
     {
         "name": "GameK",
-        "url": "https://gamek.vn/rss/home.rss",
+        "url": "https://gamek.vn/game.rss",  # home.rss đã trả 404
         "source_type": "PRESS",
         "source_badge": "Báo Game",
         "domain": "gamek.vn"
@@ -169,7 +169,7 @@ def detect_source_info(raw_source_name: str, url: str, default_type: str = "PRES
                 return {"name": "GearVN", "type": "COMPETITOR", "badge": "Đối thủ"}
             if "phongvu" in combined or "phong vũ" in combined:
                 return {"name": "Phong Vũ", "type": "COMPETITOR", "badge": "Đối thủ"}
-            if "fpt" in combined:
+            if "fptshop" in combined or "fpt shop" in combined:
                 return {"name": "FPT Shop", "type": "COMPETITOR", "badge": "Đối thủ"}
             if "thegioididong" in combined or "thế giới di động" in combined:
                 return {"name": "Thế Giới Di Động", "type": "COMPETITOR", "badge": "Đối thủ"}
@@ -204,7 +204,7 @@ def detect_source_info(raw_source_name: str, url: str, default_type: str = "PRES
         return {"name": "24h Công Nghệ", "type": "PRESS", "badge": "Báo chí"}
     if "vietnamnet" in combined:
         return {"name": "VietNamNet", "type": "PRESS", "badge": "Báo chí"}
-    if "vtv" in combined:
+    if "vtv.vn" in combined:
         return {"name": "VTV Công Nghệ", "type": "PRESS", "badge": "Báo chí"}
 
     badge = "Đối thủ" if default_type == "COMPETITOR" else "Báo chí"
@@ -242,13 +242,14 @@ def parse_pub_date(entry) -> datetime:
 
     if getattr(entry, "published_parsed", None):
         try:
-            ts = time.mktime(entry.published_parsed)
+            ts = calendar.timegm(entry.published_parsed)  # struct_time của feedparser là UTC
             dt = datetime.fromtimestamp(ts, tz=VN_TZ)
             return dt
         except Exception:
             pass
 
-    return now_vn - timedelta(hours=3)
+    # Không đọc được ngày đăng: coi là bài cũ (khớp UNKNOWN_AGE_HOURS bên serpapi_client), không thưởng điểm "tươi"
+    return now_vn - timedelta(hours=36)
 
 
 def format_relative_time(dt: datetime, now_vn: datetime) -> str:
@@ -412,12 +413,17 @@ def fetch_all_rss_articles(max_hours: int = 48) -> List[Dict]:
     """Quét song song tất cả các nguồn RSS và khử trùng lặp bài viết."""
     all_raw = []
     with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
-        futures = [executor.submit(fetch_single_feed, src, max_hours) for src in RSS_SOURCES]
+        futures = {executor.submit(fetch_single_feed, src, max_hours): src for src in RSS_SOURCES}
         for fut in concurrent.futures.as_completed(futures):
+            name = futures[fut]["name"]
             try:
-                all_raw.extend(fut.result())
-            except Exception:
-                pass
+                items = fut.result()
+            except Exception as e:
+                print(f"[news] CẢNH BÁO: nguồn '{name}' lỗi: {e}")
+                continue
+            if not items:
+                print(f"[news] CẢNH BÁO: nguồn '{name}' trả 0 bài (feed chết, đổi URL hoặc bị chặn?)")
+            all_raw.extend(items)
 
     # Khử trùng lặp theo tiêu đề chuẩn hóa hoặc URL
     seen_titles = set()

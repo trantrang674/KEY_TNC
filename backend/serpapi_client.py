@@ -306,7 +306,11 @@ def run_daily_4_serpapi_suite(candidate_keywords: List[str], force_refresh: bool
     except Exception as e:
         result["apis_called"]["google_trends"] = {"status": "error", "message": str(e)}
 
-    # Lưu kết quả vào file Cache trong ngày
+    # Chỉ lưu Cache khi có ít nhất 1 cổng thành công; nếu lỗi hết thì lần chạy lại trong ngày phải được gọi lại
+    if not any(v.get("status") == "success" for v in result["apis_called"].values()):
+        print("[serpapi] Cả 4 cổng đều lỗi, không ghi cache để lần sau còn thử lại.")
+        return result
+
     try:
         with open(cache_path, "w", encoding="utf-8") as f:
             json.dump(result, f, ensure_ascii=False, indent=2)

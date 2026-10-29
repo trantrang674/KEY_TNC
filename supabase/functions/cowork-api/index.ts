@@ -60,7 +60,7 @@ Deno.serve(async (req) => {
         outline_md,
         short_kws: strList(b.short_kws),
         long_kws: strList(b.long_kws),
-        research: b.research ?? null,
+        research: b.research && JSON.stringify(b.research).length <= 500000 ? b.research : null,
         status: "pending", // luôn chờ duyệt, client không chọn được
       }).select("id, keyword, status").single();
       if (error) return json({ error: error.message }, error.code === "23505" ? 409 : 500);
@@ -96,7 +96,7 @@ Deno.serve(async (req) => {
         title,
         content_md,
         meta_description: str(b.meta_description, 400) || null,
-        seo_score: typeof b.seo_score === "number" ? b.seo_score : null,
+        seo_score: typeof b.seo_score === "number" && b.seo_score >= 0 && b.seo_score <= 100 ? b.seo_score : null,
         word_count: Number.isInteger(b.word_count) ? b.word_count : null,
         status: "pending",
       }).select("id, keyword, status").single();

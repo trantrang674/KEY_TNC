@@ -49,6 +49,10 @@ def _tokens(text: str) -> List[str]:
     return [t for t in re.split(r"\W+", text.lower()) if len(t) >= 3 and t not in GENERIC_TOKENS]
 
 
+def _norm_title(title: str) -> str:
+    return re.sub(r"\W+", "", title.lower())[:60]
+
+
 def phrase_in(needle: str, haystack: str) -> bool:
     """Cụm `needle` xuất hiện nguyên vẹn (theo ranh giới từ) trong `haystack`."""
     needle, haystack = needle.strip().lower(), haystack.lower()
@@ -231,7 +235,9 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
         ),
         reverse=True
     )
-    candidate_keywords = [c["keyword"] for c in prelim_list[:5]]
+    # Nhóm "Có thể quan tâm" luôn bị xếp cuối nên không tốn quota Trends (tối đa 5 từ khóa) cho nhóm này
+    main_list = [c for c in prelim_list if c["niche"]["id"] != LOW_PRIORITY_NICHE_ID] or prelim_list
+    candidate_keywords = [c["keyword"] for c in main_list[:5]]
 
     # BƯỚC 3: Tự động gọi trọn gói 4 cổng SerpApi (1 lượt/con/ngày + Cache 24h)
     serp_data = run_daily_4_serpapi_suite(
@@ -240,11 +246,17 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
     )
 
     # Bổ sung thêm các bài viết mới thu được từ Google Search API (SerpApi) vào cụm tương ứng
+    seen_titles = {_norm_title(a.get("title", "")) for a in clean_pool}
     for s_art in serp_data.get("google_search_articles", []):
         title = s_art.get("title", "")
         summary = s_art.get("summary", "")
         if is_promo_noise(title) or is_smartphone_topic(title, summary):
             continue
+        # Link Google News (RSS) khác link gốc (SerpApi) nên khử trùng theo tiêu đề để không đếm bài hai lần
+        norm = _norm_title(title)
+        if norm in seen_titles:
+            continue
+        seen_titles.add(norm)
         niche = classify_niche(title, summary)
         cluster_id, display_kw = extract_core_keyword(title, summary)
         if is_smartphone_topic(display_kw):
