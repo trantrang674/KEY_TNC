@@ -117,6 +117,10 @@
       font-size: clamp(1.7rem, 2.6vw, 2.35rem); letter-spacing: -0.03em; line-height: 1.1;
     }
 
+    /* Tiêu đề mục in hoa (không áp cho tên keyword và nội dung bài viết) */
+    .shell h1, .shell h2, .shell h3, .nav-item, .nav-pill { text-transform: uppercase; }
+    .nav-item, .nav-pill { letter-spacing: .02em; }
+
     /* Điều hướng trái */
     .side-nav { display: flex; flex-direction: column; height: calc(100vh - 11rem); min-height: 480px; padding: 6px 4px 0; overflow-y: auto; }
     .nav-item {
@@ -138,7 +142,7 @@
     }
     .nav-pill.is-active { background: var(--ink); color: #fff; }
     .side-card {
-      border-radius: 26px; padding: 1.1rem; color: var(--ink);
+      border-radius: 26px; padding: .6rem; color: var(--ink);
       background: linear-gradient(160deg, var(--side-a) 0%, var(--side-b) 100%);
     }
 
@@ -347,8 +351,7 @@
 
           <!-- Xuất CSV -->
           <div class="side-card">
-            <p class="text-sm font-bold leading-snug">Mang danh sách keyword ra bảng tính của bạn.</p>
-            <button onclick="exportReportCSV()" aria-label="Xuất CSV" class="mt-4 inline-flex items-center gap-2 pl-3 pr-1.5 py-1.5 rounded-full bg-[#2a2340] text-white text-xs font-bold">
+            <button onclick="exportReportCSV()" aria-label="Xuất CSV" class="w-full flex items-center justify-between gap-2 pl-4 pr-1.5 py-1.5 rounded-full bg-[#2a2340] text-white text-xs font-bold">
               Xuất CSV
               <span class="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
                 <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M12 5v10m0 0l-4-4m4 4l4-4M5 19h14"/></svg>
