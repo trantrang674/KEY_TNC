@@ -40,7 +40,17 @@ PHẦN A, lập outline:
 2. Làm Bước 2 và Bước 3 của skill tnc-seo-content (chạy serp_keyword.py, phân tích đối thủ, chọn 2-3 key phụ ngắn
    và 2-3 key phụ dài, lập outline gồm title, mở đầu, H2/H3, FAQ 5 câu, Kết luận).
 3. POST {COWORK_API_URL}/outlines với approved_keyword_id=id, keyword, outline_md, short_kws, long_kws,
-   research (PAA và danh sách đối thủ). DỪNG ở đây với keyword này, không viết bài.
+   research (PAA và danh sách đối thủ, KÈM research.report_md = toàn bộ nội dung file seo_output/<slug>/report.md
+   để nút XEM REPORT trên dashboard hiển thị được). DỪNG ở đây với keyword này, không viết bài.
+   outline_md viết theo đúng mẫu để dashboard trình bày như bản "Dàn ý đề xuất":
+     # Outline: <từ khóa chính>
+     **Title đề xuất (N ký tự):** <title>
+     **Đoạn mở đầu:** <1 đoạn, từ khóa chính ở đầu câu đầu tiên>
+     ## <H2>            (dòng dưới là mô tả ngắn nội dung H2)
+     ### <H3>           (dòng dưới là mô tả ngắn nội dung H3)
+     ## FAQ             (mỗi câu hỏi 1 dòng gạch đầu dòng "- ", đủ 5 câu)
+     ## Kết luận        (kèm câu kết theo dõi Tin Tức TNC)
+   Không đưa danh sách key phụ vào outline_md (đã có trong short_kws / long_kws).
 
 PHẦN B, viết bài:
 4. GET {COWORK_API_URL}/outlines/approved. Với mỗi outline (tối đa 5):

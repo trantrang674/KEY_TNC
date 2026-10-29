@@ -643,6 +643,7 @@
         <div class="px-6 py-2 border-b border-blue-50 bg-white flex items-center justify-between gap-2">
           <div class="flex gap-2 text-xs">
             <button type="button" id="artTabPreview" onclick="switchArticleTab('preview')" class="px-3 py-1 rounded-lg font-bold brand-gradient text-white">Xem trước (HTML)</button>
+            <button type="button" id="artTabReport" onclick="switchArticleTab('report')" class="px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100">XEM REPORT</button>
             <button type="button" id="artTabSource" onclick="switchArticleTab('source')" class="px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100">Mã nguồn (.md)</button>
           </div>
           <span class="text-[11px] text-slate-400">Nội dung Markdown do Cowork viết</span>
@@ -650,6 +651,7 @@
 
         <!-- Content -->
         <div id="artModalBodyPreview" class="px-6 py-6 overflow-y-auto custom-scroll max-h-[60vh] space-y-3 leading-relaxed"></div>
+        <div id="artModalBodyReport" class="hidden px-6 py-6 overflow-y-auto custom-scroll max-h-[60vh]"></div>
         <div id="artModalBodySource" class="hidden px-6 py-4 overflow-y-auto custom-scroll max-h-[60vh]">
           <pre id="artModalRawText" class="p-4 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto whitespace-pre-wrap"></pre>
         </div>
@@ -1658,7 +1660,9 @@
 
     const wfViewButton = (kind, id) => `
       <button type="button" onclick="openSeoViewer('${kind}', ${Number(id)})"
-              class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-bold transition">Xem</button>`;
+              class="px-2.5 py-1 rounded-full bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 text-[11px] font-bold transition">Xem</button>
+      ${kind === "outline" ? `<button type="button" onclick="openSeoViewer('outline', ${Number(id)}, 'report')"
+              class="px-2.5 py-1 rounded-full bg-white hover:bg-orange-50 border border-orange-200 text-orange-600 text-[11px] font-bold transition">Report</button>` : ""}`;
 
     function wfStepper(stageId) {
       const st = wfStage(stageId);
@@ -1862,7 +1866,9 @@
     // =====================================================================
     // XEM OUTLINE / BÀI VIẾT (popup Markdown, có nút Duyệt khi còn chờ)
     // =====================================================================
-    function openSeoViewer(kind, id) {
+    let artRawMd = "", artReportMd = "", artTab = "preview";
+
+    function openSeoViewer(kind, id, tab = "preview") {
       const isOutline = kind === "outline";
       const table = isOutline ? "seo_outlines" : "seo_articles";
       const item = (isOutline ? seoOutlines : seoArticles).find(x => Number(x.id) === id);
@@ -1876,20 +1882,24 @@
       byId("artModalActions").innerHTML = item.status === "pending" ? wfReviewButtons(table, item.id) : "";
 
       const content = (isOutline ? item.outline_md : item.content_md) || "";
-      let extra = "";
-      if (isOutline) {
-        const chips = (list) => (list || []).map(k => `<span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold">${escapeHtml(k)}</span>`).join(" ") || "--";
-        extra = `<div class="mt-4 p-3 rounded-xl bg-slate-50 border border-blue-50 text-xs text-slate-700 space-y-2">
-          <div><strong>Key phụ ngắn:</strong> ${chips(item.short_kws)}</div>
-          <div><strong>Key phụ dài:</strong> ${chips(item.long_kws)}</div></div>`;
-      } else if (item.meta_description) {
-        extra = `<div class="mt-4 p-3 rounded-xl bg-slate-50 border border-blue-50 text-xs text-slate-700">
-          <strong>Meta description (${item.meta_description.length} ký tự):</strong> ${escapeHtml(item.meta_description)}</div>`;
-      }
-      byId("artModalRawText").textContent = content;
-      byId("artModalBodyPreview").innerHTML = parseMarkdown(content) + extra;
+      const outline = isOutline ? item : seoOutlines.find(o => Number(o.id) === Number(item.outline_id));
+      artReportMd = outline?.research?.report_md || "";   // report.md của keyword (seo_output/<slug>/report.md) do Cowork / sync_reports.py đính kèm
+      artRawMd = content;
 
-      switchArticleTab("preview");
+      let preview;
+      if (isOutline) {
+        preview = renderOutlinePreview(item);
+      } else {
+        const meta = item.meta_description ? `<div class="mt-4 p-3 rounded-xl bg-slate-50 border border-blue-50 text-xs text-slate-700">
+          <strong>Meta description (${item.meta_description.length} ký tự):</strong> ${escapeHtml(item.meta_description)}</div>` : "";
+        preview = parseMarkdown(content) + meta;
+      }
+      byId("artTabPreview").textContent = isOutline ? "Xem trước Outline (HTML)" : "Xem trước (HTML)";
+      byId("artModalRawText").textContent = content;
+      byId("artModalBodyPreview").innerHTML = preview;
+      byId("artModalBodyReport").innerHTML = renderReportHtml(artReportMd);
+
+      switchArticleTab(tab === "report" ? "report" : "preview");
       show("articleModal", true);
       document.body.classList.add("overflow-hidden");
     }
@@ -1900,19 +1910,20 @@
     }
 
     function switchArticleTab(tab) {
-      const isPrev = tab === "preview";
-      show("artModalBodyPreview", isPrev);
-      show("artModalBodySource", !isPrev);
-      byId("artTabPreview").className = isPrev
-        ? "px-3 py-1 rounded-lg font-bold brand-gradient text-white"
-        : "px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100";
-      byId("artTabSource").className = !isPrev
-        ? "px-3 py-1 rounded-lg font-bold brand-gradient text-white"
-        : "px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100";
+      artTab = tab;
+      show("artModalBodyPreview", tab === "preview");
+      show("artModalBodyReport", tab === "report");
+      show("artModalBodySource", tab === "source");
+      const on = "px-3 py-1 rounded-lg font-bold brand-gradient text-white";
+      const off = "px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100";
+      byId("artTabPreview").className = tab === "preview" ? on : off;
+      byId("artTabReport").className = tab === "report" ? on : off;
+      byId("artTabSource").className = tab === "source" ? on : off;
     }
 
+    // Đang xem Report thì copy report.md, ngược lại copy outline / bài viết
     function copyArticleMarkdown() {
-      copyText(byId("artModalRawText").textContent);
+      copyText(artTab === "report" ? artReportMd : artRawMd);
     }
 
     // Modal Thêm / Sửa Link Bài Đã Đăng
@@ -2004,6 +2015,198 @@
         if (p.startsWith('<h') || p.startsWith('<pre') || p.startsWith('<blockquote') || p.startsWith('<li')) return p;
         return `<p class="my-2.5 text-slate-700 leading-relaxed text-sm">${p.replace(/\n/g, '<br/>')}</p>`;
       }).join('');
+    }
+
+    // =====================================================================
+    // XEM TRƯỚC OUTLINE: trình bày giống bản "Dàn ý đề xuất" của project tnc-seo-content
+    // (Từ khóa chính, Title, Bộ từ khóa phụ, Mở bài, H2 và H3, FAQ, Kết luận).
+    // Đọc được cả outline_md dạng "## H2 / ### H3" lẫn dạng "1. H2: ... / * H3: ...".
+    // =====================================================================
+    function parseOutlineMd(md) {
+      const out = { title: "", intro: "", sections: [] };
+      const clean = (s) => String(s || "").replace(/\*\*|__/g, "").replace(/^\s*[>*-]\s+/, "").trim();
+      let cur = null, h3 = null;
+      for (const raw of String(md || "").split(/\r?\n/)) {
+        const line = raw.trim();
+        if (!line) continue;
+        let m;
+        if (/^#\s+/.test(line)) continue;                                                    // tiêu đề H1 "Outline: ..."
+        if ((m = /^[*_]*\s*title[^:：]*[:：]\s*[*_]*\s*(.+)$/i.exec(line)) && !cur) { out.title = clean(m[1]); continue; }
+        if ((m = /^[*_]*\s*(?:đoạn mở đầu|mở bài)[^:：]*[:：]\s*[*_]*\s*(.+)$/i.exec(line)) && !cur) { out.intro = clean(m[1]); continue; }
+        if ((m = /^(?:##\s+|\d+\.\s*[*_]*H2[*_]*\s*[:：]\s*)(.+)$/i.exec(line)) && !/^###/.test(line)) {
+          cur = { title: clean(m[1]), desc: "", h3s: [], items: [] };
+          out.sections.push(cur); h3 = null; continue;
+        }
+        if (!cur) continue;                                                                  // phần trước H2 đầu tiên: bỏ qua (key phụ lấy từ short_kws / long_kws)
+        if ((m = /^(?:###\s+|[*-]\s*[*_]*H3[*_]*\s*[:：]\s*)(.+)$/i.exec(line)) || (/^\*\*[^*]{2,120}\*\*$/.test(line) && (m = [0, line]))) {
+          h3 = { title: clean(m[1]), desc: "" };
+          cur.h3s.push(h3); continue;
+        }
+        if (/^(?:[*-]|\d+\.)\s+/.test(line)) { cur.items.push(clean(line.replace(/^\d+\.\s+/, ""))); continue; }
+        const target = h3 || cur;
+        target.desc = (target.desc ? target.desc + " " : "") + clean(line);
+      }
+      out.sections = out.sections.filter(s => !/từ khóa phụ|key phụ/i.test(s.title));
+      return out;
+    }
+
+    function renderOutlinePreview(item) {
+      const o = parseOutlineMd(item.outline_md);
+      if (!o.sections.length) return parseMarkdown(item.outline_md);    // không đọc được cấu trúc -> hiện Markdown thường
+      const q = (arr) => (arr || []).map(k => `<li>“${escapeHtml(k)}”</li>`).join("");
+      const desc = (t) => t ? ` <span class="text-slate-600">${escapeHtml(t)}</span>` : "";
+      const kwBlock = (label, list) => (list || []).length
+        ? `<li>${label}<ul class="list-disc pl-5 mt-1 space-y-0.5 text-slate-700">${q(list)}</ul></li>` : "";
+      const isFaq = (s) => /faq|câu hỏi/i.test(s.title);
+      const sections = o.sections.map(s => {
+        const sub = s.h3s.length
+          ? `<ul class="list-disc pl-5 mt-1.5 space-y-1">${s.h3s.map(h => `<li><strong>H3:</strong> ${escapeHtml(h.title)}${desc(h.desc)}</li>`).join("")}</ul>` : "";
+        if (isFaq(s)) {
+          const qs = s.items.length ? s.items : s.h3s.map(h => h.title);
+          const list = qs.length ? `<ul class="list-disc pl-5 mt-1.5 space-y-1">${qs.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>` : "";
+          return `<li><strong>H2:</strong> ${escapeHtml(s.title)}${qs.length ? `, gồm ${qs.length} câu:` : ""}${qs.length ? "" : desc(s.desc)}${list}</li>`;
+        }
+        const items = s.items.length ? `<ul class="list-disc pl-5 mt-1.5 space-y-1">${s.items.map(x => `<li>${escapeHtml(x)}</li>`).join("")}</ul>` : "";
+        return `<li><strong>H2:</strong> ${escapeHtml(s.title)}${desc(s.desc)}${sub}${items}</li>`;
+      }).join("");
+      const title = o.title || item.keyword;
+      return `
+        <div class="text-sm leading-relaxed text-slate-800 space-y-5">
+          <h2 class="text-xl font-extrabold text-slate-900 pb-2 border-b border-blue-100">Dàn ý đề xuất</h2>
+          <p><strong>Từ khóa chính:</strong> ${escapeHtml(item.keyword)}</p>
+          <p><strong>Title (khoảng ${title.length} ký tự):</strong> ${escapeHtml(title)}</p>
+          <div>
+            <h3 class="font-extrabold text-slate-900 mb-1.5">Bộ từ khóa phụ</h3>
+            <ul class="list-disc pl-5 space-y-2">
+              ${kwBlock("Key ngắn (3-4 từ), lặp 5-7 lần mỗi key:", item.short_kws)}
+              ${kwBlock("Key dài (5-7 từ), lặp 3-4 lần mỗi key:", item.long_kws)}
+              ${(item.short_kws || []).length + (item.long_kws || []).length ? "" : `<li class="text-slate-400 italic">Chưa có key phụ</li>`}
+            </ul>
+          </div>
+          ${o.intro ? `<p><strong>Mở bài (1 đoạn):</strong> ${escapeHtml(o.intro)}</p>` : ""}
+          <div>
+            <h3 class="font-extrabold text-slate-900 mb-2">H2 và H3</h3>
+            <ol class="list-decimal pl-5 space-y-3">${sections}</ol>
+          </div>
+        </div>`;
+    }
+
+    // =====================================================================
+    // XEM REPORT: report.md (seo_output/<slug>/report.md) trình bày dạng HTML
+    // Dữ liệu nằm ở seo_outlines.research.report_md
+    // =====================================================================
+    function renderReportHtml(md) {
+      if (!md) {
+        return `<div class="py-14 text-center">
+          <p class="text-sm font-bold text-slate-900">Chưa có report cho keyword này</p>
+          <p class="text-xs text-slate-500 mt-1.5">Report được đính kèm khi Cowork đẩy outline, hoặc chạy <code class="px-1.5 py-0.5 bg-blue-50 border border-blue-100 rounded font-mono">python sync_reports.py</code> để đồng bộ từ thư mục seo_output.</p>
+        </div>`;
+      }
+      const link = (t) => escapeHtml(t).replace(/(https?:\/\/[^\s<]+)/g, u => `<a href="${escapeAttr(u.replace(/&amp;/g, "&"))}" target="_blank" rel="noopener noreferrer" class="text-blue-600 hover:underline break-all">${u}</a>`);
+      const lines = md.split(/\r?\n/);
+      const h1 = (lines.find(l => /^#\s+/.test(l)) || "").replace(/^#\s+/, "");
+      const created = (lines.find(l => /^_.*_$/.test(l.trim())) || "").replace(/^_|_$/g, "");
+      const sections = [];
+      let cur = null;
+      lines.forEach(l => {
+        if (/^##\s+/.test(l) && !/^###/.test(l)) { cur = { title: l.replace(/^##\s+/, "").trim(), lines: [] }; sections.push(cur); }
+        else if (cur) cur.lines.push(l);
+      });
+
+      const card = (title, body) => `
+        <section class="rounded-2xl border border-blue-100 bg-white shadow-sm overflow-hidden">
+          <h3 class="px-4 py-2.5 bg-slate-50/80 border-b border-blue-50 text-sm font-extrabold text-slate-900">${escapeHtml(title)}</h3>
+          <div class="p-4">${body}</div>
+        </section>`;
+      const none = `<p class="text-xs text-slate-400 italic">Không có.</p>`;
+      const bullets = (ls) => ls.filter(l => /^\s*-\s+/.test(l)).map(l => l.replace(/^\s*-\s+/, "").trim());
+
+      const chipList = (ls) => {
+        const items = bullets(ls);
+        if (!items.length) return none;
+        return `<div class="flex flex-wrap gap-1.5">${items.map(t => {
+          const m = /^(.*?)\s*\(xuất hiện (\d+) lần\)\s*$/.exec(t);
+          const text = m ? m[1] : t;
+          return `<span class="px-2.5 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-semibold">${escapeHtml(text)}${m ? ` <span class="ml-1 px-1.5 rounded-full bg-orange-100 text-orange-600 text-[10px] font-extrabold">×${m[2]}</span>` : ""}</span>`;
+        }).join("")}</div>`;
+      };
+
+      const typeBadge = (t) => {
+        const k = String(t).toLowerCase();
+        const cls = k.includes("competitor") ? "bg-orange-50 text-orange-700 border-orange-200"
+          : k.includes("platform") ? "bg-slate-100 text-slate-600 border-slate-200" : "bg-blue-50 text-blue-700 border-blue-200";
+        const label = k.includes("competitor") ? "Đối thủ" : k.includes("platform") ? "Nền tảng" : (k.includes("press") || k.includes("báo") ? "Báo chí" : t);
+        return `<span class="px-2 py-0.5 rounded-full border text-[11px] font-bold whitespace-nowrap ${cls}">${escapeHtml(label)}</span>`;
+      };
+      const scanBadge = (t) => {
+        const ok = /^ok$/i.test(t.trim());
+        return `<span class="px-2 py-0.5 rounded-full text-[11px] font-bold whitespace-nowrap ${ok ? "bg-emerald-50 text-emerald-700" : "bg-amber-50 text-amber-700"}">${escapeHtml(t)}</span>`;
+      };
+      const tableHtml = (ls) => {
+        const rows = ls.filter(l => l.trim().startsWith("|")).map(l => l.trim().replace(/^\||\|$/g, "").split("|").map(c => c.trim()));
+        if (rows.length < 3) return none;
+        const head = rows[0], body = rows.slice(2);
+        const ci = (re) => head.findIndex(h => re.test(h));
+        const iType = ci(/loại/i), iScan = ci(/quét/i), iTitle = ci(/tiêu đề/i), iDomain = ci(/domain/i);
+        return `<div class="overflow-x-auto"><table class="w-full text-xs">
+          <thead><tr class="text-[11px] uppercase tracking-wide text-slate-500 border-b border-blue-50">${head.map(h => `<th class="px-2 py-2 text-left whitespace-nowrap">${escapeHtml(h)}</th>`).join("")}</tr></thead>
+          <tbody>${body.map(r => `<tr class="border-b border-slate-100">${r.map((c, i) =>
+            `<td class="px-2 py-2 align-top text-slate-700 ${i === iTitle ? "min-w-[240px] font-semibold text-slate-900" : ""} ${i === iDomain ? "whitespace-nowrap" : ""}">${i === iType ? typeBadge(c) : i === iScan ? scanBadge(c) : escapeHtml(c)}</td>`).join("")}</tr>`).join("")}</tbody>
+        </table></div>`;
+      };
+
+      const summaryHtml = (ls) => {
+        const items = bullets(ls);
+        if (!items.length) return none;
+        return `<ul class="space-y-1.5 text-sm text-slate-700">${items.map(t => `<li class="flex gap-2"><span class="text-orange-500">▸</span><span>${escapeHtml(t)}</span></li>`).join("")}</ul>`;
+      };
+
+      const headingsHtml = (ls) => {
+        const posts = [];
+        let p = null;
+        ls.forEach(l => {
+          if (/^###\s+/.test(l)) { p = { title: l.replace(/^###\s+/, "").trim(), url: "", meta: "", heads: [] }; posts.push(p); }
+          else if (p) {
+            const t = l.trim();
+            if (/^https?:\/\//.test(t)) p.url = t;
+            else if (/^_Meta:/i.test(t)) p.meta = t.replace(/^_Meta:\s*/i, "").replace(/_$/, "");
+            else { const m = /^(\s*)-\s*(H[1-6]):\s*(.*)$/.exec(l); if (m) p.heads.push({ level: Number(m[2][1]), tag: m[2], text: m[3] }); }
+          }
+        });
+        if (!posts.length) return none;
+        const tagCls = { 1: "bg-blue-600 text-white", 2: "bg-blue-100 text-blue-700", 3: "bg-slate-100 text-slate-600" };
+        return `<div class="space-y-2.5">${posts.map(po => `
+          <details class="rounded-xl border border-blue-100 bg-slate-50/40">
+            <summary class="cursor-pointer px-3 py-2.5 text-sm font-bold text-slate-900 flex items-center justify-between gap-2">
+              <span>${escapeHtml(po.title)}</span><span class="shrink-0 text-[11px] font-semibold text-slate-400">${po.heads.length} heading</span>
+            </summary>
+            <div class="px-3 pb-3 space-y-1.5">
+              ${po.url ? `<div class="text-xs">${link(po.url)}</div>` : ""}
+              ${po.meta ? `<div class="text-xs text-slate-500 italic">${escapeHtml(po.meta)}</div>` : ""}
+              ${po.heads.map(h => `<div class="flex items-start gap-2 text-xs" style="margin-left:${(h.level - 1) * 18}px">
+                <span class="mt-0.5 px-1.5 rounded text-[10px] font-extrabold ${tagCls[h.level] || tagCls[3]}">${h.tag}</span><span class="text-slate-700">${escapeHtml(h.text)}</span></div>`).join("")}
+            </div>
+          </details>`).join("")}</div>`;
+      };
+
+      const body = sections.map(s => {
+        const t = s.title;
+        let html;
+        if (/top bài|bảng|đối thủ/i.test(t) && s.lines.some(l => l.trim().startsWith("|"))) html = tableHtml(s.lines);
+        else if (/tổng hợp/i.test(t)) html = summaryHtml(s.lines);
+        else if (/dàn ý heading|heading/i.test(t)) html = headingsHtml(s.lines);
+        else html = chipList(s.lines);
+        return card(t, html);
+      }).join("");
+
+      return `
+        <div class="space-y-4">
+          <div>
+            <h2 class="text-xl font-extrabold text-slate-900">${escapeHtml(h1 || "Báo cáo từ khóa")}</h2>
+            ${created ? `<p class="text-xs text-slate-500 mt-0.5">${escapeHtml(created)}</p>` : ""}
+          </div>
+          ${body}
+        </div>`;
     }
 
     // Expose Global Helper cho Agent AI tự động tích hợp
