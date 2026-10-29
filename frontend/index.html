@@ -639,12 +639,11 @@
           </div>
         </div>
 
-        <!-- Tab switches: Xem trước / Mã nguồn Markdown -->
+        <!-- Tab switches: XEM REPORT / XEM OUTLINE (hoặc XEM BÀI VIẾT) -->
         <div class="px-6 py-2 border-b border-blue-50 bg-white flex items-center justify-between gap-2">
           <div class="flex gap-2 text-xs">
-            <button type="button" id="artTabPreview" onclick="switchArticleTab('preview')" class="px-3 py-1 rounded-lg font-bold brand-gradient text-white">Xem trước (HTML)</button>
             <button type="button" id="artTabReport" onclick="switchArticleTab('report')" class="px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100">XEM REPORT</button>
-            <button type="button" id="artTabSource" onclick="switchArticleTab('source')" class="px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100">Mã nguồn (.md)</button>
+            <button type="button" id="artTabPreview" onclick="switchArticleTab('preview')" class="px-3 py-1 rounded-lg font-bold brand-gradient text-white">XEM OUTLINE</button>
           </div>
           <span class="text-[11px] text-slate-400">Nội dung Markdown do Cowork viết</span>
         </div>
@@ -652,9 +651,6 @@
         <!-- Content -->
         <div id="artModalBodyPreview" class="px-6 py-6 overflow-y-auto custom-scroll max-h-[60vh] space-y-3 leading-relaxed"></div>
         <div id="artModalBodyReport" class="hidden px-6 py-6 overflow-y-auto custom-scroll max-h-[60vh]"></div>
-        <div id="artModalBodySource" class="hidden px-6 py-4 overflow-y-auto custom-scroll max-h-[60vh]">
-          <pre id="artModalRawText" class="p-4 rounded-2xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto whitespace-pre-wrap"></pre>
-        </div>
       </div>
     </div>
   </div>
@@ -1894,8 +1890,7 @@
           <strong>Meta description (${item.meta_description.length} ký tự):</strong> ${escapeHtml(item.meta_description)}</div>` : "";
         preview = parseMarkdown(content) + meta;
       }
-      byId("artTabPreview").textContent = isOutline ? "Xem trước Outline (HTML)" : "Xem trước (HTML)";
-      byId("artModalRawText").textContent = content;
+      byId("artTabPreview").textContent = isOutline ? "XEM OUTLINE" : "XEM BÀI VIẾT";
       byId("artModalBodyPreview").innerHTML = preview;
       byId("artModalBodyReport").innerHTML = renderReportHtml(artReportMd);
 
@@ -1913,12 +1908,10 @@
       artTab = tab;
       show("artModalBodyPreview", tab === "preview");
       show("artModalBodyReport", tab === "report");
-      show("artModalBodySource", tab === "source");
       const on = "px-3 py-1 rounded-lg font-bold brand-gradient text-white";
       const off = "px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100";
       byId("artTabPreview").className = tab === "preview" ? on : off;
       byId("artTabReport").className = tab === "report" ? on : off;
-      byId("artTabSource").className = tab === "source" ? on : off;
     }
 
     // Đang xem Report thì copy report.md, ngược lại copy outline / bài viết
