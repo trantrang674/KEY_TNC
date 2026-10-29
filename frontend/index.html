@@ -749,7 +749,10 @@
 
     renderPlaceholders();
     // Chỉ đọc hash khi đó là tên tab (không đụng tới hash khôi phục mật khẩu của Supabase)
-    switchTab(TABS[window.location.hash.slice(1)] ? window.location.hash.slice(1) : "dashboard", false);
+    // Chạy sau khi toàn bộ script đã khai báo xong (byId, approvedKeywords, seoOutlines... nằm phía dưới); gọi ngay sẽ lỗi "before initialization" khi mở thẳng #workflow / #duyet
+    const initFirstTab = () => switchTab(TABS[window.location.hash.slice(1)] ? window.location.hash.slice(1) : "dashboard", false);
+    if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", initFirstTab);
+    else initFirstTab();
 
     if (STATIC_MODE) {
       // Trang tĩnh không có server: ẩn các nút cần backend (quét lại, gọi lại SerpApi, đổi khung giờ, quota)
