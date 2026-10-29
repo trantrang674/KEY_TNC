@@ -33,14 +33,12 @@ flowchart TB
 
     subgraph DATA_STORAGE ["3. LƯU TRỮ CỤC BỘ & DATABASE CLOUD"]
         LOCAL_JSON["data/latest_top10_report.json\n(Báo cáo tổng hợp JSON mới nhất)"]
-        WORKFLOW_JSON["data/workflow.json\n(Trạng thái duyệt cục bộ: Đang viết / Đã xong)"]
         SUPABASE[("Supabase Cloud Database\n- daily_reports (Lịch sử)\n- approved_keywords\n- seo_outlines & articles\n- zalo_messages")]
     end
 
     subgraph WORKFLOW_RUNNERS ["4. BỘ ĐIỀU PHỐI (CHẠY BÁO CÁO)"]
         GHA[".github/workflows/daily-pages.yml\n(GitHub Actions tự động chạy 12:00 trưa T2-T4-T6)"]
         BS["build_static.py\n(Chạy Engine, đẩy báo cáo lên Supabase, build site/)"]
-        APP["backend/app.py & run_dashboard.py\n(Server cục bộ phục vụ API /api/report, /api/workflow)"]
     end
 
     subgraph USERS_AND_AGENTS ["5. GIAO DIỆN & TÁC NHÂN COWORK AI"]
@@ -64,9 +62,6 @@ flowchart TB
     BS -->|Đẩy báo cáo| SUPABASE
     BS -->|Xuất bản tĩnh| DASHBOARD
 
-    APP --> LOCAL_JSON
-    APP --> WORKFLOW_JSON
-    APP <--> DASHBOARD
 
     %% Tương tác Web Dashboard & Supabase
     DASHBOARD <-->|Đọc báo cáo & Ghi nhận duyệt| SUPABASE
@@ -84,7 +79,6 @@ flowchart TB
 - [`backend/classifier.py`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/backend/classifier.py): Phân loại và gán thẻ theo 5 nhóm ngành (Hardware, AI, Gaming, OS/Software, Sự kiện công nghệ) và nhận diện các Brand (Nvidia, Intel, AMD, Apple, Asus...).
 - [`backend/serpapi_client.py`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/backend/serpapi_client.py): Kết nối với 4 cổng API của SerpApi (Google Trends Trending Now, Google Autocomplete, Google Search, Google Trends). Chỉ gọi tối đa 1 lần/ngày/cổng và lưu cache để tiết kiệm chi phí quota.
 - [`backend/seo_suggester.py`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/backend/seo_suggester.py): Phân tích nội dung tiêu đề các bài viết top và dữ liệu Autocomplete để sinh ra 3 từ khóa phụ / tiêu đề gợi ý viết bài chuẩn SEO.
-- [`backend/app.py`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/backend/app.py): Mini HTTP Server phục vụ các API cục bộ (`/api/report`, `/api/workflow`, `/api/article`) khi chạy dashboard trên máy tính.
 
 ---
 
@@ -121,7 +115,6 @@ flowchart TB
   3. Viết bài chi tiết và chấm điểm SEO $\ge 90$ trước khi đẩy lên hệ thống.
 - [`.github/workflows/daily-pages.yml`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/.github/workflows/daily-pages.yml): GitHub Actions tự động chạy lúc **12:00 trưa giờ VN** vào các ngày Thứ 2, Thứ 4, Thứ 6 (hoặc chạy tay bằng nút Run workflow). Tự động chạy `build_static.py`, nạp báo cáo lên Supabase và cập nhật GitHub Pages.
 - [`build_static.py`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/build_static.py): Script thực hiện chạy engine, tải báo cáo lên Supabase và xuất bản thư mục `site/` cho GitHub Pages.
-- [`START.bat`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/START.bat) & [`run_dashboard.py`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/run_dashboard.py): File khởi động nhanh dashboard trên Windows với 1 cú click chuột (tự động bật server và mở trình duyệt tại `http://127.0.0.1:8000`).
 - [`tests/test_core.py`](file:///C:/Users/Duong%20Trang/Documents/GEMNI%20ANTIGRAVITY/tnc-seo-keyword-news-github/tests/test_core.py): Bộ kiểm thử tự động (Unit Test) kiểm tra thuật toán so khớp từ khóa và tính độ tươi của tin tức.
 
 ---

@@ -211,6 +211,11 @@ def detect_source_info(raw_source_name: str, url: str, default_type: str = "PRES
     return {"name": raw_source_name, "type": default_type, "badge": badge}
 
 
+def is_own_source(article: Dict) -> bool:
+    """Bài của chính TNC Store: không quét, không tính là đối thủ."""
+    return article.get("source_badge") == "TNC Store"
+
+
 def clean_html_summary(raw_html: str) -> str:
     """Làm sạch thẻ HTML trong phần mô tả RSS."""
     if not raw_html:
@@ -432,6 +437,8 @@ def fetch_all_rss_articles(max_hours: int = 48) -> List[Dict]:
     all_raw.sort(key=lambda x: x["hours_ago"])
 
     for art in all_raw:
+        if is_own_source(art):
+            continue
         norm_title = re.sub(r"\W+", "", art["title"].lower())[:60]
         if norm_title in seen_titles:
             continue

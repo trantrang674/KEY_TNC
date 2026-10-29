@@ -23,7 +23,7 @@ from backend.classifier import (
     classify_niche,
     extract_core_keyword
 )
-from backend.news_fetcher import fetch_all_rss_articles
+from backend.news_fetcher import fetch_all_rss_articles, is_own_source
 from backend.serpapi_client import (
     run_daily_4_serpapi_suite,
     get_serpapi_account_info,
@@ -250,7 +250,7 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
     for s_art in serp_data.get("google_search_articles", []):
         title = s_art.get("title", "")
         summary = s_art.get("summary", "")
-        if is_promo_noise(title) or is_smartphone_topic(title, summary):
+        if is_promo_noise(title) or is_smartphone_topic(title, summary) or is_own_source(s_art):
             continue
         # Link Google News (RSS) khác link gốc (SerpApi) nên khử trùng theo tiêu đề để không đếm bài hai lần
         norm = _norm_title(title)

@@ -109,14 +109,12 @@ flowchart TB
 
     subgraph DATA_STORAGE ["3. LƯU TRỮ CỤC BỘ & DATABASE CLOUD"]
         LOCAL_JSON["data/latest_top10_report.json\n(Báo cáo tổng hợp JSON mới nhất)"]
-        WORKFLOW_JSON["data/workflow.json\n(Trạng thái duyệt cục bộ: Đang viết / Đã xong)"]
         SUPABASE[("Supabase Cloud Database\n- daily_reports (Lịch sử)\n- approved_keywords\n- seo_outlines & articles\n- zalo_messages")]
     end
 
     subgraph WORKFLOW_RUNNERS ["4. BỘ ĐIỀU PHỐI (CHẠY BÁO CÁO)"]
         GHA[".github/workflows/daily-pages.yml\n(GitHub Actions tự động chạy lúc 12:00 trưa T2-T4-T6)"]
         BS["build_static.py\n(Chạy Engine, đẩy báo cáo lên Supabase, build thư mục site/)"]
-        APP["backend/app.py & run_dashboard.py\n(Server cục bộ phục vụ API /api/report, /api/workflow)"]
     end
 
     subgraph USERS_AND_AGENTS ["5. GIAO DIỆN & TÁC NHÂN COWORK AI"]
@@ -140,9 +138,6 @@ flowchart TB
     BS -->|Đẩy báo cáo| SUPABASE
     BS -->|Xuất bản tĩnh| DASHBOARD
 
-    APP --> LOCAL_JSON
-    APP --> WORKFLOW_JSON
-    APP <--> DASHBOARD
 
     %% Tương tác Web Dashboard & Supabase
     DASHBOARD <-->|Đọc báo cáo & Ghi nhận duyệt| SUPABASE
@@ -173,7 +168,6 @@ flowchart TB
             <li><strong class="text-slate-800">classifier.py:</strong> Phân loại keyword theo cụm chủ đề (Linh kiện, AI, Game, HĐH, Sự kiện) và Brand (Nvidia, Intel, Apple...).</li>
             <li><strong class="text-slate-800">serpapi_client.py:</strong> Quản lý 4 API SerpApi, cơ chế gọi đúng 1 lần/ngày và cache cục bộ để tiết kiệm quota.</li>
             <li><strong class="text-slate-800">seo_suggester.py:</strong> Phân tích bài viết & Google Autocomplete để gợi ý 3 tiêu đề/từ khóa phụ viết bài.</li>
-            <li><strong class="text-slate-800">app.py:</strong> Server HTTP nhẹ phục vụ các API cục bộ cho frontend.</li>
           </ul>
         </div>
 
@@ -217,8 +211,6 @@ flowchart TB
           <ul class="text-xs space-y-2 text-slate-600">
             <li><strong class="text-slate-800">cowork/COWORK_TASK.md:</strong> Bản hướng dẫn cấu hình và Prompt cho Agent AI tự động lập outline & viết bài.</li>
             <li><strong class="text-slate-800">build_static.py:</strong> Script tạo site tĩnh cho GitHub Pages và đẩy báo cáo vào Supabase.</li>
-            <li><strong class="text-slate-800">run_dashboard.py:</strong> Khởi động server HTTP và tự mở trình duyệt cục bộ.</li>
-            <li><strong class="text-slate-800">START.bat:</strong> File chạy nhanh 1 click trên Windows.</li>
             <li><strong class="text-slate-800">tests/test_core.py:</strong> Unit tests kiểm tra tính đúng đắn của logic khớp keyword và tính thời gian tươi.</li>
             <li><strong class="text-slate-800">.env:</strong> Lưu SerpApi Key và thông số Supabase bí mật.</li>
           </ul>
