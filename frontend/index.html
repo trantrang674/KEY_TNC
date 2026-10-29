@@ -503,6 +503,19 @@
         <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
           Keyword <span class="text-gradient">Duyệt</span>
         </h2>
+        <!-- THÊM KEYWORD THỦ CÔNG: lưu như keyword duyệt, chạy tiếp workflow/Cowork -->
+        <form id="manualKwForm" onsubmit="return addManualKeyword(event)" class="pro-card rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center gap-3">
+          <div class="shrink-0">
+            <div class="text-sm font-extrabold text-slate-900">Thêm KEYWORD</div>
+            <div class="text-[11px] text-slate-500">Nhập tay keyword của bạn, hệ thống xử lý như keyword đã duyệt.</div>
+          </div>
+          <input id="manualKwInput" type="text" maxlength="300" autocomplete="off" placeholder="VD: card đồ họa RTX 5060 Ti giá bao nhiêu"
+                 class="flex-1 min-w-0 bg-white border border-blue-100 rounded-xl px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
+          <button id="manualKwBtn" type="submit"
+                  class="min-w-[140px] px-4 py-2 rounded-full accent-btn text-white text-xs font-extrabold tracking-wide transition disabled:opacity-60">
+            + THÊM KEYWORD
+          </button>
+        </form>
         <div class="pro-card rounded-2xl overflow-hidden">
           <div class="px-4 py-3.5 flex items-center justify-between border-b border-blue-50">
             <h3 class="text-sm font-extrabold text-slate-900">Danh sách keyword đã duyệt</h3>
@@ -1150,6 +1163,22 @@
         </tr>`;
     }
 
+    // Ngày giờ đăng bài theo giờ VN (cố định, không đổi theo thời điểm xem nên cache vẫn đúng)
+    function fmtPubDate(iso) {
+      const d = new Date(iso);
+      if (!iso || isNaN(d)) return null;
+      const p = Object.fromEntries(new Intl.DateTimeFormat("en-GB", {
+        timeZone: "Asia/Ho_Chi_Minh", hour12: false, hour: "2-digit", minute: "2-digit",
+        day: "2-digit", month: "2-digit", year: "numeric"
+      }).formatToParts(d).map(x => [x.type, x.value]));
+      return `${p.hour}:${p.minute} ${p.day}/${p.month}/${p.year}`;
+    }
+    const fmtPublished = (art) => fmtPubDate(art.published_at) || art.relative_time || "--";
+    function newestPublished(item) {
+      const ts = (item.top_3_articles || []).map(a => new Date(a.published_at).getTime()).filter(t => !isNaN(t));
+      return ts.length ? fmtPubDate(new Date(Math.max(...ts)).toISOString()) : "--";
+    }
+
     function renderKeywordDetail(item) {
       const articlesHtml = (item.top_3_articles || []).map((art, idx) => {
         const isComp = art.source_type === "COMPETITOR";
@@ -1166,7 +1195,7 @@
                   [${escapeHtml(art.source_badge)}] ${escapeHtml(art.source_name)}
                 </span>
                 <span class="text-[11px] font-medium text-slate-500 flex items-center gap-1">
-                  🕒 ${escapeHtml(art.relative_time)}
+                  🕒 ${escapeHtml(fmtPublished(art))}
                 </span>
               </div>
               <h4 class="text-sm font-bold text-slate-900 group-hover:text-blue-700 transition line-clamp-2">
@@ -1219,7 +1248,7 @@
             <div class="flex items-center justify-between mb-2.5">
               <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-800">Top 5 bài viết mới nhất chứa keyword</h3>
               <span class="text-[11px] font-medium text-slate-500">
-                Bài mới nhất: ${item.stats?.newest_hours_ago || 1} giờ trước
+                Bài mới nhất: ${escapeHtml(newestPublished(item))}
               </span>
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-3.5">
@@ -1290,6 +1319,57 @@
       return m ? `${m[3]}-${m[2]}-${m[1]}` : null;
     }
 
+    // Ghi 1 keyword vào approved_keywords (Supabase, hoặc localStorage khi xem thử local) rồi vẽ lại bảng
+    async function insertApproved(record) {
+      if (STATIC_MODE) {
+        const { data, error } = await sb.from("approved_keywords").insert(record).select().single();
+        if (error && error.code === "23505") {
+          await loadApprovedKeywords(); // đã có người khác duyệt keyword này
+        } else if (error) {
+          throw new Error(error.message);
+        } else {
+          approvedKeywords.unshift(data);
+        }
+      } else {
+        approvedKeywords.unshift({ ...record, id: Date.now(), approved_by_email: null, approved_at: new Date().toISOString() });
+        localStorage.setItem(LOCAL_APPROVED_KEY, JSON.stringify(approvedKeywords));
+      }
+      renderApprovedTable();
+      renderWorkflowTable();
+    }
+
+    // "Thêm KEYWORD": keyword nhập tay, đi chung luồng với keyword duyệt (outline -> bài viết -> đăng)
+    async function addManualKeyword(ev) {
+      ev.preventDefault();
+      const input = byId("manualKwInput"), btn = byId("manualKwBtn");
+      const kw = input.value.replace(/\s+/g, " ").trim();
+      if (!kw) { showToast("Hãy nhập keyword trước khi thêm.", true); return false; }
+      if (isApproved(kw)) { showToast(`Keyword "${kw}" đã có trong danh sách.`, true); return false; }
+      const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Ho_Chi_Minh" }).format(new Date()); // YYYY-MM-DD giờ VN
+      const record = {
+        keyword: kw,
+        source_keyword: "Nhập tay",
+        niche: null,
+        intent: "Keyword nhập tay",
+        based_on: "Người dùng tự thêm",
+        report_date: today
+      };
+      btn.disabled = true;
+      btn.textContent = "Đang lưu...";
+      try {
+        await insertApproved(record);
+        input.value = "";
+        showToast(`Đã thêm keyword: "${kw}"`);
+      } catch (err) {
+        console.error(err);
+        showToast("Không thêm được keyword: " + err.message, true);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = "+ THÊM KEYWORD";
+      }
+      return false;
+    }
+
     async function approveKeyword(rank, idx, btn) {
       const item = (currentReport?.top_10_keywords || []).find(k => k.rank === rank);
       const s = item && getSeoList(item)[idx];
@@ -1307,22 +1387,8 @@
       btn.disabled = true;
       btn.textContent = "Đang lưu...";
       try {
-        if (STATIC_MODE) {
-          const { data, error } = await sb.from("approved_keywords").insert(record).select().single();
-          if (error && error.code === "23505") {
-            await loadApprovedKeywords(); // đã có người khác duyệt keyword này
-          } else if (error) {
-            throw new Error(error.message);
-          } else {
-            approvedKeywords.unshift(data);
-          }
-        } else {
-          approvedKeywords.unshift({ ...record, id: Date.now(), approved_by_email: null, approved_at: new Date().toISOString() });
-          localStorage.setItem(LOCAL_APPROVED_KEY, JSON.stringify(approvedKeywords));
-        }
+        await insertApproved(record);
         btn.outerHTML = APPROVED_BTN_HTML;
-        renderApprovedTable();
-        renderWorkflowTable();
         showToast(`Đã duyệt: "${record.keyword}"`);
       } catch (err) {
         console.error(err);
