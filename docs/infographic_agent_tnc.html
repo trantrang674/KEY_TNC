@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cấu Trúc Hoàn Chỉnh Của Hệ Thống Agent TNC SEO</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+      background-color: #f8fafc;
+    }
+    .poster-card {
+      border-radius: 20px;
+      border-width: 2.5px;
+      transition: all 0.2s ease;
+    }
+    .tag-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .flow-arrow-down {
+      width: 2px;
+      height: 24px;
+      background-color: #cbd5e1;
+      margin: 0 auto;
+      position: relative;
+    }
+    .flow-arrow-down::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: -4px;
+      width: 0; 
+      height: 0; 
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #94a3b8;
+    }
+    .flow-pill {
+      display: inline-block;
+      padding: 6px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 13px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-width: 2px;
+    }
+    @media print {
+      body { background: white !important; padding: 0 !important; }
+      .no-print { display: none !important; }
+      .poster-container { max-width: 100% !important; margin: 0 !important; }
+    }
+  </style>
+</head>
+<body class="p-4 md:p-8 flex justify-center text-slate-800">
+
+  <div class="poster-container w-full max-w-5xl bg-white rounded-3xl shadow-xl border-4 border-slate-300 p-6 md:p-10 space-y-6">
+    
+    <!-- TIÊU ĐỀ POSTER CHÍNH (THEO PHONG CÁCH HÌNH MẪU) -->
+    <div class="text-center space-y-2">
+      <div class="inline-flex items-center gap-2 px-4 py-1 rounded-full bg-indigo-50 border border-indigo-200 text-indigo-700 text-xs font-bold uppercase tracking-wider">
+        <span>🚀 TNC STORE • SEO AUTOMATION AGENT</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-black text-slate-900 tracking-tight">
+        CẤU TRÚC HOÀN CHỈNH CỦA HỆ THỐNG AGENT TNC SEO
+      </h1>
+      <div class="flex justify-center items-center gap-1 text-indigo-600 font-bold">
+        <svg class="w-8 h-3" viewBox="0 0 100 20" fill="none"><path d="M0 10 Q25 0 50 10 T100 10" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+        <span class="text-xs uppercase tracking-widest text-slate-400 font-semibold px-2">KEY_TNC & COWORK AGENT WORKFLOW</span>
+        <svg class="w-8 h-3" viewBox="0 0 100 20" fill="none"><path d="M0 10 Q25 0 50 10 T100 10" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
+      </div>
+    </div>
+
+    <!-- KHỐI GIỚI THIỆU (BÓNG ĐÈN 💡) -->
+    <div class="bg-indigo-50/70 border-2 border-indigo-200 rounded-2xl p-4 md:p-5 flex items-start gap-4 shadow-sm">
+      <div class="text-3xl p-2 bg-white rounded-xl shadow-sm border border-indigo-100 flex-shrink-0">💡</div>
+      <div class="text-xs md:text-sm text-slate-700 leading-relaxed">
+        <p class="font-bold text-slate-900 mb-0.5">Một hệ thống Agent SEO tự động hoàn chỉnh không chỉ có AI viết bài.</p>
+        <p>Để vận hành trơn tru từ khâu phát hiện tin tức sốt dẻo đến bài viết lên top Google, hệ thống tích hợp liên hoàn giữa: <strong>Nguồn dữ liệu (RSS & SerpApi)</strong>, <strong>Bộ não chấm điểm (Backend Engine)</strong>, <strong>Giao diện duyệt (Dashboard)</strong>, <strong>Cơ sở dữ liệu đám mây (Supabase)</strong>, <strong>Agent AI tự động lập outline & viết bài (Cowork)</strong>, và <strong>Hệ thống lịch trình CI/CD & thông báo Zalo</strong>.</p>
+      </div>
+    </div>
+
+    <!-- HÀNG 4 KHỐI NGANG (THEO BỐ CỤC HÌNH MẪU) -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      
+      <!-- KHỐI 1: NGUỒN TIN (VÀNG/CAM) -->
+      <div class="poster-card bg-amber-50/40 border-amber-300 p-4 space-y-3 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="font-black text-amber-900 text-sm tracking-wide uppercase">1. NGUỒN DỮ LIỆU</span>
+            <span class="text-xl">🌐</span>
+          </div>
+          <p class="text-xs text-amber-800/80 mt-1">Thu thập toàn bộ dữ liệu tin tức công nghệ trong 48h.</p>
+          <div class="mt-3 space-y-1.5 text-xs text-slate-700">
+            <div class="flex items-center gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <strong>11 Kênh RSS Báo chí:</strong> VnExpress, GenK, Tinhte, ThanhNien...
+            </div>
+            <div class="flex items-center gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <strong>Shop Đối thủ:</strong> GearVN, CellphoneS, Phong Vũ...
+            </div>
+            <div class="flex items-center gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <strong>4 Cổng SerpApi:</strong> Trends Now, Autocomplete, Search, Trends.
+            </div>
+          </div>
+        </div>
+        <div class="pt-2 border-t border-amber-200/60 flex flex-wrap gap-1">
+          <span class="tag-badge bg-amber-100 text-amber-800 border border-amber-200">RSS 48h</span>
+          <span class="tag-badge bg-amber-100 text-amber-800 border border-amber-200">SerpApi Cache</span>
+        </div>
+      </div>
+
+      <!-- KHỐI 2: BACKEND ENGINE (TÍM) -->
+      <div class="poster-card bg-purple-50/40 border-purple-300 p-4 space-y-3 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="font-black text-purple-900 text-sm tracking-wide uppercase">2. BỘ NÃO ENGINE</span>
+            <span class="text-xl">⚙️</span>
+          </div>
+          <p class="text-xs text-purple-800/80 mt-1">Xử lý lọc bài, chấm điểm và đề xuất từ khóa chuẩn SEO.</p>
+          <div class="mt-3 space-y-1.5 text-xs text-slate-700">
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1 flex-shrink-0"></span>
+              <span><code class="text-purple-700 font-bold">news_fetcher.py</code>: Bóc tách giờ tin 48h</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1 flex-shrink-0"></span>
+              <span><code class="text-purple-700 font-bold">classifier.py</code>: Phân 5 Niche & Brand</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1 flex-shrink-0"></span>
+              <span><code class="text-purple-700 font-bold">engine.py</code>: Chấm 100đ, lọc Top 20</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-500 mt-1 flex-shrink-0"></span>
+              <span><code class="text-purple-700 font-bold">seo_suggester.py</code>: 3 gợi ý key SEO</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-2 border-t border-purple-200/60 flex flex-wrap gap-1">
+          <span class="tag-badge bg-purple-100 text-purple-800 border border-purple-200">Python 3.13</span>
+          <span class="tag-badge bg-purple-100 text-purple-800 border border-purple-200">Thang 100đ</span>
+        </div>
+      </div>
+
+      <!-- KHỐI 3: GIAO DIỆN DASHBOARD (XANH DƯƠNG) -->
+      <div class="poster-card bg-sky-50/40 border-sky-300 p-4 space-y-3 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="font-black text-sky-900 text-sm tracking-wide uppercase">3. DASHBOARD DUYỆT</span>
+            <span class="text-xl">💻</span>
+          </div>
+          <p class="text-xs text-sky-800/80 mt-1">Nơi biên tập viên con người xem xét và phê duyệt từ khóa.</p>
+          <div class="mt-3 space-y-1.5 text-xs text-slate-700">
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-1 flex-shrink-0"></span>
+              <span><code class="text-sky-700 font-bold">frontend/index.html</code>: Web SPA</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-1 flex-shrink-0"></span>
+              <span>Hiển thị Top 20 Keyword & bài đối thủ</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-1 flex-shrink-0"></span>
+              <span>Bộ lọc chuyên sâu theo Niche / Brand</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-500 mt-1 flex-shrink-0"></span>
+              <span><strong>Nút "Duyệt Đẩy Cowork"</strong> 1 click</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-2 border-t border-sky-200/60 flex flex-wrap gap-1">
+          <span class="tag-badge bg-sky-100 text-sky-800 border border-sky-200">Tailwind CSS</span>
+          <span class="tag-badge bg-sky-100 text-sky-800 border border-sky-200">Human Check</span>
+        </div>
+      </div>
+
+      <!-- KHỐI 4: DATABASE SUPABASE (XANH LÁ) -->
+      <div class="poster-card bg-emerald-50/40 border-emerald-300 p-4 space-y-3 flex flex-col justify-between">
+        <div>
+          <div class="flex items-center justify-between">
+            <span class="font-black text-emerald-900 text-sm tracking-wide uppercase">4. DATABASE CLOUD</span>
+            <span class="text-xl">🗄️</span>
+          </div>
+          <p class="text-xs text-emerald-800/80 mt-1">Lưu trữ trung tâm an toàn & đồng bộ thời gian thực.</p>
+          <div class="mt-3 space-y-1.5 text-xs text-slate-700">
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1 flex-shrink-0"></span>
+              <span><code>daily_reports</code>: Lịch sử báo cáo</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1 flex-shrink-0"></span>
+              <span><code>approved_keywords</code>: Key đã duyệt</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1 flex-shrink-0"></span>
+              <span><code>seo_outlines</code>: Dàn ý bài viết</span>
+            </div>
+            <div class="flex items-start gap-1.5 font-medium">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 mt-1 flex-shrink-0"></span>
+              <span><code>seo_articles</code>: Bài viết hoàn thiện</span>
+            </div>
+          </div>
+        </div>
+        <div class="pt-2 border-t border-emerald-200/60 flex flex-wrap gap-1">
+          <span class="tag-badge bg-emerald-100 text-emerald-800 border border-emerald-200">Supabase</span>
+          <span class="tag-badge bg-emerald-100 text-emerald-800 border border-emerald-200">PostgreSQL</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- KHU VỰC TRUNG TÂM: SƠ ĐỒ DÒNG CHẢY HỆ THỐNG (TREE FLOW NHƯ HÌNH MẪU) -->
+    <div class="bg-gradient-to-b from-slate-50 to-indigo-50/30 rounded-2xl border-2 border-indigo-100 p-6 text-center space-y-3">
+      
+      <!-- Header trung tâm -->
+      <div>
+        <div class="flow-pill bg-rose-100 text-rose-800 border-rose-300">
+          🚀 HỆ THỐNG TỰ ĐỘNG HÓA TNC SEO KEYWORD NEWS
+        </div>
+      </div>
+      
+      <div class="flow-arrow-down"></div>
+
+      <div>
+        <div class="flow-pill bg-amber-100 text-amber-900 border-amber-300">
+          📥 NGUỒN TIN (11 RSS 48h + 4 Cổng SerpApi)
+        </div>
+      </div>
+
+      <div class="flow-arrow-down"></div>
+
+      <div>
+        <div class="flow-pill bg-purple-100 text-purple-900 border-purple-300">
+          🧠 BACKEND ENGINE (Chấm Điểm 100đ ➔ Tuyển Chọn Top 20 Keyword & 5 Bài Đại Diện)
+        </div>
+      </div>
+
+      <div class="flow-arrow-down"></div>
+
+      <!-- Khối phân nhánh: Dashboard <-> Supabase -->
+      <div class="max-w-2xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 my-2">
+        <div class="bg-white p-4 rounded-xl border-2 border-sky-300 shadow-sm text-left">
+          <div class="font-extrabold text-sky-800 text-xs flex items-center gap-1.5">
+            <span>💻</span> FRONTEND DASHBOARD
+          </div>
+          <p class="text-xs text-slate-600 mt-1">Biên tập viên xem báo cáo, chọn từ khóa tiềm năng và bấm <strong>"Duyệt Đẩy Cowork"</strong>.</p>
+        </div>
+
+        <div class="bg-white p-4 rounded-xl border-2 border-emerald-300 shadow-sm text-left">
+          <div class="font-extrabold text-emerald-800 text-xs flex items-center gap-1.5">
+            <span>🗄️</span> SUPABASE DATABASE
+          </div>
+          <p class="text-xs text-slate-600 mt-1">Lưu trữ từ khóa duyệt, cấp phát dữ liệu thông qua API an toàn <code>/cowork-api</code>.</p>
+        </div>
+      </div>
+
+      <div class="flow-arrow-down"></div>
+
+      <div>
+        <div class="flow-pill bg-indigo-100 text-indigo-900 border-indigo-300">
+          ⚡ SUPABASE EDGE FUNCTION (cowork-api với xác thực header x-api-key)
+        </div>
+      </div>
+
+      <div class="flow-arrow-down"></div>
+
+      <div>
+        <div class="flow-pill bg-emerald-100 text-emerald-900 border-emerald-300">
+          🤖 COWORK AGENT AI (Lập Dàn Ý SEO ➔ Biên Tập Viên Duyệt ➔ Viết Bài Điểm &ge; 90)
+        </div>
+      </div>
+
+      <div class="flow-arrow-down"></div>
+
+      <div>
+        <div class="flow-pill bg-teal-100 text-teal-900 border-teal-300">
+          📝 BÀI VIẾT HOÀN THIỆN (File .md + .seo_score.json + Thông Báo Zalo Tức Thì)
+        </div>
+      </div>
+
+    </div>
+
+    <!-- KHU VỰC DƯỚI: CHI TIẾT 2 CÁNH (COWORK AGENT & THÀNH PHẦN HỖ TRỢ) -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      
+      <!-- CÁNH TRÁI: COWORK AGENT (HỒNG/ĐỎ) -->
+      <div class="poster-card bg-rose-50/40 border-rose-300 p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="font-black text-rose-900 text-sm tracking-wide uppercase">🤖 TÁC NHÂN COWORK AGENT AI</span>
+          <span class="tag-badge bg-rose-100 text-rose-800 border border-rose-200">Scheduled 0 8 * * *</span>
+        </div>
+        <p class="text-xs text-rose-800/80">Cấu hình chi tiết tại <code>cowork/COWORK_TASK.md</code> hoạt động trong thư mục <code>tnc-seo-content</code>:</p>
+        
+        <div class="space-y-2.5 text-xs text-slate-700">
+          <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
+            <strong class="text-rose-900">Giai đoạn A - Lập Outline:</strong>
+            <p class="mt-1 text-slate-600">Gọi <code>GET /keywords</code> ➔ Phân tích đối thủ ➔ Chọn 2-3 key ngắn + 2-3 key dài ➔ Dựng Title, H2/H3, FAQ 5 câu ➔ Đẩy <code>POST /outlines</code> ở trạng thái chờ duyệt.</p>
+          </div>
+          <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
+            <strong class="text-rose-900">Giai đoạn B - Viết Bài Chuẩn SEO:</strong>
+            <p class="mt-1 text-slate-600">Gọi <code>GET /outlines/approved</code> ➔ Viết bài dùng đúng 100% key phụ ➔ Chạy kiểm tra <code>evaluate_seo.py</code> đến khi điểm &ge; 90 ➔ Sinh meta description 160-170 ký tự ➔ Đẩy <code>POST /articles</code>.</p>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-rose-200/60 flex flex-wrap gap-1">
+          <span class="tag-badge bg-rose-100 text-rose-800 border border-rose-200">tnc-seo-content</span>
+          <span class="tag-badge bg-rose-100 text-rose-800 border border-rose-200">SEO Score &ge; 90</span>
+          <span class="tag-badge bg-rose-100 text-rose-800 border border-rose-200">FAQ 5 câu</span>
+        </div>
+      </div>
+
+      <!-- CÁNH PHẢI: CÁC THÀNH PHẦN HỖ TRỢ (XANH TÍM/HỖ TRỢ) -->
+      <div class="poster-card bg-indigo-50/40 border-indigo-300 p-5 space-y-3">
+        <div class="flex items-center justify-between">
+          <span class="font-black text-indigo-900 text-sm tracking-wide uppercase">⚡ CÁC THÀNH PHẦN HỖ TRỢ DỰ ÁN</span>
+          <span class="tag-badge bg-indigo-100 text-indigo-800 border border-indigo-200">CI/CD & Tools</span>
+        </div>
+        <p class="text-xs text-indigo-800/80">Bộ công cụ đảm bảo hệ thống chạy liên tục, bảo mật và thông suốt:</p>
+
+        <div class="grid grid-cols-2 gap-2 text-xs">
+          <div class="p-2.5 bg-white rounded-xl border border-indigo-100 shadow-sm space-y-1">
+            <div class="font-bold text-indigo-950 flex items-center gap-1">
+              <span>🔄</span> GitHub Actions
+            </div>
+            <p class="text-[11px] text-slate-500">Chạy lúc 12:00 trưa T2-T4-T6, nạp Supabase & build GitHub Pages.</p>
+          </div>
+
+          <div class="p-2.5 bg-white rounded-xl border border-indigo-100 shadow-sm space-y-1">
+            <div class="font-bold text-indigo-950 flex items-center gap-1">
+              <span>💬</span> Zalo Webhook
+            </div>
+            <p class="text-[11px] text-slate-500">Tự động bắn tin nhắn vào group khi có bài viết hoặc key mới.</p>
+          </div>
+
+          <div class="p-2.5 bg-white rounded-xl border border-indigo-100 shadow-sm space-y-1">
+            <div class="font-bold text-indigo-950 flex items-center gap-1">
+              <span>🔒</span> Bảo Mật .env
+            </div>
+            <p class="text-[11px] text-slate-500">Giữ kín SerpApi Key, Supabase Service Key, Cowork API Key.</p>
+          </div>
+
+          <div class="p-2.5 bg-white rounded-xl border border-indigo-100 shadow-sm space-y-1">
+            <div class="font-bold text-indigo-950 flex items-center gap-1">
+              <span>🚀</span> 1-Click START.bat
+            </div>
+            <p class="text-[11px] text-slate-500">Khởi động server HTTP cục bộ và tự bật trình duyệt port 8000.</p>
+          </div>
+        </div>
+
+        <div class="pt-2 border-t border-indigo-200/60 flex flex-wrap gap-1">
+          <span class="tag-badge bg-indigo-100 text-indigo-800 border border-indigo-200">daily-pages.yml</span>
+          <span class="tag-badge bg-indigo-100 text-indigo-800 border border-indigo-200">build_static.py</span>
+          <span class="tag-badge bg-indigo-100 text-indigo-800 border border-indigo-200">tests/test_core.py</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- KHỐI GHI NHỚ CUỐI TRANG (LIGHTBULB DƯỚI ĐÁY THEO MẪU) -->
+    <div class="bg-amber-50/80 border-2 border-amber-300 rounded-2xl p-4 md:p-5 shadow-sm space-y-3">
+      <div class="flex items-center gap-2">
+        <span class="text-2xl">💡</span>
+        <span class="font-black text-amber-950 text-sm uppercase tracking-wide">GHI NHỚ CỐT LÕI HỆ THỐNG AGENT</span>
+      </div>
+      
+      <div class="flex flex-wrap items-center justify-center gap-2 text-xs font-bold text-slate-800">
+        <span class="px-3 py-1 bg-white rounded-lg border border-amber-200 shadow-sm text-amber-900">NGUỒN TIN 48H</span>
+        <span class="text-amber-400 font-black">+</span>
+        <span class="px-3 py-1 bg-white rounded-lg border border-purple-200 shadow-sm text-purple-900">BACKEND ENGINE</span>
+        <span class="text-purple-400 font-black">+</span>
+        <span class="px-3 py-1 bg-white rounded-lg border border-sky-200 shadow-sm text-sky-900">DASHBOARD DUYỆT</span>
+        <span class="text-sky-400 font-black">+</span>
+        <span class="px-3 py-1 bg-white rounded-lg border border-emerald-200 shadow-sm text-emerald-900">SUPABASE DB</span>
+        <span class="text-emerald-400 font-black">+</span>
+        <span class="px-3 py-1 bg-white rounded-lg border border-rose-200 shadow-sm text-rose-900">COWORK AGENT AI</span>
+        <span class="text-rose-400 font-black">+</span>
+        <span class="px-3 py-1 bg-white rounded-lg border border-indigo-200 shadow-sm text-indigo-900">ZALO BOT</span>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-5 gap-2 text-[11px] text-center text-slate-600 pt-2 border-t border-amber-200/60 font-medium">
+        <div><strong class="text-amber-900">Nguồn tin</strong> = Thu thập đa kênh</div>
+        <div><strong class="text-purple-900">Engine</strong> = Lọc & chấm 100đ</div>
+        <div><strong class="text-sky-900">Dashboard</strong> = Người kiểm duyệt</div>
+        <div><strong class="text-emerald-900">Supabase</strong> = Lưu trữ trung tâm</div>
+        <div class="col-span-2 sm:col-span-1"><strong class="text-rose-900">Cowork AI</strong> = Lập dàn ý & viết bài</div>
+      </div>
+    </div>
+
+    <!-- NÚT IN ẤN TRÊN TRANG -->
+    <div class="no-print text-center pt-2">
+      <button onclick="window.print()" class="px-6 py-2.5 bg-indigo-600 hover:bg-indigo-700 text-white font-bold rounded-xl shadow-md text-sm transition inline-flex items-center gap-2">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+        In / Xuất PDF File Này
+      </button>
+    </div>
+
+  </div>
+
+</body>
+</html>

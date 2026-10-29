@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sơ Đồ Hệ Thống TNC SEO Keyword News</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Mermaid JS CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: 'default',
+      themeVariables: {
+        fontFamily: 'Inter, system-ui, sans-serif',
+        primaryColor: '#e0e7ff',
+        primaryBorderColor: '#6366f1',
+        primaryTextColor: '#1e1b4b',
+        lineColor: '#4f46e5'
+      }
+    });
+  </script>
+  <style>
+    @media print {
+      body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        background: white !important;
+      }
+      .no-print {
+        display: none !important;
+      }
+      .page-break {
+        page-break-before: always;
+      }
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased font-sans p-4 md:p-8">
+
+  <div class="max-w-6xl mx-auto space-y-8">
+    
+    <!-- HEADER -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+      <div>
+        <div class="flex items-center gap-3">
+          <span class="px-3 py-1 bg-indigo-100 text-indigo-700 text-xs font-bold rounded-full uppercase tracking-wider">Tài liệu kiến trúc</span>
+          <span class="text-xs text-slate-400">Phiên bản 2.0 (Cập nhật 10/2026)</span>
+        </div>
+        <h1 class="text-2xl md:text-3xl font-extrabold text-slate-900 mt-2">HỆ THỐNG TNC SEO KEYWORD NEWS (KEY_TNC)</h1>
+        <p class="text-sm text-slate-500 mt-1">Sơ đồ tương tác logic toàn diện giữa các file, thư mục, backend, database và workflow tự động.</p>
+      </div>
+      <div class="no-print flex gap-2">
+        <button onclick="window.print()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-semibold rounded-xl shadow-sm flex items-center gap-2 transition">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"/></svg>
+          In / Lưu PDF
+        </button>
+      </div>
+    </div>
+
+    <!-- MỤC TIÊU HỆ THỐNG -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+        <div class="text-xs font-bold text-indigo-600 uppercase">1. Quét Đa Nguồn (48h)</div>
+        <div class="text-lg font-bold text-slate-800 mt-1">11 Nguồn RSS & Web</div>
+        <p class="text-xs text-slate-500 mt-1">Báo chí công nghệ (VnExpress, GenK...) & Đối thủ (GearVN, CellphoneS...).</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+        <div class="text-xs font-bold text-emerald-600 uppercase">2. Tối Ưu SerpApi</div>
+        <div class="text-lg font-bold text-slate-800 mt-1">Đúng 4 Lượt/Ngày</div>
+        <p class="text-xs text-slate-500 mt-1">Trending Now, Autocomplete, Search & Trends kết hợp cache 24h.</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+        <div class="text-xs font-bold text-amber-600 uppercase">3. Chấm Điểm AI</div>
+        <div class="text-lg font-bold text-slate-800 mt-1">Thang 100 Điểm</div>
+        <p class="text-xs text-slate-500 mt-1">Độ phủ (40%), Đối thủ (25%), Độ tươi (20%), SerpApi Trend (15%).</p>
+      </div>
+      <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
+        <div class="text-xs font-bold text-purple-600 uppercase">4. Tự Động Hóa Cowork</div>
+        <div class="text-lg font-bold text-slate-800 mt-1">Top 20 Key & 5 Bài</div>
+        <p class="text-xs text-slate-500 mt-1">Duyệt trên web -> Supabase -> Cowork AI viết bài chuẩn SEO.</p>
+      </div>
+    </div>
+
+    <!-- SƠ ĐỒ 1: KIẾN TRÚC TỔNG THỂ VÀ LUỒNG DỮ LIỆU -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+        <span class="w-3 h-3 bg-indigo-600 rounded-full"></span>
+        Sơ Đồ 1: Kiến Trúc Tổng Thể & Luồng Tương Tác Dữ Liệu
+      </h2>
+      <p class="text-xs text-slate-500 mb-6">Mô tả cách các module trong hệ thống nhận nguồn đầu vào, xử lý qua backend, lưu trữ và tương tác với người dùng qua Dashboard và Cowork Agent.</p>
+      
+      <div class="mermaid bg-slate-50 p-4 rounded-xl border border-slate-200 overflow-x-auto">
+flowchart TB
+    subgraph SOURCES ["1. NGUỒN DỮ LIỆU ĐẦU VÀO"]
+        RSS["RSS Feeds Tin Tức\n(VnExpress, GenK, TinhTe, v.v.)"]
+        COMP["RSS / Web Đối Thủ\n(GearVN, CellphoneS, PhongVu)"]
+        SERP_API["SerpApi (4 Cổng)\nTrending Now, Autocomplete,\nGoogle Search, Trends"]
+    end
+
+    subgraph BACKEND ["2. BACKEND ENGINE (XỬ LÝ & LỌC TỪ KHÓA)"]
+        NF["backend/news_fetcher.py\n(Thu thập bài 48h, chuẩn hóa thẻ, bóc tách giờ)"]
+        CL["backend/classifier.py\n(Gom cụm theo Niche & Brand: Hardware, AI, Game, OS...)"]
+        SC["backend/serpapi_client.py\n(Gọi đúng 4 lượt API/ngày, quản lý cache data/serpapi_daily_*.json)"]
+        SS["backend/seo_suggester.py\n(Sinh 3 gợi ý keyword SEO ngắn, chính xác từ top bài viết)"]
+        ENG["backend/engine.py\n(Nhạc trưởng: Chấm điểm 100đ, lọc Top 20 Keyword x 5 Bài x 3 Gợi ý)"]
+    end
+
+    subgraph DATA_STORAGE ["3. LƯU TRỮ CỤC BỘ & DATABASE CLOUD"]
+        LOCAL_JSON["data/latest_top10_report.json\n(Báo cáo tổng hợp JSON mới nhất)"]
+        WORKFLOW_JSON["data/workflow.json\n(Trạng thái duyệt cục bộ: Đang viết / Đã xong)"]
+        SUPABASE[("Supabase Cloud Database\n- daily_reports (Lịch sử)\n- approved_keywords\n- seo_outlines & articles\n- zalo_messages")]
+    end
+
+    subgraph WORKFLOW_RUNNERS ["4. BỘ ĐIỀU PHỐI (CHẠY BÁO CÁO)"]
+        GHA[".github/workflows/daily-pages.yml\n(GitHub Actions tự động chạy lúc 12:00 trưa T2-T4-T6)"]
+        BS["build_static.py\n(Chạy Engine, đẩy báo cáo lên Supabase, build thư mục site/)"]
+        APP["backend/app.py & run_dashboard.py\n(Server cục bộ phục vụ API /api/report, /api/workflow)"]
+    end
+
+    subgraph USERS_AND_AGENTS ["5. GIAO DIỆN & TÁC NHÂN COWORK AI"]
+        DASHBOARD["frontend/index.html (Dashboard Web)\n- Đăng nhập bảo mật\n- Xem Top 20 Keyword\n- Nút DUYỆT ĐẨY COWORK"]
+        COWORK["cowork/COWORK_TASK.md (Agent AI)\n- Đọc keyword đã duyệt\n- Lập outline chuẩn SEO\n- Viết bài & chấm điểm >= 90"]
+        ZALO["Zalo Notification / Webhook\n(Gửi tin báo bài viết mới vào nhóm)"]
+    end
+
+    %% Các luồng liên kết
+    RSS & COMP --> NF
+    NF --> CL
+    CL --> ENG
+    SERP_API <--> SC
+    SC --> ENG
+    ENG --> SS
+    ENG --> LOCAL_JSON
+    
+    %% Bộ điều phối
+    GHA --> BS
+    BS --> ENG
+    BS -->|Đẩy báo cáo| SUPABASE
+    BS -->|Xuất bản tĩnh| DASHBOARD
+
+    APP --> LOCAL_JSON
+    APP --> WORKFLOW_JSON
+    APP <--> DASHBOARD
+
+    %% Tương tác Web Dashboard & Supabase
+    DASHBOARD <-->|Đọc báo cáo & Ghi nhận duyệt| SUPABASE
+    SUPABASE <-->|API cowork-api| COWORK
+    SUPABASE <-->|zalo-webhook| ZALO
+      </div>
+    </div>
+
+    <!-- SƠ ĐỒ 2: CÂY THƯ MỤC VÀ NHIỆM VỤ TỪNG FILE -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+        <span class="w-3 h-3 bg-emerald-600 rounded-full"></span>
+        Sơ Đồ 2: Cấu Trúc File/Thư Mục & Vai Trò Trách Nhiệm
+      </h2>
+      <p class="text-xs text-slate-500 mb-6">Mỗi file và thư mục chịu trách nhiệm một phần việc chuyên biệt trong chuỗi cung ứng nội dung SEO.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- Thư mục backend -->
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+          <div class="flex items-center gap-2 font-bold text-indigo-700">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"/></svg>
+            📁 backend/ (Trọng tâm logic)
+          </div>
+          <ul class="text-xs space-y-2 text-slate-600">
+            <li><strong class="text-slate-800">engine.py:</strong> Trung tâm phối hợp (Orchestrator). Chấm điểm (thang 100), tuyển Top 20 Keyword và 5 bài viết hay nhất cho từng key.</li>
+            <li><strong class="text-slate-800">news_fetcher.py:</strong> Quét dữ liệu RSS từ 11 trang tin & đối thủ trong 48h, bóc tách ngày giờ phát hành.</li>
+            <li><strong class="text-slate-800">classifier.py:</strong> Phân loại keyword theo cụm chủ đề (Linh kiện, AI, Game, HĐH, Sự kiện) và Brand (Nvidia, Intel, Apple...).</li>
+            <li><strong class="text-slate-800">serpapi_client.py:</strong> Quản lý 4 API SerpApi, cơ chế gọi đúng 1 lần/ngày và cache cục bộ để tiết kiệm quota.</li>
+            <li><strong class="text-slate-800">seo_suggester.py:</strong> Phân tích bài viết & Google Autocomplete để gợi ý 3 tiêu đề/từ khóa phụ viết bài.</li>
+            <li><strong class="text-slate-800">app.py:</strong> Server HTTP nhẹ phục vụ các API cục bộ cho frontend.</li>
+          </ul>
+        </div>
+
+        <!-- Thư mục frontend & data -->
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+          <div class="flex items-center gap-2 font-bold text-emerald-700">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+            📁 frontend/ & 📁 data/
+          </div>
+          <ul class="text-xs space-y-2 text-slate-600">
+            <li><strong class="text-slate-800">frontend/index.html:</strong> Giao diện Web Dashboard SPA hoàn chỉnh (Tailwind CSS). Xem báo cáo, lọc nhóm ngành, phân tích chỉ số, duyệt bài.</li>
+            <li><strong class="text-slate-800">frontend/logo.png:</strong> Logo thương hiệu TNC.</li>
+            <li><strong class="text-slate-800">data/latest_top10_report.json:</strong> File JSON lưu báo cáo Top 20 mới nhất.</li>
+            <li><strong class="text-slate-800">data/serpapi_daily_*.json:</strong> Cache kết quả 4 cổng SerpApi theo từng ngày.</li>
+            <li><strong class="text-slate-800">data/workflow.json:</strong> Lưu trạng thái duyệt và bài viết ở chế độ chạy offline.</li>
+          </ul>
+        </div>
+
+        <!-- Thư mục database & supabase -->
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+          <div class="flex items-center gap-2 font-bold text-purple-700">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 7v10c0 2 1.5 3 3.5 3h9c2 0 3.5-1 3.5-3V7c0-2-1.5-3-3.5-3h-9C5.5 4 4 5 4 7z"/></svg>
+            📁 database/ & 📁 supabase/
+          </div>
+          <ul class="text-xs space-y-2 text-slate-600">
+            <li><strong class="text-slate-800">database/auth_postgres.sql:</strong> Bảng và chính sách RLS cho người dùng Supabase Auth.</li>
+            <li><strong class="text-slate-800">database/admin_only_users.sql:</strong> Phân quyền chỉ tài khoản được Admin duyệt mới xem được báo cáo.</li>
+            <li><strong class="text-slate-800">database/seo_content.sql:</strong> Bảng chứa keyword duyệt, outline và bài viết SEO của Cowork.</li>
+            <li><strong class="text-slate-800">database/zalo_messages.sql:</strong> Bảng lưu thông báo Zalo.</li>
+            <li><strong class="text-slate-800">supabase/functions/cowork-api:</strong> API Edge Function cho Cowork AI tương tác.</li>
+            <li><strong class="text-slate-800">supabase/functions/zalo-webhook:</strong> Webhook gửi tin nhắn thông báo sang Zalo Bot.</li>
+          </ul>
+        </div>
+
+        <!-- Thư mục cowork, tests & root -->
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
+          <div class="flex items-center gap-2 font-bold text-amber-700">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
+            📁 cowork/ & Root Files
+          </div>
+          <ul class="text-xs space-y-2 text-slate-600">
+            <li><strong class="text-slate-800">cowork/COWORK_TASK.md:</strong> Bản hướng dẫn cấu hình và Prompt cho Agent AI tự động lập outline & viết bài.</li>
+            <li><strong class="text-slate-800">build_static.py:</strong> Script tạo site tĩnh cho GitHub Pages và đẩy báo cáo vào Supabase.</li>
+            <li><strong class="text-slate-800">run_dashboard.py:</strong> Khởi động server HTTP và tự mở trình duyệt cục bộ.</li>
+            <li><strong class="text-slate-800">START.bat:</strong> File chạy nhanh 1 click trên Windows.</li>
+            <li><strong class="text-slate-800">tests/test_core.py:</strong> Unit tests kiểm tra tính đúng đắn của logic khớp keyword và tính thời gian tươi.</li>
+            <li><strong class="text-slate-800">.env:</strong> Lưu SerpApi Key và thông số Supabase bí mật.</li>
+          </ul>
+        </div>
+
+        <!-- Thư mục .github -->
+        <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3 md:col-span-2">
+          <div class="flex items-center gap-2 font-bold text-slate-800">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            📁 .github/workflows/daily-pages.yml (Tự Động Hóa CI/CD)
+          </div>
+          <div class="text-xs text-slate-600 leading-relaxed">
+            Workflow GitHub Actions tự động kích hoạt vào lúc <strong>12:00 trưa giờ VN</strong> (05:00 UTC) vào các ngày thứ 2, thứ 4, thứ 6 hoặc kích hoạt thủ công bằng nút <em>"Run workflow"</em>. Nó chạy <code>build_static.py</code>, gọi các cổng API cần thiết, nạp báo cáo mới lên bảng <code>daily_reports</code> của Supabase và đẩy bản giao diện tĩnh cập nhật lên <strong>GitHub Pages</strong>.
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- SƠ ĐỒ 3: QUY TRÌNH TỪ DUYỆT TỪ KHÓA ĐẾN BÀI VIẾT HOÀN CHỈNH -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-slate-900 mb-2 flex items-center gap-2">
+        <span class="w-3 h-3 bg-purple-600 rounded-full"></span>
+        Sơ Đồ 3: Chu Kỳ Vận Hành Tự Động Hóa Nội Dung (End-to-End Workflow)
+      </h2>
+      <p class="text-xs text-slate-500 mb-6">Trực quan hóa cách 1 từ khóa tin tức được phát hiện, người biên tập duyệt, và Cowork Agent AI triển khai viết bài.</p>
+
+      <div class="mermaid bg-slate-50 p-4 rounded-xl border border-slate-200 overflow-x-auto">
+sequenceDiagram
+    autonumber
+    actor Editor as Biên tập viên TNC
+    participant UI as Dashboard (index.html)
+    participant SB as Supabase (PostgreSQL)
+    participant Cowork as Cowork AI Agent
+    participant Output as Thư mục Bài Viết (Markdown)
+
+    Note over UI,SB: Giai đoạn 1: Duyệt Keyword Tin Hot
+    Editor->>UI: Đăng nhập, xem Top 20 Keyword hôm nay
+    Editor->>UI: Bấm "Duyệt Đẩy Cowork" cho Keyword mong muốn
+    UI->>SB: Lưu vào bảng approved_keywords (status: approved)
+
+    Note over SB,Cowork: Giai đoạn 2: Cowork Lập Outline Chuẩn SEO
+    Cowork->>SB: GET /cowork-api/keywords (Lấy key đã duyệt)
+    Cowork->>Cowork: Phân tích đối thủ, tìm 2-3 key phụ ngắn & dài
+    Cowork->>Cowork: Xây dựng Outline (Title, H2/H3, FAQ 5 câu, Kết luận)
+    Cowork->>SB: POST /cowork-api/outlines (Lưu outline_md, chờ duyệt)
+
+    Note over Editor,UI: Giai đoạn 3: Phê Duyệt Outline
+    Editor->>UI: Mở tab Workflow, kiểm tra outline vừa tạo
+    Editor->>UI: Bấm "Duyệt Outline" (Approved)
+    UI->>SB: Cập nhật status = approved trong seo_outlines
+
+    Note over Cowork,Output: Giai đoạn 4: Viết Bài & Đánh Giá Điểm SEO
+    Cowork->>SB: GET /cowork-api/outlines/approved
+    Cowork->>Cowork: Viết bài chi tiết theo đúng key phụ của outline
+    Cowork->>Cowork: Chạy evaluate_seo.py kiểm tra điểm đạt >= 90
+    Cowork->>Output: Lưu bài viết vào file .md kèm .seo_score.json
+    Cowork->>SB: POST /cowork-api/articles (Đẩy bài hoàn chỉnh)
+    Editor->>UI: Xem bài viết hoàn thiện, sẵn sàng xuất bản!
+      </div>
+    </div>
+
+    <!-- SƠ ĐỒ 4: CÔNG THỨC CHẤM ĐIỂM KEYWORD (THANG 100) -->
+    <div class="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-8">
+      <h2 class="text-xl font-bold text-slate-900 mb-4 flex items-center gap-2">
+        <span class="w-3 h-3 bg-amber-500 rounded-full"></span>
+        Công Thức Chấm Điểm Từ Khóa (Thang Điểm 100 Tại backend/engine.py)
+      </h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="p-4 bg-indigo-50 border border-indigo-100 rounded-xl">
+          <div class="text-2xl font-black text-indigo-700">40%</div>
+          <div class="font-bold text-indigo-950 text-sm mt-1">Độ Phủ Báo Chí</div>
+          <p class="text-xs text-indigo-800/80 mt-1">Càng nhiều báo lớn đồng loạt đưa tin trong 24h - 48h thì chủ đề càng nóng.</p>
+        </div>
+        <div class="p-4 bg-emerald-50 border border-emerald-100 rounded-xl">
+          <div class="text-2xl font-black text-emerald-700">25%</div>
+          <div class="font-bold text-emerald-950 text-sm mt-1">Đối Thủ Đã Viết</div>
+          <p class="text-xs text-emerald-800/80 mt-1">GearVN, CellphoneS, Phong Vũ... đã lên bài chứng tỏ khách hàng quan tâm.</p>
+        </div>
+        <div class="p-4 bg-amber-50 border border-amber-100 rounded-xl">
+          <div class="text-2xl font-black text-amber-700">20%</div>
+          <div class="font-bold text-amber-950 text-sm mt-1">Độ Tươi Mới</div>
+          <p class="text-xs text-amber-800/80 mt-1">Tin ra dưới 6 giờ được điểm tối đa; giảm dần theo số giờ tuổi của tin.</p>
+        </div>
+        <div class="p-4 bg-rose-50 border border-rose-100 rounded-xl">
+          <div class="text-2xl font-black text-rose-700">15%</div>
+          <div class="font-bold text-rose-950 text-sm mt-1">Xác Thực SerpApi</div>
+          <p class="text-xs text-rose-800/80 mt-1">Google Trends Trending Now và chỉ số tìm kiếm thực tế trên Google.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div class="text-center text-xs text-slate-400 py-4">
+      Hệ thống TNC SEO Keyword News • Tài liệu xuất bản cho nội bộ kỹ thuật & biên tập TNC Store
+    </div>
+
+  </div>
+
+</body>
+</html>
