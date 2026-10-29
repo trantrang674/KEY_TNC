@@ -64,9 +64,15 @@ Deno.serve(async (req) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ chat_id: CHAT_ID, text: text.slice(0, 2000) }),
   });
-  if (!res.ok) {
-    console.error("Zalo sendMessage lỗi", res.status);
-    return new Response("Zalo error", { status: 502 });
+  // Zalo có thể trả HTTP 200 nhưng ok:false trong nội dung (sai chat_id, bot chưa được nhắn...)
+  const reply = await res.text();
+  let ok = res.ok;
+  try {
+    if (JSON.parse(reply)?.ok === false) ok = false;
+  } catch { /* phản hồi không phải JSON thì dựa vào mã HTTP */ }
+  if (!ok) {
+    console.error("Zalo sendMessage lỗi", res.status, reply.slice(0, 300));
+    return new Response(`Zalo error: ${reply.slice(0, 200)}`, { status: 502 });
   }
   return new Response("ok", { status: 200 });
 });
