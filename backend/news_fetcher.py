@@ -77,16 +77,18 @@ RSS_SOURCES = [
     },
 
     # 2. NHÓM TRANG TIN ĐỐI THỦ CÙNG NGÀNH (Qua Google News RSS site:domain để luôn lấy chuẩn bài mới 48h)
+    # max_items: số bài tối đa lấy từ 1 nguồn (mặc định 35). scraper: nguồn đọc thẳng HTML thay vì RSS.
     {
         "name": "CellphoneS (Sforum)",
         "url": "https://news.google.com/rss/search?q=site:cellphones.com.vn/sforum+when:2d&hl=vi&gl=VN&ceid=VN:vi",
         "source_type": "COMPETITOR",
         "source_badge": "Đối thủ",
-        "domain": "cellphones.com.vn"
+        "domain": "cellphones.com.vn",
+        "max_items": 80  # nguồn ưu tiên: lấy nhiều bài hơn các nguồn khác
     },
     {
         "name": "GearVN Blog",
-        "url": "https://news.google.com/rss/search?q=site:gearvn.com+when:2d&hl=vi&gl=VN&ceid=VN:vi",
+        "url": "https://news.google.com/rss/search?q=site:gearvn.com/blogs+when:2d&hl=vi&gl=VN&ceid=VN:vi",
         "source_type": "COMPETITOR",
         "source_badge": "Đối thủ",
         "domain": "gearvn.com"
@@ -99,18 +101,26 @@ RSS_SOURCES = [
         "domain": "phongvu.vn"
     },
     {
-        "name": "ThinkPro / An Phát / HACOM",
-        "url": "https://news.google.com/rss/search?q=(site:thinkpro.vn+OR+site:anphatpc.com.vn+OR+site:hacom.vn)+when:2d&hl=vi&gl=VN&ceid=VN:vi",
+        "name": "An Phát PC Tin Tức",
+        "url": "https://www.anphatpc.com.vn/tin-tuc",
+        "scraper": "anphat_html",  # Google News không lọc được /tin-tuc của An Phát nên đọc thẳng trang HTML
         "source_type": "COMPETITOR",
         "source_badge": "Đối thủ",
-        "domain": "competitor-pc"
+        "domain": "anphatpc.com.vn"
     },
     {
-        "name": "FPT Shop / Thế Giới Di Động",
-        "url": "https://news.google.com/rss/search?q=(site:fptshop.com.vn/tin-tuc+OR+site:thegioididong.com/tin-tuc)+when:2d&hl=vi&gl=VN&ceid=VN:vi",
+        "name": "FPT Shop Tin Tức",
+        "url": "https://news.google.com/rss/search?q=site:fptshop.com.vn/tin-tuc+when:2d&hl=vi&gl=VN&ceid=VN:vi",
         "source_type": "COMPETITOR",
         "source_badge": "Đối thủ",
-        "domain": "fpt-tgdd"
+        "domain": "fptshop.com.vn"
+    },
+    {
+        "name": "Thế Giới Di Động Tin Tức",
+        "url": "https://news.google.com/rss/search?q=site:thegioididong.com/tin-tuc+when:2d&hl=vi&gl=VN&ceid=VN:vi",
+        "source_type": "COMPETITOR",
+        "source_badge": "Đối thủ",
+        "domain": "thegioididong.com"
     },
 
     # 3. NHÓM CHỦ ĐỀ NGÁCH TRỌNG TÂM TRONG 48H QUA (Đảm bảo không bỏ sót ngách chiến lược của chị)
@@ -169,6 +179,8 @@ def detect_source_info(raw_source_name: str, url: str, default_type: str = "PRES
                 return {"name": "An Phát PC", "type": "COMPETITOR", "badge": "Đối thủ"}
             if "hacom" in combined or "hanoicomputer" in combined:
                 return {"name": "HACOM", "type": "COMPETITOR", "badge": "Đối thủ"}
+            if "memoryzone" in combined:
+                return {"name": "MemoryZone", "type": "COMPETITOR", "badge": "Đối thủ"}
             if "tnc" in combined:
                 return {"name": "TNC Store", "type": "COMPETITOR", "badge": "TNC Store"}
             return {"name": raw_source_name or "Trang Đối Thủ", "type": "COMPETITOR", "badge": "Đối thủ"}
@@ -253,8 +265,93 @@ def format_relative_time(dt: datetime, now_vn: datetime) -> str:
         return f"{days} ngày trước"
 
 
+def parse_anphat_time(text: str, now_vn: datetime) -> Optional[datetime]:
+    """Đọc ngày giờ trên trang tin An Phát: 'Hôm nay, 11:45 am', 'Hôm qua, 9:18 pm', '17-10-2026, 9:18 am'."""
+    t = re.sub(r"\s+", " ", text or "").strip().lower()
+    m = re.search(r"(\d{1,2}):(\d{2})\s*(am|pm)?", t)
+    if not m:
+        return None
+    hour, minute = int(m.group(1)), int(m.group(2))
+    if m.group(3) == "pm" and hour < 12:
+        hour += 12
+    elif m.group(3) == "am" and hour == 12:
+        hour = 0
+    if "hôm nay" in t:
+        day = now_vn
+    elif "hôm qua" in t:
+        day = now_vn - timedelta(days=1)
+    else:
+        d = re.search(r"(\d{1,2})-(\d{1,2})-(\d{4})", t)
+        if not d:
+            return None
+        try:
+            day = datetime(int(d.group(3)), int(d.group(2)), int(d.group(1)), tzinfo=VN_TZ)
+        except ValueError:
+            return None
+    return day.replace(hour=hour, minute=minute, second=0, microsecond=0)
+
+
+def fetch_anphat_articles(source_cfg: Dict, max_hours: int = 48) -> List[Dict]:
+    """Đọc thẳng https://www.anphatpc.com.vn/tin-tuc (mỗi bài có thẻ <time> kèm ngày giờ đăng)."""
+    articles = []
+    now_vn = datetime.now(VN_TZ)
+    cutoff = now_vn - timedelta(hours=max_hours)
+    base = "https://www.anphatpc.com.vn"
+    try:
+        resp = requests.get(source_cfg["url"], headers={"User-Agent": USER_AGENT}, timeout=15)
+        if resp.status_code != 200:
+            return []
+        soup = BeautifulSoup(resp.text, "html.parser")
+        seen = set()
+        for tm in soup.find_all("time"):
+            pub_dt = parse_anphat_time(tm.get_text(" ", strip=True), now_vn)
+            if not pub_dt or pub_dt > now_vn + timedelta(minutes=10) or pub_dt < cutoff:
+                continue
+            # Tìm link tiêu đề trong khối chứa thẻ <time>
+            link_tag, node = None, tm.parent
+            for _ in range(4):
+                if node is None:
+                    break
+                # Link tiêu đề = link .html có chữ dài nhất, bỏ link tên tác giả (nằm trong thẻ class "b-author")
+                links = [a for a in node.find_all("a", href=True)
+                         if a["href"].endswith(".html") and a.get_text(strip=True)
+                         and not a.find_parent(class_=re.compile("author", re.I))]
+                if links:
+                    link_tag = max(links, key=lambda a: len(a.get_text(strip=True)))
+                    break
+                node = node.parent
+            if not link_tag:
+                continue
+            title = re.sub(r"\s+", " ", link_tag.get_text(" ", strip=True)).strip()
+            url = urllib.parse.urljoin(base, link_tag["href"])
+            if not title or url in seen:
+                continue
+            seen.add(url)
+            desc = node.find("p") if node else None
+            summary = clean_html_summary(desc.get_text(" ", strip=True)) if desc else ""
+            src_info = detect_source_info(source_cfg["name"], url, source_cfg["source_type"])
+            hours_ago = max(0.1, (now_vn - pub_dt).total_seconds() / 3600.0)
+            articles.append({
+                "title": title,
+                "url": url,
+                "summary": summary if summary and summary != title else "",
+                "source_name": src_info["name"],
+                "source_type": src_info["type"],
+                "source_badge": src_info["badge"],
+                "published_at": pub_dt.isoformat(),
+                "hours_ago": round(hours_ago, 1),
+                "relative_time": format_relative_time(pub_dt, now_vn),
+                "within_24h": hours_ago <= 24.0
+            })
+    except Exception:
+        pass
+    return articles
+
+
 def fetch_single_feed(source_cfg: Dict, max_hours: int = 48) -> List[Dict]:
     """Tải và phân tích 1 nguồn RSS trong khoảng thời gian max_hours (mặc định 48h)."""
+    if source_cfg.get("scraper") == "anphat_html":
+        return fetch_anphat_articles(source_cfg, max_hours)
     articles = []
     now_vn = datetime.now(VN_TZ)
     cutoff = now_vn - timedelta(hours=max_hours)
@@ -269,7 +366,7 @@ def fetch_single_feed(source_cfg: Dict, max_hours: int = 48) -> List[Dict]:
             return []
 
         feed = feedparser.parse(resp.content)
-        for entry in feed.entries[:35]:
+        for entry in feed.entries[:source_cfg.get("max_items", 35)]:
             import html as _html
             title = _html.unescape(entry.get("title") or "").strip()
             link = (entry.get("link") or "").strip()
