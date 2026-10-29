@@ -34,6 +34,7 @@ from backend.seo_suggester import suggest_seo_keywords
 VN_TZ = timezone(timedelta(hours=7))
 
 TOP_KEYWORDS = 20    # số keyword đưa vào báo cáo mỗi ngày
+LOW_PRIORITY_NICHE_ID = "BIG_TECH_EVENT"  # nhóm "Có thể quan tâm": luôn xếp dưới các nhóm ngành khác
 TOP_ARTICLES = 5     # số bài viết đại diện cho mỗi keyword
 SEO_SUGGESTIONS = 3  # số keyword gợi ý viết bài SEO cho mỗi keyword
 
@@ -382,9 +383,12 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
             "top_3_articles": top_3_arts
         })
 
-    # Sắp xếp lấy đúng Top 20 Keyword điểm cao nhất bất kỳ
+    # Sắp xếp theo điểm cao nhất; nhóm "Có thể quan tâm" luôn xếp sau mọi nhóm ngành còn lại
     scored_clusters.sort(
-        key=lambda x: (x["total_score"], len(x["top_3_articles"]), -x["stats"]["newest_hours_ago"]),
+        key=lambda x: (
+            x["niche"]["id"] != LOW_PRIORITY_NICHE_ID,
+            x["total_score"], len(x["top_3_articles"]), -x["stats"]["newest_hours_ago"]
+        ),
         reverse=True
     )
 

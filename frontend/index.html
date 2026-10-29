@@ -813,6 +813,7 @@
           data = await resp.json();
         }
         applyNicheNames(data);
+        sortInterestLast(data);
         currentReport = data;
         updateDashboardHeader(data);
         populateNicheDropdown(data.niches_catalog || []);
@@ -851,6 +852,16 @@
       const rename = (n) => { if (n && NICHE_NAMES[n.id]) n.name = NICHE_NAMES[n.id]; };
       (data.top_10_keywords || []).forEach(k => rename(k.niche));
       (data.niches_catalog || []).forEach(rename);
+    }
+
+    // Nhóm "Có thể quan tâm" luôn nằm dưới cùng (áp cả cho báo cáo cũ đã lưu), giữ nguyên thứ tự trong từng phần rồi đánh lại số #
+    function sortInterestLast(data) {
+      const list = data.top_10_keywords || [];
+      const last = (k) => (k.niche?.id === "BIG_TECH_EVENT" ? 1 : 0);
+      data.top_10_keywords = list
+        .map((k, i) => ({ k, i }))
+        .sort((a, b) => last(a.k) - last(b.k) || a.i - b.i)
+        .map(({ k }, i) => ({ ...k, rank: i + 1 }));
     }
 
     // Danh sách ngày đã có báo cáo (mỗi lần bấm Run workflow lưu 1 báo cáo cho ngày đó)
