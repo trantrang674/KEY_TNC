@@ -70,7 +70,10 @@ def notify_zalo(report: dict) -> None:
         return
     owner, _, repo = os.getenv("GITHUB_REPOSITORY", "").partition("/")
     link = os.getenv("ZALO_REPORT_URL", "").strip() or (f"https://{owner}.github.io/{repo}/" if repo else "")
+    kws = report.get("top_10_keywords", [])
+    top3 = "\n".join(f"  {i}. {k.get('keyword', '')}" for i, k in enumerate(kws[:3], start=1))
     text = (f"💥 Helu, em vừa quét Keyword_Ngành vào Website của chị - Xong lúc {report.get('generated_at', '')}\n"
+            f"📊 Có {len(kws)} keyword mới, Top 3:\n{top3}\n"
             f"👉 Chị vào xem báo cáo trong link này: {link}")
     try:
         requests.post(f"https://bot-api.zaloplatforms.com/bot{token}/sendMessage",
