@@ -22,6 +22,12 @@ CREATE TABLE IF NOT EXISTS public.seo_article_metrics (
 );
 CREATE INDEX IF NOT EXISTS seo_article_metrics_article_idx ON public.seo_article_metrics (article_id);
 
+-- Bài của cả trang (danh mục Tin tức), không chỉ bài từ dashboard
+ALTER TABLE public.seo_article_metrics ADD COLUMN IF NOT EXISTS title          TEXT;
+ALTER TABLE public.seo_article_metrics ADD COLUMN IF NOT EXISTS published_date DATE;     -- ngày đăng ghi trên trang danh mục
+ALTER TABLE public.seo_article_metrics ADD COLUMN IF NOT EXISTS category       TEXT;     -- danh mục tin tức chứa bài
+ALTER TABLE public.seo_article_metrics ADD COLUMN IF NOT EXISTS is_dashboard   BOOLEAN NOT NULL DEFAULT false;  -- true = bài của Cowork dashboard
+
 ALTER TABLE public.seo_article_metrics ENABLE ROW LEVEL SECURITY;
 
 DROP POLICY IF EXISTS "seo_article_metrics_select_approved" ON public.seo_article_metrics;

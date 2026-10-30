@@ -661,7 +661,7 @@
               Báo Cáo <span class="text-gradient">Đo Lường Hiệu Quả Bài Viết</span>
             </h2>
             <p class="text-xs text-slate-500 mt-1">
-              Tracking trực tiếp chỉ số Google Index, thứ hạng tìm kiếm (SERP), lượt click và hiệu năng SEO từng bài viết đã xuất bản.
+              Số liệu Google Search Console + GA4 của các bài đăng trong 60 ngày ở danh mục Tin tức tnc.com.vn. Bài từ Cowork dashboard có ký hiệu ★.
             </p>
           </div>
           <div class="flex flex-wrap items-center gap-2">
@@ -669,7 +669,7 @@
             <div class="inline-flex rounded-xl bg-white border border-blue-100 p-1 shadow-sm text-xs font-semibold">
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg bg-indigo-600 text-white font-bold transition" onclick="changeReportRange('7d', this)">7 ngày</button>
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('28d', this)">28 ngày</button>
-              <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('all', this)">Tất cả</button>
+              <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('all', this)">60 ngày</button>
             </div>
             <!-- Nút xuất CSV -->
             <button type="button" onclick="exportReportCSV()" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold border border-blue-100 shadow-sm flex items-center gap-1.5 transition">
@@ -684,7 +684,7 @@
           <!-- Card 1: Tổng bài xuất bản -->
           <div class="pro-card rounded-2xl p-4 flex flex-col justify-between">
             <div class="flex items-center justify-between">
-              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Bài Đã Xuất Bản</span>
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Bài Đang Theo Dõi</span>
               <span class="w-7 h-7 rounded-lg bg-purple-50 text-purple-600 flex items-center justify-center">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
               </span>
@@ -880,11 +880,18 @@
                 <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
               </div>
 
+              <!-- Lọc nguồn bài: bài của Cowork dashboard hay bài khác trên trang -->
+              <select id="reportFilterSource" onchange="applyReportFilters()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500">
+                <option value="ALL">Tất cả bài của trang</option>
+                <option value="DASH">★ Bài từ Dashboard</option>
+                <option value="OTHER">Bài khác của trang</option>
+              </select>
+
               <!-- Lọc Index -->
               <select id="reportFilterIndex" onchange="applyReportFilters()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500">
                 <option value="ALL">Tất cả Google Index</option>
-                <option value="INDEXED">Đã Index (17)</option>
-                <option value="PENDING">Chờ Index (1)</option>
+                <option value="INDEXED">Đã Index</option>
+                <option value="PENDING">Chưa Index / chưa kiểm tra</option>
               </select>
 
               <!-- Lọc Thứ hạng -->
@@ -913,7 +920,7 @@
                 <tr class="border-b border-blue-50 bg-slate-50/30 text-slate-500 font-extrabold uppercase text-[10px] tracking-wider">
                   <th class="py-3 px-3.5 text-center w-12">#</th>
                   <th class="py-3 px-3 min-w-[260px]">Bài Viết & Link Đăng</th>
-                  <th class="py-3 px-3 min-w-[140px]">Từ Khóa Mục Tiêu</th>
+                  <th class="py-3 px-3 min-w-[140px]">Từ Khóa Chính</th>
                   <th class="py-3 px-3 text-center min-w-[110px]">Google Index</th>
                   <th class="py-3 px-3 text-center min-w-[105px]">Thứ Hạng SERP</th>
                   <th class="py-3 px-3 text-right min-w-[90px]">Clicks</th>
@@ -3246,7 +3253,7 @@
 
     function rptRange(range) {
       const end = new Date(reportEnd + "T00:00:00Z");
-      const days = range === "28d" ? 28 : range === "all" ? 90 : 7;
+      const days = range === "28d" ? 28 : range === "all" ? 60 : 7;
       return {
         days,
         start: rptDate(rptShift(end, -(days - 1))), end: reportEnd,
@@ -3285,28 +3292,32 @@
       if (m.error) throw new Error(`${m.error.message} (đã chạy database/seo_article_metrics.sql chưa?)`);
 
       const metrics = new Map((m.data || []).map(r => [r.url, r]));
-      const arts = a.data || [];
-      reportApprovedTotal = arts.filter(x => x.status === "approved").length;
+      const dashByUrl = new Map((a.data || []).filter(x => (x.published_url || "").trim()).map(x => [x.published_url.trim(), x]));
       const ends = (m.data || []).map(r => r.data_end_date).filter(Boolean).sort();
       reportEnd = ends.length ? ends[ends.length - 1] : rptDate(rptShift(new Date(), -3));
 
-      return arts.filter(x => (x.published_url || "").trim()).map(art => {
-        const url = art.published_url.trim();
+      // Bài của trang (đã đồng bộ) + bài dashboard chưa kịp đồng bộ
+      const urls = new Set([...metrics.keys(), ...dashByUrl.keys()]);
+      return [...urls].map((url, n) => {
         const mt = metrics.get(url);
+        const art = dashByUrl.get(url);
         const dev = (mt && mt.device) || {};
+        const queries = (mt && mt.queries) || [];
         return {
-          id: "art-" + art.id,
-          title: art.title || ("Bài viết: " + art.keyword),
-          keyword: art.keyword || "",
+          id: "art-" + n,
+          title: (mt && mt.title) || (art && art.title) || url,
+          keyword: (art && art.keyword) || (queries[0] && queries[0].query) || "",
           published_url: url,
-          published_date: (art.reviewed_at || art.created_at || "").slice(0, 10),
-          seo_score: art.seo_score != null ? Number(art.seo_score) : null,
-          word_count: art.word_count || 0,
+          published_date: (mt && mt.published_date) || (art ? (art.reviewed_at || art.created_at || "").slice(0, 10) : ""),
+          category: mt ? mt.category : null,
+          is_dashboard: !!art || !!(mt && mt.is_dashboard),
+          seo_score: art && art.seo_score != null ? Number(art.seo_score) : null,
+          word_count: art ? art.word_count || 0 : 0,
           has_data: !!mt && (mt.daily || []).length > 0,
           synced: !!mt,
           synced_at: mt ? mt.synced_at : null,
           daily: (mt && mt.daily) || [],
-          queries: (mt && mt.queries) || [],
+          queries,
           ga4: (mt && mt.ga4) || {},
           device: { mobile: dev.mobile || 0, desktop: dev.desktop || 0 },
           is_indexed: mt ? mt.is_indexed : null,
@@ -3392,7 +3403,8 @@
       const ranked = stats.filter(x => x.rank < NO_RANK);
       const avgRank = ranked.length ? (ranked.reduce((s, x) => s + x.rank, 0) / ranked.length).toFixed(1) : null;
 
-      byId("kpiPublishedCount").innerHTML = `${total} <span class="text-xs font-semibold text-slate-400">/ ${reportApprovedTotal} bài đã duyệt</span>`;
+      const dashCount = articles.filter(a => a.is_dashboard).length;
+      byId("kpiPublishedCount").innerHTML = `${total} <span class="text-xs font-semibold text-slate-400">· ★ ${dashCount} từ dashboard</span>`;
       const synced = articles.map(a => a.synced_at).filter(Boolean).sort().pop();
       byId("kpiPublishedSub").textContent = reportLoadError
         ? "Chưa tải được số liệu"
@@ -3408,7 +3420,7 @@
       const deltaEl = byId("kpiClicksDelta");
       if (prevClicks === null) {
         deltaEl.className = "mt-1 flex items-center gap-1 text-[11px] text-slate-500 font-bold";
-        deltaEl.innerHTML = `<span>90 ngày gần nhất</span>`;
+        deltaEl.innerHTML = `<span>60 ngày gần nhất</span>`;
       } else if (!prevClicks) {
         deltaEl.className = "mt-1 flex items-center gap-1 text-[11px] text-slate-500 font-bold";
         deltaEl.innerHTML = `<span>${totalClicks ? "Kỳ trước chưa có click" : "Chưa có click"}</span>`;
@@ -3440,7 +3452,7 @@
 
     // Chuỗi clicks/impressions gộp tất cả bài: 7 ngày theo ngày; 28 ngày và 90 ngày theo tuần
     function rptSeries() {
-      const days = reportActiveRange === "28d" ? 28 : reportActiveRange === "all" ? 91 : 7;
+      const days = reportActiveRange === "28d" ? 28 : reportActiveRange === "all" ? 63 : 7;
       const step = reportActiveRange === "7d" ? 1 : 7;
       const end = new Date(reportEnd + "T00:00:00Z");
       const byDay = {};
@@ -3554,6 +3566,7 @@
 
     function applyReportFilters() {
       const q = (byId("reportSearchInput")?.value || "").toLowerCase().trim();
+      const srcFilter = byId("reportFilterSource")?.value || "ALL";
       const idxFilter = byId("reportFilterIndex")?.value || "ALL";
       const rankFilter = byId("reportFilterRank")?.value || "ALL";
       const sort = byId("reportSortBy")?.value || "clicks_desc";
@@ -3561,6 +3574,8 @@
       let list = reportCurrentArticles.map(a => ({ item: a, s: rptStats(a) }));
 
       if (q) list = list.filter(({ item }) => item.title.toLowerCase().includes(q) || item.keyword.toLowerCase().includes(q));
+      if (srcFilter === "DASH") list = list.filter(({ item }) => item.is_dashboard);
+      else if (srcFilter === "OTHER") list = list.filter(({ item }) => !item.is_dashboard);
       if (idxFilter === "INDEXED") list = list.filter(({ item }) => item.is_indexed === true);
       else if (idxFilter === "PENDING") list = list.filter(({ item }) => item.is_indexed !== true);
       if (rankFilter === "TOP3") list = list.filter(({ s }) => s.rank <= 3);
@@ -3572,7 +3587,7 @@
         if (sort === "rank_asc") return a.s.rank - b.s.rank;
         if (sort === "impr_desc") return b.s.impr - a.s.impr;
         if (sort === "score_desc") return (b.item.seo_score || 0) - (a.item.seo_score || 0);
-        if (sort === "date_desc") return b.item.published_date.localeCompare(a.item.published_date);
+        if (sort === "date_desc") return (b.item.published_date || "").localeCompare(a.item.published_date || "");
         return 0;
       });
 
@@ -3599,14 +3614,14 @@
           <tr class="hover:bg-slate-50/80 transition">
             <td class="py-3 px-3.5 text-center font-bold text-slate-400">${idx + 1}</td>
             <td class="py-3 px-3">
-              <div class="font-bold text-slate-900 line-clamp-1 hover:text-indigo-600 cursor-pointer" onclick="openReportDetailModal('${item.id}')">${escapeHtml(item.title)}</div>
+              <div class="font-bold text-slate-900 line-clamp-1 hover:text-indigo-600 cursor-pointer" onclick="openReportDetailModal('${item.id}')">${item.is_dashboard ? `<span class="text-amber-500 mr-1" title="Bài từ Cowork dashboard">★</span>` : ""}${escapeHtml(item.title)}</div>
               <div class="flex items-center gap-2 mt-0.5 text-[11px] text-slate-400">
                 <a href="${escapeHtml(item.published_url)}" target="_blank" rel="noopener noreferrer" class="text-indigo-500 hover:underline flex items-center gap-0.5 font-medium max-w-xs truncate">
                   <span>${escapeHtml(item.published_url.replace(/^https?:\/\//, ""))}</span>
                   <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
                 <span>·</span>
-                <span>${escapeHtml(item.published_date)}</span>
+                <span>${escapeHtml(item.published_date || "—")}</span>${item.category ? `<span>·</span><span>${escapeHtml(item.category)}</span>` : ""}
               </div>
             </td>
             <td class="py-3 px-3">
@@ -3702,7 +3717,7 @@
     }
 
     function exportReportCSV() {
-      const rangeLabel = { "7d": "7 ngày", "28d": "28 ngày", all: "90 ngày" }[reportActiveRange];
+      const rangeLabel = { "7d": "7 ngày", "28d": "28 ngày", all: "60 ngày" }[reportActiveRange];
       let csv = `﻿STT,Bài Viết,Từ Khóa,URL,Trạng Thái Index,Thứ Hạng SERP,Clicks (${rangeLabel}),Impressions (${rangeLabel}),CTR (%),GA4 Sessions 28 ngày,Điểm SEO,Ngày Đăng\n`;
       reportCurrentArticles.forEach((it, idx) => {
         const s = rptStats(it);

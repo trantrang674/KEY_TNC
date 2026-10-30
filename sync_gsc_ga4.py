@@ -1,22 +1,28 @@
 # -*- coding: utf-8 -*-
-"""Kéo số liệu thật từ Google Search Console + GA4 cho các bài đã đăng, ghi vào Supabase để tab BÁO CÁO hiển thị.
+"""Kéo số liệu thật từ Google Search Console + GA4 cho các bài của trang, ghi vào Supabase để tab BÁO CÁO hiển thị.
 
-Nguồn:  seo_articles.published_url (các bài đã có link đăng trên tab WORKFLOW)
-Đích:   bảng seo_article_metrics (tạo bằng database/seo_article_metrics.sql)
-Gồm:    clicks / impressions / vị trí theo ngày (90 ngày), top query, thiết bị, GA4 (sessions...), trạng thái Google Index.
+Nguồn bài:
+  1. Danh mục Tin tức của trang (https://www.tnc.com.vn/tin-tuc.html và các danh mục con): bài đăng trong NEWS_WINDOW_DAYS ngày gần nhất.
+  2. Bài của dashboard (seo_articles.published_url): luôn được theo dõi, đánh dấu is_dashboard = true.
+Đích:   bảng seo_article_metrics (database/seo_article_metrics.sql)
+Gồm:    clicks / impressions / vị trí theo ngày (60 ngày), top query, thiết bị, GA4 (sessions...), trạng thái Google Index.
 
 Mặc định chỉ XEM TRƯỚC (không ghi). Thêm --apply để ghi thật.
 
 Biến môi trường (.env): SUPABASE_URL, SUPABASE_SERVICE_KEY.
-Tùy chọn: GOOGLE_SERVICE_ACCOUNT_JSON (mặc định dùng khóa của seo-audit-tool), GSC_SITE_URL, GA4_PROPERTY_ID.
+Tùy chọn: GOOGLE_SERVICE_ACCOUNT_JSON (mặc định dùng khóa của seo-audit-tool), GSC_SITE_URL, GA4_PROPERTY_ID,
+          NEWS_HUB_URL (mặc định https://www.tnc.com.vn/tin-tuc.html), NEWS_WINDOW_DAYS (mặc định 60).
 Chạy:  python sync_gsc_ga4.py            (xem trước)
        python sync_gsc_ga4.py --apply    (ghi lên Supabase)
 """
+import html
 import os
+import re
 import sys
+import time
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from urllib.parse import quote, urlparse
+from urllib.parse import quote, urljoin, urlparse
 
 import requests
 from dotenv import load_dotenv
@@ -27,12 +33,15 @@ ROOT = Path(__file__).resolve().parent
 DEFAULT_KEY = ROOT.parent / "seo-audit-tool" / "storage" / "credentials" / "google-service-account.json"
 DEFAULT_SITE = "https://www.tnc.com.vn/"
 DEFAULT_GA4 = "286857049"
+DEFAULT_HUB = "https://www.tnc.com.vn/tin-tuc.html"
 SCOPES = [
     "https://www.googleapis.com/auth/webmasters.readonly",
     "https://www.googleapis.com/auth/analytics.readonly",
 ]
-HISTORY_DAYS = 90
+HISTORY_DAYS = 60
 GSC_LAG_DAYS = 3  # GSC thường trễ 2-3 ngày mới có số liệu chốt
+MAX_LIST_PAGES = 40  # chặn vòng lặp phân trang
+UA = {"User-Agent": "Mozilla/5.0 (TNC SEO report sync)"}
 
 
 def need(name: str) -> str:
@@ -42,6 +51,55 @@ def need(name: str) -> str:
     return val
 
 
+# ----------------------------------------------------------------------------- quét danh mục tin tức
+CARD_RE = re.compile(
+    r"<a href=['\"]([^'\"]+)['\"] class=['\"]cr-blog-classic-inner['\"]>.*?<h3>(.*?)</h3>.*?class=['\"]cr-date['\"]>(\d{2}-\d{2}-\d{4})<",
+    re.S,
+)
+CATEGORY_RE = re.compile(r"<h2>([^<]+)</h2>\s*<a href=\"([^\"]+)\" class=\"xem-them\"", re.S)
+
+
+def fetch(url: str) -> str:
+    r = requests.get(url, headers=UA, timeout=30)
+    r.raise_for_status()
+    return r.text
+
+
+def clean_url(site: str, href: str) -> str:
+    u = urljoin(site, href.strip())
+    return u.split("#")[0].split("?")[0]
+
+
+def crawl_news(hub_url: str, site: str, cutoff: date) -> dict:
+    """Trả về {url: {title, published_date, category}} cho bài đăng từ cutoff đến nay."""
+    found = {}
+    cats = CATEGORY_RE.findall(fetch(hub_url))
+    if not cats:
+        sys.exit(f"Không đọc được danh mục con từ {hub_url} (cấu trúc trang đã đổi?).")
+    for name, href in cats:
+        cat_url = clean_url(site, href)
+        name = html.unescape(name).strip()
+        total = 0
+        for page in range(1, MAX_LIST_PAGES + 1):
+            cards = CARD_RE.findall(fetch(f"{cat_url}?p={page}"))
+            if not cards:
+                break
+            dates = []
+            for h, title, d in cards:
+                pub = datetime.strptime(d, "%d-%m-%Y").date()
+                dates.append(pub)
+                if pub >= cutoff:
+                    found.setdefault(clean_url(site, h), {"title": html.unescape(re.sub(r"<[^>]+>", "", title)).strip(),
+                                                          "published_date": pub.isoformat(), "category": name})
+                    total += 1
+            if max(dates) < cutoff:  # danh sách xếp mới -> cũ, cả trang đã quá hạn thì dừng
+                break
+            time.sleep(0.4)
+        print(f"  Danh mục {name}: {total} bài trong {(date.today() - cutoff).days} ngày")
+    return found
+
+
+# ----------------------------------------------------------------------------- Google
 class Google:
     def __init__(self, key_path: Path, site_url: str, ga4_property: str):
         if not key_path.is_file():
@@ -114,8 +172,8 @@ def collect(g: Google, url: str, end: date) -> dict:
         queries = [{"query": r["keys"][0], "clicks": int(r["clicks"]), "impr": int(r["impressions"]),
                     "ctr": round(r["ctr"] * 100, 1), "rank": max(1, round(r["position"]))} for r in qrows]
         drows = g.gsc(d28, end, ["device"], used)
-        total = sum(r["clicks"] for r in drows) or sum(r["impressions"] for r in drows)
         key = "clicks" if sum(r["clicks"] for r in drows) else "impressions"
+        total = sum(r[key] for r in drows)
         if total:
             device = {r["keys"][0].lower(): round(r[key] / total * 100) for r in drows}
 
@@ -149,42 +207,58 @@ def main() -> None:
     sb_url = need("SUPABASE_URL").rstrip("/")
     sb_key = need("SUPABASE_SERVICE_KEY")
     apply = "--apply" in sys.argv
+    site = os.getenv("GSC_SITE_URL", "").strip() or DEFAULT_SITE
     g = Google(Path(os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip() or DEFAULT_KEY),
-               os.getenv("GSC_SITE_URL", "").strip() or DEFAULT_SITE,
-               os.getenv("GA4_PROPERTY_ID", "").strip() or DEFAULT_GA4)
-    print(f"Service account: {g.email}\nGSC: {g.site} · GA4: {g.ga4}")
+               site, os.getenv("GA4_PROPERTY_ID", "").strip() or DEFAULT_GA4)
+    window = int(os.getenv("NEWS_WINDOW_DAYS", "").strip() or HISTORY_DAYS)
+    hub = os.getenv("NEWS_HUB_URL", "").strip() or DEFAULT_HUB
+    print(f"Service account: {g.email}\nGSC: {g.site} · GA4: {g.ga4}\nQuét bài đăng trong {window} ngày từ {hub}")
 
     headers = {"apikey": sb_key, "Authorization": f"Bearer {sb_key}", "Content-Type": "application/json"}
-    r = requests.get(f"{sb_url}/rest/v1/seo_articles?select=id,keyword,published_url&published_url=not.is.null",
+    r = requests.get(f"{sb_url}/rest/v1/seo_articles?select=id,keyword,title,published_url&published_url=not.is.null",
                      headers=headers, timeout=60)
     if r.status_code >= 300:
         sys.exit(f"Không đọc được seo_articles ({r.status_code}): {r.text[:300]}")
-    articles = [a for a in r.json() if (a.get("published_url") or "").strip()]
-    if not articles:
-        sys.exit("Chưa có bài nào có link đã đăng (nhập link ở tab WORKFLOW rồi chạy lại).")
+    dash = {a["published_url"].strip(): a for a in r.json() if (a.get("published_url") or "").strip()}
+
+    news = crawl_news(hub, site, date.today() - timedelta(days=window))
+    targets = {}
+    for u, meta in news.items():
+        targets[u] = {**meta, "is_dashboard": False, "article_id": None}
+    for u, a in dash.items():
+        t = targets.setdefault(u, {"title": a.get("title") or a["keyword"], "published_date": None, "category": None})
+        t.update(is_dashboard=True, article_id=a["id"])
+    print(f"Tổng {len(targets)} bài cần theo dõi ({len(news)} từ trang, {len(dash)} từ dashboard, "
+          f"{sum(1 for t in targets.values() if t['is_dashboard'])} bài dashboard)")
 
     end = date.today() - timedelta(days=GSC_LAG_DAYS)
-    ok = 0
-    for a in articles:
-        url = a["published_url"].strip()
-        print(f"- {a['keyword']}: {url}")
+    rows = []
+    for n, (url, meta) in enumerate(targets.items(), 1):
+        tag = " [DASHBOARD]" if meta["is_dashboard"] else ""
+        print(f"[{n}/{len(targets)}]{tag} {meta['title'][:70]}")
         try:
             row = collect(g, url, end)
         except Exception as e:
             print(f"    x Lỗi, bỏ qua: {e}")
             continue
-        row["article_id"] = a["id"]
-        c7 = sum(d["c"] for d in row["daily"][-7:])
-        print(f"    {len(row['daily'])} ngày có dữ liệu · clicks 7 ngày cuối: {c7} · index: {row['index_state'] or row['is_indexed']}")
-        if not row["daily"]:
-            print("    (GSC chưa có số liệu cho URL này: bài mới đăng hoặc URL không khớp property)")
-        if apply:
+        row.update(title=meta["title"], published_date=meta["published_date"], category=meta["category"],
+                   is_dashboard=meta["is_dashboard"], article_id=meta["article_id"])
+        print(f"    {len(row['daily'])} ngày có dữ liệu · index: {row['index_state'] or row['is_indexed']}")
+        rows.append(row)
+
+    if apply and rows:
+        for i in range(0, len(rows), 20):
             p = requests.post(f"{sb_url}/rest/v1/seo_article_metrics?on_conflict=url",
-                              headers={**headers, "Prefer": "resolution=merge-duplicates,return=minimal"}, json=row, timeout=60)
+                              headers={**headers, "Prefer": "resolution=merge-duplicates,return=minimal"}, json=rows[i:i + 20], timeout=90)
             if p.status_code >= 300:
-                sys.exit(f"Không ghi được {url} ({p.status_code}): {p.text[:300]} (đã chạy database/seo_article_metrics.sql chưa?)")
-        ok += 1
-    print(f"{'Đã ghi' if apply else 'Sẽ ghi'} {ok}/{len(articles)} bài." + ("" if apply else "  Thêm --apply để ghi thật."))
+                sys.exit(f"Không ghi được lô {i // 20 + 1} ({p.status_code}): {p.text[:300]} (đã chạy lại database/seo_article_metrics.sql chưa?)")
+        # Xóa bài trang đã quá hạn (không còn trong cửa sổ và không phải bài dashboard)
+        ex = requests.get(f"{sb_url}/rest/v1/seo_article_metrics?select=url&is_dashboard=eq.false", headers=headers, timeout=60)
+        if ex.status_code < 300:
+            for old in (x["url"] for x in ex.json() if x["url"] not in targets):
+                requests.delete(f"{sb_url}/rest/v1/seo_article_metrics", headers=headers, params={"url": f"eq.{old}"}, timeout=60)
+                print(f"  Đã gỡ bài quá hạn: {old}")
+    print(f"{'Đã ghi' if apply else 'Sẽ ghi'} {len(rows)}/{len(targets)} bài." + ("" if apply else "  Thêm --apply để ghi thật."))
 
 
 if __name__ == "__main__":
