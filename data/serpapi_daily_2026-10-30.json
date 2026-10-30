@@ -1,0 +1,483 @@
+{
+  "date": "2026-10-30 08:46:22",
+  "from_cache": false,
+  "apis_called": {
+    "google_trends_trending_now": {
+      "status": "success",
+      "count": 40
+    },
+    "google_autocomplete": {
+      "status": "success",
+      "seed_query": "Cập nhật tính năng VNeID mới nhất",
+      "count": 5
+    },
+    "google_search": {
+      "status": "success",
+      "query": "\"Cập nhật tính năng VNeID mới nhất\" OR \"Xu hướng TikTok\" OR \"Liên Minh Huyền Thoại\"",
+      "count": 0
+    },
+    "google_trends": {
+      "status": "success",
+      "query": "Cập nhật tính năng VNeID mới nhất,Xu hướng TikTok,Liên Minh Huyền Thoại,Ứng dụng Zalo,ChatGPT",
+      "scores": {
+        "cập nhật tính năng vneid mới nhất": 0,
+        "xu hướng tiktok": 0,
+        "liên minh huyền thoại": 1,
+        "ứng dụng zalo": 0,
+        "chatgpt": 60
+      }
+    }
+  },
+  "trending_now_items": [
+    {
+      "query": "thứ hạng của al-nassr gặp al-kholood club",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "al-nassr đấu với al-kholood club",
+        "ronaldo",
+        "al nassr",
+        "al nassr vs",
+        "cristiano ronaldo"
+      ]
+    },
+    {
+      "query": "everton đấu với newcastle",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "everton vs",
+        "everton vs newcastle",
+        "everton – newcastle"
+      ]
+    },
+    {
+      "query": "man city đấu với brighton",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "mc vs",
+        "man city vs",
+        "man city – brighton"
+      ]
+    },
+    {
+      "query": "xổ số miền nam ngày 29 tháng 10",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Games"
+      ],
+      "related_queries": [
+        "xổ số miền nam ngày 28 tháng 10",
+        "xổ số ngày 29 tháng 10",
+        "xổ số ngày 28 tháng 10",
+        "xổ số tây ninh ngày 29 tháng 10",
+        "xổ số bình thuận ngày 29 tháng 10"
+      ]
+    },
+    {
+      "query": "patrick stewart",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": [
+        "sir patrick stewart",
+        "patrick stewart young"
+      ]
+    },
+    {
+      "query": "xây dựng",
+      "search_volume": 2000,
+      "increase_percentage": 900,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thủy điện tích năng bác ái",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "trương mỹ lan",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "đàm vĩnh hưng",
+      "search_volume": 5000,
+      "increase_percentage": 800,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "youtuber",
+      "search_volume": 20000,
+      "increase_percentage": 100,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "lá ngón",
+      "search_volume": 5000,
+      "increase_percentage": 900,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": [
+        "cây lá ngón"
+      ]
+    },
+    {
+      "query": "báo điện tử soha",
+      "search_volume": 2000,
+      "increase_percentage": 800,
+      "categories": [
+        "Politics"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "phạm khánh phong lan",
+      "search_volume": 2000,
+      "increase_percentage": 300,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "fiorentina đấu với atalanta",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "thứ hạng của fiorentina gặp atalanta",
+        "atalanta vs",
+        "fiorentina vs",
+        "atalanta"
+      ]
+    },
+    {
+      "query": "halloween",
+      "search_volume": 5000,
+      "increase_percentage": 100,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "đảo nhân tạo",
+      "search_volume": 2000,
+      "increase_percentage": 500,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "binance bị hack",
+      "search_volume": 1000,
+      "increase_percentage": 800,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "sàn tiền ảo binance"
+      ]
+    },
+    {
+      "query": "ngân hàng",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "binance",
+      "search_volume": 500,
+      "increase_percentage": 300,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "binance hacked"
+      ]
+    },
+    {
+      "query": "liverpool đấu với chelsea",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "liverpool",
+        "liverpool – chelsea",
+        "cup lien doan anh",
+        "câu lạc bộ bóng đá liverpool"
+      ]
+    },
+    {
+      "query": "benfica đấu với gil vicente",
+      "search_volume": 1000,
+      "increase_percentage": 600,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "benfica vs"
+      ]
+    },
+    {
+      "query": "giá xăng e10 hôm nay",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "petrolimex",
+        "dự báo giá xăng dầu hôm nay",
+        "giá xăng hôm nay"
+      ]
+    },
+    {
+      "query": "đội tuyển bóng đá u 23 quốc gia thái lan",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "đội tuyển bóng đá u-23 quốc gia thái lan",
+        "đội tuyển bóng đá u-23 quốc gia việt nam",
+        "u23 việt nam",
+        "đội tuyển bóng đá u 23 quốc gia việt nam",
+        "đội tuyển bóng đá u 23 quốc gia qatar"
+      ]
+    },
+    {
+      "query": "al nassr vs al kholood",
+      "search_volume": 1000,
+      "increase_percentage": 300,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "saudi pro league",
+        "al-nassr vs al kholood"
+      ]
+    },
+    {
+      "query": "lãi suất thả nổi",
+      "search_volume": 1000,
+      "increase_percentage": 200,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "xe chạy điện",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "vùng áp thấp",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "chuyển khoản",
+      "search_volume": 100000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "погода",
+      "search_volume": 200,
+      "increase_percentage": 75,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "kênh 14",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "tháng 11"
+      ]
+    },
+    {
+      "query": "giải bóng đá vô địch u-15 quốc gia việt nam",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "giải bóng đá vô địch thế giới",
+        "u15 việt nam vs u15 rwanda",
+        "trực tiếp u15 việt nam",
+        "bóng đá",
+        "u15 việt nam"
+      ]
+    },
+    {
+      "query": "inter miami đấu với cincinnati",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "inter miami vs",
+        "giải nhà nghề mỹ"
+      ]
+    },
+    {
+      "query": "đội tuyển bóng đá quốc gia malaysia",
+      "search_volume": 1000,
+      "increase_percentage": 600,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "đội tuyển bóng đá quốc gia indonesia"
+      ]
+    },
+    {
+      "query": "everton",
+      "search_volume": 1000,
+      "increase_percentage": 400,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "newcastle",
+        "everton fc"
+      ]
+    },
+    {
+      "query": "giải vđqg ả rập xê út",
+      "search_volume": 1000,
+      "increase_percentage": 600,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "ca sĩ",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "bayern đấu với magdeburg",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "cúp đức",
+        "bayern vs"
+      ]
+    },
+    {
+      "query": "btc",
+      "search_volume": 100,
+      "increase_percentage": 200,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "novak djokovic",
+      "search_volume": 1000,
+      "increase_percentage": 400,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "số may mắn",
+      "search_volume": 200,
+      "increase_percentage": 100,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "tử vi"
+      ]
+    }
+  ],
+  "autocomplete_suggestions": [
+    "vneid tính năng mới",
+    "cập nhật vneid mức độ 2 online",
+    "cập nhật vneid lên mức 2",
+    "cập nhật vneid mức độ 2",
+    "cập nhật vneid mức độ 1"
+  ],
+  "google_search_articles": [],
+  "google_trends_scores": {
+    "cập nhật tính năng vneid mới nhất": 0,
+    "xu hướng tiktok": 0,
+    "liên minh huyền thoại": 1,
+    "ứng dụng zalo": 0,
+    "chatgpt": 60
+  }
+}
