@@ -940,6 +940,7 @@
                   <th class="py-3 px-3 text-center min-w-[95px]">Hiển Thị</th>
                   <th class="py-3 px-3 text-center min-w-[70px]">CTR</th>
                   <th class="py-3 px-3 text-center min-w-[85px]">Điểm SEO</th>
+                  <th class="py-3 px-3 text-center min-w-[85px]">Audit</th>
                   <th class="py-3 px-3.5 text-center min-w-[95px]">Thao Tác</th>
                 </tr>
               </thead>
@@ -948,6 +949,8 @@
               </tbody>
             </table>
           </div>
+          <!-- Phân trang: 20 bài / trang -->
+          <div id="reportPagination" class="hidden flex-wrap items-center justify-between gap-2 px-4 py-3 border-t border-blue-50"></div>
         </div>
       </section>
       <section data-view="dexuat" class="hidden"></section>
@@ -1075,6 +1078,23 @@
             <button type="button" onclick="savePublishLinkModal()" class="px-4 py-2 rounded-xl brand-btn text-white text-xs font-bold transition">Lưu Link Bài Đăng</button>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP AUDIT BÀI VIẾT (nội dung audit sẽ bổ sung sau) -->
+  <div id="reportAuditModal" class="hidden fixed inset-0 z-[80]" role="dialog" aria-modal="true" aria-labelledby="repAuditTitle">
+    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeReportAuditModal()"></div>
+    <div class="relative h-full flex items-center justify-center p-3 sm:p-6 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-2xl max-h-[85vh] flex flex-col bg-white rounded-3xl shadow-2xl border border-blue-100 overflow-hidden">
+        <div class="px-5 sm:px-6 py-4 border-b border-blue-50 flex items-center justify-between gap-3 bg-slate-50/60">
+          <div class="min-w-0">
+            <div class="text-[10px] font-extrabold uppercase tracking-wider text-amber-600">Audit bài viết</div>
+            <h3 id="repAuditTitle" class="text-base font-extrabold tracking-tight text-slate-900 truncate"></h3>
+          </div>
+          <button type="button" onclick="closeReportAuditModal()" class="shrink-0 w-8 h-8 rounded-lg hover:bg-slate-100 text-slate-500 font-bold" aria-label="Đóng">✕</button>
+        </div>
+        <div id="repAuditBody" class="flex-1 overflow-y-auto p-5 sm:p-6 min-h-[160px]"></div>
       </div>
     </div>
   </div>
@@ -3373,7 +3393,7 @@
     async function renderReportDashboard() {
       const tbody = byId("reportTableBody");
       if (tbody && !reportCurrentArticles.length) {
-        tbody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-xs text-slate-400">Đang tải số liệu từ Supabase...</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="11" class="py-12 text-center text-xs text-slate-400">Đang tải số liệu từ Supabase...</td></tr>`;
       }
       try {
         reportCurrentArticles = await loadReportData();
@@ -3621,7 +3641,40 @@
       return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500">${item.synced ? "Chưa kiểm tra" : "Chưa đồng bộ"}</span>`;
     }
 
-    function applyReportFilters() {
+    const REPORT_PAGE_SIZE = 20;
+    let reportPage = 1;
+
+    function goReportPage(n) {
+      reportPage = n;
+      applyReportFilters(true);
+      byId("reportTableBody")?.closest(".overflow-x-auto")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function renderReportPagination(total) {
+      const box = byId("reportPagination");
+      if (!box) return;
+      const pages = Math.ceil(total / REPORT_PAGE_SIZE);
+      if (pages <= 1) { box.innerHTML = ""; box.classList.add("hidden"); box.classList.remove("flex"); return; }
+      box.classList.remove("hidden"); box.classList.add("flex");
+      const from = (reportPage - 1) * REPORT_PAGE_SIZE + 1;
+      const to = Math.min(total, reportPage * REPORT_PAGE_SIZE);
+      const nums = [];
+      for (let i = 1; i <= pages; i++) {
+        if (i === 1 || i === pages || Math.abs(i - reportPage) <= 1) nums.push(i);
+        else if (nums[nums.length - 1] !== "…") nums.push("…");
+      }
+      const btn = "min-w-[28px] px-2 py-1 rounded-lg border text-xs font-bold transition";
+      const items = nums.map(n => n === "…"
+        ? `<span class="px-1 text-slate-400">…</span>`
+        : `<button type="button" onclick="goReportPage(${n})" class="${btn} ${n === reportPage ? "bg-indigo-600 border-indigo-600 text-white" : "bg-white border-blue-100 text-slate-600 hover:bg-indigo-50"}">${n}</button>`).join("");
+      const nav = (label, target, disabled) => `<button type="button" ${disabled ? "disabled" : `onclick="goReportPage(${target})"`} class="${btn} bg-white border-blue-100 text-slate-600 ${disabled ? "opacity-40 cursor-not-allowed" : "hover:bg-indigo-50"}">${label}</button>`;
+      box.innerHTML = `
+        <span class="text-[11px] font-semibold text-slate-500">Hiển thị ${from}–${to} / ${total} bài</span>
+        <div class="flex items-center gap-1">${nav("‹ Trước", reportPage - 1, reportPage === 1)}${items}${nav("Sau ›", reportPage + 1, reportPage === pages)}</div>`;
+    }
+
+    function applyReportFilters(keepPage) {
+      if (keepPage !== true) reportPage = 1;
       const q = (byId("reportSearchInput")?.value || "").toLowerCase().trim();
       const catFilter = byId("reportFilterCategory")?.value || "ALL";
       const srcFilter = byId("reportFilterSource")?.value || "ALL";
@@ -3651,19 +3704,23 @@
       });
 
       byId("reportFilterCount").textContent = `${list.length} bài`;
+      const totalPages = Math.max(1, Math.ceil(list.length / REPORT_PAGE_SIZE));
+      if (reportPage > totalPages) reportPage = totalPages;
+      const pageOffset = (reportPage - 1) * REPORT_PAGE_SIZE;
+      renderReportPagination(reportLoadError ? 0 : list.length);
 
       const tbody = byId("reportTableBody");
       if (reportLoadError) {
-        tbody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-xs text-rose-500 px-6">${escapeHtml(reportLoadError)}</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="11" class="py-12 text-center text-xs text-rose-500 px-6">${escapeHtml(reportLoadError)}</td></tr>`;
         return;
       }
       if (!list.length) {
         const empty = reportCurrentArticles.length ? "Không tìm thấy bài viết nào phù hợp với bộ lọc" : "Chưa có bài nào có link đã đăng. Nhập link bài ở tab WORKFLOW để bắt đầu theo dõi.";
-        tbody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-xs text-slate-400">${empty}</td></tr>`;
+        tbody.innerHTML = `<tr><td colspan="11" class="py-12 text-center text-xs text-slate-400">${empty}</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = list.map(({ item, s }, idx) => {
+      tbody.innerHTML = list.slice(pageOffset, pageOffset + REPORT_PAGE_SIZE).map(({ item, s }, idx) => {
         let deltaBadge = "";
         if (s.delta > 0) deltaBadge = `<span class="text-[10px] font-bold text-emerald-600 ml-1">▲${s.delta}</span>`;
         else if (s.delta < 0) deltaBadge = `<span class="text-[10px] font-bold text-rose-500 ml-1">▼${Math.abs(s.delta)}</span>`;
@@ -3671,7 +3728,7 @@
 
         return `
           <tr class="hover:bg-slate-50/80 transition">
-            <td class="py-3 px-3.5 text-center font-bold text-slate-400">${idx + 1}</td>
+            <td class="py-3 px-3.5 text-center font-bold text-slate-400">${pageOffset + idx + 1}</td>
             <td class="py-3 px-3">
               <div class="font-bold text-slate-900 text-left line-clamp-1 hover:text-indigo-600 cursor-pointer" onclick="openReportDetailModal('${item.id}')">${item.is_dashboard ? `<span class="text-amber-500 mr-1" title="Bài từ Cowork dashboard">★</span>` : ""}${escapeHtml(item.title)}</div>
               <div class="flex items-center gap-2 mt-0.5 text-[11px] text-slate-400">
@@ -3696,6 +3753,7 @@
             <td class="py-3 px-3 text-center">
               ${item.seo_score != null ? `<span class="font-extrabold text-[11px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">${item.seo_score}</span>` : na}
             </td>
+            <td class="py-3 px-3 text-center"><button type="button" onclick="openReportAuditModal('${item.id}')" class="px-2.5 py-1 rounded-lg bg-amber-50 hover:bg-amber-500 text-amber-700 hover:text-white font-bold text-[11px] transition shadow-xs border border-amber-200">Audit</button></td>
             <td class="py-3 px-3.5 text-center">
               <button type="button" onclick="openReportDetailModal('${item.id}')" class="px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white font-bold text-[11px] transition shadow-xs border border-indigo-100">
                 Chi tiết
@@ -3769,6 +3827,18 @@
       byId("repDetailSuggestions").innerHTML = tips.map(t => `<li>${escapeHtml(t)}</li>`).join("");
 
       byId("reportDetailModal").classList.remove("hidden");
+    }
+
+    function openReportAuditModal(id) {
+      const item = reportCurrentArticles.find(a => a.id === id);
+      if (!item) return;
+      byId("repAuditTitle").textContent = item.title;
+      byId("repAuditBody").innerHTML = "";   // nội dung audit: bổ sung sau
+      byId("reportAuditModal").classList.remove("hidden");
+    }
+
+    function closeReportAuditModal() {
+      byId("reportAuditModal").classList.add("hidden");
     }
 
     function closeReportDetailModal() {
