@@ -692,8 +692,7 @@
             <div class="mt-2.5">
               <div class="text-2xl font-black text-slate-900" id="kpiPublishedCount">18 <span class="text-xs font-semibold text-slate-400">/ 24</span></div>
               <div class="mt-1 flex items-center gap-1.5 text-[11px] text-emerald-600 font-bold">
-                <span>+4 bài tuần này</span>
-                <span class="text-slate-400 font-normal">· Đạt 75%</span>
+                <span id="kpiPublishedSub">Đang tải...</span>
               </div>
             </div>
           </div>
@@ -725,9 +724,8 @@
             </div>
             <div class="mt-2.5">
               <div class="text-2xl font-black text-slate-900" id="kpiTotalClicks">4,850</div>
-              <div class="mt-1 flex items-center gap-1 text-[11px] text-emerald-600 font-bold">
-                <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
-                <span>+32.6% so với kỳ trước</span>
+              <div id="kpiClicksDelta" class="mt-1 flex items-center gap-1 text-[11px] text-slate-500 font-bold">
+                <span>—</span>
               </div>
             </div>
           </div>
@@ -760,7 +758,7 @@
             <div class="mt-2.5">
               <div class="text-2xl font-black text-indigo-600" id="kpiAvgPosition">#5.2</div>
               <div class="mt-1 flex items-center gap-1.5 text-[11px] text-emerald-600 font-bold">
-                <span>8 bài lọt Top 1-3</span>
+                <span id="kpiTop3Sub">—</span>
               </div>
             </div>
           </div>
@@ -860,7 +858,7 @@
 
             <div class="mt-4 pt-3 border-t border-blue-50 flex items-center justify-between text-xs">
               <span class="text-slate-500 font-semibold">Điểm SEO On-page trung bình:</span>
-              <span class="font-extrabold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-100">94.8 / 100</span>
+              <span id="kpiAvgSeoScore" class="font-extrabold text-indigo-700 bg-indigo-50 px-2.5 py-1 rounded-lg border border-indigo-100">—</span>
             </div>
           </div>
         </div>
@@ -3232,405 +3230,127 @@
 
 
     // =====================================================================
-    // TAB BÁO CÁO: TRACKING & ĐO LƯỜNG HIỆU QUẢ BÀI VIẾT (MOCK & LIVE DATA)
+    // TAB BÁO CÁO: TRACKING & ĐO LƯỜNG HIỆU QUẢ BÀI VIẾT (GSC + GA4 qua Supabase)
     // =====================================================================
-    const MOCK_REPORT_ARTICLES = [
-      {
-        id: "rep-1",
-        title: "Đánh giá NVIDIA RTX 5080: Thông số, hiệu năng gaming 4K và giá bán dự kiến tại VN",
-        keyword: "rtx 5080 giá bao nhiêu",
-        published_url: "https://tncstore.vn/tin-tuc/danh-gia-nvidia-rtx-5080-hieu-nang-gia-ban.html",
-        published_date: "2026-10-25",
-        is_indexed: true,
-        indexed_time_hours: 14,
-        rank: 2,
-        rank_delta: 2,
-        clicks_7d: 685,
-        clicks_28d: 2150,
-        impr_7d: 7200,
-        impr_28d: 24800,
-        ctr: 9.5,
-        seo_score: 98,
-        word_count: 2150,
-        device: { mobile: 72, desktop: 28 },
-        queries: [
-          { query: "rtx 5080 giá bao nhiêu", clicks: 320, impr: 2800, ctr: 11.4, rank: 2 },
-          { query: "đánh giá nvidia rtx 5080", clicks: 195, impr: 2100, ctr: 9.2, rank: 3 },
-          { query: "rtx 5080 tnc store", clicks: 110, impr: 1300, ctr: 8.5, rank: 1 },
-          { query: "thông số rtx 5080 tản nhiệt", clicks: 60, impr: 1000, ctr: 6.0, rank: 4 }
-        ],
-        suggestions: [
-          "Bổ sung liên kết nội bộ (Internal link) trỏ về danh mục Card màn hình RTX 50 series của TNC.",
-          "Cập nhật thêm bảng giá chính hãng dự kiến các phiên bản ASUS ROG, MSI Gaming X."
-        ]
-      },
-      {
-        id: "rep-2",
-        title: "AMD Ryzen 7 9800X3D: Vua CPU Gaming mới có thực sự đánh bại Intel Core Ultra 9?",
-        keyword: "ryzen 7 9800x3d đánh giá",
-        published_url: "https://tncstore.vn/tin-tuc/amd-ryzen-7-9800x3d-danh-gia-hieu-nang.html",
-        published_date: "2026-10-24",
-        is_indexed: true,
-        indexed_time_hours: 9,
-        rank: 1,
-        rank_delta: 3,
-        clicks_7d: 890,
-        clicks_28d: 3120,
-        impr_7d: 9600,
-        impr_28d: 34500,
-        ctr: 9.3,
-        seo_score: 97,
-        word_count: 2400,
-        device: { mobile: 65, desktop: 35 },
-        queries: [
-          { query: "ryzen 7 9800x3d đánh giá", clicks: 450, impr: 4200, ctr: 10.7, rank: 1 },
-          { query: "9800x3d so sánh 7800x3d", clicks: 260, impr: 3100, ctr: 8.4, rank: 2 },
-          { query: "mua cpu 9800x3d tnc", clicks: 180, impr: 2300, ctr: 7.8, rank: 1 }
-        ],
-        suggestions: [
-          "Thứ hạng số 1 vững chắc! Thêm banner chương trình khuyến mãi Build PC Ryzen 9000.",
-          "Thêm video benchmark thực tế từ kênh YouTube TNC Channel để tăng thời gian ở lại trang."
-        ]
-      },
-      {
-        id: "rep-3",
-        title: "Top 5 cấu hình PC Gaming 20 triệu chiến mượt Black Myth Wukong và GTA 6",
-        keyword: "cấu hình pc gaming 20 triệu",
-        published_url: "https://tncstore.vn/tin-tuc/top-cau-hinh-pc-gaming-20-trieu-2026.html",
-        published_date: "2026-10-22",
-        is_indexed: true,
-        indexed_time_hours: 18,
-        rank: 3,
-        rank_delta: 0,
-        clicks_7d: 740,
-        clicks_28d: 2680,
-        impr_7d: 8400,
-        impr_28d: 29500,
-        ctr: 8.8,
-        seo_score: 96,
-        word_count: 1980,
-        device: { mobile: 78, desktop: 22 },
-        queries: [
-          { query: "cấu hình pc gaming 20 triệu", clicks: 380, impr: 3900, ctr: 9.7, rank: 3 },
-          { query: "pc 20 triệu chơi wukong", clicks: 220, impr: 2700, ctr: 8.1, rank: 2 },
-          { query: "dàn máy tính 20 triệu tnc", clicks: 140, impr: 1800, ctr: 7.8, rank: 1 }
-        ],
-        suggestions: [
-          "Tối ưu lại thẻ Meta Title thêm năm 2026 để kích thích tỷ lệ CTR cao hơn nữa.",
-          "Gắn nút 'Mua Ngay' trực tiếp dưới từng cấu hình mẫu."
-        ]
-      },
-      {
-        id: "rep-4",
-        title: "Cách tải và cài đặt Windows 11 24H2 cho máy tính cũ không hỗ trợ TPM 2.0",
-        keyword: "cài windows 11 24h2 không tpm",
-        published_url: "https://tncstore.vn/tin-tuc/huong-dan-cai-windows-11-24h2-bo-qua-tpm.html",
-        published_date: "2026-10-20",
-        is_indexed: true,
-        indexed_time_hours: 12,
-        rank: 4,
-        rank_delta: 1,
-        clicks_7d: 520,
-        clicks_28d: 1950,
-        impr_7d: 6900,
-        impr_28d: 23100,
-        ctr: 7.5,
-        seo_score: 95,
-        word_count: 1750,
-        device: { mobile: 58, desktop: 42 },
-        queries: [
-          { query: "cài windows 11 24h2 không tpm", clicks: 280, impr: 3200, ctr: 8.8, rank: 4 },
-          { query: "bypass tpm windows 11 24h2", clicks: 150, impr: 2100, ctr: 7.1, rank: 5 },
-          { query: "rufus cài win 11 24h2 tnc", clicks: 90, impr: 1600, ctr: 5.6, rank: 2 }
-        ],
-        suggestions: [
-          "Bổ sung FAQ Schema dạng Hỏi - Đáp để Google hiển thị thẻ Rich Result mở rộng.",
-          "Cảnh báo sao lưu dữ liệu trước khi cài đặt để tăng độ uy tín E-E-A-T."
-        ]
-      },
-      {
-        id: "rep-5",
-        title: "Top 7 bàn phím cơ không dây dưới 1 triệu gõ êm mượt đáng mua nhất 2026",
-        keyword: "bàn phím cơ dưới 1 triệu",
-        published_url: "https://tncstore.vn/tin-tuc/top-ban-phim-co-duoi-1-trieu-tot-nhat.html",
-        published_date: "2026-10-18",
-        is_indexed: true,
-        indexed_time_hours: 16,
-        rank: 2,
-        rank_delta: 2,
-        clicks_7d: 430,
-        clicks_28d: 1620,
-        impr_7d: 5800,
-        impr_28d: 19800,
-        ctr: 7.4,
-        seo_score: 94,
-        word_count: 1820,
-        device: { mobile: 81, desktop: 19 },
-        queries: [
-          { query: "bàn phím cơ dưới 1 triệu", clicks: 230, impr: 2900, ctr: 7.9, rank: 2 },
-          { query: "phím cơ không dây giá rẻ sinh viên", clicks: 120, impr: 1700, ctr: 7.0, rank: 3 },
-          { query: "bàn phím cơ tnc store", clicks: 80, impr: 1200, ctr: 6.7, rank: 1 }
-        ],
-        suggestions: [
-          "Thêm phân loại theo switch (Red switch gõ êm văn phòng, Blue switch tiếng clicky đanh).",
-          "Gắn link đến giỏ hàng phụ kiện Gaming Gear TNC."
-        ]
-      },
-      {
-        id: "rep-6",
-        title: "5 mẫu Laptop Gaming mỏng nhẹ pin trâu giá tốt dành cho sinh viên kỹ thuật",
-        keyword: "laptop gaming mỏng nhẹ 2026",
-        published_url: "https://tncstore.vn/tin-tuc/top-laptop-gaming-mong-nhe-2026.html",
-        published_date: "2026-10-17",
-        is_indexed: true,
-        indexed_time_hours: 15,
-        rank: 5,
-        rank_delta: -1,
-        clicks_7d: 380,
-        clicks_28d: 1450,
-        impr_7d: 5300,
-        impr_28d: 18500,
-        ctr: 7.2,
-        seo_score: 93,
-        word_count: 2100,
-        device: { mobile: 74, desktop: 26 },
-        queries: [
-          { query: "laptop gaming mỏng nhẹ 2026", clicks: 190, impr: 2500, ctr: 7.6, rank: 5 },
-          { query: "laptop kỹ thuật đồ họa gaming", clicks: 110, impr: 1600, ctr: 6.9, rank: 6 },
-          { query: "mua laptop gaming tnc", clicks: 80, impr: 1200, ctr: 6.7, rank: 2 }
-        ],
-        suggestions: [
-          "Bổ sung so sánh thời lượng pin thực tế khi dùng tác vụ văn phòng vs chơi game.",
-          "Thêm thẻ H2 tập trung vào giải pháp tản nhiệt trên máy mỏng nhẹ."
-        ]
-      },
-      {
-        id: "rep-7",
-        title: "Trải nghiệm màn hình Gaming OLED 240Hz: Có đáng tiền hơn màn Fast-IPS?",
-        keyword: "màn hình gaming oled 240hz",
-        published_url: "https://tncstore.vn/tin-tuc/danh-gia-man-hinh-gaming-oled-240hz.html",
-        published_date: "2026-10-15",
-        is_indexed: true,
-        indexed_time_hours: 11,
-        rank: 1,
-        rank_delta: 0,
-        clicks_7d: 310,
-        clicks_28d: 1250,
-        impr_7d: 4200,
-        impr_28d: 15400,
-        ctr: 7.4,
-        seo_score: 96,
-        word_count: 1950,
-        device: { mobile: 62, desktop: 38 },
-        queries: [
-          { query: "màn hình gaming oled 240hz", clicks: 180, impr: 2200, ctr: 8.2, rank: 1 },
-          { query: "oled 240hz so với ips", clicks: 85, impr: 1200, ctr: 7.1, rank: 2 },
-          { query: "màn hình oled tnc store", clicks: 45, impr: 800, ctr: 5.6, rank: 1 }
-        ],
-        suggestions: [
-          "Bài viết đang Top 1 tuyệt đối! Cập nhật thêm chính sách chống burn-in màn hình OLED của các hãng."
-        ]
-      },
-      {
-        id: "rep-8",
-        title: "SSD PCIe Gen 5 có quá nóng không? Giải pháp tản nhiệt tản khí vs tản nước AIO",
-        keyword: "ssd gen 5 nhiệt độ",
-        published_url: "https://tncstore.vn/tin-tuc/giai-phap-tan-nhiet-ssd-pcie-gen-5.html",
-        published_date: "2026-10-12",
-        is_indexed: true,
-        indexed_time_hours: 20,
-        rank: 7,
-        rank_delta: 2,
-        clicks_7d: 210,
-        clicks_28d: 840,
-        impr_7d: 3800,
-        impr_28d: 13900,
-        ctr: 5.5,
-        seo_score: 92,
-        word_count: 1650,
-        device: { mobile: 55, desktop: 45 },
-        queries: [
-          { query: "ssd gen 5 nhiệt độ", clicks: 110, impr: 1900, ctr: 5.8, rank: 7 },
-          { query: "tản nhiệt ssd m2 gen 5", clicks: 65, impr: 1200, ctr: 5.4, rank: 6 }
-        ],
-        suggestions: [
-          "Thêm hình ảnh biểu đồ nhiệt độ test trong phòng máy lạnh 25 độ C để tăng tính thuyết phục."
-        ]
-      },
-      {
-        id: "rep-9",
-        title: "Tại sao chơi game bị tụt FPS đột ngột? 7 bước khắc phục triệt để trên Win 11",
-        keyword: "chơi game bị tụt fps win 11",
-        published_url: "https://tncstore.vn/tin-tuc/khac-phuc-tut-fps-khi-choi-game-win-11.html",
-        published_date: "2026-10-10",
-        is_indexed: true,
-        indexed_time_hours: 14,
-        rank: 6,
-        rank_delta: 1,
-        clicks_7d: 260,
-        clicks_28d: 1040,
-        impr_7d: 4100,
-        impr_28d: 14800,
-        ctr: 6.3,
-        seo_score: 94,
-        word_count: 1850,
-        device: { mobile: 70, desktop: 30 },
-        queries: [
-          { query: "chơi game bị tụt fps win 11", clicks: 140, impr: 2100, ctr: 6.7, rank: 6 },
-          { query: "drop fps đột ngột card nvidia", clicks: 80, impr: 1300, ctr: 6.1, rank: 5 }
-        ],
-        suggestions: [
-          "Bổ sung hướng dẫn dùng DDU (Display Driver Uninstaller) để cài lại driver sạch sẽ."
-        ]
-      },
-      {
-        id: "rep-10",
-        title: "Card đồ họa Intel Battlemage B580: Đối thủ giá rẻ đe dọa RTX 4060",
-        keyword: "intel battlemage b580 giá",
-        published_url: "https://tncstore.vn/tin-tuc/intel-battlemage-b580-hieu-nang-gia-re.html",
-        published_date: "2026-10-27",
-        is_indexed: false,
-        indexed_time_hours: 0,
-        rank: 22,
-        rank_delta: 0,
-        clicks_7d: 15,
-        clicks_28d: 15,
-        impr_7d: 650,
-        impr_28d: 650,
-        ctr: 2.3,
-        seo_score: 95,
-        word_count: 1900,
-        device: { mobile: 60, desktop: 40 },
-        queries: [
-          { query: "intel battlemage b580 giá", clicks: 10, impr: 400, ctr: 2.5, rank: 22 }
-        ],
-        suggestions: [
-          "Bài viết mới đăng chưa được Google Index chính thức. Hãy submit URL lên Google Search Console để index nhanh.",
-          "Chia sẻ link bài lên Fanpage TNC Store để kích thích bot Google cào dữ liệu sớm."
-        ]
-      },
-      {
-        id: "rep-11",
-        title: "Review tai nghe Gaming không dây độ trễ siêu thấp 2.4GHz pin 40 giờ",
-        keyword: "tai nghe gaming không dây độ trễ thấp",
-        published_url: "https://tncstore.vn/tin-tuc/top-tai-nghe-gaming-khong-day-2-4ghz.html",
-        published_date: "2026-10-08",
-        is_indexed: true,
-        indexed_time_hours: 13,
-        rank: 8,
-        rank_delta: -2,
-        clicks_7d: 175,
-        clicks_28d: 720,
-        impr_7d: 3200,
-        impr_28d: 11800,
-        ctr: 5.5,
-        seo_score: 91,
-        word_count: 1700,
-        device: { mobile: 75, desktop: 25 },
-        queries: [
-          { query: "tai nghe gaming không dây độ trễ thấp", clicks: 95, impr: 1700, ctr: 5.6, rank: 8 }
-        ],
-        suggestions: [
-          "Cần tối ưu lại thẻ Title và đoạn mở bài, bổ sung từ khóa tai nghe gaming không dây chính hãng."
-        ]
-      },
-      {
-        id: "rep-12",
-        title: "Đánh giá chuột Gaming siêu nhẹ chỉ 42g mắt đọc PAW3395 cực chuẩn",
-        keyword: "chuột gaming siêu nhẹ dưới 50g",
-        published_url: "https://tncstore.vn/tin-tuc/danh-gia-chuot-gaming-sieu-nhe-paw3395.html",
-        published_date: "2026-10-05",
-        is_indexed: true,
-        indexed_time_hours: 15,
-        rank: 3,
-        rank_delta: 1,
-        clicks_7d: 125,
-        clicks_28d: 510,
-        impr_7d: 2100,
-        impr_28d: 7900,
-        ctr: 6.0,
-        seo_score: 93,
-        word_count: 1600,
-        device: { mobile: 80, desktop: 20 },
-        queries: [
-          { query: "chuột gaming siêu nhẹ dưới 50g", clicks: 75, impr: 1100, ctr: 6.8, rank: 3 }
-        ],
-        suggestions: [
-          "Bổ sung bảng so sánh cảm giác cầm Grip style: Palm grip, Claw grip và Fingertip grip."
-        ]
-      },
-      {
-        id: "rep-13",
-        title: "Nguồn chuẩn ATX 3.1 và cổng 12V-2x6 có gì khác ATX 3.0? Có chống cháy nổ tốt hơn?",
-        keyword: "nguồn atx 3.1 là gì",
-        published_url: "https://tncstore.vn/tin-tuc/nguon-atx-3-1-chuan-12v-2x6.html",
-        published_date: "2026-10-02",
-        is_indexed: true,
-        indexed_time_hours: 17,
-        rank: 5,
-        rank_delta: 3,
-        clicks_7d: 95,
-        clicks_28d: 390,
-        impr_7d: 1900,
-        impr_28d: 6800,
-        ctr: 5.0,
-        seo_score: 94,
-        word_count: 1720,
-        device: { mobile: 63, desktop: 37 },
-        queries: [
-          { query: "nguồn atx 3.1 là gì", clicks: 55, impr: 1000, ctr: 5.5, rank: 5 }
-        ],
-        suggestions: [
-          "Thêm infographic giải thích chân cắm 12V-2x6 được rút ngắn chân cảm biến Sense."
-        ]
-      }
-    ];
-
+    // Số liệu thật lấy từ bảng seo_article_metrics (script sync_gsc_ga4.py ghi từ Google Search Console + GA4)
     let reportActiveRange = "7d";
     let reportCurrentArticles = [];
+    let reportApprovedTotal = 0;
+    let reportEnd = "";
+    let reportLoadError = null;
+    const NO_RANK = 999;
 
-    function getReportArticles() {
-      // Kết hợp dữ liệu thật từ seoArticles (nếu có bài đã được người dùng xuất bản link)
-      const list = [...MOCK_REPORT_ARTICLES];
-      if (Array.isArray(seoArticles) && seoArticles.length > 0) {
-        seoArticles.forEach((art, idx) => {
-          if (!art.published_url) return;
-          // Kiểm tra xem đã có trong list chưa
-          const exists = list.some(it => it.published_url === art.published_url);
-          if (!exists) {
-            list.unshift({
-              id: "real-" + art.id,
-              title: art.title || ("Bài viết: " + art.keyword),
-              keyword: art.keyword,
-              published_url: art.published_url,
-              published_date: (art.created_at || new Date().toISOString()).slice(0, 10),
-              is_indexed: true,
-              indexed_time_hours: 16,
-              rank: (idx % 8) + 1,
-              rank_delta: 1,
-              clicks_7d: Math.floor(Math.random() * 300) + 120,
-              clicks_28d: Math.floor(Math.random() * 1200) + 400,
-              impr_7d: Math.floor(Math.random() * 4000) + 2000,
-              impr_28d: Math.floor(Math.random() * 15000) + 8000,
-              ctr: 7.2,
-              seo_score: Number(art.seo_score) || 94,
-              word_count: art.word_count || 1800,
-              device: { mobile: 70, desktop: 30 },
-              queries: [
-                { query: art.keyword, clicks: 120, impr: 1500, ctr: 8.0, rank: 2 }
-              ],
-              suggestions: [
-                "Bài viết thật được kéo từ Supabase. Tiếp tục đẩy mạnh Internal Link để tăng chuyển đổi."
-              ]
-            });
-          }
-        });
-      }
-      return list;
+    const rptDate = (d) => d.toISOString().slice(0, 10);
+    const rptShift = (d, n) => new Date(d.getTime() + n * 86400000);
+    const rptFmt = (n) => (n >= 1000 ? (n / 1000).toFixed(1) + "K" : String(n));
+
+    function rptRange(range) {
+      const end = new Date(reportEnd + "T00:00:00Z");
+      const days = range === "28d" ? 28 : range === "all" ? 90 : 7;
+      return {
+        days,
+        start: rptDate(rptShift(end, -(days - 1))), end: reportEnd,
+        prevStart: rptDate(rptShift(end, -(2 * days - 1))), prevEnd: rptDate(rptShift(end, -days))
+      };
     }
 
-    function renderReportDashboard() {
-      reportCurrentArticles = getReportArticles();
+    function rptSum(daily, from, to) {
+      let c = 0, i = 0, pw = 0;
+      for (const r of daily) {
+        if (r.d >= from && r.d <= to) { c += r.c; i += r.i; pw += r.p * r.i; }
+      }
+      return { clicks: c, impr: i, ctr: i ? (c / i) * 100 : 0, pos: i ? pw / i : 0 };
+    }
+
+    // Chỉ số của một bài trong khoảng thời gian đang chọn
+    function rptStats(item) {
+      if (!item.has_data) return { clicks: 0, impr: 0, ctr: 0, rank: NO_RANK, delta: 0, prevClicks: 0 };
+      const r = rptRange(reportActiveRange);
+      const cur = rptSum(item.daily, r.start, r.end);
+      const prev = reportActiveRange === "all" ? null : rptSum(item.daily, r.prevStart, r.prevEnd);
+      const rank = cur.impr ? Math.max(1, Math.round(cur.pos)) : NO_RANK;
+      const delta = prev && prev.impr && cur.impr ? Math.round(prev.pos) - Math.round(cur.pos) : 0;
+      return { clicks: cur.clicks, impr: cur.impr, ctr: +cur.ctr.toFixed(1), rank, delta, prevClicks: prev ? prev.clicks : null };
+    }
+
+    async function loadReportData() {
+      if (!STATIC_MODE || typeof sb === "undefined" || !sb) {
+        throw new Error("Báo cáo số liệu thật chỉ hiện trên bản GitHub Pages (đã nối Supabase). Bản chạy local không đọc được.");
+      }
+      const [a, m] = await Promise.all([
+        sb.from("seo_articles").select("id,keyword,title,seo_score,word_count,status,published_url,created_at,reviewed_at").neq("status", "rejected"),
+        sb.from("seo_article_metrics").select("*")
+      ]);
+      if (a.error) throw new Error(a.error.message);
+      if (m.error) throw new Error(`${m.error.message} (đã chạy database/seo_article_metrics.sql chưa?)`);
+
+      const metrics = new Map((m.data || []).map(r => [r.url, r]));
+      const arts = a.data || [];
+      reportApprovedTotal = arts.filter(x => x.status === "approved").length;
+      const ends = (m.data || []).map(r => r.data_end_date).filter(Boolean).sort();
+      reportEnd = ends.length ? ends[ends.length - 1] : rptDate(rptShift(new Date(), -3));
+
+      return arts.filter(x => (x.published_url || "").trim()).map(art => {
+        const url = art.published_url.trim();
+        const mt = metrics.get(url);
+        const dev = (mt && mt.device) || {};
+        return {
+          id: "art-" + art.id,
+          title: art.title || ("Bài viết: " + art.keyword),
+          keyword: art.keyword || "",
+          published_url: url,
+          published_date: (art.reviewed_at || art.created_at || "").slice(0, 10),
+          seo_score: art.seo_score != null ? Number(art.seo_score) : null,
+          word_count: art.word_count || 0,
+          has_data: !!mt && (mt.daily || []).length > 0,
+          synced: !!mt,
+          synced_at: mt ? mt.synced_at : null,
+          daily: (mt && mt.daily) || [],
+          queries: (mt && mt.queries) || [],
+          ga4: (mt && mt.ga4) || {},
+          device: { mobile: dev.mobile || 0, desktop: dev.desktop || 0 },
+          is_indexed: mt ? mt.is_indexed : null,
+          index_state: mt ? mt.index_state : null
+        };
+      });
+    }
+
+    function rptSuggestions(item) {
+      const out = [];
+      const st = rptStats(item);
+      if (!item.synced) {
+        return ["Bài này chưa được đồng bộ số liệu. Chạy: python sync_gsc_ga4.py --apply"];
+      }
+      if (item.is_indexed === false) out.push("Google chưa lập chỉ mục. Vào Search Console > Kiểm tra URL > Yêu cầu lập chỉ mục, và đặt link bài vào trang chủ hoặc danh mục để Google tìm thấy nhanh hơn.");
+      if (!item.has_data) {
+        out.push("Search Console chưa có số liệu cho URL này (bài mới đăng thường trễ 2–3 ngày, hoặc URL không khớp đúng property).");
+        return out;
+      }
+      if (st.rank <= 3) out.push("Đang ở Top 3. Giữ vững bằng cách cập nhật nội dung định kỳ và gắn nút mua hàng/link sản phẩm TNC.");
+      else if (st.rank <= 10) out.push(`Đang ở vị trí #${st.rank}. Bổ sung internal link từ các bài liên quan và mở rộng nội dung theo các query bên dưới để lên Top 3.`);
+      else if (st.rank < NO_RANK) out.push(`Đang ở vị trí #${st.rank} (ngoài trang 1). Nên viết thêm mục trả lời các câu hỏi People Also Ask và đặt thêm internal link trỏ về bài.`);
+      if (st.impr >= 200 && ((st.rank <= 3 && st.ctr < 8) || (st.rank > 3 && st.rank <= 10 && st.ctr < 3))) {
+        out.push(`CTR ${st.ctr}% thấp so với vị trí #${st.rank}. Thử viết lại Meta Title/Description hấp dẫn hơn (thêm năm, con số, lợi ích).`);
+      }
+      const g = item.ga4 && item.ga4["28d"];
+      if (g && g.sessions >= 20 && g.engagement_rate < 40) out.push(`GA4: tỉ lệ tương tác chỉ ${g.engagement_rate}% (28 ngày). Nội dung đầu bài có thể chưa đúng ý định tìm kiếm — viết lại phần mở đầu và thêm hình/bảng so sánh.`);
+      if (!out.length) out.push("Chưa có đề xuất đặc biệt. Tiếp tục theo dõi thêm vài ngày.");
+      return out;
+    }
+
+    async function renderReportDashboard() {
+      const tbody = byId("reportTableBody");
+      if (tbody && !reportCurrentArticles.length) {
+        tbody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-xs text-slate-400">Đang tải số liệu từ Supabase...</td></tr>`;
+      }
+      try {
+        reportCurrentArticles = await loadReportData();
+        reportLoadError = null;
+      } catch (err) {
+        console.error(err);
+        reportCurrentArticles = [];
+        reportLoadError = err.message;
+      }
       updateReportKPIs();
       renderReportTrendChart();
       applyReportFilters();
@@ -3639,11 +3359,11 @@
     function changeReportRange(range, btn) {
       reportActiveRange = range;
       document.querySelectorAll(".report-range-btn").forEach(b => {
-        b.classList.remove("bg-indigo-600", "text-white");
+        b.classList.remove("bg-indigo-600", "text-white", "font-bold");
         b.classList.add("text-slate-600");
       });
       if (btn) {
-        btn.classList.add("bg-indigo-600", "text-white");
+        btn.classList.add("bg-indigo-600", "text-white", "font-bold");
         btn.classList.remove("text-slate-600");
       }
       updateReportKPIs();
@@ -3651,75 +3371,108 @@
       applyReportFilters();
     }
 
+    function setRankBar(id, pct) {
+      const bar = byId(id)?.parentElement?.parentElement?.querySelector(".h-full");
+      if (bar) bar.style.width = `${pct}%`;
+    }
+
     function updateReportKPIs() {
       const articles = reportCurrentArticles;
-      const totalArticles = articles.length;
-      const indexedList = articles.filter(a => a.is_indexed);
-      const indexRate = totalArticles ? ((indexedList.length / totalArticles) * 100).toFixed(1) : 0;
+      const total = articles.length;
+      const stats = articles.map(a => rptStats(a));
+      const withData = articles.filter(a => a.has_data).length;
+      const indexed = articles.filter(a => a.is_indexed === true).length;
+      const checked = articles.filter(a => a.is_indexed !== null).length;
 
-      const is28d = reportActiveRange === "28d";
-      const isAll = reportActiveRange === "all";
-
-      let multiplier = 1;
-      if (is28d) multiplier = 3.6;
-      else if (isAll) multiplier = 8.2;
-
-      const totalClicks = Math.round(articles.reduce((acc, a) => acc + (is28d ? a.clicks_28d : a.clicks_7d * (isAll ? 8.2 : 1)), 0));
-      const totalImpr = Math.round(articles.reduce((acc, a) => acc + (is28d ? a.impr_28d : a.impr_7d * (isAll ? 8.2 : 1)), 0));
+      const totalClicks = stats.reduce((s, x) => s + x.clicks, 0);
+      const totalImpr = stats.reduce((s, x) => s + x.impr, 0);
+      const prevClicks = reportActiveRange === "all" ? null : stats.reduce((s, x) => s + (x.prevClicks || 0), 0);
       const avgCtr = totalImpr ? ((totalClicks / totalImpr) * 100).toFixed(1) : "0.0";
 
-      const validRanks = articles.filter(a => a.rank && a.rank < 50);
-      const avgRank = validRanks.length ? (validRanks.reduce((acc, a) => acc + a.rank, 0) / validRanks.length).toFixed(1) : "5.2";
+      const ranked = stats.filter(x => x.rank < NO_RANK);
+      const avgRank = ranked.length ? (ranked.reduce((s, x) => s + x.rank, 0) / ranked.length).toFixed(1) : null;
 
-      byId("kpiPublishedCount").innerHTML = `${totalArticles} <span class="text-xs font-semibold text-slate-400">/ 24</span>`;
-      byId("kpiIndexRate").textContent = `${indexRate}%`;
-      byId("kpiIndexCount").textContent = `${indexedList.length}/${totalArticles}`;
+      byId("kpiPublishedCount").innerHTML = `${total} <span class="text-xs font-semibold text-slate-400">/ ${reportApprovedTotal} bài đã duyệt</span>`;
+      const synced = articles.map(a => a.synced_at).filter(Boolean).sort().pop();
+      byId("kpiPublishedSub").textContent = reportLoadError
+        ? "Chưa tải được số liệu"
+        : `${withData}/${total} bài có số liệu GSC` + (synced ? ` · cập nhật ${new Date(synced).toLocaleString("vi-VN", { day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" })}` : "");
+
+      byId("kpiIndexRate").textContent = checked ? `${((indexed / checked) * 100).toFixed(1)}%` : "—";
+      byId("kpiIndexCount").textContent = `${indexed}/${checked || total}`;
       byId("kpiTotalClicks").textContent = totalClicks.toLocaleString("vi-VN");
-      byId("kpiTotalImpressions").textContent = totalImpr > 1000 ? (totalImpr / 1000).toFixed(1) + "K" : totalImpr;
+      byId("kpiTotalImpressions").textContent = rptFmt(totalImpr);
       byId("kpiAvgCtr").textContent = `${avgCtr}%`;
-      byId("kpiAvgPosition").textContent = `#${avgRank}`;
+      byId("kpiAvgPosition").textContent = avgRank ? `#${avgRank}` : "—";
 
-      // Phân bố thứ hạng
-      const top3Count = articles.filter(a => a.rank <= 3).length;
-      const top10Count = articles.filter(a => a.rank > 3 && a.rank <= 10).length;
-      const top20Count = articles.filter(a => a.rank > 10 && a.rank <= 20).length;
-      const otherCount = totalArticles - (top3Count + top10Count + top20Count);
+      const deltaEl = byId("kpiClicksDelta");
+      if (prevClicks === null) {
+        deltaEl.className = "mt-1 flex items-center gap-1 text-[11px] text-slate-500 font-bold";
+        deltaEl.innerHTML = `<span>90 ngày gần nhất</span>`;
+      } else if (!prevClicks) {
+        deltaEl.className = "mt-1 flex items-center gap-1 text-[11px] text-slate-500 font-bold";
+        deltaEl.innerHTML = `<span>${totalClicks ? "Kỳ trước chưa có click" : "Chưa có click"}</span>`;
+      } else {
+        const pct = ((totalClicks - prevClicks) / prevClicks) * 100;
+        const up = pct >= 0;
+        deltaEl.className = `mt-1 flex items-center gap-1 text-[11px] ${up ? "text-emerald-600" : "text-rose-500"} font-bold`;
+        deltaEl.innerHTML = `<span>${up ? "▲ +" : "▼ "}${pct.toFixed(1)}% so với kỳ trước</span>`;
+      }
 
-      const p3 = totalArticles ? ((top3Count / totalArticles) * 100).toFixed(1) : 0;
-      const p10 = totalArticles ? ((top10Count / totalArticles) * 100).toFixed(1) : 0;
-      const p20 = totalArticles ? ((top20Count / totalArticles) * 100).toFixed(1) : 0;
-      const pOther = totalArticles ? ((otherCount / totalArticles) * 100).toFixed(1) : 0;
+      const top3 = stats.filter(x => x.rank <= 3).length;
+      const top10 = stats.filter(x => x.rank > 3 && x.rank <= 10).length;
+      const top20 = stats.filter(x => x.rank > 10 && x.rank <= 20).length;
+      const other = total - (top3 + top10 + top20);
+      const pct = (n) => (total ? ((n / total) * 100).toFixed(1) : "0.0");
+      byId("rankStatTop3").textContent = `${top3} bài (${pct(top3)}%)`;
+      byId("rankStatTop10").textContent = `${top10} bài (${pct(top10)}%)`;
+      byId("rankStatTop20").textContent = `${top20} bài (${pct(top20)}%)`;
+      byId("rankStatOther").textContent = `${other} bài (${pct(other)}%)`;
+      setRankBar("rankStatTop3", pct(top3));
+      setRankBar("rankStatTop10", pct(top10));
+      setRankBar("rankStatTop20", pct(top20));
+      setRankBar("rankStatOther", pct(other));
+      byId("kpiTop3Sub").textContent = `${top3} bài lọt Top 1-3`;
 
-      byId("rankStatTop3").textContent = `${top3Count} bài (${p3}%)`;
-      byId("rankStatTop10").textContent = `${top10Count} bài (${p10}%)`;
-      byId("rankStatTop20").textContent = `${top20Count} bài (${p20}%)`;
-      byId("rankStatOther").textContent = `${otherCount} bài (${pOther}%)`;
+      const scores = articles.map(a => a.seo_score).filter(s => s != null);
+      byId("kpiAvgSeoScore").textContent = scores.length ? `${(scores.reduce((s, x) => s + x, 0) / scores.length).toFixed(1)} / 100` : "—";
+    }
+
+    // Chuỗi clicks/impressions gộp tất cả bài: 7 ngày theo ngày; 28 ngày và 90 ngày theo tuần
+    function rptSeries() {
+      const days = reportActiveRange === "28d" ? 28 : reportActiveRange === "all" ? 91 : 7;
+      const step = reportActiveRange === "7d" ? 1 : 7;
+      const end = new Date(reportEnd + "T00:00:00Z");
+      const byDay = {};
+      reportCurrentArticles.forEach(a => a.daily.forEach(r => {
+        const o = byDay[r.d] || (byDay[r.d] = { c: 0, i: 0 });
+        o.c += r.c; o.i += r.i;
+      }));
+      const dates = [];
+      for (let k = days - 1; k >= 0; k--) dates.push(rptDate(rptShift(end, -k)));
+      const labels = [], clicks = [], impressions = [];
+      for (let k = 0; k < dates.length; k += step) {
+        const chunk = dates.slice(k, k + step);
+        const [, mm, dd] = chunk[0].split("-");
+        labels.push(`${dd}/${mm}`);
+        clicks.push(chunk.reduce((s, d) => s + (byDay[d] ? byDay[d].c : 0), 0));
+        impressions.push(chunk.reduce((s, d) => s + (byDay[d] ? byDay[d].i : 0), 0));
+      }
+      return { labels, clicks, impressions };
     }
 
     function renderReportTrendChart() {
       const container = byId("reportChartContainer");
       if (!container) return;
 
-      const is28d = reportActiveRange === "28d";
-      const isAll = reportActiveRange === "all";
-
-      // Chuỗi điểm mẫu
-      let labels = ["21/10", "22/10", "23/10", "24/10", "25/10", "26/10", "27/10"];
-      let clicks = [420, 510, 630, 890, 780, 820, 950];
-      let impressions = [4800, 5600, 7200, 9800, 8900, 9400, 11200];
-
-      if (is28d) {
-        labels = ["Tuần 1", "Tuần 2", "Tuần 3", "Tuần 4"];
-        clicks = [1200, 1850, 2400, 3100];
-        impressions = [15000, 22000, 28000, 36000];
-      } else if (isAll) {
-        labels = ["T7", "T8", "T9", "T10"];
-        clicks = [2800, 4200, 6800, 9500];
-        impressions = [35000, 52000, 78000, 105000];
+      const { labels, clicks, impressions } = rptSeries();
+      if (!reportCurrentArticles.some(a => a.has_data)) {
+        container.innerHTML = `<div class="text-xs text-slate-400 text-center px-6">${escapeHtml(reportLoadError || "Chưa có số liệu Search Console. Chạy sync_gsc_ga4.py --apply sau khi bài được đăng 2–3 ngày.")}</div>`;
+        return;
       }
 
-      const maxClick = Math.max(...clicks) * 1.25;
-      const maxImpr = Math.max(...impressions) * 1.2;
+      const maxClick = (Math.max(...clicks) || 1) * 1.25;
+      const maxImpr = (Math.max(...impressions) || 1) * 1.2;
 
       const W = 640;
       const H = 180;
@@ -3735,12 +3488,10 @@
       const getYClick = (val) => padT + plotH - (val / maxClick) * plotH;
       const getYImpr = (val) => padT + plotH - (val / maxImpr) * plotH;
 
-      // Sinh đường path Clicks
       const ptsClick = clicks.map((v, i) => `${getX(i).toFixed(1)},${getYClick(v).toFixed(1)}`);
       const dClick = "M " + ptsClick.join(" L ");
       const dClickArea = `M ${getX(0)},${padT + plotH} L ` + ptsClick.join(" L ") + ` L ${getX(n - 1)},${padT + plotH} Z`;
 
-      // Sinh đường path Impressions
       const ptsImpr = impressions.map((v, i) => `${getX(i).toFixed(1)},${getYImpr(v).toFixed(1)}`);
       const dImpr = "M " + ptsImpr.join(" L ");
 
@@ -3750,29 +3501,23 @@
         gridLines += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="#f1f5f9" stroke-dasharray="4,4" stroke-width="1" />`;
       }
 
+      // Nhiều điểm thì chỉ ghi nhãn cách quãng cho khỏi chồng chữ
+      const every = n > 14 ? 2 : 1;
       let xLabels = "";
       labels.forEach((lbl, i) => {
-        const x = getX(i);
-        xLabels += `<text x="${x}" y="${H - 8}" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">${lbl}</text>`;
+        if (i % every) return;
+        xLabels += `<text x="${getX(i)}" y="${H - 8}" text-anchor="middle" font-size="10" font-weight="600" fill="#94a3b8">${lbl}</text>`;
       });
 
-      let clickCircles = clicks.map((v, i) => {
-        const x = getX(i);
-        const y = getYClick(v);
-        return `<circle cx="${x}" cy="${y}" r="4" fill="#6366f1" stroke="#ffffff" stroke-width="2" class="cursor-pointer transition hover:scale-125">
-          <title>${labels[i]}: ${v} clicks</title>
-        </circle>`;
-      }).join("");
+      const clickCircles = clicks.map((v, i) => `<circle cx="${getX(i)}" cy="${getYClick(v)}" r="4" fill="#6366f1" stroke="#ffffff" stroke-width="2" class="cursor-pointer transition hover:scale-125">
+          <title>${labels[i]}: ${v.toLocaleString("vi-VN")} clicks</title>
+        </circle>`).join("");
 
-      let imprCircles = impressions.map((v, i) => {
-        const x = getX(i);
-        const y = getYImpr(v);
-        return `<circle cx="${x}" cy="${y}" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" class="cursor-pointer transition hover:scale-125">
-          <title>${labels[i]}: ${v.toLocaleString()} lượt hiển thị</title>
-        </circle>`;
-      }).join("");
+      const imprCircles = impressions.map((v, i) => `<circle cx="${getX(i)}" cy="${getYImpr(v)}" r="3.5" fill="#38bdf8" stroke="#ffffff" stroke-width="1.5" class="cursor-pointer transition hover:scale-125">
+          <title>${labels[i]}: ${v.toLocaleString("vi-VN")} lượt hiển thị</title>
+        </circle>`).join("");
 
-      const svg = `
+      container.innerHTML = `
         <svg viewBox="0 0 ${W} ${H}" class="w-full h-full overflow-visible">
           <defs>
             <linearGradient id="gradClick" x1="0" y1="0" x2="0" y2="1">
@@ -3787,9 +3532,24 @@
           ${imprCircles}
           ${clickCircles}
           ${xLabels}
-        </svg>
-      `;
-      container.innerHTML = svg;
+        </svg>`;
+    }
+
+    function rptRankBadge(rank) {
+      if (rank >= NO_RANK) return `<span class="text-xs text-slate-400">—</span>`;
+      if (rank <= 3) return `<span class="inline-flex items-center gap-1 font-black text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200">#${rank}</span>`;
+      if (rank <= 10) return `<span class="inline-flex items-center gap-1 font-bold text-xs text-blue-700 bg-blue-50 px-2 py-0.5 rounded-lg border border-blue-200">#${rank}</span>`;
+      return `<span class="inline-flex items-center gap-1 font-semibold text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded-lg">#${rank}</span>`;
+    }
+
+    function rptIndexBadge(item) {
+      if (item.is_indexed === true) {
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">✓ Đã Index</span>`;
+      }
+      if (item.is_indexed === false) {
+        return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">⏳ Chưa index</span>`;
+      }
+      return `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500">${item.synced ? "Chưa kiểm tra" : "Chưa đồng bộ"}</span>`;
     }
 
     function applyReportFilters() {
@@ -3798,66 +3558,42 @@
       const rankFilter = byId("reportFilterRank")?.value || "ALL";
       const sort = byId("reportSortBy")?.value || "clicks_desc";
 
-      let list = [...reportCurrentArticles];
+      let list = reportCurrentArticles.map(a => ({ item: a, s: rptStats(a) }));
 
-      if (q) {
-        list = list.filter(a => a.title.toLowerCase().includes(q) || a.keyword.toLowerCase().includes(q));
-      }
+      if (q) list = list.filter(({ item }) => item.title.toLowerCase().includes(q) || item.keyword.toLowerCase().includes(q));
+      if (idxFilter === "INDEXED") list = list.filter(({ item }) => item.is_indexed === true);
+      else if (idxFilter === "PENDING") list = list.filter(({ item }) => item.is_indexed !== true);
+      if (rankFilter === "TOP3") list = list.filter(({ s }) => s.rank <= 3);
+      else if (rankFilter === "TOP10") list = list.filter(({ s }) => s.rank > 3 && s.rank <= 10);
+      else if (rankFilter === "TOP20") list = list.filter(({ s }) => s.rank > 10 && s.rank <= 20);
 
-      if (idxFilter === "INDEXED") list = list.filter(a => a.is_indexed);
-      else if (idxFilter === "PENDING") list = list.filter(a => !a.is_indexed);
-
-      if (rankFilter === "TOP3") list = list.filter(a => a.rank <= 3);
-      else if (rankFilter === "TOP10") list = list.filter(a => a.rank > 3 && a.rank <= 10);
-      else if (rankFilter === "TOP20") list = list.filter(a => a.rank > 10 && a.rank <= 20);
-
-      const is28d = reportActiveRange === "28d";
       list.sort((a, b) => {
-        if (sort === "clicks_desc") return (is28d ? b.clicks_28d : b.clicks_7d) - (is28d ? a.clicks_28d : a.clicks_7d);
-        if (sort === "rank_asc") return a.rank - b.rank;
-        if (sort === "impr_desc") return (is28d ? b.impr_28d : b.impr_7d) - (is28d ? a.impr_28d : a.impr_7d);
-        if (sort === "score_desc") return b.seo_score - a.seo_score;
-        if (sort === "date_desc") return b.published_date.localeCompare(a.published_date);
+        if (sort === "clicks_desc") return b.s.clicks - a.s.clicks;
+        if (sort === "rank_asc") return a.s.rank - b.s.rank;
+        if (sort === "impr_desc") return b.s.impr - a.s.impr;
+        if (sort === "score_desc") return (b.item.seo_score || 0) - (a.item.seo_score || 0);
+        if (sort === "date_desc") return b.item.published_date.localeCompare(a.item.published_date);
         return 0;
       });
 
       byId("reportFilterCount").textContent = `${list.length} bài`;
 
       const tbody = byId("reportTableBody");
+      if (reportLoadError) {
+        tbody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-xs text-rose-500 px-6">${escapeHtml(reportLoadError)}</td></tr>`;
+        return;
+      }
       if (!list.length) {
-        tbody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-xs text-slate-400">Không tìm thấy bài viết nào phù hợp với bộ lọc</td></tr>`;
+        const empty = reportCurrentArticles.length ? "Không tìm thấy bài viết nào phù hợp với bộ lọc" : "Chưa có bài nào có link đã đăng. Nhập link bài ở tab WORKFLOW để bắt đầu theo dõi.";
+        tbody.innerHTML = `<tr><td colspan="10" class="py-12 text-center text-xs text-slate-400">${empty}</td></tr>`;
         return;
       }
 
-      tbody.innerHTML = list.map((item, idx) => {
-        const clicks = is28d ? item.clicks_28d : item.clicks_7d;
-        const impr = is28d ? item.impr_28d : item.impr_7d;
-        const imprStr = impr >= 1000 ? (impr / 1000).toFixed(1) + "K" : impr;
-
-        let rankBadge = "";
-        if (item.rank <= 3) {
-          rankBadge = `<span class="inline-flex items-center gap-1 font-black text-xs text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-lg border border-emerald-200">#${item.rank}</span>`;
-        } else if (item.rank <= 10) {
-          rankBadge = `<span class="inline-flex items-center gap-1 font-bold text-xs text-blue-700 bg-blue-50 px-2 py-0.5 rounded-lg border border-blue-200">#${item.rank}</span>`;
-        } else {
-          rankBadge = `<span class="inline-flex items-center gap-1 font-semibold text-xs text-slate-600 bg-slate-100 px-2 py-0.5 rounded-lg">#${item.rank}</span>`;
-        }
-
+      tbody.innerHTML = list.map(({ item, s }, idx) => {
         let deltaBadge = "";
-        if (item.rank_delta > 0) {
-          deltaBadge = `<span class="text-[10px] font-bold text-emerald-600 ml-1">▲${item.rank_delta}</span>`;
-        } else if (item.rank_delta < 0) {
-          deltaBadge = `<span class="text-[10px] font-bold text-rose-500 ml-1">▼${Math.abs(item.rank_delta)}</span>`;
-        }
-
-        const indexBadge = item.is_indexed
-          ? `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
-               <svg class="w-3 h-3 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
-               Đã Index
-             </span>`
-          : `<span class="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200">
-               ⏳ Đang chờ
-             </span>`;
+        if (s.delta > 0) deltaBadge = `<span class="text-[10px] font-bold text-emerald-600 ml-1">▲${s.delta}</span>`;
+        else if (s.delta < 0) deltaBadge = `<span class="text-[10px] font-bold text-rose-500 ml-1">▼${Math.abs(s.delta)}</span>`;
+        const na = `<span class="text-slate-400">—</span>`;
 
         return `
           <tr class="hover:bg-slate-50/80 transition">
@@ -3866,11 +3602,11 @@
               <div class="font-bold text-slate-900 line-clamp-1 hover:text-indigo-600 cursor-pointer" onclick="openReportDetailModal('${item.id}')">${escapeHtml(item.title)}</div>
               <div class="flex items-center gap-2 mt-0.5 text-[11px] text-slate-400">
                 <a href="${escapeHtml(item.published_url)}" target="_blank" rel="noopener noreferrer" class="text-indigo-500 hover:underline flex items-center gap-0.5 font-medium max-w-xs truncate">
-                  <span>${escapeHtml(item.published_url.replace('https://', ''))}</span>
+                  <span>${escapeHtml(item.published_url.replace(/^https?:\/\//, ""))}</span>
                   <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
                 </a>
                 <span>·</span>
-                <span>${item.published_date}</span>
+                <span>${escapeHtml(item.published_date)}</span>
               </div>
             </td>
             <td class="py-3 px-3">
@@ -3878,13 +3614,13 @@
                 ${escapeHtml(item.keyword)}
               </span>
             </td>
-            <td class="py-3 px-3 text-center">${indexBadge}</td>
-            <td class="py-3 px-3 text-center whitespace-nowrap">${rankBadge} ${deltaBadge}</td>
-            <td class="py-3 px-3 text-right font-black text-slate-900">${clicks.toLocaleString("vi-VN")}</td>
-            <td class="py-3 px-3 text-right font-semibold text-slate-600">${imprStr}</td>
-            <td class="py-3 px-3 text-right font-extrabold text-indigo-600">${item.ctr}%</td>
+            <td class="py-3 px-3 text-center">${rptIndexBadge(item)}</td>
+            <td class="py-3 px-3 text-center whitespace-nowrap">${rptRankBadge(s.rank)} ${deltaBadge}</td>
+            <td class="py-3 px-3 text-right font-black text-slate-900">${item.has_data ? s.clicks.toLocaleString("vi-VN") : na}</td>
+            <td class="py-3 px-3 text-right font-semibold text-slate-600">${item.has_data ? rptFmt(s.impr) : na}</td>
+            <td class="py-3 px-3 text-right font-extrabold text-indigo-600">${item.has_data ? s.ctr + "%" : na}</td>
             <td class="py-3 px-3 text-center">
-              <span class="font-extrabold text-[11px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">${item.seo_score}</span>
+              ${item.seo_score != null ? `<span class="font-extrabold text-[11px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">${item.seo_score}</span>` : na}
             </td>
             <td class="py-3 px-3.5 text-center">
               <button type="button" onclick="openReportDetailModal('${item.id}')" class="px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white font-bold text-[11px] transition shadow-xs border border-indigo-100">
@@ -3899,44 +3635,43 @@
     function openReportDetailModal(id) {
       const item = reportCurrentArticles.find(a => a.id === id);
       if (!item) return;
+      const s = rptStats(item);
 
       byId("repDetailTitle").textContent = item.title;
       byId("repDetailLink").href = item.published_url;
       byId("repDetailLinkText").textContent = item.published_url;
 
       const idxBadge = byId("repDetailIndexBadge");
-      if (item.is_indexed) {
+      const state = item.index_state ? ` · ${item.index_state}` : "";
+      if (item.is_indexed === true) {
         idxBadge.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-50 text-emerald-700 border border-emerald-200";
-        idxBadge.textContent = `✓ Đã Index (${item.indexed_time_hours}h sau khi đăng)`;
-      } else {
+        idxBadge.textContent = `✓ Đã Index${state}`;
+      } else if (item.is_indexed === false) {
         idxBadge.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200";
-        idxBadge.textContent = "⏳ Đang chờ Google lập chỉ mục";
+        idxBadge.textContent = `⏳ Chưa lập chỉ mục${state}`;
+      } else {
+        idxBadge.className = "px-2 py-0.5 rounded-full text-[10px] font-bold bg-slate-100 text-slate-500";
+        idxBadge.textContent = item.synced ? "Chưa kiểm tra được trạng thái index" : "Chưa đồng bộ số liệu";
       }
 
-      const is28d = reportActiveRange === "28d";
-      const clicks = is28d ? item.clicks_28d : item.clicks_7d;
-      const impr = is28d ? item.impr_28d : item.impr_7d;
-
-      byId("repStatClicks").textContent = clicks.toLocaleString("vi-VN");
-      byId("repStatImpressions").textContent = impr.toLocaleString("vi-VN");
-      byId("repStatCtr").textContent = `${item.ctr}%`;
-      byId("repStatRank").textContent = `#${item.rank}`;
+      byId("repStatClicks").textContent = s.clicks.toLocaleString("vi-VN");
+      byId("repStatImpressions").textContent = s.impr.toLocaleString("vi-VN");
+      byId("repStatCtr").textContent = `${s.ctr}%`;
+      byId("repStatRank").textContent = s.rank >= NO_RANK ? "—" : `#${s.rank}`;
 
       const deltaEl = byId("repStatRankDelta");
-      if (item.rank_delta > 0) {
-        deltaEl.textContent = `▲ Tăng ${item.rank_delta} bậc tuần qua`;
+      if (s.delta > 0) {
+        deltaEl.textContent = `▲ Tăng ${s.delta} bậc so với kỳ trước`;
         deltaEl.className = "text-[10px] text-emerald-600 font-bold mt-0.5";
-      } else if (item.rank_delta < 0) {
-        deltaEl.textContent = `▼ Giảm ${Math.abs(item.rank_delta)} bậc tuần qua`;
+      } else if (s.delta < 0) {
+        deltaEl.textContent = `▼ Giảm ${Math.abs(s.delta)} bậc so với kỳ trước`;
         deltaEl.className = "text-[10px] text-rose-500 font-bold mt-0.5";
       } else {
-        deltaEl.textContent = "─ Thứ hạng ổn định";
+        deltaEl.textContent = "─ Chưa có thay đổi để so sánh";
         deltaEl.className = "text-[10px] text-slate-500 font-bold mt-0.5";
       }
 
-      // Queries
-      const qBody = byId("repDetailQueriesBody");
-      qBody.innerHTML = (item.queries || []).map(q => `
+      byId("repDetailQueriesBody").innerHTML = (item.queries || []).map(q => `
         <tr class="hover:bg-slate-50/60">
           <td class="py-2.5 px-3 font-semibold text-slate-800">${escapeHtml(q.query)}</td>
           <td class="py-2.5 px-3 text-right font-bold text-slate-900">${q.clicks}</td>
@@ -3944,17 +3679,20 @@
           <td class="py-2.5 px-3 text-right text-indigo-600 font-semibold">${q.ctr}%</td>
           <td class="py-2.5 px-3 text-center font-bold text-emerald-600">#${q.rank}</td>
         </tr>
-      `).join("");
+      `).join("") || `<tr><td colspan="5" class="py-4 text-center text-xs text-slate-400">Chưa có dữ liệu từ khóa</td></tr>`;
 
-      // Device
       byId("repDeviceMobile").textContent = `${item.device.mobile}%`;
       byId("repDeviceMobileBar").style.width = `${item.device.mobile}%`;
       byId("repDeviceDesktop").textContent = `${item.device.desktop}%`;
       byId("repDeviceDesktopBar").style.width = `${item.device.desktop}%`;
 
-      // Suggestions
-      const suggEl = byId("repDetailSuggestions");
-      suggEl.innerHTML = (item.suggestions || []).map(s => `<li>${escapeHtml(s)}</li>`).join("");
+      const tips = rptSuggestions(item);
+      const g = item.ga4 && item.ga4["28d"];
+      if (g) {
+        const mins = Math.floor(g.avg_duration / 60), secs = Math.round(g.avg_duration % 60);
+        tips.unshift(`GA4 (28 ngày): ${g.sessions.toLocaleString("vi-VN")} lượt truy cập · tương tác ${g.engagement_rate}% · ${mins}p${String(secs).padStart(2, "0")}s/lượt · ${g.key_events} key event`);
+      }
+      byId("repDetailSuggestions").innerHTML = tips.map(t => `<li>${escapeHtml(t)}</li>`).join("");
 
       byId("reportDetailModal").classList.remove("hidden");
     }
@@ -3964,23 +3702,23 @@
     }
 
     function exportReportCSV() {
-      const list = reportCurrentArticles;
-      let csv = "\uFEFFSTT,Bài Viết,Từ Khóa,URL,Trạng Thái Index,Thứ Hạng SERP,Clicks,Impressions,CTR (%),Điểm SEO,Ngày Đăng\n";
-      list.forEach((it, idx) => {
-        const is28d = reportActiveRange === "28d";
-        const clicks = is28d ? it.clicks_28d : it.clicks_7d;
-        const impr = is28d ? it.impr_28d : it.impr_7d;
+      const rangeLabel = { "7d": "7 ngày", "28d": "28 ngày", all: "90 ngày" }[reportActiveRange];
+      let csv = `﻿STT,Bài Viết,Từ Khóa,URL,Trạng Thái Index,Thứ Hạng SERP,Clicks (${rangeLabel}),Impressions (${rangeLabel}),CTR (%),GA4 Sessions 28 ngày,Điểm SEO,Ngày Đăng\n`;
+      reportCurrentArticles.forEach((it, idx) => {
+        const s = rptStats(it);
+        const g = it.ga4 && it.ga4["28d"];
         const line = [
           idx + 1,
           `"${(it.title || "").replace(/"/g, '""')}"`,
           `"${(it.keyword || "").replace(/"/g, '""')}"`,
           `"${(it.published_url || "").replace(/"/g, '""')}"`,
-          it.is_indexed ? "Đã Index" : "Chờ Index",
-          it.rank,
-          clicks,
-          impr,
-          it.ctr,
-          it.seo_score,
+          it.is_indexed === true ? "Đã Index" : it.is_indexed === false ? "Chưa Index" : "Chưa kiểm tra",
+          s.rank >= NO_RANK ? "" : s.rank,
+          s.clicks,
+          s.impr,
+          s.ctr,
+          g ? g.sessions : "",
+          it.seo_score != null ? it.seo_score : "",
           it.published_date
         ];
         csv += line.join(",") + "\n";
