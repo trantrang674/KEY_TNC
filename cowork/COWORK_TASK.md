@@ -42,6 +42,10 @@ PHẦN A, lập outline:
 3. POST {COWORK_API_URL}/outlines với approved_keyword_id=id, keyword, outline_md, short_kws, long_kws,
    research (PAA và danh sách đối thủ, KÈM research.report_md = toàn bộ nội dung file seo_output/<slug>/report.md
    để nút XEM REPORT trên dashboard hiển thị được). DỪNG ở đây với keyword này, không viết bài.
+   BẮT BUỘC: research.report_md phải là nội dung THẬT của report.md (đọc file rồi đưa nguyên văn vào), không được để
+   trống hay bỏ trường này, nếu không dashboard báo "Chưa có report cho keyword này". Trước khi POST, kiểm tra
+   report_md không rỗng. Nếu lỡ thiếu thì chạy `python sync_reports.py --apply` (thư mục tnc-seo-keyword-news/KEY_TNC)
+   để đồng bộ bù, rồi ghi rõ trong báo cáo cuối.
    outline_md viết theo đúng mẫu để dashboard trình bày như bản "Dàn ý đề xuất":
      # Outline: <từ khóa chính>
      **Title đề xuất (N ký tự):** <title>
