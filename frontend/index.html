@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="vi">
 <head>
   <meta charset="UTF-8" />
@@ -670,6 +670,15 @@
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg bg-indigo-600 text-white font-bold transition" onclick="changeReportRange('7d', this)">7 ngày</button>
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('28d', this)">28 ngày</button>
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('all', this)">60 ngày</button>
+              <button type="button" id="reportCustomBtn" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="toggleReportCustomRange()">📅 Tùy chỉnh</button>
+            </div>
+            <!-- Khung chọn khoảng ngày tùy chỉnh -->
+            <div id="reportCustomPanel" class="hidden items-center gap-1.5 rounded-xl bg-white border border-blue-100 px-2.5 py-1 shadow-sm text-xs font-semibold text-slate-700">
+              <span>Từ</span>
+              <input type="date" id="reportCustomFrom" class="border border-blue-100 rounded-lg px-1.5 py-0.5 text-xs focus:outline-none focus:border-indigo-500" />
+              <span>đến</span>
+              <input type="date" id="reportCustomTo" class="border border-blue-100 rounded-lg px-1.5 py-0.5 text-xs focus:outline-none focus:border-indigo-500" />
+              <button type="button" onclick="applyReportCustomRange()" class="px-2.5 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold transition">Áp dụng</button>
             </div>
             <!-- Nút xuất CSV -->
             <button type="button" onclick="exportReportCSV()" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold border border-blue-100 shadow-sm flex items-center gap-1.5 transition">
@@ -880,6 +889,11 @@
                 <svg class="w-4 h-4 text-slate-400 absolute left-2.5 top-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
               </div>
 
+              <!-- Lọc danh mục tin tức (option nạp tự động từ dữ liệu) -->
+              <select id="reportFilterCategory" onchange="applyReportFilters()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500">
+                <option value="ALL">Tất cả danh mục</option>
+              </select>
+
               <!-- Lọc nguồn bài: bài của Cowork dashboard hay bài khác trên trang -->
               <select id="reportFilterSource" onchange="applyReportFilters()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500">
                 <option value="ALL">Tất cả bài của trang</option>
@@ -915,17 +929,17 @@
 
           <!-- BẢNG DỮ LIỆU -->
           <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs">
+            <table class="w-full text-center border-collapse text-xs">
               <thead>
                 <tr class="border-b border-blue-50 bg-slate-50/30 text-slate-500 font-extrabold uppercase text-[10px] tracking-wider">
                   <th class="py-3 px-3.5 text-center w-12">#</th>
-                  <th class="py-3 px-3 min-w-[260px]">Bài Viết & Link Đăng</th>
-                  <th class="py-3 px-3 min-w-[140px]">Từ Khóa Chính</th>
+                  <th class="py-3 px-3 text-center min-w-[260px]">Bài Viết & Link Đăng</th>
+                  <th class="py-3 px-3 text-center min-w-[140px]">Từ Khóa Chính</th>
                   <th class="py-3 px-3 text-center min-w-[110px]">Google Index</th>
                   <th class="py-3 px-3 text-center min-w-[105px]">Thứ Hạng SERP</th>
-                  <th class="py-3 px-3 text-right min-w-[90px]">Clicks</th>
-                  <th class="py-3 px-3 text-right min-w-[95px]">Hiển Thị</th>
-                  <th class="py-3 px-3 text-right min-w-[70px]">CTR</th>
+                  <th class="py-3 px-3 text-center min-w-[90px]">Clicks</th>
+                  <th class="py-3 px-3 text-center min-w-[95px]">Hiển Thị</th>
+                  <th class="py-3 px-3 text-center min-w-[70px]">CTR</th>
                   <th class="py-3 px-3 text-center min-w-[85px]">Điểm SEO</th>
                   <th class="py-3 px-3.5 text-center min-w-[95px]">Thao Tác</th>
                 </tr>
@@ -3251,12 +3265,20 @@
     const rptShift = (d, n) => new Date(d.getTime() + n * 86400000);
     const rptFmt = (n) => (n >= 1000 ? (n / 1000).toFixed(1) + "K" : String(n));
 
+    let reportCustom = { from: "", to: "" };
+
+    function rptDays(range) {
+      if (range === "custom") return Math.round((new Date(reportCustom.to) - new Date(reportCustom.from)) / 86400000) + 1;
+      return range === "28d" ? 28 : range === "all" ? 60 : 7;
+    }
+
     function rptRange(range) {
-      const end = new Date(reportEnd + "T00:00:00Z");
-      const days = range === "28d" ? 28 : range === "all" ? 60 : 7;
+      const endStr = range === "custom" ? reportCustom.to : reportEnd;
+      const end = new Date(endStr + "T00:00:00Z");
+      const days = rptDays(range);
       return {
         days,
-        start: rptDate(rptShift(end, -(days - 1))), end: reportEnd,
+        start: rptDate(rptShift(end, -(days - 1))), end: endStr,
         prevStart: rptDate(rptShift(end, -(2 * days - 1))), prevEnd: rptDate(rptShift(end, -days))
       };
     }
@@ -3362,12 +3384,49 @@
         reportCurrentArticles = [];
         reportLoadError = err.message;
       }
+      populateReportCategories();
       updateReportKPIs();
       renderReportTrendChart();
       applyReportFilters();
     }
 
+    function populateReportCategories() {
+      const sel = byId("reportFilterCategory");
+      if (!sel) return;
+      const cur = sel.value;
+      const cats = [...new Set(reportCurrentArticles.map(a => a.category).filter(Boolean))].sort((a, b) => a.localeCompare(b, "vi"));
+      sel.innerHTML = `<option value="ALL">Tất cả danh mục</option>` +
+        cats.map(c => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+      if (cats.includes(cur)) sel.value = cur;
+    }
+
+    function toggleReportCustomRange() {
+      const panel = byId("reportCustomPanel");
+      const opening = panel.classList.contains("hidden");
+      panel.classList.toggle("hidden", !opening);
+      panel.classList.toggle("flex", opening);
+      if (opening) {
+        const from = byId("reportCustomFrom"), to = byId("reportCustomTo");
+        if (!to.value) to.value = reportEnd;
+        if (!from.value) from.value = rptDate(rptShift(new Date(reportEnd + "T00:00:00Z"), -13));
+        to.max = from.max = reportEnd;
+      }
+    }
+
+    function applyReportCustomRange() {
+      const from = byId("reportCustomFrom").value, to = byId("reportCustomTo").value;
+      if (!from || !to) { alert("Vui lòng chọn đủ ngày bắt đầu và ngày kết thúc."); return; }
+      if (from > to) { alert("Ngày bắt đầu phải trước hoặc bằng ngày kết thúc."); return; }
+      reportCustom = { from, to };
+      changeReportRange("custom", byId("reportCustomBtn"));
+    }
+
     function changeReportRange(range, btn) {
+      if (range !== "custom") {
+        const panel = byId("reportCustomPanel");
+        panel.classList.add("hidden");
+        panel.classList.remove("flex");
+      }
       reportActiveRange = range;
       document.querySelectorAll(".report-range-btn").forEach(b => {
         b.classList.remove("bg-indigo-600", "text-white", "font-bold");
@@ -3457,9 +3516,10 @@
 
     // Chuỗi clicks/impressions gộp tất cả bài: 7 ngày theo ngày; 28 ngày và 90 ngày theo tuần
     function rptSeries() {
-      const days = reportActiveRange === "28d" ? 28 : reportActiveRange === "all" ? 63 : 7;
-      const step = reportActiveRange === "7d" ? 1 : 7;
-      const end = new Date(reportEnd + "T00:00:00Z");
+      const custom = reportActiveRange === "custom";
+      const days = custom ? rptDays("custom") : reportActiveRange === "28d" ? 28 : reportActiveRange === "all" ? 63 : 7;
+      const step = custom ? (days <= 14 ? 1 : 7) : reportActiveRange === "7d" ? 1 : 7;
+      const end = new Date((custom ? reportCustom.to : reportEnd) + "T00:00:00Z");
       const byDay = {};
       reportCurrentArticles.forEach(a => a.daily.forEach(r => {
         const o = byDay[r.d] || (byDay[r.d] = { c: 0, i: 0 });
@@ -3571,6 +3631,7 @@
 
     function applyReportFilters() {
       const q = (byId("reportSearchInput")?.value || "").toLowerCase().trim();
+      const catFilter = byId("reportFilterCategory")?.value || "ALL";
       const srcFilter = byId("reportFilterSource")?.value || "ALL";
       const idxFilter = byId("reportFilterIndex")?.value || "ALL";
       const rankFilter = byId("reportFilterRank")?.value || "ALL";
@@ -3579,6 +3640,7 @@
       let list = reportCurrentArticles.map(a => ({ item: a, s: rptStats(a) }));
 
       if (q) list = list.filter(({ item }) => item.title.toLowerCase().includes(q) || item.keyword.toLowerCase().includes(q));
+      if (catFilter !== "ALL") list = list.filter(({ item }) => item.category === catFilter);
       if (srcFilter === "DASH") list = list.filter(({ item }) => item.is_dashboard);
       else if (srcFilter === "OTHER") list = list.filter(({ item }) => !item.is_dashboard);
       if (idxFilter === "INDEXED") list = list.filter(({ item }) => item.is_indexed === true);
@@ -3619,8 +3681,8 @@
           <tr class="hover:bg-slate-50/80 transition">
             <td class="py-3 px-3.5 text-center font-bold text-slate-400">${idx + 1}</td>
             <td class="py-3 px-3">
-              <div class="font-bold text-slate-900 line-clamp-1 hover:text-indigo-600 cursor-pointer" onclick="openReportDetailModal('${item.id}')">${item.is_dashboard ? `<span class="text-amber-500 mr-1" title="Bài từ Cowork dashboard">★</span>` : ""}${escapeHtml(item.title)}</div>
-              <div class="flex items-center gap-2 mt-0.5 text-[11px] text-slate-400">
+              <div class="font-bold text-slate-900 text-center line-clamp-1 hover:text-indigo-600 cursor-pointer" onclick="openReportDetailModal('${item.id}')">${item.is_dashboard ? `<span class="text-amber-500 mr-1" title="Bài từ Cowork dashboard">★</span>` : ""}${escapeHtml(item.title)}</div>
+              <div class="flex items-center justify-center gap-2 mt-0.5 text-[11px] text-slate-400">
                 <a href="${escapeHtml(item.published_url)}" target="_blank" rel="noopener noreferrer" class="text-indigo-500 hover:underline flex items-center gap-0.5 font-medium max-w-xs truncate">
                   <span>${escapeHtml(item.published_url.replace(/^https?:\/\//, ""))}</span>
                   <svg class="w-3 h-3 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
@@ -3636,9 +3698,9 @@
             </td>
             <td class="py-3 px-3 text-center">${rptIndexBadge(item)}</td>
             <td class="py-3 px-3 text-center whitespace-nowrap">${rptRankBadge(s.rank)} ${deltaBadge}</td>
-            <td class="py-3 px-3 text-right font-black text-slate-900">${item.has_data ? s.clicks.toLocaleString("vi-VN") : na}</td>
-            <td class="py-3 px-3 text-right font-semibold text-slate-600">${item.has_data ? rptFmt(s.impr) : na}</td>
-            <td class="py-3 px-3 text-right font-extrabold text-indigo-600">${item.has_data ? s.ctr + "%" : na}</td>
+            <td class="py-3 px-3 text-center font-black text-slate-900">${item.has_data ? s.clicks.toLocaleString("vi-VN") : na}</td>
+            <td class="py-3 px-3 text-center font-semibold text-slate-600">${item.has_data ? rptFmt(s.impr) : na}</td>
+            <td class="py-3 px-3 text-center font-extrabold text-indigo-600">${item.has_data ? s.ctr + "%" : na}</td>
             <td class="py-3 px-3 text-center">
               ${item.seo_score != null ? `<span class="font-extrabold text-[11px] text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">${item.seo_score}</span>` : na}
             </td>
@@ -3722,7 +3784,7 @@
     }
 
     function exportReportCSV() {
-      const rangeLabel = { "7d": "7 ngày", "28d": "28 ngày", all: "60 ngày" }[reportActiveRange];
+      const rangeLabel = { "7d": "7 ngày", "28d": "28 ngày", all: "60 ngày", custom: `${reportCustom.from} → ${reportCustom.to}` }[reportActiveRange];
       let csv = `﻿STT,Bài Viết,Từ Khóa,URL,Trạng Thái Index,Thứ Hạng SERP,Clicks (${rangeLabel}),Impressions (${rangeLabel}),CTR (%),GA4 Sessions 28 ngày,Điểm SEO,Ngày Đăng\n`;
       reportCurrentArticles.forEach((it, idx) => {
         const s = rptStats(it);
