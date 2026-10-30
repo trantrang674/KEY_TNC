@@ -99,6 +99,8 @@ Deno.serve(async (req) => {
         meta_description: str(b.meta_description, 400) || null,
         seo_score: typeof b.seo_score === "number" && b.seo_score >= 0 && b.seo_score <= 100 ? b.seo_score : null,
         word_count: Number.isInteger(b.word_count) ? b.word_count : null,
+        // Chỉ nhận link Google Docs/Drive, bỏ qua mọi URL khác
+        google_doc_url: /^https:\/\/(docs|drive)\.google\.com\//.test(str(b.google_doc_url, 500)) ? str(b.google_doc_url, 500) : null,
         status: "pending",
       }).select("id, keyword, status").single();
       if (error) return json({ error: error.message }, error.code === "23505" ? 409 : 500);

@@ -2278,6 +2278,8 @@
       return `
         <div class="flex flex-wrap items-center gap-1.5">
           ${wfViewButton("article", a.id)}
+          ${a.google_doc_url ? `<a href="${escapeAttr(a.google_doc_url)}" target="_blank" rel="noopener noreferrer" title="Mở file Google Docs"
+              class="px-2.5 py-1 rounded-full bg-white hover:bg-emerald-50 border border-emerald-200 text-emerald-700 text-[11px] font-bold transition">Docs ↗</a>` : ""}
           ${a.status === "pending" ? wfReviewButtons("seo_articles", a.id) : `<span class="text-[11px] font-bold text-blue-700">✓ Đã duyệt</span>`}
         </div>
         <div class="text-[10px] text-slate-400 mt-1">${a.word_count || "?"} từ · SEO ${a.seo_score ?? "?"}${a.reviewed_by_email ? " · " + escapeHtml(a.reviewed_by_email) : ""}</div>`;

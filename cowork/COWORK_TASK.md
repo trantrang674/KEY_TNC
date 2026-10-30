@@ -31,7 +31,8 @@ Mọi request có header `x-api-key: $COWORK_API_KEY`.
 Body `POST /notifications`: `{level: "info"|"success"|"warning"|"error", title, message?, keyword?}`
 
 Body `POST /outlines`: `{approved_keyword_id, keyword, outline_md, short_kws[], long_kws[], research{}}`
-Body `POST /articles`: `{outline_id, title, content_md, meta_description, seo_score, word_count}`
+Body `POST /articles`: `{outline_id, title, content_md, meta_description, seo_score, word_count, google_doc_url?}`
+(`google_doc_url` chỉ nhận link bắt đầu bằng docs.google.com hoặc drive.google.com; chạy `database/seo_articles_google_doc.sql` một lần để có cột này.)
 
 ## Prompt cho scheduled task
 ```
@@ -64,7 +65,14 @@ PHẦN B, viết bài:
 5. Viết bài theo Bước 4 của skill, dùng đúng 100% key phụ trong outline đã duyệt; chạy evaluate_seo.py
    và sửa đến khi điểm >= 90; tạo meta description 160-170 ký tự (Bước 5).
    Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
-6. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count.
+6. Tạo file Google Docs cho bài bằng connector Google Drive/Docs, trong thư mục Drive có ID
+   1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz (https://drive.google.com/drive/folders/1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz).
+   Tên file = title của bài; nội dung = content_md đã định dạng (H1/H2/H3, danh sách, bảng, in đậm, link giữ nguyên),
+   thêm meta description ở đầu file. Lấy link file Docs (https://docs.google.com/document/d/<id>/edit).
+   Nếu connector lỗi hoặc không có quyền vào thư mục: KHÔNG dừng, vẫn làm bước 7 với google_doc_url bỏ trống,
+   và gửi thông báo level "warning" (title "Không tạo được Google Docs", message ghi lý do, keyword tương ứng).
+7. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count,
+   google_doc_url (link Docs ở bước 6; dashboard sẽ hiện nút "Docs").
 
 THÔNG BÁO LÊN CHUÔNG DASHBOARD (POST {COWORK_API_URL}/notifications, body {level, title, message, keyword}):
 - Mỗi keyword lỗi (serp_keyword.py hỏng, không đủ PAA, evaluate_seo.py không đạt 90 sau nhiều lần sửa, API trả lỗi khác 409):
