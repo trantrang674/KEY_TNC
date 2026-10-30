@@ -4,7 +4,7 @@ Chạy 1 lần/ngày. Thư mục làm việc của task phải là `C:\Users\MK0
 (nơi có skill `tnc-seo-content`, `seo-keyword-research`, `evaluate_seo.py` và `.env` chứa SerpApi key).
 
 ## Cài đặt một lần
-1. Supabase SQL Editor (project TNC): chạy `database/seo_content.sql`.
+1. Supabase SQL Editor (project TNC): chạy `database/seo_content.sql` và `database/cowork_notifications.sql` (bảng cho chuông thông báo).
 2. Đặt khóa API cho Cowork (chuỗi ngẫu nhiên dài, giữ bí mật):
    ```
    supabase secrets set COWORK_API_KEY=<chuoi-bi-mat> --project-ref lfexppnvvkqzygbwqnkv
@@ -26,6 +26,9 @@ Mọi request có header `x-api-key: $COWORK_API_KEY`.
 | POST | `/outlines` | Đẩy outline, luôn ở trạng thái chưa duyệt |
 | GET | `/outlines/approved` | Outline bạn đã bấm duyệt và chưa có bài |
 | POST | `/articles` | Đẩy bài viết, luôn ở trạng thái chưa duyệt (chỉ nhận khi outline đã duyệt) |
+| POST | `/notifications` | Báo tin lên chuông thông báo trên dashboard |
+
+Body `POST /notifications`: `{level: "info"|"success"|"warning"|"error", title, message?, keyword?}`
 
 Body `POST /outlines`: `{approved_keyword_id, keyword, outline_md, short_kws[], long_kws[], research{}}`
 Body `POST /articles`: `{outline_id, title, content_md, meta_description, seo_score, word_count}`
@@ -62,6 +65,13 @@ PHẦN B, viết bài:
    và sửa đến khi điểm >= 90; tạo meta description 160-170 ký tự (Bước 5).
    Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
 6. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count.
+
+THÔNG BÁO LÊN CHUÔNG DASHBOARD (POST {COWORK_API_URL}/notifications, body {level, title, message, keyword}):
+- Mỗi keyword lỗi (serp_keyword.py hỏng, không đủ PAA, evaluate_seo.py không đạt 90 sau nhiều lần sửa, API trả lỗi khác 409):
+  level "error" hoặc "warning", title ngắn nêu việc, message ghi nguyên nhân, keyword là từ khóa liên quan.
+- Cuối lần chạy: 1 thông báo level "success" nếu mọi thứ ổn, nội dung "Đã đẩy N outline, M bài chờ duyệt"; nếu có lỗi thì level "warning"
+  kèm số mục lỗi. Nếu không có keyword nào để xử lý thì level "info" "Không có keyword mới".
+- Thông báo chỉ là tin cho người xem, không chứa khóa API hay dữ liệu nhạy cảm. Lỗi gọi /notifications không được làm dừng cả lần chạy.
 
 Nếu một lời gọi trả 409 (đã có) thì bỏ qua mục đó. Cuối cùng báo cáo: số outline đã đẩy, số bài đã đẩy, lỗi nếu có.
 Không bao giờ tự duyệt, không sửa trạng thái; việc duyệt do người dùng bấm trên dashboard.

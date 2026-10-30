@@ -2060,6 +2060,7 @@
         seoOutlines = o.data || [];
         seoArticles = a.data || [];
         seoError = null;
+        loadCoworkNotes();
       } catch (err) {
         console.error(err);
         seoError = `Không tải được outline và bài viết: ${err.message} (đã chạy database/seo_content.sql chưa?)`;
@@ -2079,7 +2080,22 @@
 
     // ===== CHUÔNG THÔNG BÁO: dựng từ trạng thái outline/bài viết Cowork đã gửi lên =====
     const NOTIF_READ_KEY = "tnc_notif_read_v1";
+    const NOTIF_LEVEL_DOT = { info: "bg-blue-500", success: "bg-emerald-500", warning: "bg-amber-500", error: "bg-rose-500" };
     let notifItems = [];
+    let coworkNotes = [];
+
+    async function loadCoworkNotes() {
+      if (!STATIC_MODE || !sb) return;
+      try {
+        const { data, error } = await sb.from("cowork_notifications").select("*").order("created_at", { ascending: false }).limit(30);
+        if (error) throw new Error(error.message);
+        coworkNotes = data || [];
+        renderNotifications(approvedKeywords || []);
+      } catch (err) {
+        console.warn("Chưa tải được thông báo Cowork (đã chạy database/cowork_notifications.sql chưa?):", err.message);
+      }
+    }
+    if (STATIC_MODE) setInterval(() => { loadSeoContent(); loadCoworkNotes(); }, 60000);
     const notifReadSet = () => { try { return new Set(JSON.parse(localStorage.getItem(NOTIF_READ_KEY) || "[]")); } catch (e) { return new Set(); } };
     const notifSaveRead = (set) => { try { localStorage.setItem(NOTIF_READ_KEY, JSON.stringify([...set].slice(-300))); } catch (e) {} };
     const notifAgo = (iso) => {
@@ -2102,6 +2118,8 @@
         else if (info.stage === "READY") items.push({ key: `article:${info.article.id}:ready`, action: false, stage: "READY", kind: "article", id: info.article.id, title: "Bài đã duyệt, sẵn sàng đăng (chưa có link)", kw, at: info.article.updated_at || info.article.created_at });
         else if (info.stage === "WRITING") items.push({ key: `outline:${info.outline.id}:writing`, action: false, stage: "WRITING", kind: "", id: 0, title: "Outline đã duyệt, Cowork sẽ viết bài ở lần chạy sau", kw, at: info.outline.updated_at || info.outline.created_at });
       });
+      // Tin Cowork tự báo (bảng cowork_notifications qua POST /notifications)
+      coworkNotes.forEach(c => items.push({ key: `cw:${c.id}`, action: false, level: c.level, stage: "", kind: "", id: 0, title: c.title, msg: c.message || "", kw: c.keyword || "", at: c.created_at, fromCowork: true }));
       items.sort((a, b) => (b.action - a.action) || (new Date(b.at || 0) - new Date(a.at || 0)));
       notifItems = items;
 
@@ -2120,10 +2138,11 @@
       if (!items.length) { box.innerHTML = `<div class="px-4 py-10 text-center text-xs text-slate-400">Chưa có thông báo nào từ Cowork.</div>`; return; }
       box.innerHTML = items.map((n, i) => `
         <button type="button" onclick="openNotif(${i})" class="w-full text-left px-4 py-3 flex gap-3 hover:bg-slate-50 transition ${n.action ? "bg-orange-50/60" : ""}">
-          <span class="mt-1.5 w-2 h-2 rounded-full shrink-0 ${n.action ? "bg-orange-500" : read.has(n.key) ? "bg-slate-200" : "bg-blue-500"}"></span>
+          <span class="mt-1.5 w-2 h-2 rounded-full shrink-0 ${n.action ? "bg-orange-500" : read.has(n.key) ? "bg-slate-200" : (NOTIF_LEVEL_DOT[n.level] || "bg-blue-500")}"></span>
           <span class="min-w-0 flex-1">
-            <span class="block text-xs font-bold text-slate-800">${n.title}${n.action ? ` <span class="ml-1 px-1.5 py-0.5 rounded-full bg-orange-500 text-white text-[9px] font-extrabold align-middle">CẦN DUYỆT</span>` : ""}</span>
-            <span class="block text-xs text-slate-600 truncate mt-0.5">${escapeHtml(n.kw)}</span>
+            <span class="block text-xs font-bold text-slate-800">${n.fromCowork ? escapeHtml(n.title) : n.title}${n.action ? ` <span class="ml-1 px-1.5 py-0.5 rounded-full bg-orange-500 text-white text-[9px] font-extrabold align-middle">CẦN DUYỆT</span>` : ""}${n.fromCowork ? ` <span class="ml-1 px-1.5 py-0.5 rounded-full bg-violet-100 text-violet-700 text-[9px] font-extrabold align-middle">COWORK</span>` : ""}</span>
+            ${n.msg ? `<span class="block text-xs text-slate-600 mt-0.5 whitespace-pre-line">${escapeHtml(n.msg)}</span>` : ""}
+            ${n.kw ? `<span class="block text-xs text-slate-500 truncate mt-0.5">${escapeHtml(n.kw)}</span>` : ""}
             <span class="block text-[10px] text-slate-400 mt-0.5">${notifAgo(n.at)}</span>
           </span>
         </button>`).join("");
@@ -2145,6 +2164,11 @@
       const set = notifReadSet(); set.add(n.key); notifSaveRead(set);
       byId("notifPanel").classList.add("hidden");
       switchTab("workflow");
+      if (n.fromCowork) {
+        const s = byId("wfSearchInput"); if (s) s.value = n.kw || "";
+        setWfStage("ALL");
+        return;
+      }
       setWfStage(n.stage);
       if (n.kind) openSeoViewer(n.kind, Number(n.id));
     }

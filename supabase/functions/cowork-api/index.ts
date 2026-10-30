@@ -8,6 +8,7 @@
 //   POST /cowork-api/outlines           đẩy outline (status = pending)
 //   GET  /cowork-api/outlines/approved  outline đã được duyệt và CHƯA có bài viết
 //   POST /cowork-api/articles           đẩy bài viết (status = pending)
+//   POST /cowork-api/notifications      báo tin lên chuông dashboard {level, title, message, keyword}
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const API_KEY = Deno.env.get("COWORK_API_KEY") ?? "";
@@ -102,6 +103,21 @@ Deno.serve(async (req) => {
       }).select("id, keyword, status").single();
       if (error) return json({ error: error.message }, error.code === "23505" ? 409 : 500);
       return json({ article: data }, 201);
+    }
+
+    if (req.method === "POST" && route === "/notifications") {
+      const b = await req.json();
+      const title = str(b.title, 200);
+      if (!title) return json({ error: "title là bắt buộc" }, 400);
+      const level = ["info", "success", "warning", "error"].includes(b.level) ? b.level : "info";
+      const { data, error } = await supabase.from("cowork_notifications").insert({
+        level,
+        title,
+        message: str(b.message, 2000) || null,
+        keyword: str(b.keyword, 300) || null,
+      }).select("id, level, title").single();
+      if (error) throw error;
+      return json({ notification: data }, 201);
     }
 
     return json({ error: "not found" }, 404);
