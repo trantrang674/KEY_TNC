@@ -10,16 +10,20 @@ Gồm:    clicks / impressions / vị trí theo ngày (60 ngày), top query, thi
 Mặc định chỉ XEM TRƯỚC (không ghi). Thêm --apply để ghi thật.
 
 Biến môi trường (.env): SUPABASE_URL, SUPABASE_SERVICE_KEY.
-Tùy chọn: GOOGLE_SERVICE_ACCOUNT_JSON (mặc định dùng khóa của seo-audit-tool), GSC_SITE_URL, GA4_PROPERTY_ID,
+Tùy chọn: GOOGLE_SERVICE_ACCOUNT_JSON (đường dẫn file hoặc nội dung JSON; mặc định dùng khóa của seo-audit-tool),
+          GSC_SITE_URL, GA4_PROPERTY_ID, SYNC_WORKERS (số luồng, mặc định 6),
           NEWS_HUB_URL (mặc định https://www.tnc.com.vn/tin-tuc.html), NEWS_WINDOW_DAYS (mặc định 60).
 Chạy:  python sync_gsc_ga4.py            (xem trước)
        python sync_gsc_ga4.py --apply    (ghi lên Supabase)
 """
 import html
+import json
 import os
 import re
 import sys
+import threading
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from urllib.parse import quote, urljoin, urlparse
@@ -101,20 +105,34 @@ def crawl_news(hub_url: str, site: str, cutoff: date) -> dict:
 
 # ----------------------------------------------------------------------------- Google
 class Google:
-    def __init__(self, key_path: Path, site_url: str, ga4_property: str):
-        if not key_path.is_file():
-            sys.exit(f"Không thấy file khóa service account: {key_path} (đặt GOOGLE_SERVICE_ACCOUNT_JSON trong .env)")
-        creds = service_account.Credentials.from_service_account_file(str(key_path), scopes=SCOPES)
-        self.session = AuthorizedSession(creds)
-        self.email = creds.service_account_email
+    def __init__(self, key: str, site_url: str, ga4_property: str):
+        """key: đường dẫn file JSON, hoặc chính nội dung JSON (dùng cho GitHub Actions Secrets)."""
+        if key.lstrip().startswith("{"):
+            self.creds = service_account.Credentials.from_service_account_info(json.loads(key), scopes=SCOPES)
+        elif Path(key).is_file():
+            self.creds = service_account.Credentials.from_service_account_file(key, scopes=SCOPES)
+        else:
+            sys.exit(f"Không thấy file khóa service account: {key} (đặt GOOGLE_SERVICE_ACCOUNT_JSON trong .env)")
+        self.email = self.creds.service_account_email
         self.site = site_url
         self.ga4 = ga4_property
+        self._local = threading.local()  # mỗi luồng một phiên HTTP riêng
+
+    @property
+    def session(self) -> AuthorizedSession:
+        if not hasattr(self._local, "s"):
+            self._local.s = AuthorizedSession(self.creds)
+        return self._local.s
 
     def _post(self, url: str, body: dict) -> dict:
-        r = self.session.post(url, json=body, timeout=60)
-        if r.status_code >= 300:
-            raise RuntimeError(f"{r.status_code}: {r.text[:300]}")
-        return r.json()
+        for attempt in range(3):
+            r = self.session.post(url, json=body, timeout=60)
+            if r.status_code in (429, 500, 502, 503) and attempt < 2:
+                time.sleep(2 * (attempt + 1))
+                continue
+            if r.status_code >= 300:
+                raise RuntimeError(f"{r.status_code}: {r.text[:300]}")
+            return r.json()
 
     def gsc(self, start: date, end: date, dimensions: list, page: str, limit: int = 1000) -> list:
         url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{quote(self.site, safe='')}/searchAnalytics/query"
@@ -208,7 +226,7 @@ def main() -> None:
     sb_key = need("SUPABASE_SERVICE_KEY")
     apply = "--apply" in sys.argv
     site = os.getenv("GSC_SITE_URL", "").strip() or DEFAULT_SITE
-    g = Google(Path(os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip() or DEFAULT_KEY),
+    g = Google(os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON", "").strip() or str(DEFAULT_KEY),
                site, os.getenv("GA4_PROPERTY_ID", "").strip() or DEFAULT_GA4)
     window = int(os.getenv("NEWS_WINDOW_DAYS", "").strip() or HISTORY_DAYS)
     hub = os.getenv("NEWS_HUB_URL", "").strip() or DEFAULT_HUB
@@ -233,18 +251,21 @@ def main() -> None:
 
     end = date.today() - timedelta(days=GSC_LAG_DAYS)
     rows = []
-    for n, (url, meta) in enumerate(targets.items(), 1):
-        tag = " [DASHBOARD]" if meta["is_dashboard"] else ""
-        print(f"[{n}/{len(targets)}]{tag} {meta['title'][:70]}")
-        try:
-            row = collect(g, url, end)
-        except Exception as e:
-            print(f"    x Lỗi, bỏ qua: {e}")
-            continue
-        row.update(title=meta["title"], published_date=meta["published_date"], category=meta["category"],
-                   is_dashboard=meta["is_dashboard"], article_id=meta["article_id"])
-        print(f"    {len(row['daily'])} ngày có dữ liệu · index: {row['index_state'] or row['is_indexed']}")
-        rows.append(row)
+    workers = int(os.getenv("SYNC_WORKERS", "").strip() or 6)
+    with ThreadPoolExecutor(max_workers=workers) as pool:
+        futures = {pool.submit(collect, g, url, end): (url, meta) for url, meta in targets.items()}
+        for n, fut in enumerate(as_completed(futures), 1):
+            url, meta = futures[fut]
+            tag = " [DASHBOARD]" if meta["is_dashboard"] else ""
+            try:
+                row = fut.result()
+            except Exception as e:
+                print(f"[{n}/{len(targets)}]{tag} x Lỗi, bỏ qua {url}: {e}")
+                continue
+            row.update(title=meta["title"], published_date=meta["published_date"], category=meta["category"],
+                       is_dashboard=meta["is_dashboard"], article_id=meta["article_id"])
+            print(f"[{n}/{len(targets)}]{tag} {meta['title'][:60]} · {len(row['daily'])} ngày có dữ liệu · index: {row['index_state'] or row['is_indexed']}")
+            rows.append(row)
 
     if apply and rows:
         for i in range(0, len(rows), 20):
