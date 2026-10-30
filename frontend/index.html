@@ -44,35 +44,26 @@
       --side-b: #f6dfe3;
       --shadow-rgb: 80, 55, 140;
     }
-    html { background: var(--page); }
+    html { background: var(--shell-b); }
     body {
       font-family: 'Plus Jakarta Sans', 'Be Vietnam Pro', sans-serif;
       color: var(--ink);
       background:
-        radial-gradient(1100px 600px at 0% 0%, #e7e0ee 0%, transparent 60%),
-        radial-gradient(900px 600px at 100% 100%, #cfcadb 0%, transparent 60%),
-        var(--page);
+        radial-gradient(700px 420px at 100% 100%, var(--shell-glow), transparent 65%),
+        linear-gradient(165deg, var(--shell-a) 0%, var(--shell-b) 42%, var(--shell-c) 100%);
       background-attachment: fixed;
     }
 
-    /* Khung ứng dụng bo tròn lớn như mẫu */
-    .stage { padding: 14px; }
-    .shell {
-      min-height: calc(100vh - 40px);
-      max-width: none; margin: 0; border-radius: 40px; padding: 14px 16px 22px;
-      background:
-        radial-gradient(700px 420px at 100% 100%, var(--shell-glow), transparent 65%),
-        linear-gradient(165deg, var(--shell-a) 0%, var(--shell-b) 42%, var(--shell-c) 100%);
-      border: 3px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 40px 80px -40px rgba(60, 40, 110, 0.45);
-      animation: shell-in .55s cubic-bezier(.2, .8, .2, 1) both;
-    }
-    @keyframes shell-in { from { opacity: 0; transform: translateY(14px) scale(.985); } to { opacity: 1; transform: none; } }
+    /* Một trang liền: không còn khung bo tròn và nền tím bên ngoài */
+    .stage { padding: 0; }
+    .shell { min-height: 100vh; max-width: none; margin: 0; padding: 0; }
+    .app-shell { padding: 0 24px 28px; }
 
-    /* Thanh trên dạng viên thuốc */
+    /* Thanh header cố định đầu trang, trải hết chiều ngang */
     .topbar {
-      background: #fff; border-radius: 26px; padding: 10px 14px 10px 14px;
-      box-shadow: 0 10px 26px -18px rgba(70, 50, 130, 0.4);
+      width: 100%; background: #fff; border-radius: 0; padding: 10px 24px;
+      box-shadow: 0 6px 22px -14px rgba(70, 50, 130, 0.45);
+      border-bottom: 1px solid var(--line);
     }
     .brand-mark {
       width: 2.5rem; height: 2.5rem; border-radius: 14px; background: var(--primary-soft);
@@ -122,7 +113,7 @@
     .nav-item, .nav-pill { letter-spacing: .02em; }
 
     /* Điều hướng trái */
-    .side-nav { display: flex; flex-direction: column; height: calc(100vh - 11rem); min-height: 480px; padding: 6px 4px 0; overflow-y: auto; }
+    .side-nav { display: flex; flex-direction: column; height: calc(100vh - 8.5rem); min-height: 480px; padding: 6px 4px 0; overflow-y: auto; }
     .nav-item {
       width: 100%; height: 2.9rem; display: flex; align-items: center; gap: .75rem;
       padding: 0 .9rem; border-radius: 16px; text-align: left; white-space: nowrap;
@@ -189,10 +180,9 @@
 
 
     @media (max-width: 1023px) {
-      .stage { padding: 8px; }
-      .shell { border-radius: 26px; padding: 8px 8px 16px; }
+      .topbar { padding: 10px 12px; }
+      .app-shell { padding: 0 12px 20px; }
     }
-    @media (prefers-reduced-motion: reduce) { .shell { animation: none; } }
   </style>
 </head>
 <body class="min-h-screen pb-16">
@@ -280,7 +270,7 @@
   <div class="stage">
   <div class="shell">
   <!-- TOP BAR -->
-  <header class="topbar sticky top-3 z-40">
+  <header class="topbar sticky top-0 z-40">
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
       <div class="flex items-center gap-3">
         <div class="brand-mark">
@@ -334,7 +324,7 @@
 
   <div class="app-shell mt-5 flex gap-6 items-start">
     <!-- LEFT NAVIGATION MENU -->
-    <aside class="hidden lg:block w-[236px] shrink-0 sticky top-28">
+    <aside class="hidden lg:block w-[236px] shrink-0 sticky top-24">
       <nav aria-label="Menu chính" class="side-nav">
         <div class="flex flex-col gap-1.5">
           <button type="button" class="nav-item" data-tab="dashboard" onclick="switchTab('dashboard')">
