@@ -670,10 +670,9 @@
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg bg-indigo-600 text-white font-bold transition" onclick="changeReportRange('7d', this)">7 ngày</button>
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('28d', this)">28 ngày</button>
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('all', this)">60 ngày</button>
-              <button type="button" id="reportCustomBtn" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="toggleReportCustomRange()">📅 Tùy chỉnh</button>
             </div>
-            <!-- Khung chọn khoảng ngày tùy chỉnh -->
-            <div id="reportCustomPanel" class="hidden items-center gap-1.5 rounded-xl bg-white border border-blue-100 px-2.5 py-1 shadow-sm text-xs font-semibold text-slate-700">
+            <!-- Khung chọn khoảng ngày tùy chỉnh (luôn hiển thị) -->
+            <div id="reportCustomPanel" class="flex items-center gap-1.5 rounded-xl bg-white border border-blue-100 px-2.5 py-1 shadow-sm text-xs font-semibold text-slate-700 transition">
               <span>Từ</span>
               <input type="date" id="reportCustomFrom" class="border border-blue-100 rounded-lg px-1.5 py-0.5 text-xs focus:outline-none focus:border-indigo-500" />
               <span>đến</span>
@@ -901,13 +900,6 @@
                 <option value="OTHER">Bài khác của trang</option>
               </select>
 
-              <!-- Lọc Index -->
-              <select id="reportFilterIndex" onchange="applyReportFilters()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500">
-                <option value="ALL">Tất cả Google Index</option>
-                <option value="INDEXED">Đã Index</option>
-                <option value="PENDING">Chưa Index / chưa kiểm tra</option>
-              </select>
-
               <!-- Lọc Thứ hạng -->
               <select id="reportFilterRank" onchange="applyReportFilters()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500">
                 <option value="ALL">Tất cả thứ hạng</option>
@@ -923,6 +915,13 @@
                 <option value="impr_desc">Hiển thị nhiều nhất</option>
                 <option value="score_desc">Điểm SEO cao nhất</option>
                 <option value="date_desc">Ngày xuất bản mới nhất</option>
+              </select>
+
+              <!-- Lọc Index -->
+              <select id="reportFilterIndex" onchange="applyReportFilters()" class="bg-white border border-blue-100 rounded-xl px-3 py-1.5 text-xs font-semibold text-slate-700 focus:outline-none focus:border-indigo-500">
+                <option value="ALL">Tất cả Google Index</option>
+                <option value="INDEXED">Đã Index</option>
+                <option value="PENDING">Chưa Index / chưa kiểm tra</option>
               </select>
             </div>
           </div>
@@ -3385,6 +3384,7 @@
         reportLoadError = err.message;
       }
       populateReportCategories();
+      initReportCustomInputs();
       updateReportKPIs();
       renderReportTrendChart();
       applyReportFilters();
@@ -3400,17 +3400,11 @@
       if (cats.includes(cur)) sel.value = cur;
     }
 
-    function toggleReportCustomRange() {
-      const panel = byId("reportCustomPanel");
-      const opening = panel.classList.contains("hidden");
-      panel.classList.toggle("hidden", !opening);
-      panel.classList.toggle("flex", opening);
-      if (opening) {
-        const from = byId("reportCustomFrom"), to = byId("reportCustomTo");
-        if (!to.value) to.value = reportEnd;
-        if (!from.value) from.value = rptDate(rptShift(new Date(reportEnd + "T00:00:00Z"), -13));
-        to.max = from.max = reportEnd;
-      }
+    // Giới hạn ngày chọn tối đa = ngày dữ liệu mới nhất (gọi sau khi tải dữ liệu)
+    function initReportCustomInputs() {
+      const from = byId("reportCustomFrom"), to = byId("reportCustomTo");
+      if (!from || !to || !reportEnd) return;
+      to.max = from.max = reportEnd;
     }
 
     function applyReportCustomRange() {
@@ -3418,15 +3412,13 @@
       if (!from || !to) { alert("Vui lòng chọn đủ ngày bắt đầu và ngày kết thúc."); return; }
       if (from > to) { alert("Ngày bắt đầu phải trước hoặc bằng ngày kết thúc."); return; }
       reportCustom = { from, to };
-      changeReportRange("custom", byId("reportCustomBtn"));
+      changeReportRange("custom");
     }
 
     function changeReportRange(range, btn) {
-      if (range !== "custom") {
-        const panel = byId("reportCustomPanel");
-        panel.classList.add("hidden");
-        panel.classList.remove("flex");
-      }
+      const panel = byId("reportCustomPanel");
+      panel.classList.toggle("border-indigo-500", range === "custom");
+      panel.classList.toggle("border-blue-100", range !== "custom");
       reportActiveRange = range;
       document.querySelectorAll(".report-range-btn").forEach(b => {
         b.classList.remove("bg-indigo-600", "text-white", "font-bold");
