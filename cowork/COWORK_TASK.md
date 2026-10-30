@@ -48,8 +48,8 @@ Dashboard dựa vào đây để hiện "Cowork chạy lần cuối" và báo đ
 
 PHẦN A, lập outline:
 1. GET {COWORK_API_URL}/keywords. Với mỗi keyword (tối đa 5 keyword/lần chạy):
-   Nếu keyword có rejected_note (không rỗng) nghĩa là outline lần trước bị người duyệt TỪ CHỐI với lý do đó:
-   đọc kỹ lý do và lập outline mới sửa đúng chỗ bị chê, không lặp lại lỗi cũ.
+   Nếu keyword có rejected_note (không rỗng) nghĩa là người duyệt đã YÊU CẦU CHỈNH SỬA outline lần trước (nhận xét thêm/bớt/đổi gì đó):
+   đọc kỹ nhận xét và lập outline mới làm đúng từng ý được yêu cầu, không lặp lại phần bị góp ý.
 2. Làm Bước 2 và Bước 3 của skill tnc-seo-content (chạy serp_keyword.py, phân tích đối thủ, chọn 2-3 key phụ ngắn
    và 2-3 key phụ dài, lập outline gồm title, mở đầu, H2/H3, FAQ 5 câu, Kết luận).
 3. POST {COWORK_API_URL}/outlines với approved_keyword_id=id, keyword, outline_md, short_kws, long_kws,
@@ -71,8 +71,8 @@ PHẦN A, lập outline:
 
 PHẦN B, viết bài:
 4. GET {COWORK_API_URL}/outlines/approved. Với mỗi outline (tối đa 5):
-   Nếu outline có rejected_article_note (không rỗng) nghĩa là bài lần trước bị người duyệt TỪ CHỐI với lý do đó:
-   đọc kỹ lý do và viết lại bài sửa đúng chỗ bị chê (vẫn giữ 100% key phụ và điểm SEO >= 90).
+   Nếu outline có rejected_article_note (không rỗng) nghĩa là người duyệt đã YÊU CẦU CHỈNH SỬA bài lần trước:
+   đọc kỹ nhận xét và viết lại bài làm đúng từng ý được yêu cầu (vẫn giữ 100% key phụ và điểm SEO >= 90).
 5. Viết bài theo Bước 4 của skill, dùng đúng 100% key phụ trong outline đã duyệt; chạy evaluate_seo.py
    và sửa đến khi điểm >= 90; tạo meta description 160-170 ký tự (Bước 5).
    Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
