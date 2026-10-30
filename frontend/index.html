@@ -113,7 +113,8 @@
     .nav-item, .nav-pill { letter-spacing: .02em; }
 
     /* Điều hướng trái */
-    .side-nav { display: flex; flex-direction: column; height: calc(100vh - 8.5rem); min-height: 480px; padding: 6px 4px 0; overflow-y: auto; }
+    /* Cố định theo màn hình (không phụ thuộc độ dài nội dung hay vị trí cuộn của từng tab); thẻ aside chỉ giữ chỗ 236px bên trái */
+    .side-nav { position: fixed; top: 76px; left: 24px; width: 236px; z-index: 30; display: flex; flex-direction: column; height: calc(100vh - 96px); min-height: 0; padding: 6px 4px 0; overflow-y: auto; }
     .nav-item {
       width: 100%; height: 2.9rem; display: flex; align-items: center; gap: .75rem;
       padding: 0 .9rem; border-radius: 16px; text-align: left; white-space: nowrap;
@@ -324,7 +325,7 @@
 
   <div class="app-shell mt-5 flex gap-6 items-start">
     <!-- LEFT NAVIGATION MENU -->
-    <aside class="hidden lg:block w-[236px] shrink-0 sticky top-24">
+    <aside class="hidden lg:block w-[236px] shrink-0 self-stretch">
       <nav aria-label="Menu chính" class="side-nav">
         <div class="flex flex-col gap-1.5">
           <button type="button" class="nav-item" data-tab="dashboard" onclick="switchTab('dashboard')">
