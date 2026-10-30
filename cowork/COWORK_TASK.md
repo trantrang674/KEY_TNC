@@ -4,7 +4,7 @@ Chạy 1 lần/ngày. Thư mục làm việc của task phải là `C:\Users\MK0
 (nơi có skill `tnc-seo-content`, `seo-keyword-research`, `evaluate_seo.py` và `.env` chứa SerpApi key).
 
 ## Cài đặt một lần
-1. Supabase SQL Editor (project TNC): chạy `database/seo_content.sql` và `database/cowork_notifications.sql` (bảng cho chuông thông báo).
+1. Supabase SQL Editor (project TNC): chạy `database/seo_content.sql` , `database/cowork_notifications.sql` (bảng cho chuông thông báo), `database/seo_articles_google_doc.sql` (link Docs) và `database/cowork_heartbeat.sql` (nhịp hoạt động của Cowork).
 2. Đặt khóa API cho Cowork (chuỗi ngẫu nhiên dài, giữ bí mật):
    ```
    supabase secrets set COWORK_API_KEY=<chuoi-bi-mat> --project-ref lfexppnvvkqzygbwqnkv
@@ -28,6 +28,10 @@ Mọi request có header `x-api-key: $COWORK_API_KEY`.
 | POST | `/articles` | Đẩy bài viết, luôn ở trạng thái chưa duyệt (chỉ nhận khi outline đã duyệt) |
 | POST | `/notifications` | Báo tin lên chuông thông báo trên dashboard |
 
+| POST | `/heartbeat` | Báo "Cowork vừa chạy": `{status: "running"\|"ok"\|"error", summary?}` (cần `database/cowork_heartbeat.sql`) |
+
+`GET /keywords` trả thêm `rejected_note` (lý do người duyệt từ chối outline trước), `GET /outlines/approved` trả thêm `rejected_article_note` (lý do từ chối bài trước).
+
 Body `POST /notifications`: `{level: "info"|"success"|"warning"|"error", title, message?, keyword?}`
 
 Body `POST /outlines`: `{approved_keyword_id, keyword, outline_md, short_kws[], long_kws[], research{}}`
@@ -39,8 +43,13 @@ Body `POST /articles`: `{outline_id, title, content_md, meta_description, seo_sc
 Làm việc trong thư mục tnc-seo-content, dùng skill tnc-seo-content. Đọc COWORK_API_URL và COWORK_API_KEY từ .env
 (không in khóa ra màn hình). Mọi lời gọi API gửi header x-api-key.
 
+BƯỚC 0 (đầu lần chạy): POST {COWORK_API_URL}/heartbeat với {"status":"running","summary":"Bắt đầu chạy"}.
+Dashboard dựa vào đây để hiện "Cowork chạy lần cuối" và báo đỏ nếu quá 26 giờ không có nhịp. Lỗi gọi /heartbeat không được làm dừng lần chạy.
+
 PHẦN A, lập outline:
 1. GET {COWORK_API_URL}/keywords. Với mỗi keyword (tối đa 5 keyword/lần chạy):
+   Nếu keyword có rejected_note (không rỗng) nghĩa là outline lần trước bị người duyệt TỪ CHỐI với lý do đó:
+   đọc kỹ lý do và lập outline mới sửa đúng chỗ bị chê, không lặp lại lỗi cũ.
 2. Làm Bước 2 và Bước 3 của skill tnc-seo-content (chạy serp_keyword.py, phân tích đối thủ, chọn 2-3 key phụ ngắn
    và 2-3 key phụ dài, lập outline gồm title, mở đầu, H2/H3, FAQ 5 câu, Kết luận).
 3. POST {COWORK_API_URL}/outlines với approved_keyword_id=id, keyword, outline_md, short_kws, long_kws,
@@ -62,6 +71,8 @@ PHẦN A, lập outline:
 
 PHẦN B, viết bài:
 4. GET {COWORK_API_URL}/outlines/approved. Với mỗi outline (tối đa 5):
+   Nếu outline có rejected_article_note (không rỗng) nghĩa là bài lần trước bị người duyệt TỪ CHỐI với lý do đó:
+   đọc kỹ lý do và viết lại bài sửa đúng chỗ bị chê (vẫn giữ 100% key phụ và điểm SEO >= 90).
 5. Viết bài theo Bước 4 của skill, dùng đúng 100% key phụ trong outline đã duyệt; chạy evaluate_seo.py
    và sửa đến khi điểm >= 90; tạo meta description 160-170 ký tự (Bước 5).
    Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
@@ -80,6 +91,9 @@ THÔNG BÁO LÊN CHUÔNG DASHBOARD (POST {COWORK_API_URL}/notifications, body {l
 - Cuối lần chạy: 1 thông báo level "success" nếu mọi thứ ổn, nội dung "Đã đẩy N outline, M bài chờ duyệt"; nếu có lỗi thì level "warning"
   kèm số mục lỗi. Nếu không có keyword nào để xử lý thì level "info" "Không có keyword mới".
 - Thông báo chỉ là tin cho người xem, không chứa khóa API hay dữ liệu nhạy cảm. Lỗi gọi /notifications không được làm dừng cả lần chạy.
+
+KẾT THÚC LẦN CHẠY: POST {COWORK_API_URL}/heartbeat với {"status":"ok","summary":"Đã đẩy N outline, M bài"} nếu chạy xong bình thường
+(kể cả khi không có keyword nào để xử lý); {"status":"error","summary":"<lý do ngắn>"} nếu cả lần chạy hỏng nặng, không làm được gì.
 
 Nếu một lời gọi trả 409 (đã có) thì bỏ qua mục đó. Cuối cùng báo cáo: số outline đã đẩy, số bài đã đẩy, lỗi nếu có.
 Không bao giờ tự duyệt, không sửa trạng thái; việc duyệt do người dùng bấm trên dashboard.

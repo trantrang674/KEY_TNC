@@ -9,6 +9,8 @@
 //   GET  /cowork-api/outlines/approved  outline đã được duyệt và CHƯA có bài viết
 //   POST /cowork-api/articles           đẩy bài viết (status = pending)
 //   POST /cowork-api/notifications      báo tin lên chuông dashboard {level, title, message, keyword}
+//   POST /cowork-api/heartbeat          báo "Cowork vừa chạy" {status: running|ok|error, summary}
+//   (GET /keywords trả thêm rejected_note, GET /outlines/approved trả thêm rejected_article_note: lý do người duyệt từ chối bản trước)
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 const API_KEY = Deno.env.get("COWORK_API_KEY") ?? "";
@@ -47,7 +49,16 @@ Deno.serve(async (req) => {
       const { data: outs, error: e2 } = await supabase.from("seo_outlines").select("keyword, status").neq("status", "rejected");
       if (e2) throw e2;
       const done = new Set((outs ?? []).map((o) => o.keyword.trim().toLowerCase()));
-      return json({ keywords: (kws ?? []).filter((k) => !done.has(k.keyword.trim().toLowerCase())) });
+      // Outline bị từ chối gần nhất của mỗi keyword: Cowork đọc rejected_note để lập lại đúng chỗ người duyệt chê
+      const { data: rej, error: e3 } = await supabase.from("seo_outlines")
+        .select("keyword, review_note, reviewed_at").eq("status", "rejected").order("reviewed_at", { ascending: true });
+      if (e3) throw e3;
+      const lastRej = new Map<string, string>();
+      for (const r of rej ?? []) if (r.review_note) lastRej.set(r.keyword.trim().toLowerCase(), r.review_note);
+      return json({
+        keywords: (kws ?? []).filter((k) => !done.has(k.keyword.trim().toLowerCase()))
+          .map((k) => ({ ...k, rejected_note: lastRej.get(k.keyword.trim().toLowerCase()) ?? null })),
+      });
     }
 
     if (req.method === "POST" && route === "/outlines") {
@@ -76,7 +87,25 @@ Deno.serve(async (req) => {
       const { data: arts, error: e2 } = await supabase.from("seo_articles").select("outline_id").neq("status", "rejected");
       if (e2) throw e2;
       const written = new Set((arts ?? []).map((a) => a.outline_id));
-      return json({ outlines: (outs ?? []).filter((o) => !written.has(o.id)) });
+      // Bài bị từ chối gần nhất của outline: Cowork đọc rejected_article_note để viết lại đúng chỗ bị chê
+      const { data: rejArts, error: e3 } = await supabase.from("seo_articles")
+        .select("outline_id, review_note, reviewed_at").eq("status", "rejected").order("reviewed_at", { ascending: true });
+      if (e3) throw e3;
+      const lastRej = new Map<number, string>();
+      for (const a of rejArts ?? []) if (a.review_note) lastRej.set(a.outline_id, a.review_note);
+      return json({
+        outlines: (outs ?? []).filter((o) => !written.has(o.id)).map((o) => ({ ...o, rejected_article_note: lastRej.get(o.id) ?? null })),
+      });
+    }
+
+    if (req.method === "POST" && route === "/heartbeat") {
+      const b = await req.json().catch(() => ({}));
+      const status = ["running", "ok", "error"].includes(b.status) ? b.status : "ok";
+      const { error } = await supabase.from("cowork_heartbeat").upsert({
+        id: 1, last_run_at: new Date().toISOString(), status, summary: str(b.summary, 500) || null,
+      });
+      if (error) throw error;
+      return json({ ok: true });
     }
 
     if (req.method === "POST" && route === "/articles") {
