@@ -10,6 +10,7 @@
 //   POST /cowork-api/articles           đẩy bài viết (status = pending)
 //   POST /cowork-api/notifications      báo tin lên chuông dashboard {level, title, message, keyword}
 //   POST /cowork-api/heartbeat          báo "Cowork vừa chạy" {status: running|ok|error, summary}
+//   GET  /cowork-api/refresh-candidates bài nên làm mới (clicks / hiển thị giảm hoặc tụt hạng), tối đa 10 bài
 //   (GET /keywords trả thêm rejected_note, GET /outlines/approved trả thêm rejected_article_note: lý do người duyệt từ chối bản trước)
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
@@ -96,6 +97,58 @@ Deno.serve(async (req) => {
       return json({
         outlines: (outs ?? []).filter((o) => !written.has(o.id)).map((o) => ({ ...o, rejected_article_note: lastRej.get(o.id) ?? null })),
       });
+    }
+
+    // Bài nên làm mới: clicks / hiển thị giảm hoặc tụt hạng (14 ngày gần nhất so với 14 ngày trước, bỏ 2 ngày cuối).
+    // Ngưỡng phải khớp với ACT trong frontend/index.html (tab BÁO CÁO > Bài cần xử lý).
+    if (req.method === "GET" && route === "/refresh-candidates") {
+      const { data: rows, error } = await supabase.from("seo_article_metrics")
+        .select("url, title, is_dashboard, article_id, published_date, daily, data_end_date");
+      if (error) throw error;
+      const ends = (rows ?? []).map((r) => r.data_end_date).filter(Boolean).sort();
+      const endStr = ends[ends.length - 1];
+      if (!endStr) return json({ candidates: [], note: "chưa có số liệu GSC" });
+      const day = 86400000;
+      const end = new Date(endStr + "T00:00:00Z").getTime();
+      const iso = (ms: number) => new Date(ms).toISOString().slice(0, 10);
+      const curTo = iso(end - 2 * day), curFrom = iso(end - 15 * day);
+      const prevTo = iso(end - 16 * day), prevFrom = iso(end - 29 * day);
+      const sum = (daily: { d: string; c: number; i: number; p: number }[], from: string, to: string) => {
+        let c = 0, i = 0, pw = 0;
+        for (const r of daily) if (r.d >= from && r.d <= to) { c += r.c; i += r.i; pw += r.p * r.i; }
+        return { clicks: c, impr: i, pos: i ? pw / i : 0 };
+      };
+      const found: Record<string, unknown>[] = [];
+      for (const r of rows ?? []) {
+        const daily = Array.isArray(r.daily) ? r.daily : [];
+        if (!daily.length) continue;
+        const cur = sum(daily, curFrom, curTo), prev = sum(daily, prevFrom, prevTo);
+        const reasons: string[] = [];
+        if (prev.clicks >= 10 && cur.clicks <= prev.clicks * 0.7) {
+          reasons.push(`Clicks giảm ${Math.round(((prev.clicks - cur.clicks) / prev.clicks) * 100)}% (${prev.clicks} → ${cur.clicks})`);
+        } else if (prev.impr >= 300 && cur.impr <= prev.impr * 0.6) {
+          reasons.push(`Lượt hiển thị giảm ${Math.round(((prev.impr - cur.impr) / prev.impr) * 100)}% (${prev.impr} → ${cur.impr})`);
+        }
+        if (cur.impr >= 100 && prev.impr >= 100 && Math.round(cur.pos) - Math.round(prev.pos) >= 3) {
+          reasons.push(`Tụt hạng từ #${Math.round(prev.pos)} xuống #${Math.round(cur.pos)}`);
+        }
+        if (!reasons.length) continue;
+        found.push({
+          url: r.url, title: r.title, is_dashboard: r.is_dashboard, article_id: r.article_id, published_date: r.published_date,
+          reasons, clicks_recent: cur.clicks, clicks_previous: prev.clicks, position_recent: Math.round(cur.pos),
+          position_previous: Math.round(prev.pos), lost: prev.clicks - cur.clicks,
+        });
+      }
+      found.sort((a, b) => (b.lost as number) - (a.lost as number));
+      const top = found.slice(0, 10);
+      // Gắn keyword gốc cho bài của dashboard để Cowork biết bài viết về từ khóa nào
+      const ids = top.map((t) => t.article_id).filter((v) => Number.isInteger(v));
+      const kwById = new Map<number, string>();
+      if (ids.length) {
+        const { data: arts } = await supabase.from("seo_articles").select("id, keyword").in("id", ids as number[]);
+        for (const a of arts ?? []) kwById.set(a.id, a.keyword);
+      }
+      return json({ data_end_date: endStr, candidates: top.map((t) => ({ ...t, keyword: kwById.get(t.article_id as number) ?? null })) });
     }
 
     if (req.method === "POST" && route === "/heartbeat") {

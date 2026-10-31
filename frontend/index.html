@@ -355,6 +355,10 @@
             <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/></svg>
             <span>Đề xuất</span>
           </button>
+          <button type="button" class="nav-item" data-tab="caidat" onclick="switchTab('caidat')">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+            <span class="flex items-center gap-2">Cài đặt<span id="settingsHealthDot" class="hidden w-2 h-2 rounded-full bg-rose-500"></span></span>
+          </button>
         </div>
 
         <div class="mt-auto flex flex-col gap-3">
@@ -388,6 +392,7 @@
         <button type="button" class="nav-pill" data-tab="workflow" onclick="switchTab('workflow')">WORKFLOW</button>
         <button type="button" class="nav-pill" data-tab="baocao" onclick="switchTab('baocao')">BÁO CÁO</button>
         <button type="button" class="nav-pill" data-tab="dexuat" onclick="switchTab('dexuat')">ĐỀ XUẤT</button>
+        <button type="button" class="nav-pill" data-tab="caidat" onclick="switchTab('caidat')">CÀI ĐẶT</button>
       </nav>
 
       <!-- ============ TAB 1: DASHBOARD KEYWORD ============ -->
@@ -871,6 +876,18 @@
           </div>
         </div>
 
+        <!-- BÀI CẦN XỬ LÝ: tự quét 14 ngày gần nhất so với 14 ngày trước đó -->
+        <div class="pro-card rounded-2xl p-5">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-3 border-b border-blue-50">
+            <div>
+              <h3 class="text-sm font-extrabold text-slate-900">Bài Cần Xử Lý <span id="actionCount" class="ml-1 px-2 py-0.5 rounded-full bg-orange-500 text-white text-[10px] font-extrabold align-middle hidden"></span></h3>
+              <p class="text-[11px] text-slate-500">So sánh 14 ngày gần nhất với 14 ngày trước đó (bỏ 2 ngày cuối vì Google chưa chốt số). Bài giảm clicks hoặc tụt hạng được đánh dấu <strong>NÊN LÀM MỚI</strong> và Cowork đọc được danh sách này.</p>
+            </div>
+            <div id="actionFilters" class="flex flex-wrap gap-1.5 text-[11px] font-bold"></div>
+          </div>
+          <div id="actionList" class="mt-3 divide-y divide-blue-50/70 text-xs"></div>
+        </div>
+
         <!-- BẢNG THEO DÕI CHI TIẾT TỪNG BÀI VIẾT -->
         <div class="pro-card rounded-2xl overflow-hidden">
           <!-- BỘ LỌC BẢNG -->
@@ -954,6 +971,67 @@
         </div>
       </section>
       <section data-view="dexuat" class="hidden"></section>
+
+      <!-- ============ TAB: CÀI ĐẶT (sức khỏe hệ thống) ============ -->
+      <section data-view="caidat" class="hidden space-y-6">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+          <div>
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">Cài <span class="text-gradient">đặt</span></h2>
+            <p class="text-xs text-slate-500 mt-1">Sức khỏe hệ thống: bốn tác vụ chạy tự động và lần chạy gần nhất của từng tác vụ.</p>
+          </div>
+          <button type="button" onclick="renderSettingsHealth()" class="px-3.5 py-1.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 text-xs font-bold border border-blue-100 shadow-sm transition self-start sm:self-auto">Làm mới</button>
+        </div>
+
+        <div id="healthSummary" class="pro-card rounded-2xl px-4 py-3 text-sm font-bold text-slate-600">Đang kiểm tra...</div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+          <div class="pro-card rounded-2xl p-4 flex flex-col gap-2" id="healthCardScan">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Lần quét tin cuối</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300" data-dot></span>
+            </div>
+            <div class="text-2xl font-black text-slate-900" data-main>--</div>
+            <div class="text-xs text-slate-500" data-sub></div>
+            <div class="text-[11px] text-slate-400 mt-auto pt-2 border-t border-blue-50">Lịch: 12:00 thứ 2, 4, 6 hoặc chạy tay. Báo vàng nếu quá 80 giờ.</div>
+          </div>
+          <div class="pro-card rounded-2xl p-4 flex flex-col gap-2" id="healthCardSync">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Lần sync GSC + GA4 cuối</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300" data-dot></span>
+            </div>
+            <div class="text-2xl font-black text-slate-900" data-main>--</div>
+            <div class="text-xs text-slate-500" data-sub></div>
+            <div class="text-[11px] text-slate-400 mt-auto pt-2 border-t border-blue-50">Lịch: 6h, 12h, 18h mỗi ngày. Báo đỏ nếu quá 14 giờ.</div>
+          </div>
+          <div class="pro-card rounded-2xl p-4 flex flex-col gap-2" id="healthCardCowork">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Cowork chạy lần cuối</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300" data-dot></span>
+            </div>
+            <div class="text-2xl font-black text-slate-900" data-main>--</div>
+            <div class="text-xs text-slate-500" data-sub></div>
+            <div class="text-[11px] text-slate-400 mt-auto pt-2 border-t border-blue-50">Lịch: 8h sáng mỗi ngày. Báo đỏ nếu quá 26 giờ hoặc lần cuối báo lỗi.</div>
+          </div>
+          <div class="pro-card rounded-2xl p-4 flex flex-col gap-2" id="healthCardSerp">
+            <div class="flex items-center justify-between">
+              <span class="text-[11px] font-bold text-slate-500 uppercase tracking-wider">Lượt SerpApi còn lại</span>
+              <span class="w-2.5 h-2.5 rounded-full bg-slate-300" data-dot></span>
+            </div>
+            <div class="text-2xl font-black text-slate-900" data-main>--</div>
+            <div class="text-xs text-slate-500" data-sub></div>
+            <div class="text-[11px] text-slate-400 mt-auto pt-2 border-t border-blue-50">Mỗi lần quét tốn 4 lượt. Vàng khi còn dưới 40, đỏ khi còn dưới 15.</div>
+          </div>
+        </div>
+
+        <div class="pro-card rounded-2xl p-4 text-xs text-slate-600 space-y-1.5">
+          <div class="font-extrabold text-slate-900 text-sm">Khi có thẻ đỏ hoặc vàng</div>
+          <div><strong>Quét tin cũ:</strong> vào tab Actions của GitHub, chạy workflow "Cập nhật báo cáo hằng ngày" (bỏ tick "chỉ cập nhật giao diện").</div>
+          <div><strong>Sync GSC + GA4 cũ:</strong> chạy tay workflow "Đồng bộ số liệu GSC + GA4"; nếu vẫn lỗi, xem log của run đó.</div>
+          <div><strong>Cowork quá hạn:</strong> kiểm tra máy chạy Cowork có bật lúc 8h và scheduled task còn bật không.</div>
+          <div><strong>Hết lượt SerpApi:</strong> hạn chế chạy tay; quota tính lại đầu tháng.</div>
+          <div class="pt-1"><a href="https://github.com/trantrang674/KEY_TNC/actions" target="_blank" rel="noopener" class="font-bold text-indigo-600 hover:text-indigo-800">Mở GitHub Actions &rarr;</a></div>
+        </div>
+      </section>
     </main>
   </div>
   </div>
@@ -1251,12 +1329,13 @@
       duyet:     { title: "Keyword Duyệt", desc: "Nơi duyệt và chốt danh sách keyword sẽ triển khai viết bài." },
       workflow:  { title: "Workflow", desc: "Theo dõi tiến độ từng keyword: lên kế hoạch, đang viết, đã đăng." },
       baocao:    { title: "Báo cáo", desc: "Tổng hợp hiệu quả keyword và bài viết theo ngày, tuần, tháng." },
-      dexuat:    { title: "Đề xuất", desc: "Gợi ý chủ đề và keyword tiềm năng cho đội nội dung." }
+      dexuat:    { title: "Đề xuất", desc: "Gợi ý chủ đề và keyword tiềm năng cho đội nội dung." },
+      caidat:    { title: "Cài đặt", desc: "Sức khỏe hệ thống: lần quét, đồng bộ GSC + GA4, Cowork và lượt SerpApi." }
     };
 
     function renderPlaceholders() {
       Object.entries(TABS).forEach(([tab, cfg]) => {
-        if (tab === "dashboard" || tab === "duyet" || tab === "workflow" || tab === "baocao") return;
+        if (tab === "dashboard" || tab === "duyet" || tab === "workflow" || tab === "baocao" || tab === "caidat") return;
         const icon = document.querySelector(`.nav-item[data-tab="${tab}"] svg`).outerHTML.replace('<svg', '<svg class="w-8 h-8"');
         document.querySelector(`[data-view="${tab}"]`).innerHTML = `
           <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">${escapeHtml(cfg.title)}</h2>
@@ -1280,6 +1359,7 @@
       if (tab === "duyet") renderApprovedTable();
       if (tab === "workflow") { renderWorkflowTable(); loadSeoContent(); }
       if (tab === "baocao") renderReportDashboard();
+      if (tab === "caidat") renderSettingsHealth();
       if (updateHash) history.replaceState(null, "", window.location.pathname + "#" + tab);
       window.scrollTo({ top: 0 });
     }
@@ -3390,6 +3470,199 @@
       return out;
     }
 
+    // =====================================================================
+    // BÀI CẦN XỬ LÝ + "NÊN LÀM MỚI"
+    // So sánh WIN ngày gần nhất với WIN ngày liền trước, bỏ SKIP ngày cuối vì Google chưa chốt số (dataState=all).
+    // Ngưỡng này phải khớp với supabase/functions/cowork-api (route /refresh-candidates).
+    // =====================================================================
+    const ACT = { WIN: 14, SKIP: 2, DROP_PCT: 30, MIN_PREV_CLICKS: 10, IMPR_DROP_PCT: 40, MIN_PREV_IMPR: 300,
+                  LOWCTR_IMPR: 200, LOWCTR_MAX: 3, RANK_DROP: 3, MIN_RANK_IMPR: 100, NOINDEX_DAYS: 7, NODATA_DAYS: 5 };
+    const ACT_TYPES = {
+      drop:     { label: "Giảm clicks",       chip: "bg-rose-50 text-rose-700 border-rose-200",     weight: 3, filter: "refresh" },
+      rankdrop: { label: "Tụt hạng",          chip: "bg-rose-50 text-rose-700 border-rose-200",     weight: 2, filter: "refresh" },
+      imprdrop: { label: "Giảm hiển thị",     chip: "bg-amber-50 text-amber-700 border-amber-200",  weight: 2, filter: "refresh" },
+      lowctr:   { label: "CTR thấp",          chip: "bg-amber-50 text-amber-700 border-amber-200",  weight: 2, filter: "ctr" },
+      noindex:  { label: "Chưa index",        chip: "bg-rose-50 text-rose-700 border-rose-200",     weight: 3, filter: "index" },
+      nodata:   { label: "Chưa có số liệu",   chip: "bg-slate-100 text-slate-600 border-slate-200", weight: 1, filter: "nodata" }
+    };
+    let reportActionFilter = "all";
+    let reportActionShowAll = false;
+    let reportActionItems = [];
+
+    function rptActionItems(articles, endStr, nowMs = Date.now()) {
+      if (!endStr) return [];
+      const end = new Date(endStr + "T00:00:00Z");
+      const curTo = rptDate(rptShift(end, -ACT.SKIP));
+      const curFrom = rptDate(rptShift(end, -(ACT.SKIP + ACT.WIN - 1)));
+      const prevTo = rptDate(rptShift(end, -(ACT.SKIP + ACT.WIN)));
+      const prevFrom = rptDate(rptShift(end, -(ACT.SKIP + 2 * ACT.WIN - 1)));
+      const out = [];
+      for (const a of articles) {
+        const ageDays = a.published_date ? (nowMs - new Date(a.published_date + "T00:00:00Z").getTime()) / 86400000 : null;
+        const reasons = [];
+        if (a.is_indexed === false && (ageDays === null || ageDays >= ACT.NOINDEX_DAYS)) {
+          reasons.push({ type: "noindex", text: `Google chưa lập chỉ mục${a.index_state ? " (" + a.index_state + ")" : ""}. Gửi yêu cầu lập chỉ mục trong Search Console.` });
+        }
+        let cur = null, prev = null;
+        if (!a.has_data) {
+          if (ageDays === null || ageDays >= ACT.NODATA_DAYS) reasons.push({ type: "nodata", text: a.synced ? "Search Console chưa có số liệu cho URL này." : "Bài chưa được đồng bộ số liệu." });
+        } else {
+          cur = rptSum(a.daily, curFrom, curTo);
+          prev = rptSum(a.daily, prevFrom, prevTo);
+          const lost = prev.clicks - cur.clicks;
+          if (prev.clicks >= ACT.MIN_PREV_CLICKS && cur.clicks <= prev.clicks * (1 - ACT.DROP_PCT / 100)) {
+            reasons.push({ type: "drop", text: `Clicks giảm ${Math.round((lost / prev.clicks) * 100)}% (${prev.clicks} → ${cur.clicks}).` });
+          } else if (prev.impr >= ACT.MIN_PREV_IMPR && cur.impr <= prev.impr * (1 - ACT.IMPR_DROP_PCT / 100)) {
+            reasons.push({ type: "imprdrop", text: `Lượt hiển thị giảm ${Math.round(((prev.impr - cur.impr) / prev.impr) * 100)}% (${rptFmt(prev.impr)} → ${rptFmt(cur.impr)}).` });
+          }
+          if (cur.impr >= ACT.MIN_RANK_IMPR && prev.impr >= ACT.MIN_RANK_IMPR && Math.round(cur.pos) - Math.round(prev.pos) >= ACT.RANK_DROP) {
+            reasons.push({ type: "rankdrop", text: `Tụt hạng từ #${Math.round(prev.pos)} xuống #${Math.round(cur.pos)}.` });
+          }
+          const rank = Math.round(cur.pos);
+          if (cur.impr >= ACT.LOWCTR_IMPR && rank >= 4 && rank <= 10 && cur.ctr < ACT.LOWCTR_MAX) {
+            reasons.push({ type: "lowctr", text: `Đứng #${rank} nhưng CTR chỉ ${cur.ctr.toFixed(1)}%. Viết lại title và meta description.` });
+          }
+        }
+        if (!reasons.length) continue;
+        out.push({ id: a.id, title: a.title, url: a.published_url, is_dashboard: a.is_dashboard, reasons, cur, prev,
+                   refresh: reasons.some(r => ACT_TYPES[r.type].filter === "refresh"),
+                   score: reasons.reduce((s, r) => s + ACT_TYPES[r.type].weight, 0) * 1000 + (prev ? prev.clicks : 0) });
+      }
+      return out.sort((x, y) => y.score - x.score);
+    }
+
+    function setReportActionFilter(f) { reportActionFilter = f; reportActionShowAll = false; renderReportActions(); }
+
+    function renderReportActions() {
+      const box = byId("actionList");
+      if (!box) return;
+      if (reportLoadError || !reportCurrentArticles.length) { reportActionItems = []; }
+      else reportActionItems = rptActionItems(reportCurrentArticles, reportEnd);
+
+      const groups = [["all", "Tất cả"], ["refresh", "Nên làm mới"], ["ctr", "Sửa title/meta"], ["index", "Chưa index"], ["nodata", "Chưa có số liệu"]];
+      const countOf = (f) => f === "all" ? reportActionItems.length : reportActionItems.filter(i => i.reasons.some(r => ACT_TYPES[r.type].filter === f)).length;
+      byId("actionFilters").innerHTML = groups.map(([f, label]) =>
+        `<button type="button" onclick="setReportActionFilter('${f}')" class="px-2.5 py-1 rounded-full border transition ${reportActionFilter === f ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-slate-600 border-blue-100 hover:text-slate-900"}">${label} (${countOf(f)})</button>`).join("");
+      const badge = byId("actionCount");
+      badge.textContent = reportActionItems.length;
+      badge.classList.toggle("hidden", !reportActionItems.length);
+
+      const list = reportActionItems.filter(i => reportActionFilter === "all" || i.reasons.some(r => ACT_TYPES[r.type].filter === reportActionFilter));
+      if (!list.length) {
+        box.innerHTML = `<div class="py-8 text-center text-slate-400">${reportLoadError ? escapeHtml(reportLoadError) : reportActionItems.length ? "Không có bài nào ở nhóm này." : "Không có bài nào cần xử lý. Tốt!"}</div>`;
+        return;
+      }
+      const shown = reportActionShowAll ? list : list.slice(0, 8);
+      box.innerHTML = shown.map(i => `
+        <div class="py-3 flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
+          <div class="min-w-0 flex-1">
+            <div class="font-bold text-slate-900 cursor-pointer hover:text-indigo-600 line-clamp-1" onclick="openReportDetailModal('${i.id}')">${i.is_dashboard ? `<span class="text-amber-500 mr-1" title="Bài từ Cowork dashboard">★</span>` : ""}${escapeHtml(i.title)}</div>
+            <div class="mt-1 flex flex-wrap gap-1">${i.refresh ? `<span class="px-2 py-0.5 rounded-full bg-violet-600 text-white text-[10px] font-extrabold">NÊN LÀM MỚI</span>` : ""}${i.reasons.map(r => `<span class="px-2 py-0.5 rounded-full border text-[10px] font-bold ${ACT_TYPES[r.type].chip}">${ACT_TYPES[r.type].label}</span>`).join("")}</div>
+            <ul class="mt-1.5 text-slate-600 space-y-0.5">${i.reasons.map(r => `<li>${escapeHtml(r.text)}</li>`).join("")}</ul>
+          </div>
+          <div class="md:w-52 shrink-0 text-slate-500">${i.cur ? `<div>Clicks 14 ngày: <strong class="text-slate-800">${i.cur.clicks}</strong> <span class="text-slate-400">(trước: ${i.prev.clicks})</span></div><div>Hiển thị: <strong class="text-slate-800">${rptFmt(i.cur.impr)}</strong> · Vị trí <strong class="text-slate-800">#${Math.max(1, Math.round(i.cur.pos))}</strong></div>` : `<div class="text-slate-400">Chưa có số liệu để so sánh</div>`}</div>
+          <button type="button" onclick="openReportDetailModal('${i.id}')" class="self-start px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white font-bold text-[11px] transition border border-indigo-100">Chi tiết</button>
+        </div>`).join("") +
+        (list.length > 8 ? `<div class="pt-3 text-center"><button type="button" onclick="reportActionShowAll=!reportActionShowAll;renderReportActions()" class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800">${reportActionShowAll ? "Thu gọn" : `Xem thêm ${list.length - 8} bài`}</button></div>` : "");
+    }
+
+    // =====================================================================
+    // TAB CÀI ĐẶT: sức khỏe hệ thống
+    // =====================================================================
+    const HEALTH = { SCAN_WARN_H: 80, SYNC_BAD_H: 14, SERP_WARN: 40, SERP_BAD: 15, REWRITE_GAP_H: 6 };
+    const HEALTH_DOT = { ok: "bg-emerald-500", warn: "bg-amber-500", bad: "bg-rose-500 animate-pulse", none: "bg-slate-300" };
+    const HEALTH_TEXT = { ok: "text-slate-900", warn: "text-amber-600", bad: "text-rose-600", none: "text-slate-400" };
+
+    function setHealthCard(id, tone, main, sub) {
+      const card = byId(id);
+      if (!card) return;
+      card.querySelector("[data-dot]").className = "w-2.5 h-2.5 rounded-full " + HEALTH_DOT[tone];
+      const m = card.querySelector("[data-main]");
+      m.textContent = main;
+      m.className = "text-2xl font-black " + HEALTH_TEXT[tone];
+      card.querySelector("[data-sub]").textContent = sub;
+    }
+
+    // 'dd/mm/YYYY HH:MM:SS' (giờ VN) -> mốc thời gian
+    function parseVnStamp(s) {
+      const m = /^(\d{2})\/(\d{2})\/(\d{4})[ T](\d{2}):(\d{2}):(\d{2})/.exec(s || "");
+      return m ? new Date(`${m[3]}-${m[2]}-${m[1]}T${m[4]}:${m[5]}:${m[6]}+07:00`) : null;
+    }
+    const hoursSince = (d) => (Date.now() - d.getTime()) / 3600000;
+
+    async function renderSettingsHealth(quiet = false) {
+      const summary = byId("healthSummary");
+      if (!STATIC_MODE || typeof sb === "undefined" || !sb) {
+        if (!quiet) summary.textContent = "Trang này chỉ hiện trên bản GitHub Pages (đã nối Supabase). Bản chạy local không đọc được.";
+        return;
+      }
+      if (!quiet) summary.textContent = "Đang kiểm tra...";
+      let rep, met;
+      try {
+        [rep, met] = await Promise.all([
+          sb.from("daily_reports").select("report_date,updated_at,generated_at:report->>generated_at,account:report->serpapi_status->account").order("updated_at", { ascending: false }).limit(1),
+          sb.from("seo_article_metrics").select("synced_at,data_end_date").order("synced_at", { ascending: false }).limit(1),
+          loadCoworkNotes()
+        ]);
+      } catch (err) { if (!quiet) summary.textContent = "Không tải được: " + err.message; return; }
+      if (rep.error && quiet) return;
+      const tones = [];
+
+      // 1. Lần quét cuối
+      const r = rep.data && rep.data[0];
+      const gen = r ? parseVnStamp(r.generated_at) : null;
+      if (!r || !gen) { setHealthCard("healthCardScan", "none", "Chưa có", rep.error ? rep.error.message : "Chưa có báo cáo nào."); tones.push("none"); }
+      else {
+        const h = hoursSince(gen);
+        const rewritten = (new Date(r.updated_at).getTime() - gen.getTime()) / 3600000 > HEALTH.REWRITE_GAP_H;
+        const tone = h > HEALTH.SCAN_WARN_H || rewritten ? "warn" : "ok";
+        setHealthCard("healthCardScan", tone, notifAgo(gen.toISOString()),
+          `Báo cáo ngày ${r.report_date}, quét lúc ${r.generated_at}` + (rewritten ? `. Bị ghi lại lúc ${new Date(r.updated_at).toLocaleString("vi-VN")} từ số liệu cũ hơn.` : ""));
+        tones.push(tone);
+      }
+
+      // 2. Lần sync GSC + GA4
+      const s = met.data && met.data[0];
+      if (!s || !s.synced_at) { setHealthCard("healthCardSync", "none", "Chưa có", met.error ? met.error.message : "Chưa có số liệu (chạy sync-gsc-ga4)."); tones.push("none"); }
+      else {
+        const h = hoursSince(new Date(s.synced_at));
+        const tone = h > HEALTH.SYNC_BAD_H ? "bad" : "ok";
+        setHealthCard("healthCardSync", tone, notifAgo(s.synced_at), `Số liệu GSC đến ngày ${s.data_end_date || "?"}, lấy lúc ${new Date(s.synced_at).toLocaleString("vi-VN")}.`);
+        tones.push(tone);
+      }
+
+      // 3. Cowork
+      if (!coworkBeat) { setHealthCard("healthCardCowork", "none", "Chưa có nhịp", "Cowork chưa báo lần nào (đã chạy database/cowork_heartbeat.sql chưa?)."); tones.push("none"); }
+      else {
+        const h = hoursSince(new Date(coworkBeat.last_run_at));
+        const failed = coworkBeat.status === "error";
+        const tone = failed || h > COWORK_STALE_HOURS ? "bad" : "ok";
+        setHealthCard("healthCardCowork", tone, failed ? `Lỗi, ${notifAgo(coworkBeat.last_run_at)}` : coworkBeat.status === "running" ? "Đang chạy" : notifAgo(coworkBeat.last_run_at),
+          (coworkBeat.summary ? coworkBeat.summary + ". " : "") + "Lần cuối: " + new Date(coworkBeat.last_run_at).toLocaleString("vi-VN"));
+        tones.push(tone);
+      }
+
+      // 4. SerpApi (số liệu ghi tại thời điểm quét gần nhất)
+      const acc = r && r.account;
+      if (!acc || acc.searches_left === undefined) { setHealthCard("healthCardSerp", "none", "Chưa có", "Báo cáo gần nhất không có thông tin quota."); tones.push("none"); }
+      else {
+        const left = Number(acc.searches_left), total = Number(acc.searches_per_month) || 250;
+        const tone = left < HEALTH.SERP_BAD ? "bad" : left < HEALTH.SERP_WARN ? "warn" : "ok";
+        setHealthCard("healthCardSerp", tone, `${left} / ${total}`, `Đã dùng ${acc.this_month_usage ?? total - left} lượt tháng này (tính tại lần quét gần nhất). Đủ khoảng ${Math.floor(left / 4)} lần quét.`);
+        tones.push(tone);
+      }
+
+      const bad = tones.filter(t => t === "bad").length, warn = tones.filter(t => t === "warn").length;
+      byId("settingsHealthDot")?.classList.toggle("hidden", !bad);
+      summary.className = "pro-card rounded-2xl px-4 py-3 text-sm font-bold " + (bad ? "text-rose-600" : warn ? "text-amber-600" : "text-emerald-600");
+      summary.textContent = bad ? `${bad} mục cần xử lý ngay` + (warn ? `, ${warn} mục cần chú ý.` : ".")
+        : warn ? `${warn} mục cần chú ý.` : tones.includes("none") ? "Chưa đủ dữ liệu để đánh giá một số mục." : "Mọi tác vụ đang chạy bình thường.";
+    }
+    if (STATIC_MODE) {
+      setTimeout(() => renderSettingsHealth(true), 5000);
+      setInterval(() => renderSettingsHealth(true), 300000);
+    }
+
     async function renderReportDashboard() {
       const tbody = byId("reportTableBody");
       if (tbody && !reportCurrentArticles.length) {
@@ -3407,6 +3680,7 @@
       initReportCustomInputs();
       updateReportKPIs();
       renderReportTrendChart();
+      renderReportActions();
       applyReportFilters();
     }
 

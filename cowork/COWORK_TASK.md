@@ -31,6 +31,8 @@ Mọi request có header `x-api-key: $COWORK_API_KEY`.
 
 | POST | `/heartbeat` | Báo "Cowork vừa chạy": `{status: "running"\|"ok"\|"error", summary?}` (cần `database/cowork_heartbeat.sql`) |
 
+| GET | `/refresh-candidates` | Bài nên làm mới: clicks/hiển thị giảm hoặc tụt hạng (14 ngày so với 14 ngày trước, tối đa 10 bài). Cần deploy lại `cowork-api` sau khi cập nhật |
+
 `GET /keywords` trả thêm `rejected_note` (lý do người duyệt từ chối outline trước), `GET /outlines/approved` trả thêm `rejected_article_note` (lý do từ chối bài trước).
 
 Body `POST /notifications`: `{level: "info"|"success"|"warning"|"error", title, message?, keyword?}`
@@ -89,6 +91,15 @@ PHẦN B, viết bài:
    và gửi thông báo level "warning" (title "Không tạo được Google Docs", message ghi lý do, keyword tương ứng).
 7. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count,
    google_doc_url (link Docs ở bước 6; dashboard sẽ hiện nút "Docs").
+
+PHẦN C, gợi ý làm mới bài cũ (chỉ ĐỀ XUẤT, không tự sửa bài):
+8. GET {COWORK_API_URL}/refresh-candidates. Lấy tối đa 3 bài đầu danh sách, bỏ qua URL đã báo trong 7 ngày qua
+   (ghi nhớ trong file seo_output/refresh_log.json dạng {"<url>": "YYYY-MM-DD"}, tạo nếu chưa có).
+   Lỗi gọi endpoint này (404 nếu chưa deploy) không được làm dừng lần chạy: bỏ qua cả Phần C.
+9. Với mỗi bài: dùng keyword trả về (nếu null thì suy ra từ title) chạy serp_keyword.py, so sánh với bài hiện có
+   (đối thủ đang có mục/PAA nào mà bài chưa có, số liệu hoặc năm đã cũ). Rồi POST {COWORK_API_URL}/notifications với
+   level "info", title "Nên làm mới: <title rút gọn>", message gồm lý do (trường reasons) và 2-4 việc cụ thể nên sửa, keyword = keyword của bài.
+   KHÔNG POST /outlines hay /articles cho việc này, KHÔNG sửa bài đã đăng; người dùng tự quyết định có làm mới hay không.
 
 THÔNG BÁO LÊN CHUÔNG DASHBOARD (POST {COWORK_API_URL}/notifications, body {level, title, message, keyword}):
 - Mỗi keyword lỗi (serp_keyword.py hỏng, không đủ PAA, evaluate_seo.py không đạt 90 sau nhiều lần sửa, API trả lỗi khác 409):
