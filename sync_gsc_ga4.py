@@ -43,7 +43,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/analytics.readonly",
 ]
 HISTORY_DAYS = 60
-GSC_LAG_DAYS = 2  # GSC thường trễ 2-3 ngày; ngày cuối có thể chưa đủ, sẽ được ghi đè ở lần đồng bộ sau
+GSC_LAG_DAYS = 0  # lấy đến hôm nay (giờ VN); GSC với dataState=all chỉ trả đến ~hôm qua, ngày chưa chốt sẽ được ghi đè ở lần đồng bộ sau
 MAX_LIST_PAGES = 40  # chặn vòng lặp phân trang
 UA = {"User-Agent": "Mozilla/5.0 (TNC SEO report sync)"}
 
@@ -138,6 +138,7 @@ class Google:
         url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{quote(self.site, safe='')}/searchAnalytics/query"
         body = {
             "startDate": start.isoformat(), "endDate": end.isoformat(), "dimensions": dimensions, "rowLimit": limit,
+            "dataState": "all",  # gồm cả số liệu chưa chốt của 1-2 ngày gần nhất (mặc định chỉ trả số đã chốt, trễ 2-3 ngày)
             "dimensionFilterGroups": [{"filters": [{"dimension": "page", "operator": "equals", "expression": page}]}],
         }
         return self._post(url, body).get("rows", [])
