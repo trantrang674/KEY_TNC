@@ -139,7 +139,8 @@ Deno.serve(async (req) => {
           position_previous: Math.round(prev.pos), lost: prev.clicks - cur.clicks,
         });
       }
-      found.sort((a, b) => (b.lost as number) - (a.lost as number));
+      // Bài của Cowork dashboard xếp trước, trong mỗi nhóm bài mất nhiều click nhất lên đầu
+      found.sort((a, b) => (Number(!!b.is_dashboard) - Number(!!a.is_dashboard)) || ((b.lost as number) - (a.lost as number)));
       const top = found.slice(0, 10);
       // Gắn keyword gốc cho bài của dashboard để Cowork biết bài viết về từ khóa nào
       const ids = top.map((t) => t.article_id).filter((v) => Number.isInteger(v));

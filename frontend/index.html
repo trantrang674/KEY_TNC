@@ -882,7 +882,7 @@
             <div class="flex flex-col gap-2 pb-3 border-b border-blue-50">
               <div>
                 <h3 class="text-sm font-extrabold text-slate-900">Bài Cần Xử Lý <span id="actionCount" class="ml-1 px-2 py-0.5 rounded-full bg-orange-500 text-white text-[10px] font-extrabold align-middle hidden"></span></h3>
-                <p class="text-[11px] text-slate-500">So sánh 14 ngày gần nhất với 14 ngày trước đó (bỏ 2 ngày cuối vì Google chưa chốt số). Bài giảm clicks hoặc tụt hạng được đánh dấu <strong>NÊN LÀM MỚI</strong> và Cowork đọc được danh sách này.</p>
+                <p class="text-[11px] text-slate-500">So sánh 14 ngày gần nhất với 14 ngày trước đó (bỏ 2 ngày cuối vì Google chưa chốt số). Bài của Cowork dashboard (★) luôn xếp trước. Bài giảm clicks hoặc tụt hạng được đánh dấu <strong>NÊN LÀM MỚI</strong> và Cowork đọc được danh sách này.</p>
               </div>
               <div id="actionFilters" class="flex flex-wrap gap-1.5 text-[11px] font-bold"></div>
             </div>
@@ -3470,6 +3470,7 @@
       nodata:   { label: "Chưa có số liệu",   chip: "bg-slate-100 text-slate-600 border-slate-200", weight: 1, filter: "nodata" }
     };
     let reportActionFilter = "all";
+    let reportActionSource = "all";   // all | dash (bài Cowork) | other (bài khác)
     let reportActionPage = 1;
     const ACTION_PAGE_SIZE = 3;
     let reportActionItems = [];
@@ -3513,10 +3514,12 @@
                    refresh: reasons.some(r => ACT_TYPES[r.type].filter === "refresh"),
                    score: reasons.reduce((s, r) => s + ACT_TYPES[r.type].weight, 0) * 1000 + (prev ? prev.clicks : 0) });
       }
-      return out.sort((x, y) => y.score - x.score);
+      // Bài của Cowork dashboard luôn đứng trước, trong mỗi nhóm xếp theo mức độ cần xử lý
+      return out.sort((x, y) => (Number(!!y.is_dashboard) - Number(!!x.is_dashboard)) || (y.score - x.score));
     }
 
     function setReportActionFilter(f) { reportActionFilter = f; reportActionPage = 1; renderReportActions(); }
+    function setReportActionSource(s) { reportActionSource = s; reportActionPage = 1; renderReportActions(); }
     function setReportActionPage(p) { reportActionPage = p; renderReportActions(); }
 
     function renderReportActions() {
@@ -3526,14 +3529,21 @@
       else reportActionItems = rptActionItems(reportCurrentArticles, reportEnd);
 
       const groups = [["all", "Tất cả"], ["refresh", "Nên làm mới"], ["ctr", "Sửa title/meta"], ["index", "Chưa index"], ["nodata", "Chưa có số liệu"]];
-      const countOf = (f) => f === "all" ? reportActionItems.length : reportActionItems.filter(i => i.reasons.some(r => ACT_TYPES[r.type].filter === f)).length;
-      byId("actionFilters").innerHTML = groups.map(([f, label]) =>
+      // Lọc theo nguồn trước (bài Cowork / bài khác), rồi mới lọc theo loại vấn đề
+      const bySrc = reportActionItems.filter(i => reportActionSource === "all" || (reportActionSource === "dash" ? i.is_dashboard : !i.is_dashboard));
+      const countOf = (f) => f === "all" ? bySrc.length : bySrc.filter(i => i.reasons.some(r => ACT_TYPES[r.type].filter === f)).length;
+      const dashN = reportActionItems.filter(i => i.is_dashboard).length;
+      const sources = [["all", "Tất cả nguồn", reportActionItems.length], ["dash", "★ Bài Cowork", dashN], ["other", "Bài khác", reportActionItems.length - dashN]];
+      byId("actionFilters").innerHTML =
+        `<div class="w-full flex flex-wrap gap-1.5 pb-1.5 mb-0.5 border-b border-blue-50">` + sources.map(([s, label, n]) =>
+          `<button type="button" onclick="setReportActionSource('${s}')" class="px-2.5 py-1 rounded-full border transition ${reportActionSource === s ? "bg-amber-500 text-white border-amber-500" : "bg-white text-slate-600 border-amber-200 hover:text-slate-900"}">${label} (${n})</button>`).join("") + `</div>` +
+        groups.map(([f, label]) =>
         `<button type="button" onclick="setReportActionFilter('${f}')" class="px-2.5 py-1 rounded-full border transition ${reportActionFilter === f ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-slate-600 border-blue-100 hover:text-slate-900"}">${label} (${countOf(f)})</button>`).join("");
       const badge = byId("actionCount");
       badge.textContent = reportActionItems.length;
       badge.classList.toggle("hidden", !reportActionItems.length);
 
-      const list = reportActionItems.filter(i => reportActionFilter === "all" || i.reasons.some(r => ACT_TYPES[r.type].filter === reportActionFilter));
+      const list = bySrc.filter(i => reportActionFilter === "all" || i.reasons.some(r => ACT_TYPES[r.type].filter === reportActionFilter));
       if (!list.length) {
         box.innerHTML = `<div class="py-8 text-center text-slate-400">${reportLoadError ? escapeHtml(reportLoadError) : reportActionItems.length ? "Không có bài nào ở nhóm này." : "Không có bài nào cần xử lý. Tốt!"}</div>`;
         return;
