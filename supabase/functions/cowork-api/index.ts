@@ -99,7 +99,7 @@ Deno.serve(async (req) => {
       });
     }
 
-    // Bài nên làm mới: clicks / hiển thị giảm hoặc tụt hạng (14 ngày gần nhất so với 14 ngày trước, bỏ 2 ngày cuối).
+    // Bài nên làm mới: clicks / hiển thị giảm hoặc tụt hạng (14 ngày gần nhất so với 14 ngày trước, bỏ ngày cuối).
     // Ngưỡng phải khớp với ACT trong frontend/index.html (tab BÁO CÁO > Bài cần xử lý).
     if (req.method === "GET" && route === "/refresh-candidates") {
       const { data: rows, error } = await supabase.from("seo_article_metrics")
@@ -111,8 +111,8 @@ Deno.serve(async (req) => {
       const day = 86400000;
       const end = new Date(endStr + "T00:00:00Z").getTime();
       const iso = (ms: number) => new Date(ms).toISOString().slice(0, 10);
-      const curTo = iso(end - 2 * day), curFrom = iso(end - 15 * day);
-      const prevTo = iso(end - 16 * day), prevFrom = iso(end - 29 * day);
+      const curTo = iso(end - 1 * day), curFrom = iso(end - 14 * day);
+      const prevTo = iso(end - 15 * day), prevFrom = iso(end - 28 * day);
       const sum = (daily: { d: string; c: number; i: number; p: number }[], from: string, to: string) => {
         let c = 0, i = 0, pw = 0;
         for (const r of daily) if (r.d >= from && r.d <= to) { c += r.c; i += r.i; pw += r.p * r.i; }

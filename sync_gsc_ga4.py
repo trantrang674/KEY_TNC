@@ -271,6 +271,13 @@ def main() -> None:
             print(f"[{n}/{len(targets)}]{tag} {meta['title'][:60]} · {len(row['daily'])} ngày có dữ liệu · index: {row['index_state'] or row['is_indexed']}")
             rows.append(row)
 
+    # Ngày cuối của dữ liệu = ngày GSC thật sự có số (GSC chưa có hôm nay), nếu không dashboard vẽ thêm một ngày trống
+    # và so kỳ này với kỳ trước bị lệch.
+    last_gsc = max((d["d"] for r in rows for d in r["daily"]), default=None)
+    if last_gsc:
+        for r in rows:
+            r["data_end_date"] = last_gsc
+
     if apply and rows:
         for i in range(0, len(rows), 20):
             p = requests.post(f"{sb_url}/rest/v1/seo_article_metrics?on_conflict=url",

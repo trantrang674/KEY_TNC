@@ -114,18 +114,24 @@
 
     /* Điều hướng trái */
     /* Cố định theo màn hình (không phụ thuộc độ dài nội dung hay vị trí cuộn của từng tab); thẻ aside chỉ giữ chỗ 236px bên trái */
-    .side-nav { position: fixed; top: 76px; left: 24px; width: 236px; z-index: 30; display: flex; flex-direction: column; height: calc(100vh - 96px); min-height: 0; padding: 6px 4px 0; overflow-y: auto; }
+    /* Dải màu tím đậm chạy sát mép trái, từ dưới header đến hết chiều cao màn hình (không phải thẻ nổi).
+       top 61 + padding-top 21 giữ tâm mục đầu tiên ở y=105 để tiêu đề tab căn ngang hàng */
+    .side-nav {
+      position: fixed; top: 61px; left: 0; width: 260px; z-index: 30; display: flex; flex-direction: column;
+      height: calc(100vh - 61px); min-height: 0; padding: 21px 14px 16px; overflow-y: auto;
+      background: linear-gradient(180deg, #4a3799 0%, #3a2a88 100%);
+    }
     .nav-item {
       width: 100%; height: 2.9rem; display: flex; align-items: center; gap: .75rem;
       padding: 0 .9rem; border-radius: 16px; text-align: left; white-space: nowrap;
-      font-size: .85rem; font-weight: 600; color: var(--ink-soft);
+      font-size: .85rem; font-weight: 600; color: rgba(255, 255, 255, 0.78);
       transition: background .15s, color .15s, box-shadow .15s;
     }
     .nav-item svg { width: 1.15rem; height: 1.15rem; flex-shrink: 0; }
-    .nav-item:hover { background: rgba(255, 255, 255, 0.6); color: var(--ink); }
+    .nav-item:hover { background: rgba(255, 255, 255, 0.14); color: #fff; }
     .nav-item.is-active {
       background: #fff; color: var(--ink); font-weight: 800;
-      box-shadow: 0 8px 18px -12px rgba(70, 50, 130, 0.55);
+      box-shadow: 0 8px 18px -12px rgba(20, 10, 60, 0.7);
     }
     .nav-item.is-active svg { color: var(--primary); }
     .nav-pill {
@@ -330,7 +336,7 @@
     </div>
   </header>
 
-  <div class="app-shell mt-5 flex gap-6 items-start">
+  <div class="app-shell mt-5 lg:mt-0 flex gap-6 items-start">
     <!-- LEFT NAVIGATION MENU -->
     <aside class="hidden lg:block w-[236px] shrink-0 self-stretch">
       <nav aria-label="Menu chính" class="side-nav">
@@ -600,7 +606,7 @@
       </section>
       <!-- ============ TAB 3: WORKFLOW (keyword -> outline -> bài viết -> đăng) ============ -->
       <section data-view="workflow" class="hidden space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
           <div>
             <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
               <span class="text-gradient">Workflow</span>
@@ -660,7 +666,7 @@
       <!-- ============ TAB 4: BÁO CÁO & TRACKING ĐO LƯỜNG ============ -->
       <section data-view="baocao" class="hidden space-y-6">
         <!-- Header -->
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
           <div>
             <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
               Báo Cáo <span class="text-gradient">Đo Lường Hiệu Quả Bài Viết</span>
@@ -882,7 +888,7 @@
             <div class="flex flex-col gap-2 pb-3 border-b border-blue-50">
               <div>
                 <h3 class="text-sm font-extrabold text-slate-900">Bài Cần Xử Lý <span id="actionCount" class="ml-1 px-2 py-0.5 rounded-full bg-orange-500 text-white text-[10px] font-extrabold align-middle hidden"></span></h3>
-                <p class="text-[11px] text-slate-500">So sánh 14 ngày gần nhất với 14 ngày trước đó (bỏ 2 ngày cuối vì Google chưa chốt số). Bài của Cowork dashboard (★) luôn xếp trước. Bài giảm clicks hoặc tụt hạng được đánh dấu <strong>NÊN LÀM MỚI</strong> và Cowork đọc được danh sách này.</p>
+                <p class="text-[11px] text-slate-500">So sánh 14 ngày gần nhất với 14 ngày trước đó (bỏ ngày cuối vì Google chưa chốt số). Bài của Cowork dashboard (★) luôn xếp trước. Bài giảm clicks hoặc tụt hạng được đánh dấu <strong>NÊN LÀM MỚI</strong> và Cowork đọc được danh sách này.</p>
               </div>
               <div id="actionFilters" class="flex flex-wrap gap-1.5 text-[11px] font-bold"></div>
             </div>
@@ -975,7 +981,7 @@
 
       <!-- ============ TAB: CÀI ĐẶT (sức khỏe hệ thống) ============ -->
       <section data-view="caidat" class="hidden space-y-6">
-        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
           <div>
             <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">Cài <span class="text-gradient">đặt</span></h2>
             <p class="text-xs text-slate-500 mt-1">Sức khỏe hệ thống: bốn tác vụ chạy tự động và lần chạy gần nhất của từng tác vụ.</p>
@@ -3459,7 +3465,7 @@
     // So sánh WIN ngày gần nhất với WIN ngày liền trước, bỏ SKIP ngày cuối vì Google chưa chốt số (dataState=all).
     // Ngưỡng này phải khớp với supabase/functions/cowork-api (route /refresh-candidates).
     // =====================================================================
-    const ACT = { WIN: 14, SKIP: 2, DROP_PCT: 30, MIN_PREV_CLICKS: 10, IMPR_DROP_PCT: 40, MIN_PREV_IMPR: 300,
+    const ACT = { WIN: 14, SKIP: 1, DROP_PCT: 30, MIN_PREV_CLICKS: 10, IMPR_DROP_PCT: 40, MIN_PREV_IMPR: 300,
                   LOWCTR_IMPR: 200, LOWCTR_MAX: 3, RANK_DROP: 3, MIN_RANK_IMPR: 100, NOINDEX_DAYS: 7, NODATA_DAYS: 5 };
     const ACT_TYPES = {
       drop:     { label: "Giảm clicks",       chip: "bg-rose-50 text-rose-700 border-rose-200",     weight: 3, filter: "refresh" },
