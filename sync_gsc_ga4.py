@@ -154,10 +154,12 @@ class Google:
             "dateRanges": [{"startDate": start.isoformat(), "endDate": end.isoformat()}],
             "dimensions": [{"name": "landingPage"}],
             "metrics": [{"name": "sessions"}, {"name": "engagementRate"}, {"name": "averageSessionDuration"}, {"name": "keyEvents"}],
-            "dimensionFilter": {"filter": {"fieldName": "landingPage", "stringFilter": {"matchType": "EXACT", "value": path}}},
-            "limit": "10",
+            # landingPage của GA4 gồm cả tham số (?fbclid=, ?utm_...) nên khớp theo đầu chuỗi rồi lọc lại đúng đường dẫn
+            "dimensionFilter": {"filter": {"fieldName": "landingPage", "stringFilter": {"matchType": "BEGINS_WITH", "value": path}}},
+            "limit": "1000",
         }
-        rows = self._post(url, body).get("rows", [])
+        rows = [r for r in self._post(url, body).get("rows", [])
+                if r["dimensionValues"][0]["value"].split("?")[0].split("#")[0] in (path, path.rstrip("/"), path.rstrip("/") + "/")]
         sessions = sum(float(r["metricValues"][0]["value"]) for r in rows)
         if not sessions:
             return {"sessions": 0, "engagement_rate": 0, "avg_duration": 0, "key_events": 0}
