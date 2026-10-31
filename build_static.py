@@ -9,7 +9,7 @@ Biến môi trường cần có:
   SUPABASE_SERVICE_KEY              (bí mật, chỉ dùng ở đây để ghi báo cáo, KHÔNG nhúng vào trang)
   SERPAPI_API_KEY                   (khi chạy engine)
 Chạy cục bộ:  python build_static.py             (dùng .env)
-Cờ --reuse:   dùng data/latest_top10_report.json có sẵn, không chạy engine (không tốn lượt SerpApi).
+Cờ --reuse:   dùng data/latest_top10_report.json có sẵn, không chạy engine (không tốn lượt SerpApi), KHÔNG ghi lên Supabase.
 Cờ --ui-only: chỉ xuất lại giao diện, giữ nguyên các báo cáo đã có trên Supabase (không chạy engine, không ghi báo cáo).
 Xem thử cục bộ: python -m http.server -d site 8080
 """
@@ -119,7 +119,10 @@ def main() -> None:
     html = html.replace(MARKERS["URL"][0], MARKERS["URL"][1].format(value=json.dumps(url)))
     html = html.replace(MARKERS["KEY"][0], MARKERS["KEY"][1].format(value=json.dumps(anon_key)))
 
-    if report is not None:
+    if report is not None and "--reuse" in sys.argv:
+        # --reuse dùng file local có thể đã cũ; không đẩy lên Supabase để khỏi ghi đè báo cáo mới hơn
+        print("CẢNH BÁO: --reuse chỉ dựng lại giao diện, KHÔNG ghi báo cáo lên Supabase và không báo Zalo.")
+    elif report is not None:
         publish_report(report, url, service_key)
         notify_zalo(report)
 
