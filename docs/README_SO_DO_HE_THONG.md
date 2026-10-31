@@ -86,7 +86,7 @@ flowchart LR
 - `seo_suggester.py`: gợi ý 3 keyword / tiêu đề.
 
 ### `frontend/`, `data/`, `site/`
-- `frontend/index.html`: Dashboard 1 trang, **6 tab**: Dashboard Keyword, Keyword Duyệt, Workflow, Báo cáo, Đề xuất, **Cài đặt**. Tab Báo cáo có khung "Bài cần xử lý" (giảm clicks, tụt hạng, CTR thấp, chưa index; bài giảm clicks hoặc tụt hạng được đánh dấu NÊN LÀM MỚI). Tab Cài đặt là thẻ sức khỏe hệ thống (lần quét, lần sync GSC+GA4, Cowork, lượt SerpApi). Có chuông thông báo của Cowork và dòng "Cowork chạy lần cuối".
+- `frontend/index.html`: Dashboard 1 trang, **6 tab**: Dashboard Keyword, Keyword Duyệt, Workflow, Báo cáo, Đề xuất, **Cài đặt**. Tab Báo cáo có khung "Bài cần xử lý" nằm cạnh biểu đồ (giảm clicks, tụt hạng, CTR thấp, chưa index; so 14 ngày gần nhất với 14 ngày trước, bỏ ngày cuối; phân trang 3 bài/trang; bài Cowork ★ luôn xếp trước và có nút lọc Tất cả nguồn / Bài Cowork / Bài khác; bài giảm clicks hoặc tụt hạng được đánh dấu NÊN LÀM MỚI). Bảng đo lường hiệu năng mặc định xếp "Bài mới nhất (ngày xuất bản)", không còn cột Audit. Menu trái là dải màu tím đậm. Tab Cài đặt là thẻ sức khỏe hệ thống (lần quét, lần sync GSC+GA4, Cowork, lượt SerpApi). Có chuông thông báo của Cowork và dòng "Cowork chạy lần cuối".
 - `data/latest_top10_report.json`: báo cáo mới nhất ghi trên máy chạy (tên giữ cũ nhưng chứa 20 keyword).
 - `site/`: bản tĩnh sinh tự động để đăng GitHub Pages (không commit).
 
@@ -108,7 +108,7 @@ flowchart LR
 - `.github/workflows/daily-pages.yml`: quét + dựng GitHub Pages.
 - `.github/workflows/sync-gsc-ga4.yml`: đồng bộ GSC + GA4 (không tốn token AI).
 - `build_static.py`: quét, đẩy báo cáo, báo Zalo, dựng `site/`. `--ui-only` chỉ dựng giao diện; `--reuse` dựng lại từ file local và **không ghi lên Supabase**.
-- `sync_gsc_ga4.py`: kéo GSC + GA4 cho bài trong 60 ngày của danh mục Tin tức và bài của dashboard.
+- `sync_gsc_ga4.py`: (ngày cuối dữ liệu `data_end_date` = ngày GSC thật sự có số, không phải hôm nay) kéo GSC + GA4 cho bài trong 60 ngày của danh mục Tin tức và bài của dashboard.
 - `sync_reports.py`: đồng bộ bù `report.md` từ `seo_output` lên Supabase.
 - `tests/test_core.py`: 5 bài kiểm thử khớp keyword và độ tươi.
 - `.env`: khóa bí mật (không commit). GitHub Secrets cần có: `SERPAPI_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY`, `ZALO_BOT_TOKEN`, `ZALO_CHAT_ID`, `GOOGLE_SERVICE_ACCOUNT_JSON`.

@@ -171,7 +171,7 @@ flowchart LR
         <div class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-3">
           <div class="font-bold text-sky-700">📁 frontend/ &amp; 📁 data/ &amp; 📁 site/</div>
           <ul class="text-xs space-y-2 text-slate-600">
-            <li><strong class="text-slate-800">frontend/index.html:</strong> Dashboard 1 trang. 6 tab: Dashboard Keyword, Keyword Duyệt, Workflow, Báo cáo, Đề xuất, Cài đặt. Tab Báo cáo có khung &quot;Bài cần xử lý&quot; (giảm clicks, tụt hạng, CTR thấp, chưa index). Tab Cài đặt là thẻ sức khỏe hệ thống. Có chuông thông báo và dòng &quot;Cowork chạy lần cuối&quot;.</li>
+            <li><strong class="text-slate-800">frontend/index.html:</strong> Dashboard 1 trang. 6 tab: Dashboard Keyword, Keyword Duyệt, Workflow, Báo cáo, Đề xuất, Cài đặt. Tab Báo cáo có khung &quot;Bài cần xử lý&quot; nằm cạnh biểu đồ (giảm clicks, tụt hạng, CTR thấp, chưa index; phân trang 3 bài; bài Cowork ★ xếp trước và có nút lọc theo nguồn), bảng đo lường mặc định xếp bài mới nhất. Tab Cài đặt là thẻ sức khỏe hệ thống. Menu trái là dải màu tím đậm. Có chuông thông báo và dòng &quot;Cowork chạy lần cuối&quot;.</li>
             <li><strong class="text-slate-800">data/latest_top10_report.json:</strong> Báo cáo mới nhất ghi trên máy chạy (tên giữ cũ nhưng chứa 20 keyword).</li>
             <li><strong class="text-slate-800">data/serpapi_daily_*.json:</strong> Cache SerpApi theo ngày.</li>
             <li><strong class="text-slate-800">site/:</strong> Bản tĩnh sinh tự động để đăng GitHub Pages (không commit).</li>
@@ -204,7 +204,7 @@ flowchart LR
           <ul class="text-xs space-y-2 text-slate-600">
             <li><strong class="text-slate-800">cowork/COWORK_TASK.md:</strong> Hướng dẫn cài đặt + prompt của scheduled task Cowork.</li>
             <li><strong class="text-slate-800">build_static.py:</strong> Quét, đẩy báo cáo, báo Zalo, dựng <code>site/</code>. Cờ <code>--ui-only</code> chỉ dựng giao diện; <code>--reuse</code> không còn ghi lên Supabase.</li>
-            <li><strong class="text-slate-800">sync_gsc_ga4.py:</strong> Kéo GSC + GA4 cho bài trong 60 ngày của danh mục Tin tức và bài của dashboard.</li>
+            <li><strong class="text-slate-800">sync_gsc_ga4.py:</strong> (ngày cuối dữ liệu = ngày GSC thật sự có số) Kéo GSC + GA4 cho bài trong 60 ngày của danh mục Tin tức và bài của dashboard.</li>
             <li><strong class="text-slate-800">sync_reports.py:</strong> Đồng bộ bù <code>report.md</code> từ <code>seo_output</code> lên Supabase.</li>
             <li><strong class="text-slate-800">tests/test_core.py:</strong> 5 bài kiểm thử khớp keyword và độ tươi.</li>
             <li><strong class="text-slate-800">.env:</strong> Khóa bí mật (SerpApi, Supabase, Cowork). Không commit.</li>

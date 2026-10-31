@@ -79,7 +79,7 @@
           <div class="mt-2 space-y-1.5 text-[11px] text-slate-700 font-medium">
             <div><strong>6 tab:</strong> Dashboard Keyword, Keyword Duyệt, Workflow, Báo cáo, Đề xuất, Cài đặt</div>
             <div>🔔 Chuông thông báo từ Cowork</div>
-            <div>Báo cáo: khung &quot;Bài cần xử lý&quot;</div>
+            <div>Báo cáo: &quot;Bài cần xử lý&quot; (3 bài/trang, bài Cowork ★ xếp trước)</div>
             <div>Cài đặt: sức khỏe hệ thống</div>
             <div>Đăng nhập Supabase, chỉ tài khoản được duyệt</div>
           </div>
@@ -171,7 +171,7 @@
           </div>
           <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
             <strong class="text-rose-900">Phần C - Gợi ý làm mới bài cũ:</strong>
-            <p class="mt-1 text-slate-600"><code>GET /refresh-candidates</code> (bài giảm clicks hoặc tụt hạng, tối đa 3 bài/lần) ➔ so với đối thủ ➔ báo lên chuông 2-4 việc nên sửa. <strong>Chỉ đề xuất</strong>, không tự sửa bài đã đăng.</p>
+            <p class="mt-1 text-slate-600"><code>GET /refresh-candidates</code> (bài giảm clicks hoặc tụt hạng, bài Cowork xếp trước, tối đa 3 bài/lần) ➔ so với đối thủ ➔ báo lên chuông 2-4 việc nên sửa. <strong>Chỉ đề xuất</strong>, không tự sửa bài đã đăng.</p>
           </div>          <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
             <strong class="text-rose-900">Báo lên chuông Dashboard:</strong>
             <p class="mt-1 text-slate-600">Mỗi lỗi: mức <em>error / warning</em>. Cuối lần chạy: <em>success</em> (&quot;Đã đẩy N outline, M bài&quot;), <em>info</em> nếu không có keyword mới. Lỗi tạo Docs không làm dừng lần chạy.</p>
