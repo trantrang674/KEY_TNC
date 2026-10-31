@@ -2,7 +2,7 @@ name: Đồng bộ số liệu GSC + GA4
 
 on:
   schedule:
-    - cron: "0 23 * * *"   # 23:00 UTC = 06:00 sáng giờ Việt Nam, mỗi ngày
+    - cron: "0 23,5,11 * * *"   # 23:00, 05:00, 11:00 UTC = 06:00, 12:00, 18:00 giờ Việt Nam, mỗi ngày
   workflow_dispatch:       # hoặc bấm "Run workflow" tay trong tab Actions
 
 # Không dùng AI nên không tốn token. Chỉ gọi API Google (đọc) và ghi vào bảng seo_article_metrics trên Supabase.
