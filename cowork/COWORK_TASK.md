@@ -1,7 +1,8 @@
 # Cowork: tự động lập outline và viết bài từ keyword đã duyệt
 
 Chạy 1 lần/ngày. Thư mục làm việc của task phải là `C:\Users\MK01\Documents\GEMNI ANTIGRAVITY\tnc-seo-content`
-(nơi có skill `tnc-seo-content`, `seo-keyword-research`, `evaluate_seo.py` và `.env` chứa SerpApi key).
+(nơi có `CLAUDE.md`, `.agents/skills/tnc-seo-content`, `.agents/skills/tnc-seo-review`, `seo-keyword-research`, `evaluate_seo.py` và `.env` chứa SerpApi key).
+Cowork chạy cục bộ và chỉ dùng quy chuẩn trong thư mục đó, không dùng skill nào có sẵn của app.
 
 ## Cài đặt một lần
 1. Supabase SQL Editor (project TNC): chạy `database/seo_content.sql` , `database/cowork_notifications.sql` (bảng cho chuông thông báo), `database/seo_articles_google_doc.sql` (link Docs) và `database/cowork_heartbeat.sql` (nhịp hoạt động của Cowork).
@@ -40,7 +41,10 @@ Body `POST /articles`: `{outline_id, title, content_md, meta_description, seo_sc
 
 ## Prompt cho scheduled task
 ```
-Làm việc trong thư mục tnc-seo-content, dùng skill tnc-seo-content. Đọc COWORK_API_URL và COWORK_API_KEY từ .env
+Làm việc trong thư mục C:\Users\MK01\Documents\GEMNI ANTIGRAVITY\tnc-seo-content. Đọc CLAUDE.md ở gốc thư mục, rồi chỉ làm theo
+.agents/skills/tnc-seo-content/SKILL.md (bài tin tức, hướng dẫn) hoặc .agents/skills/tnc-seo-review/SKILL.md (keyword có "đánh giá", "review",
+tên sản phẩm cụ thể). KHÔNG dùng skill nào có sẵn của app (đặc biệt skill tnc-seo-content của app). Cấm mọi link trong bài.
+Đọc COWORK_API_URL và COWORK_API_KEY từ .env
 (không in khóa ra màn hình). Mọi lời gọi API gửi header x-api-key.
 
 BƯỚC 0 (đầu lần chạy): POST {COWORK_API_URL}/heartbeat với {"status":"running","summary":"Bắt đầu chạy"}.
@@ -50,8 +54,8 @@ PHẦN A, lập outline:
 1. GET {COWORK_API_URL}/keywords. Với mỗi keyword (tối đa 5 keyword/lần chạy):
    Nếu keyword có rejected_note (không rỗng) nghĩa là người duyệt đã YÊU CẦU CHỈNH SỬA outline lần trước (nhận xét thêm/bớt/đổi gì đó):
    đọc kỹ nhận xét và lập outline mới làm đúng từng ý được yêu cầu, không lặp lại phần bị góp ý.
-2. Làm Bước 2 và Bước 3 của skill tnc-seo-content (chạy serp_keyword.py, phân tích đối thủ, chọn 2-3 key phụ ngắn
-   và 2-3 key phụ dài, lập outline gồm title, mở đầu, H2/H3, FAQ 5 câu, Kết luận).
+2. Làm Bước 2 và Bước 3 của skill (chạy serp_keyword.py, phân tích đối thủ, chọn đúng 4-6 key phụ gồm 2-3 key ngắn
+   và 2-3 key dài, lập outline gồm title dưới ~60 ký tự, mở đầu, H2/H3, FAQ 5 câu, Kết luận).
 3. POST {COWORK_API_URL}/outlines với approved_keyword_id=id, keyword, outline_md, short_kws, long_kws,
    research (PAA và danh sách đối thủ, KÈM research.report_md = toàn bộ nội dung file seo_output/<slug>/report.md
    để nút XEM REPORT trên dashboard hiển thị được). DỪNG ở đây với keyword này, không viết bài.
@@ -74,11 +78,12 @@ PHẦN B, viết bài:
    Nếu outline có rejected_article_note (không rỗng) nghĩa là người duyệt đã YÊU CẦU CHỈNH SỬA bài lần trước:
    đọc kỹ nhận xét và viết lại bài làm đúng từng ý được yêu cầu (vẫn giữ 100% key phụ và điểm SEO >= 90).
 5. Viết bài theo Bước 4 của skill, dùng đúng 100% key phụ trong outline đã duyệt; chạy evaluate_seo.py
-   và sửa đến khi điểm >= 90; tạo meta description 160-170 ký tự (Bước 5).
+   và sửa đến khi điểm >= 90 (bài review thêm --type review); tạo meta description 150-160 ký tự (Bước 5).
+   Bài dài 1,500-2,200 từ, mỗi key phụ lặp 2-5 lần, tuân thủ mục 3.7 và 6.7 (không lộ văn phong AI).
    Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
 6. Tạo file Google Docs cho bài bằng connector Google Drive/Docs, trong thư mục Drive có ID
    1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz (https://drive.google.com/drive/folders/1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz).
-   Tên file = title của bài; nội dung = content_md đã định dạng (H1/H2/H3, danh sách, bảng, in đậm, link giữ nguyên),
+   Tên file = title của bài; nội dung = content_md đã định dạng (H1/H2/H3, danh sách, bảng, in đậm, không chèn link),
    thêm meta description ở đầu file. Lấy link file Docs (https://docs.google.com/document/d/<id>/edit).
    Nếu connector lỗi hoặc không có quyền vào thư mục: KHÔNG dừng, vẫn làm bước 7 với google_doc_url bỏ trống,
    và gửi thông báo level "warning" (title "Không tạo được Google Docs", message ghi lý do, keyword tương ứng).
