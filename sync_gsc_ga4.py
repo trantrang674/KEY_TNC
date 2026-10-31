@@ -43,7 +43,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/analytics.readonly",
 ]
 HISTORY_DAYS = 60
-GSC_LAG_DAYS = 3  # GSC thường trễ 2-3 ngày mới có số liệu chốt
+GSC_LAG_DAYS = 2  # GSC thường trễ 2-3 ngày; ngày cuối có thể chưa đủ, sẽ được ghi đè ở lần đồng bộ sau
 MAX_LIST_PAGES = 40  # chặn vòng lặp phân trang
 UA = {"User-Agent": "Mozilla/5.0 (TNC SEO report sync)"}
 
@@ -249,7 +249,8 @@ def main() -> None:
     print(f"Tổng {len(targets)} bài cần theo dõi ({len(news)} từ trang, {len(dash)} từ dashboard, "
           f"{sum(1 for t in targets.values() if t['is_dashboard'])} bài dashboard)")
 
-    end = date.today() - timedelta(days=GSC_LAG_DAYS)
+    # Runner GitHub chạy giờ UTC: 06:00 VN = 23:00 UTC hôm trước nên date.today() bị lùi 1 ngày, dùng ngày VN
+    end = datetime.now(timezone(timedelta(hours=7))).date() - timedelta(days=GSC_LAG_DAYS)
     rows = []
     workers = int(os.getenv("SYNC_WORKERS", "").strip() or 6)
     with ThreadPoolExecutor(max_workers=workers) as pool:
