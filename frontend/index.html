@@ -3486,7 +3486,8 @@
       nodata:   { label: "Chưa có số liệu",   chip: "bg-slate-100 text-slate-600 border-slate-200", weight: 1, filter: "nodata" }
     };
     let reportActionFilter = "all";
-    let reportActionShowAll = false;
+    let reportActionPage = 1;
+    const ACTION_PAGE_SIZE = 3;
     let reportActionItems = [];
 
     function rptActionItems(articles, endStr, nowMs = Date.now()) {
@@ -3531,7 +3532,8 @@
       return out.sort((x, y) => y.score - x.score);
     }
 
-    function setReportActionFilter(f) { reportActionFilter = f; reportActionShowAll = false; renderReportActions(); }
+    function setReportActionFilter(f) { reportActionFilter = f; reportActionPage = 1; renderReportActions(); }
+    function setReportActionPage(p) { reportActionPage = p; renderReportActions(); }
 
     function renderReportActions() {
       const box = byId("actionList");
@@ -3552,7 +3554,9 @@
         box.innerHTML = `<div class="py-8 text-center text-slate-400">${reportLoadError ? escapeHtml(reportLoadError) : reportActionItems.length ? "Không có bài nào ở nhóm này." : "Không có bài nào cần xử lý. Tốt!"}</div>`;
         return;
       }
-      const shown = reportActionShowAll ? list : list.slice(0, 8);
+      const pages = Math.ceil(list.length / ACTION_PAGE_SIZE);
+      reportActionPage = Math.min(Math.max(1, reportActionPage), pages);   // giữ trang hợp lệ khi danh sách thay đổi
+      const shown = list.slice((reportActionPage - 1) * ACTION_PAGE_SIZE, reportActionPage * ACTION_PAGE_SIZE);
       box.innerHTML = shown.map(i => `
         <div class="py-3 flex flex-col md:flex-row md:items-start gap-2 md:gap-4">
           <div class="min-w-0 flex-1">
@@ -3563,7 +3567,14 @@
           <div class="md:w-52 shrink-0 text-slate-500">${i.cur ? `<div>Clicks 14 ngày: <strong class="text-slate-800">${i.cur.clicks}</strong> <span class="text-slate-400">(trước: ${i.prev.clicks})</span></div><div>Hiển thị: <strong class="text-slate-800">${rptFmt(i.cur.impr)}</strong> · Vị trí <strong class="text-slate-800">#${Math.max(1, Math.round(i.cur.pos))}</strong></div>` : `<div class="text-slate-400">Chưa có số liệu để so sánh</div>`}</div>
           <button type="button" onclick="openReportDetailModal('${i.id}')" class="self-start px-2.5 py-1 rounded-lg bg-indigo-50 hover:bg-indigo-600 text-indigo-700 hover:text-white font-bold text-[11px] transition border border-indigo-100">Chi tiết</button>
         </div>`).join("") +
-        (list.length > 8 ? `<div class="pt-3 text-center"><button type="button" onclick="reportActionShowAll=!reportActionShowAll;renderReportActions()" class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800">${reportActionShowAll ? "Thu gọn" : `Xem thêm ${list.length - 8} bài`}</button></div>` : "");
+        (pages > 1 ? `<div class="pt-3 flex items-center justify-between gap-2 text-[11px] font-bold">
+          <span class="text-slate-400">Bài ${(reportActionPage - 1) * ACTION_PAGE_SIZE + 1}-${Math.min(reportActionPage * ACTION_PAGE_SIZE, list.length)} / ${list.length}</span>
+          <div class="flex items-center gap-1">
+            <button type="button" ${reportActionPage === 1 ? "disabled" : `onclick="setReportActionPage(${reportActionPage - 1})"`} class="px-2.5 py-1 rounded-lg border border-blue-100 bg-white text-slate-600 ${reportActionPage === 1 ? "opacity-40 cursor-not-allowed" : "hover:text-slate-900"}">&lsaquo; Trước</button>
+            ${Array.from({ length: pages }, (_, k) => k + 1).map(p => `<button type="button" onclick="setReportActionPage(${p})" class="w-7 h-7 rounded-lg border transition ${p === reportActionPage ? "bg-indigo-600 text-white border-indigo-600" : "bg-white text-slate-600 border-blue-100 hover:text-slate-900"}">${p}</button>`).join("")}
+            <button type="button" ${reportActionPage === pages ? "disabled" : `onclick="setReportActionPage(${reportActionPage + 1})"`} class="px-2.5 py-1 rounded-lg border border-blue-100 bg-white text-slate-600 ${reportActionPage === pages ? "opacity-40 cursor-not-allowed" : "hover:text-slate-900"}">Sau &rsaquo;</button>
+          </div>
+        </div>` : "");
     }
 
     // =====================================================================
