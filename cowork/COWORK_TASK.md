@@ -1,7 +1,7 @@
 # Cowork: tự động lập outline và viết bài từ keyword đã duyệt
 
 Chạy 1 lần/ngày. Thư mục làm việc của task phải là `C:\Users\MK01\Documents\GEMNI ANTIGRAVITY\tnc-seo-content`
-(nơi có `CLAUDE.md`, `.agents/skills/tnc-seo-content`, `.agents/skills/tnc-seo-review`, `seo-keyword-research`, `evaluate_seo.py` và `.env` chứa SerpApi key).
+(nơi có `CLAUDE.md`, `.agents/skills/tnc-viet-bai-tin`, `.agents/skills/tnc-viet-bai-review`, `seo-keyword-research`, `evaluate_seo.py` và `.env` chứa SerpApi key).
 Cowork chạy cục bộ và chỉ dùng quy chuẩn trong thư mục đó, không dùng skill nào có sẵn của app.
 
 ## Cài đặt một lần
@@ -42,7 +42,7 @@ Body `POST /articles`: `{outline_id, title, content_md, meta_description, seo_sc
 ## Prompt cho scheduled task
 ```
 Làm việc trong thư mục C:\Users\MK01\Documents\GEMNI ANTIGRAVITY\tnc-seo-content. Đọc CLAUDE.md ở gốc thư mục, rồi chỉ làm theo
-.agents/skills/tnc-seo-content/SKILL.md (bài tin tức, hướng dẫn) hoặc .agents/skills/tnc-seo-review/SKILL.md (keyword có "đánh giá", "review",
+.agents/skills/tnc-viet-bai-tin/SKILL.md (bài tin tức, hướng dẫn) hoặc .agents/skills/tnc-viet-bai-review/SKILL.md (keyword có "đánh giá", "review",
 tên sản phẩm cụ thể). KHÔNG dùng skill nào có sẵn của app (đặc biệt skill tnc-seo-content của app). Cấm mọi link trong bài.
 Đọc COWORK_API_URL và COWORK_API_KEY từ .env
 (không in khóa ra màn hình). Mọi lời gọi API gửi header x-api-key.

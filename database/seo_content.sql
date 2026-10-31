@@ -1,5 +1,5 @@
 -- =====================================================================
--- OUTLINE + BÀI VIẾT SEO do Cowork (agent skill tnc-seo-content) tạo, chờ người duyệt trên dashboard
+-- OUTLINE + BÀI VIẾT SEO do Cowork (agent skill tnc-viet-bai-tin) tạo, chờ người duyệt trên dashboard
 -- Cách dùng: chạy auth_postgres.sql và approved_keywords.sql trước, sau đó dán file này vào
 -- Supabase > SQL Editor > Run (chạy lại nhiều lần an toàn).
 -- Luồng:
