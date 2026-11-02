@@ -43,7 +43,6 @@ SCOPES = [
     "https://www.googleapis.com/auth/analytics.readonly",
 ]
 HISTORY_DAYS = 60
-GSC_LAG_DAYS = 0  # lấy đến hôm nay (giờ VN); GSC với dataState=all chỉ trả đến ~hôm qua, ngày chưa chốt sẽ được ghi đè ở lần đồng bộ sau
 MAX_LIST_PAGES = 40  # chặn vòng lặp phân trang
 UA = {"User-Agent": "Mozilla/5.0 (TNC SEO report sync)"}
 
@@ -138,10 +137,18 @@ class Google:
         url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{quote(self.site, safe='')}/searchAnalytics/query"
         body = {
             "startDate": start.isoformat(), "endDate": end.isoformat(), "dimensions": dimensions, "rowLimit": limit,
-            "dataState": "all",  # gồm cả số liệu chưa chốt của 1-2 ngày gần nhất (mặc định chỉ trả số đã chốt, trễ 2-3 ngày)
+            "dataState": "final",  # chỉ số đã chốt, giống GSC web (số chưa chốt của 1-2 ngày cuối làm dashboard lệch)
             "dimensionFilterGroups": [{"filters": [{"dimension": "page", "operator": "equals", "expression": page}]}],
         }
         return self._post(url, body).get("rows", [])
+
+    def latest_final_date(self, today: date) -> date:
+        """Ngày cuối cùng GSC đã chốt số liệu của cả trang (GSC web cũng kết thúc ở ngày này)."""
+        url = f"https://searchconsole.googleapis.com/webmasters/v3/sites/{quote(self.site, safe='')}/searchAnalytics/query"
+        body = {"startDate": (today - timedelta(days=10)).isoformat(), "endDate": today.isoformat(),
+                "dimensions": ["date"], "dataState": "final", "rowLimit": 20}
+        days = [r["keys"][0] for r in self._post(url, body).get("rows", [])]
+        return date.fromisoformat(max(days)) if days else today - timedelta(days=3)
 
     def inspect(self, page: str) -> dict:
         url = "https://searchconsole.googleapis.com/v1/urlInspection/index:inspect"
@@ -253,7 +260,9 @@ def main() -> None:
           f"{sum(1 for t in targets.values() if t['is_dashboard'])} bài dashboard)")
 
     # Runner GitHub chạy giờ UTC: 06:00 VN = 23:00 UTC hôm trước nên date.today() bị lùi 1 ngày, dùng ngày VN
-    end = datetime.now(timezone(timedelta(hours=7))).date() - timedelta(days=GSC_LAG_DAYS)
+    # Kết thúc ở ngày GSC đã chốt (như GSC web), GA4 dùng cùng khung ngày để các số so sánh được với nhau.
+    end = g.latest_final_date(datetime.now(timezone(timedelta(hours=7))).date())
+    print(f"Khung dữ liệu kết thúc ngày {end} (ngày cuối GSC đã chốt)")
     rows = []
     workers = int(os.getenv("SYNC_WORKERS", "").strip() or 6)
     with ThreadPoolExecutor(max_workers=workers) as pool:
