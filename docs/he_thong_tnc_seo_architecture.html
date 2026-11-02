@@ -61,7 +61,7 @@
       </div>
       <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
         <div class="text-xs font-bold text-rose-600 uppercase">3. Cowork AI (chạy cục bộ)</div>
-        <div class="text-lg font-bold text-slate-800 mt-1">8h sáng mỗi ngày</div>
+        <div class="text-lg font-bold text-slate-800 mt-1">10h sáng mỗi ngày</div>
         <p class="text-xs text-slate-500 mt-1">Lập outline, viết bài SEO &ge; 90 điểm, tạo Google Docs, báo chuông + nhịp hoạt động.</p>
       </div>
       <div class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm">
@@ -104,7 +104,7 @@ flowchart LR
     end
 
     subgraph LOCAL ["MÁY CHẠY COWORK"]
-        COWORK["Cowork 8h sáng<br/>tnc-seo-content"]
+        COWORK["Cowork 10h sáng<br/>tnc-seo-content"]
         GDOCS["Google Docs"]
     end
 
@@ -139,7 +139,7 @@ flowchart LR
           </thead>
           <tbody class="divide-y divide-slate-100">
             <tr><td class="p-2.5 font-bold">Quét tin + chấm điểm</td><td class="p-2.5">GitHub Actions <code>daily-pages.yml</code></td><td class="p-2.5">12:00 thứ 2, 4, 6; chạy tay; hoặc gõ <code>/quet</code> trên Zalo</td><td class="p-2.5">Báo cáo mới trong <code>daily_reports</code> + tin Zalo Top 3 + Pages cập nhật</td><td class="p-2.5">Tab Actions đã xanh; Dashboard hiện &quot;Cập nhật lần cuối&quot; đúng giờ</td></tr>
-            <tr><td class="p-2.5 font-bold">Cowork lập outline + viết bài</td><td class="p-2.5">Máy chạy Cowork (scheduled task)</td><td class="p-2.5">8:00 mỗi ngày (cron <code>0 8 * * *</code>)</td><td class="p-2.5">Outline / bài chờ duyệt, Google Docs, chuông thông báo</td><td class="p-2.5">Dashboard hiện &quot;Cowork chạy lần cuối&quot;; đỏ nếu quá 26 giờ hoặc báo lỗi</td></tr>
+            <tr><td class="p-2.5 font-bold">Cowork lập outline + viết bài</td><td class="p-2.5">Máy chạy Cowork (scheduled task)</td><td class="p-2.5">10:00 mỗi ngày (cron <code>0 10 * * *</code>)</td><td class="p-2.5">Outline / bài chờ duyệt, Google Docs, chuông thông báo</td><td class="p-2.5">Dashboard hiện &quot;Cowork chạy lần cuối&quot;; đỏ nếu quá 26 giờ hoặc báo lỗi</td></tr>
             <tr><td class="p-2.5 font-bold">Đồng bộ GSC + GA4</td><td class="p-2.5">GitHub Actions <code>sync-gsc-ga4.yml</code></td><td class="p-2.5">6:00, 12:00, 18:00 mỗi ngày; chạy tay được</td><td class="p-2.5">Bảng <code>seo_article_metrics</code> cho tab BÁO CÁO</td><td class="p-2.5">Cột <code>synced_at</code>, <code>data_end_date</code> trong Supabase</td></tr>
             <tr><td class="p-2.5 font-bold">Lệnh Zalo</td><td class="p-2.5"><code>zalo-webhook</code></td><td class="p-2.5">Khi nhắn <code>/quet</code> hoặc <code>/top</code></td><td class="p-2.5">Gọi quét ngay hoặc xem báo cáo gần nhất</td><td class="p-2.5">Bot trả lời &quot;Đã gọi quét&quot; hoặc lỗi GitHub</td></tr>
           </tbody>
@@ -249,7 +249,7 @@ sequenceDiagram
     Editor->>UI: Xem báo cáo, bấm Duyệt đẩy Cowork
     UI->>SB: Lưu approved_keywords
 
-    Note over CW,SB: Giai đoạn 2: Cowork lập outline (8h sáng)
+    Note over CW,SB: Giai đoạn 2: Cowork lập outline (10h sáng)
     CW->>SB: heartbeat running, GET keywords (tối đa 5)
     CW->>CW: Phân tích đối thủ, chọn 4-6 key phụ, lập outline, FAQ 5 câu
     CW->>SB: POST outlines (kèm report.md), chờ duyệt
@@ -319,7 +319,7 @@ sequenceDiagram
           </thead>
           <tbody class="divide-y divide-slate-100">
             <tr><td class="p-2.5 font-bold">Dashboard hiện giờ cập nhật cũ</td><td class="p-2.5">Tab Actions có run xanh của <code>daily-pages</code>? Bảng <code>daily_reports</code> dòng hôm nay, cột <code>updated_at</code></td><td class="p-2.5">Chạy tay <code>build_static.py</code> trên máy ghi đè (nay <code>--reuse</code> đã không ghi nữa); hoặc chạy chế độ chỉ giao diện</td></tr>
-            <tr><td class="p-2.5 font-bold">Cowork không ra outline / bài</td><td class="p-2.5">Dòng &quot;Cowork chạy lần cuối&quot; và chuông trên Dashboard</td><td class="p-2.5">Máy tắt lúc 8h, thiếu <code>COWORK_API_KEY</code> trong <code>.env</code>, hoặc chưa duyệt keyword / outline</td></tr>
+            <tr><td class="p-2.5 font-bold">Cowork không ra outline / bài</td><td class="p-2.5">Dòng &quot;Cowork chạy lần cuối&quot; và chuông trên Dashboard</td><td class="p-2.5">Máy tắt lúc 10h, thiếu <code>COWORK_API_KEY</code> trong <code>.env</code>, hoặc chưa duyệt keyword / outline</td></tr>
             <tr><td class="p-2.5 font-bold">Không thấy nút XEM REPORT</td><td class="p-2.5">Outline có <code>research.report_md</code> chưa?</td><td class="p-2.5">Chạy <code>python sync_reports.py --apply</code></td></tr>
             <tr><td class="p-2.5 font-bold">Số liệu BÁO CÁO chưa có / lệch</td><td class="p-2.5"><code>seo_article_metrics</code>: <code>synced_at</code>, <code>data_end_date</code>; bài đã dán <code>published_url</code> chưa</td><td class="p-2.5">Chưa dán link bài; Google trễ 1-2 ngày; bài chưa được index</td></tr>
             <tr><td class="p-2.5 font-bold">Zalo không báo</td><td class="p-2.5">Secret <code>ZALO_BOT_TOKEN</code>, <code>ZALO_CHAT_ID</code>; nhật ký <code>zalo-webhook</code></td><td class="p-2.5">Sai chat id, token hết hạn</td></tr>

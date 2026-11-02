@@ -16,7 +16,7 @@ Cowork chạy cục bộ và chỉ dùng quy chuẩn trong thư mục đó, khô
    COWORK_API_URL=https://lfexppnvvkqzygbwqnkv.supabase.co/functions/v1/cowork-api
    COWORK_API_KEY=<chuoi-bi-mat>
    ```
-4. Tạo scheduled task (cron `0 8 * * *`) với prompt bên dưới.
+4. Tạo scheduled task (cron `0 10 * * *`) với prompt bên dưới.
 
 ## API
 Mọi request có header `x-api-key: $COWORK_API_KEY`.

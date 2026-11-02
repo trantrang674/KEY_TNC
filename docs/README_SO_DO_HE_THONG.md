@@ -42,7 +42,7 @@ flowchart LR
     end
 
     subgraph LOCAL ["MÁY CHẠY COWORK"]
-        COWORK["Cowork 8h sáng<br/>tnc-seo-content"]
+        COWORK["Cowork 10h sáng<br/>tnc-seo-content"]
         GDOCS["Google Docs"]
     end
 
@@ -70,7 +70,7 @@ flowchart LR
 | Tác vụ | Chạy ở đâu | Lịch | Cách kiểm tra |
 |---|---|---|---|
 | Quét tin + chấm điểm | GitHub Actions `daily-pages.yml` | 12:00 thứ 2, 4, 6; chạy tay; hoặc `/quet` trên Zalo | Tab Actions xanh; Dashboard hiện "Cập nhật lần cuối" đúng giờ |
-| Cowork lập outline + viết bài | Máy chạy Cowork (scheduled task) | 8:00 mỗi ngày (`0 8 * * *`) | Dòng "Cowork chạy lần cuối" trên Dashboard (đỏ nếu quá 26 giờ hoặc báo lỗi) |
+| Cowork lập outline + viết bài | Máy chạy Cowork (scheduled task) | 10:00 mỗi ngày (`0 10 * * *`) | Dòng "Cowork chạy lần cuối" trên Dashboard (đỏ nếu quá 26 giờ hoặc báo lỗi) |
 | Đồng bộ GSC + GA4 | GitHub Actions `sync-gsc-ga4.yml` | 6:00, 12:00, 18:00 mỗi ngày | Cột `synced_at`, `data_end_date` trong `seo_article_metrics` |
 | Lệnh Zalo | `zalo-webhook` | Khi nhắn `/quet` hoặc `/top` | Bot trả lời "Đã gọi quét" hoặc lỗi GitHub |
 
@@ -81,9 +81,9 @@ flowchart LR
 ### `backend/` (xử lý dữ liệu, chấm điểm)
 - `engine.py`: nhạc trưởng. Chấm 100 điểm, chọn **Top 20 keyword**, mỗi keyword 5 bài + 3 gợi ý. Nhóm "Có thể quan tâm" luôn xếp cuối.
 - `news_fetcher.py`: quét **16 nguồn** RSS / Google News trong 48h (báo công nghệ, shop đối thủ, Google News theo chủ đề AI, game, chính sách số).
-- `classifier.py`: gán 1 trong **9 nhóm chủ đề** (Linh kiện - Phần cứng, HĐH - Phần mềm, Có thể quan tâm, Game, A.I, Mạng xã hội - App, Chính sách - Quy định, An ninh mạng, Tối ưu - Sửa lỗi) và nhận diện brand.
+- `classifier.py`: gán 1 trong **9 nhóm chủ đề** (Linh kiện - Phần cứng, HĐH - Phần mềm, Có thể quan tâm, Game, A.I, Mạng xã hội - App, Chính sách - Quy định, An ninh mạng, Tối ưu - Sửa lỗi), nhận diện brand, và lọc bỏ mảng smartphone Android (nhưng giữ lại bài có yếu tố PC/Laptop, sự kiện từ Apple và thủ thuật hot).
 - `serpapi_client.py`: 4 cổng SerpApi, mỗi cổng 1 lượt/ngày, cache `data/serpapi_daily_*.json`. Gói Free có 250 lượt/tháng; mỗi lần quét tốn 4 lượt.
-- `seo_suggester.py`: gợi ý 3 keyword / tiêu đề.
+- `seo_suggester.py`: sinh tối đa 3 gợi ý keyword viết bài SEO bám sát sự kiện/vấn đề trong Top 5 bài viết (loại cụm chung chung, loại từ lửng cuối câu, hỗ trợ keyword dài tới 12 từ cho tên người gắn với sự kiện).
 
 ### `frontend/`, `data/`, `site/`
 - `frontend/index.html`: Dashboard 1 trang, **6 tab**: Dashboard Keyword, Keyword Duyệt, Workflow, Báo cáo, Đề xuất, **Cài đặt**. Tab Báo cáo có khung "Bài cần xử lý" nằm cạnh biểu đồ (giảm clicks, tụt hạng, CTR thấp, chưa index; so 14 ngày gần nhất với 14 ngày trước, bỏ ngày cuối; phân trang 3 bài/trang; bài Cowork ★ luôn xếp trước và có nút lọc Tất cả nguồn / Bài Cowork / Bài khác; bài giảm clicks hoặc tụt hạng được đánh dấu NÊN LÀM MỚI). Bảng đo lường hiệu năng mặc định xếp "Bài mới nhất (ngày xuất bản)", không còn cột Audit. Menu trái là dải màu tím đậm. Tab Cài đặt là thẻ sức khỏe hệ thống (lần quét, lần sync GSC+GA4, Cowork, lượt SerpApi). Có chuông thông báo của Cowork và dòng "Cowork chạy lần cuối".
@@ -110,7 +110,7 @@ flowchart LR
 - `build_static.py`: quét, đẩy báo cáo, báo Zalo, dựng `site/`. `--ui-only` chỉ dựng giao diện; `--reuse` dựng lại từ file local và **không ghi lên Supabase**.
 - `sync_gsc_ga4.py`: (ngày cuối dữ liệu `data_end_date` = ngày GSC thật sự có số, không phải hôm nay) kéo GSC + GA4 cho bài trong 60 ngày của danh mục Tin tức và bài của dashboard.
 - `sync_reports.py`: đồng bộ bù `report.md` từ `seo_output` lên Supabase.
-- `tests/test_core.py`: 5 bài kiểm thử khớp keyword và độ tươi.
+- `tests/test_core.py`, `tests/test_suggester.py`: bộ kiểm thử khớp keyword, độ tươi, bộ lọc smartphone đã nới và tiêu chuẩn gợi ý keyword SEO.
 - `.env`: khóa bí mật (không commit). GitHub Secrets cần có: `SERPAPI_API_KEY`, `SUPABASE_URL`, `SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_KEY`, `ZALO_BOT_TOKEN`, `ZALO_CHAT_ID`, `GOOGLE_SERVICE_ACCOUNT_JSON`.
 
 ---
@@ -137,7 +137,7 @@ sequenceDiagram
     Editor->>UI: Xem báo cáo, bấm Duyệt đẩy Cowork
     UI->>SB: Lưu approved_keywords
 
-    Note over CW,SB: Giai đoạn 2: Cowork lập outline (8h sáng)
+    Note over CW,SB: Giai đoạn 2: Cowork lập outline (10h sáng)
     CW->>SB: heartbeat running, GET keywords (tối đa 5)
     CW->>CW: Phân tích đối thủ, chọn 4-6 key phụ, lập outline, FAQ 5 câu
     CW->>SB: POST outlines (kèm report.md), chờ duyệt
@@ -185,7 +185,7 @@ Tại `backend/engine.py`:
 | Triệu chứng | Kiểm tra | Thường do |
 |---|---|---|
 | Dashboard hiện giờ cập nhật cũ | Tab Actions có run xanh của `daily-pages`? Bảng `daily_reports` dòng hôm nay, cột `updated_at` | Chạy tay `build_static.py` trên máy ghi đè (nay `--reuse` đã không ghi nữa); hoặc chạy chế độ chỉ giao diện |
-| Cowork không ra outline / bài | Dòng "Cowork chạy lần cuối" và chuông trên Dashboard | Máy tắt lúc 8h, thiếu `COWORK_API_KEY` trong `.env`, hoặc chưa duyệt keyword / outline |
+| Cowork không ra outline / bài | Dòng "Cowork chạy lần cuối" và chuông trên Dashboard | Máy tắt lúc 10h, thiếu `COWORK_API_KEY` trong `.env`, hoặc chưa duyệt keyword / outline |
 | Không thấy nút XEM REPORT | Outline có `research.report_md` chưa? | Chạy `python sync_reports.py --apply` |
 | Số liệu BÁO CÁO chưa có / lệch | `seo_article_metrics`: `synced_at`, `data_end_date`; bài đã dán `published_url` chưa | Chưa dán link bài; Google trễ 1-2 ngày; bài chưa được index |
 | Zalo không báo | Secret `ZALO_BOT_TOKEN`, `ZALO_CHAT_ID`; nhật ký `zalo-webhook` | Sai chat id, token hết hạn |
