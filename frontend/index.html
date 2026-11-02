@@ -678,8 +678,8 @@
           <div class="flex flex-wrap items-center gap-2">
             <!-- Bộ lọc thời gian -->
             <div class="inline-flex rounded-xl bg-white border border-blue-100 p-1 shadow-sm text-xs font-semibold">
-              <button type="button" class="report-range-btn px-3 py-1 rounded-lg bg-indigo-600 text-white font-bold transition" onclick="changeReportRange('7d', this)">7 ngày</button>
-              <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('28d', this)">28 ngày</button>
+              <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('7d', this)">7 ngày</button>
+              <button type="button" class="report-range-btn px-3 py-1 rounded-lg bg-indigo-600 text-white font-bold transition" onclick="changeReportRange('28d', this)">28 ngày</button>
               <button type="button" class="report-range-btn px-3 py-1 rounded-lg text-slate-600 hover:text-slate-900 transition" onclick="changeReportRange('all', this)">60 ngày</button>
             </div>
             <!-- Khung chọn khoảng ngày tùy chỉnh (luôn hiển thị) -->
@@ -3343,7 +3343,7 @@
     // TAB BÁO CÁO: TRACKING & ĐO LƯỜNG HIỆU QUẢ BÀI VIẾT (GSC + GA4 qua Supabase)
     // =====================================================================
     // Số liệu thật lấy từ bảng seo_article_metrics (script sync_gsc_ga4.py ghi từ Google Search Console + GA4)
-    let reportActiveRange = "7d";
+    let reportActiveRange = "28d";
     let reportCurrentArticles = [];
     let reportApprovedTotal = 0;
     let reportEnd = "";
