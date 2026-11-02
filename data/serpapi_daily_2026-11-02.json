@@ -1,0 +1,495 @@
+{
+  "date": "2026-11-02 14:39:18",
+  "from_cache": false,
+  "apis_called": {
+    "google_trends_trending_now": {
+      "status": "success",
+      "count": 40
+    },
+    "google_autocomplete": {
+      "status": "success",
+      "seed_query": "Cập nhật tính năng VNeID mới nhất",
+      "count": 5
+    },
+    "google_search": {
+      "status": "success",
+      "query": "\"Cập nhật tính năng VNeID mới nhất\" OR \"Xu hướng TikTok\" OR \"Liên Minh Huyền Thoại\"",
+      "count": 0
+    },
+    "google_trends": {
+      "status": "success",
+      "query": "Cập nhật tính năng VNeID mới nhất,Xu hướng TikTok,Liên Minh Huyền Thoại,Windows 11,Nền tảng Steam",
+      "scores": {
+        "cập nhật tính năng vneid mới nhất": 0,
+        "xu hướng tiktok": 1,
+        "liên minh huyền thoại": 17,
+        "windows 11": 56,
+        "nền tảng steam": 0
+      }
+    }
+  },
+  "trending_now_items": [
+    {
+      "query": "báo điện tử soha",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "new england đấu với inter miami",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "thứ hạng của new england revolution gặp inter miami",
+        "inter miami",
+        "inter miami vs",
+        "giải nhà nghề mỹ",
+        "new england – inter miami"
+      ]
+    },
+    {
+      "query": "tàu",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "liverpool đấu với arsenal",
+      "search_volume": 50000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "liverpool vs arsenal",
+        "liverpool",
+        "liverpool vs",
+        "liverpool – arsenal",
+        "arsenal"
+      ]
+    },
+    {
+      "query": "xuân hinh",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "quốc anh",
+      "search_volume": 5000,
+      "increase_percentage": 500,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "dân trí",
+      "search_volume": 10000,
+      "increase_percentage": 75,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": [
+        "vệt sáng lạ trên bầu trời",
+        "sao băng",
+        "vệt sáng trên bầu trời"
+      ]
+    },
+    {
+      "query": "bảo hiểm xe cơ giới",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance",
+        "Law and Government"
+      ],
+      "related_queries": [
+        "bảo hiểm bắt buộc",
+        "bỏ bảo hiểm xe máy"
+      ]
+    },
+    {
+      "query": "tài khoản ngân hàng",
+      "search_volume": 5000,
+      "increase_percentage": 800,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "ngân hàng thương mại cổ phần sài gòn tài lộc",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "sacombank"
+      ]
+    },
+    {
+      "query": "lụt",
+      "search_volume": 1000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "xổ số miền nam ngày 1 tháng 11",
+      "search_volume": 200000,
+      "increase_percentage": 800,
+      "categories": [
+        "Games"
+      ],
+      "related_queries": [
+        "xổ số miền nam ngày 31 tháng 10",
+        "xổ số ngày 1 tháng 11",
+        "xổ số đà lạt ngày 1 tháng 11",
+        "xổ số ngày 31 tháng 10",
+        "xổ số kiên giang ngày 1 tháng 11"
+      ]
+    },
+    {
+      "query": "giá xăng hôm nay",
+      "search_volume": 20000,
+      "increase_percentage": 400,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "giá xăng dầu hôm nay",
+        "giá dầu hôm nay",
+        "giá xăng dầu hôm",
+        "gia xang dau hom nay"
+      ]
+    },
+    {
+      "query": "lên đỉnh olympia",
+      "search_volume": 50000,
+      "increase_percentage": 400,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "đường lên đỉnh olympia 2026",
+        "olympia",
+        "đường lên đỉnh olympia",
+        "chung kết đường lên đỉnh olympia 2026",
+        "trực tiếp đường lên đỉnh olympia"
+      ]
+    },
+    {
+      "query": "chùa online",
+      "search_volume": 2000,
+      "increase_percentage": 300,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "tết nguyên đán",
+      "search_volume": 2000,
+      "increase_percentage": 600,
+      "categories": [
+        "Hobbies and Leisure"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "learjet 60",
+      "search_volume": 2000,
+      "increase_percentage": 800,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "sử dụng đất",
+      "search_volume": 2000,
+      "increase_percentage": 900,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "giấy chứng nhận quyền sử dụng đất"
+      ]
+    },
+    {
+      "query": "vietlott mega 6/45",
+      "search_volume": 1000,
+      "increase_percentage": 400,
+      "categories": [
+        "Games"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "đội tuyển bóng đá u 23 quốc gia việt nam",
+      "search_volume": 200,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thứ hạng của chelsea gặp man utd",
+      "search_volume": 200000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "chelsea đấu với man utd",
+        "mu chelsea",
+        "chelsea – man utd",
+        "mu vs chelsea 2026",
+        "mu"
+      ]
+    },
+    {
+      "query": "câu lạc bộ bóng đá hoàng anh gia lai",
+      "search_volume": 200,
+      "increase_percentage": 400,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "nguyễn tiến hải",
+      "search_volume": 2000,
+      "increase_percentage": 300,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": [
+        "viên chức"
+      ]
+    },
+    {
+      "query": "ole gunnar solskjær",
+      "search_volume": 200,
+      "increase_percentage": 200,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "24h bong da"
+      ]
+    },
+    {
+      "query": "định danh",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thời tiết",
+      "search_volume": 200000,
+      "increase_percentage": 50,
+      "categories": [
+        "Climate"
+      ],
+      "related_queries": [
+        "thời tiết ngày mai",
+        "dự báo thời tiết miền bắc",
+        "đợt lạnh",
+        "dự báo thời tiết hôm nay",
+        "không khí lạnh miền bắc"
+      ]
+    },
+    {
+      "query": "barcelona đấu với alavés",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "lamine yamal",
+        "raphinha"
+      ]
+    },
+    {
+      "query": "sadie sink",
+      "search_volume": 100,
+      "increase_percentage": 400,
+      "categories": [
+        "Entertainment"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "lionel messi",
+      "search_volume": 10000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "mls",
+        "inter miami cf"
+      ]
+    },
+    {
+      "query": "vàng",
+      "search_volume": 20000,
+      "increase_percentage": 300,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": [
+        "giá vàng thế giới",
+        "giá vàng thế giới hôm nay",
+        "gia vang hom nay",
+        "vàng thế giới",
+        "giá vàng sjc"
+      ]
+    },
+    {
+      "query": "xe hơi",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Autos and Vehicles"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "nguyễn lân hiếu",
+      "search_volume": 1000,
+      "increase_percentage": 300,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "hiến tạng",
+        "bộ trưởng bộ y tế việt nam"
+      ]
+    },
+    {
+      "query": "cầu",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "đường cao tốc pháp vân - cầu giẽ"
+      ]
+    },
+    {
+      "query": "thứ hạng của barcelona gặp alavés",
+      "search_volume": 20000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "barca"
+      ]
+    },
+    {
+      "query": "juventus đấu với napoli",
+      "search_volume": 2000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "napoli vs",
+        "juventus vs napoli",
+        "bongda"
+      ]
+    },
+    {
+      "query": "lâm đồng",
+      "search_volume": 500,
+      "increase_percentage": 400,
+      "categories": [
+        "Business and Finance"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "giải vô địch bóng đá u-17 thế giới",
+      "search_volume": 2000,
+      "increase_percentage": 900,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "cristiano roland"
+      ]
+    },
+    {
+      "query": "cảng batsham",
+      "search_volume": 5000,
+      "increase_percentage": 700,
+      "categories": [
+        "Other"
+      ],
+      "related_queries": [
+        "batsham"
+      ]
+    },
+    {
+      "query": "nội bài",
+      "search_volume": 5000,
+      "increase_percentage": 1000,
+      "categories": [
+        "Law and Government"
+      ],
+      "related_queries": []
+    },
+    {
+      "query": "thứ hạng của los angeles fc gặp minnesota united",
+      "search_volume": 1000,
+      "increase_percentage": 800,
+      "categories": [
+        "Sports"
+      ],
+      "related_queries": [
+        "lafc đấu với minnesota united",
+        "los angeles vs"
+      ]
+    }
+  ],
+  "autocomplete_suggestions": [
+    "vneid tính năng mới",
+    "cập nhật vneid mức độ 2 online",
+    "cập nhật vneid lên mức 2",
+    "cập nhật vneid mức độ 2",
+    "cập nhật vneid mức độ 1"
+  ],
+  "google_search_articles": [],
+  "google_trends_scores": {
+    "cập nhật tính năng vneid mới nhất": 0,
+    "xu hướng tiktok": 1,
+    "liên minh huyền thoại": 17,
+    "windows 11": 56,
+    "nền tảng steam": 0
+  }
+}

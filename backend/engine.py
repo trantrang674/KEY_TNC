@@ -80,6 +80,15 @@ def select_top_articles(articles: List[Dict], all_pool: List[Dict], keyword: str
     - Ưu tiên đa dạng nguồn (không lấy trùng nguồn nếu có nhiều nguồn khác nhau cùng viết).
     - Nếu cụm hiện tại có ít hơn `limit` bài, tìm thêm trong kho bài viết 48h có chứa từ khóa liên quan.
     """
+    # Chỉ giữ bài có tiêu đề thực sự nói về keyword (loại bài lạc đề lọt vào cụm).
+    # Nếu còn < 2 bài liên quan thì bổ sung bài còn lại để không bỏ trống cụm.
+    relevant = [a for a in articles if keywords_match(keyword, a.get("title", ""))]
+    if len(relevant) >= 2:
+        articles = relevant
+    else:
+        rest = [a for a in articles if a not in relevant]
+        articles = relevant + rest
+
     # Sắp xếp ưu tiên bài trong 24h và số giờ nhỏ nhất
     sorted_arts = sorted(
         articles,
@@ -120,7 +129,7 @@ def select_top_articles(articles: List[Dict], all_pool: List[Dict], keyword: str
             if url in used_urls:
                 continue
             title_l = art.get("title", "").lower()
-            if kw_tokens and any(tok in title_l for tok in kw_tokens):
+            if kw_tokens and keywords_match(keyword, art.get("title", "")):
                 selected.append(art)
                 used_urls.add(url)
 

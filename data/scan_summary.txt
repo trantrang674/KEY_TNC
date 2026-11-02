@@ -1,0 +1,35 @@
+#1 Windows 11 [{'id': 'OS_SOFTWARE', 'name': 'HĐH - Phần mềm', 'badge_color': 'blue', 'group': 'Sát sườn ngành hàng', 'relevance_score': 3}]
+    -> Windows 11 26H2 chạy thành công  (Sự kiện cụ thể)
+    -> Windows 11 26H2  (Keyword Tin tức SEO trọng tâm)
+#2 Liên Minh Huyền Thoại [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+    -> Link xem trực tiếp LMHT  (Keyword Lịch / Kết quả)
+#3 Xu hướng TikTok [{'id': 'SOCIAL_APPS', 'name': 'Mạng xã hội - App', 'badge_color': 'pink', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+#4 Cập nhật tính năng VNeID mới nhất [{'id': 'GOV_DIGITAL_POLICY', 'name': 'Chính sách - Quy định', 'badge_color': 'red', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+    -> Cập nhật VNeID lên mức 2  (Gợi ý tìm kiếm Google)
+    -> Cập nhật VNeID mức độ 2  (Gợi ý tìm kiếm Google)
+#5 Nền tảng Steam [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 12}]
+    -> Steam tặng một game  (Sự kiện cụ thể)
+    -> Cách tải Steam  (Keyword Hướng dẫn / Thủ thuật)
+#6 Ứng dụng Zalo [{'id': 'AI_UPDATES', 'name': 'A.I', 'badge_color': 'amber', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+#7 Tính năng mới Facebook [{'id': 'SOCIAL_APPS', 'name': 'Mạng xã hội - App', 'badge_color': 'pink', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+#8 CKTG 2026 [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+    -> Link xem trực tiếp CKTG 2026  (Keyword Lịch / Kết quả)
+    -> Lịch thi đấu CKTG 2026  (Keyword Lịch / Kết quả)
+#9 Claude AI [{'id': 'AI_UPDATES', 'name': 'A.I', 'badge_color': 'amber', 'group': 'Tin tức Hot & Trend', 'relevance_score': 4}]
+    -> Claude Desktop  (Keyword Tin tức SEO trọng tâm)
+#10 Sam Altman [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 3}]
+#11 Elon Musk [{'id': 'AI_UPDATES', 'name': 'A.I', 'badge_color': 'amber', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+#12 MacBook Pro OLED [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 7}]
+    -> MacBook Pro OLED cảm ứng mới  (Sự kiện nổi bật)
+#13 Mới làm content creator nên mua laptop nào [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 3}]
+#14 Cập nhật YouTube [{'id': 'SOCIAL_APPS', 'name': 'Mạng xã hội - App', 'badge_color': 'pink', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+    -> YouTube vào tầm ngắm  (Sự kiện cụ thể)
+#15 iOS 18 [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 6}]
+#16 Cách tải và chơi Một Ngày Làm [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+#17 Mua Lenovo LOQ [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 6}]
+    -> Giá Lenovo LOQ  (Keyword Giá bán / Mua hàng)
+    -> Lenovo LOQ 15IRH11E  (Keyword Tin tức SEO trọng tâm)
+#18 Genshin Impact [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+#19 Lenovo IdeaPad [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 6}]
+    -> Giá Lenovo IdeaPad  (Keyword Giá bán / Mua hàng)
+#20 WRX90 AI TOP [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 8}]

@@ -379,10 +379,34 @@ PC_CONTEXT_PATTERNS = [
 ]
 
 
+# Ngoại lệ được GIỮ LẠI dù là điện thoại: (1) sự kiện từ Apple, (2) thủ thuật hot đúng thời điểm
+APPLE_EVENT_PATTERNS = [
+    r"\bapple\b", r"\biphone\s?\d*", r"\bios\s?\d+", r"\bipados\b", r"\bwwdc\b",
+]
+APPLE_EVENT_ACTIONS = [
+    r"ra mắt", r"sự kiện", r"công bố", r"giá bán", r"khi nào", r"lộ diện", r"rò rỉ", r"chính thức",
+    r"có gì mới", r"tính năng", r"cập nhật",
+]
+HOT_TIP_PATTERNS = [
+    r"thủ thuật", r"mẹo", r"hướng dẫn", r"\bcách\b", r"cài đặt", r"cài lịch", r"thêm lịch", r"bật tính năng",
+]
+
+
+def is_apple_event_or_hot_tip(title: str) -> bool:
+    """Ngoại lệ smartphone: sự kiện từ Apple hoặc thủ thuật hot của thời điểm."""
+    t = title.lower()
+    if any(re.search(p, t) for p in APPLE_EVENT_PATTERNS) and any(re.search(a, t) for a in APPLE_EVENT_ACTIONS):
+        return True
+    return any(re.search(p, t) for p in HOT_TIP_PATTERNS)
+
+
 def is_smartphone_topic(title: str, summary: str = "") -> bool:
-    """True nếu bài viết xoay quanh sản phẩm điện thoại (và không gắn với PC/Windows/laptop)."""
+    """True nếu bài viết xoay quanh sản phẩm điện thoại (và không gắn với PC/Windows/laptop,
+    không phải sự kiện từ Apple / thủ thuật hot)."""
     t = title.lower()
     if not any(re.search(p, t) for p in PHONE_PATTERNS):
+        return False
+    if is_apple_event_or_hot_tip(title):
         return False
     if any(re.search(p, t) for p in PC_CONTEXT_PATTERNS):
         return False
