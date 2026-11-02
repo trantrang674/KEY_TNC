@@ -376,7 +376,8 @@ def build_daily_top10_report(max_hours: int = 48, force_serpapi: bool = False) -
             limit=SEO_SUGGESTIONS,
             autocomplete=serp_data.get("autocomplete_suggestions", [])
         )
-        related_kws = [s["keyword"] for s in seo_suggestions] if seo_suggestions else generate_related_keywords(cl["keyword"], top_3_arts, serp_data)
+        # Không còn fallback generate_related_keywords (sinh cụm mẫu chung chung): không có gợi ý đạt chuẩn thì để trống
+        related_kws = [s["keyword"] for s in seo_suggestions]
 
         scored_clusters.append({
             "keyword": cl["keyword"],

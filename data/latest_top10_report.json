@@ -1,8 +1,8 @@
 {
-  "generated_at": "02/11/2026 14:48:14",
+  "generated_at": "02/11/2026 15:07:23",
   "time_window_hours": 48,
-  "total_articles_scanned": 330,
-  "total_clusters_detected": 214,
+  "total_articles_scanned": 336,
+  "total_clusters_detected": 219,
   "serpapi_status": {
     "account": {
       "status": "Active",
@@ -538,7 +538,7 @@
           "tin.skydoor.net"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 2.4,
+        "newest_hours_ago": 2.7,
         "is_trending_now": false,
         "google_trends_index": 56
       },
@@ -567,7 +567,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T12:23:55+07:00",
-          "hours_ago": 2.4,
+          "hours_ago": 2.7,
           "relative_time": "2 giờ trước",
           "within_24h": true,
           "niche": {
@@ -587,7 +587,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T11:24:22+07:00",
-          "hours_ago": 3.4,
+          "hours_ago": 3.7,
           "relative_time": "3 giờ trước",
           "within_24h": true,
           "niche": {
@@ -607,8 +607,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T10:59:30+07:00",
-          "hours_ago": 3.8,
-          "relative_time": "3 giờ trước",
+          "hours_ago": 4.1,
+          "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "OS_SOFTWARE",
@@ -627,8 +627,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T10:54:58+07:00",
-          "hours_ago": 3.9,
-          "relative_time": "3 giờ trước",
+          "hours_ago": 4.2,
+          "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "HARDWARE_COMPONENT",
@@ -647,7 +647,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T10:20:50+07:00",
-          "hours_ago": 4.5,
+          "hours_ago": 4.8,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -680,17 +680,18 @@
         "serpapi_trend": 6.0
       },
       "stats": {
-        "total_articles_found": 7,
-        "press_count": 4,
+        "total_articles_found": 8,
+        "press_count": 5,
         "competitor_count": 0,
         "press_list": [
           "Báo Thanh Niên",
           "GameK",
+          "Lag.vn",
           "Thể Thao 247",
           "Xemgame.com"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 1.3,
+        "newest_hours_ago": 1.6,
         "is_trending_now": false,
         "google_trends_index": 17
       },
@@ -713,7 +714,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T13:30:00+07:00",
-          "hours_ago": 1.3,
+          "hours_ago": 1.6,
           "relative_time": "1 giờ trước",
           "within_24h": true,
           "niche": {
@@ -726,6 +727,26 @@
           "extracted_keyword": "Liên Minh Huyền Thoại"
         },
         {
+          "title": "Sự Kiện Wild Rounds: SMASH 2026 Của LMHT: Tốc Chiến Tổ Chức Tại Hàn Quốc",
+          "url": "https://news.google.com/rss/articles/CBMipgFBVV95cUxQQmJKTFRjUXlZLWxSU1pUWVZwTGhvNFN0R2dXeVlnRlJpV1dFc0U5c042VkRudExITzJZc2dtZV8ydW5sQnptMkpEbDBQSlMyQUtaT0c2VWNzeG9UQW5CcWpDaUZiaHE2TndrSFdueU5Cc0lNWmN1WmU4M1BrcTlQT3ctclY3VG9QTmtDaE1sNU9OdTZkRVV5YTBENElaMlFJLVhjakRR0gGkAUFVX3lxTE1NaloxTTh1ZEZCc0ItZDNpekk0TV9TY19pd1VrdGdjY3piN0k3Yml4MGZPdDREb3A3VUVEbTBRcVFyaER5SlIwVl9SVlRlTnE0cU0wMktITUhEaTlWNVJFd0hYdUFlTFJrcVFnOTRiQ0U4dlBYYVczdHJHOU82WTlQZjB1cVdlaU5jbWprc2RSTm1rTTVta3VLc0ZXWkdlOV9DVDJ3?oc=5",
+          "summary": "Sự Kiện Wild Rounds: SMASH 2026 Của LMHT: Tốc Chiến Tổ Chức Tại Hàn Quốc Lag.vn",
+          "source_name": "Lag.vn",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-11-02T13:04:34+07:00",
+          "hours_ago": 2.0,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "BIG_TECH_EVENT",
+            "name": "Có thể quan tâm",
+            "badge_color": "indigo",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Liên Minh Huyền Thoại"
+        },
+        {
           "title": "Link xem trực tiếp CKTG 2026 - LMHT hôm nay 02/11: Tứ kết chờ đại chiến TES - IG",
           "url": "https://news.google.com/rss/articles/CBMixAFBVV95cUxNYldRZ1hxcGRNb0xpRFJVT25nMXRsblZxVDRiZVJyYVl3b3NVc25HTjlYVHZVSGRjV04yMGotS2VYdXJOMjhqNHIyZ1RBNVJtYVlRRUpzNTdCU0J3MHVrYlFBbHB3X0VJNTM0S0VsQS1jUWhuT1JqR0FSNnRwSkxyRlkwVzdrc2tac0Q1TFJIM0tfeU1sYjR3S0RlbFQ1ZzJRZHFLWGJESEJGWDBfN3NvV1Y0Y1YtX0dqT2pITXdrVmhZaHNo?oc=5",
           "summary": "Link xem trực tiếp CKTG 2026 - LMHT hôm nay 02/11: Tứ kết chờ đại chiến TES - IG Thể Thao 247",
@@ -733,8 +754,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T08:02:01+07:00",
-          "hours_ago": 6.8,
-          "relative_time": "6 giờ trước",
+          "hours_ago": 7.1,
+          "relative_time": "7 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
@@ -753,7 +774,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo Game",
           "published_at": "2026-11-01T19:25:00+07:00",
-          "hours_ago": 19.4,
+          "hours_ago": 19.7,
           "relative_time": "19 giờ trước",
           "within_24h": true,
           "niche": {
@@ -773,7 +794,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-01T10:16:00+07:00",
-          "hours_ago": 28.5,
+          "hours_ago": 28.9,
           "relative_time": "28 giờ trước",
           "within_24h": false,
           "niche": {
@@ -782,26 +803,6 @@
             "badge_color": "purple",
             "group": "Tin tức Hot & Trend",
             "relevance_score": 6
-          },
-          "extracted_keyword": "Liên Minh Huyền Thoại"
-        },
-        {
-          "title": "LMHT: Nuguri tiết lộ lý do khiến Faker \"đánh như người khác tại CKTG\"",
-          "url": "https://news.google.com/rss/articles/CBMiqgFBVV95cUxPNE1ZNmFmVWVLVWIwRDlMczhXXzZtMWQ5NmZFc2FUNVNDXzdHVDVuMXQ5Y09EaGF1ZmVBeW5Bb3JsYW1GS2RQdTlISU9MX2ozWDdYUWM0SEtvbjFkQVdlcUZaU1MzNW9pamxrQXBqRFdSZHIyclFuVWpjbzc3T3ZDR3pxRG5qckk2bTZGWFlwZGZHM29ZMkJ2UkROcC04YVdRc1JyQi01ek1Jdw?oc=5",
-          "summary": "LMHT: Nuguri tiết lộ lý do khiến Faker \"đánh như người khác tại CKTG\" Xemgame.com",
-          "source_name": "Xemgame.com",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-02T09:30:00+07:00",
-          "hours_ago": 5.3,
-          "relative_time": "5 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "GAME_TREND",
-            "name": "Game",
-            "badge_color": "purple",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 9
           },
           "extracted_keyword": "Liên Minh Huyền Thoại"
         }
@@ -826,32 +827,46 @@
         "serpapi_trend": 5.1
       },
       "stats": {
-        "total_articles_found": 8,
-        "press_count": 8,
+        "total_articles_found": 7,
+        "press_count": 7,
         "competitor_count": 0,
         "press_list": [
           "Bloomberg Businessweek Vietnam",
           "Báo Dân Trí",
           "Báo Tuổi Trẻ",
           "GameK",
-          "Góc nhìn pháp lý",
-          "Tin tức 24h",
+          "Nghệ An 24h",
           "Tạp chí Doanh nghiệp và Hội nhập",
           "VietNamNet"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 0.8,
+        "newest_hours_ago": 0.6,
         "is_trending_now": false,
         "google_trends_index": 1
       },
       "seo_suggested_keywords": [],
-      "related_keywords": [
-        "hướng dẫn Xu hướng TikTok",
-        "giá Xu hướng TikTok chính hãng",
-        "Xu hướng TikTok mới nhất",
-        "đánh giá Xu hướng TikTok"
-      ],
+      "related_keywords": [],
       "top_3_articles": [
+        {
+          "title": "Chi tiền triệu mua vi chất uống theo tư vấn trên TikTok, người phụ nữ phải \"cầu cứu\" bác sĩ",
+          "url": "https://news.google.com/rss/articles/CBMivwFBVV95cUxOUTRHM2VLVVNJVmNLcTRpR3hKU012QzVqUVRzNzhTOTJNczhObWNMSXZJTzNXaFlHOExiQ0dmUEoyYno5dFZHRnV5eUVJZW9xeGw4RDVJdEExdHBRQXo0LXVNYmtKWnd6SXdIaUVrTkt5cDVfYnpQcS16bUFDOFNtY010dkRnZmx2c0xJWTdjZXR0TGRscWRIcGVXM3hjeXl6aUdtRnZLUERBTnBLdTk0UWtRNUVPN244U0x5TzJaQQ?oc=5",
+          "summary": "Chi tiền triệu mua vi chất uống theo tư vấn trên TikTok, người phụ nữ phải \"cầu cứu\" bác sĩ Nghệ An 24h",
+          "source_name": "Nghệ An 24h",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-11-02T14:34:00+07:00",
+          "hours_ago": 0.6,
+          "relative_time": "33 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Xu hướng TikTok"
+        },
         {
           "title": "Phá đường dây sản xuất phân bón giả bán qua TikTok, thu 2.100 tấn ở TPHCM",
           "url": "https://news.google.com/rss/articles/CBMiwwFBVV95cUxPeVhINjlmcVJJQjJ6SGFGelVqOHNjakhLUll6ci1odDFRQVhRYTlTZ2NWWVY1eG1Ub0VwcjloMnh5UlpVeTROMkxKdXo4QkY0T2drcVVzVXBmX1ozbWpKRkx1T1VxeEI3SGZYWUJhNG1GSDVUcGNBaXRBYVlRTUlqTXRyWmN3STFhbmw5aFFaS1lFQjJvR3BaRUFCWDVVMHhJZ2l1YkRJWFJpQmJuaVRJYkw3alkzX3JGaGpFcC1DUHNqSkU?oc=5",
@@ -860,8 +875,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T13:59:47+07:00",
-          "hours_ago": 0.8,
-          "relative_time": "48 phút trước",
+          "hours_ago": 1.1,
+          "relative_time": "1 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "SOCIAL_APPS",
@@ -880,7 +895,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo Game",
           "published_at": "2026-11-02T10:09:00+07:00",
-          "hours_ago": 4.7,
+          "hours_ago": 5.0,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -900,8 +915,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T09:00:00+07:00",
-          "hours_ago": 5.8,
-          "relative_time": "5 giờ trước",
+          "hours_ago": 6.1,
+          "relative_time": "6 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "SOCIAL_APPS",
@@ -913,26 +928,6 @@
           "extracted_keyword": "Xu hướng TikTok"
         },
         {
-          "title": "Chi tiền triệu mua vi chất uống theo tư vấn trên TikTok, người phụ nữ phải \"cầu cứu\" bác sĩ",
-          "url": "https://news.google.com/rss/articles/CBMi0gFBVV95cUxQdTZ1M2owaS1ETHdSSHVqV0prcXB1UENxZ3VFakFwSWFyckNxbFAxdEVPWjVORjE5eGZ3ZzQ1MEh6NVJRVXlESWNabUNERTZlM09IMmllckYwT2U3R1RvZkVKRUNxdEh1eE1SdllWczg1djVtTFFsVkx4MnU1cEhzWXJPT1lXSXpjZk5oc3FNekl5SWVxSnJtSWpPZTBJMF8tdXNFVm5wMVpTZkZ3X1k0UEJkV3BtaWh2WmVzRlU3bURYUndNNklCMUdWeTU1VENjVnc?oc=5",
-          "summary": "Chi tiền triệu mua vi chất uống theo tư vấn trên TikTok, người phụ nữ phải \"cầu cứu\" bác sĩ Góc nhìn pháp lý",
-          "source_name": "Góc nhìn pháp lý",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-02T06:55:58+07:00",
-          "hours_ago": 7.9,
-          "relative_time": "7 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội - App",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Xu hướng TikTok"
-        },
-        {
           "title": "Nhà chùa thời số hoá: Giảng pháp trên TikTok, công đức qua mã QR",
           "url": "https://news.google.com/rss/articles/CBMingFBVV95cUxPcTcyQmxJaTlYM0JhQzZpS2x2bmRkeGVoWS1zRlM1ZTlwUlR3YkdRcFRwY1NKWjkyVTBhR0RUaGpsbDVwanZCS0RoRXlTVnhQOGZMMkY5cWVMbnl6eXpGdks2cWo0czNua01laS1LdFhCbzhDYWZPTmFaS1U2Vi1ZNVFzNTk5RzZ5VUZMU0d0WjFyTDJBSF9XWUN5UGxCUQ?oc=5",
           "summary": "Nhà chùa thời số hoá: Giảng pháp trên TikTok, công đức qua mã QR Báo VietNamNet",
@@ -940,7 +935,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T05:48:00+07:00",
-          "hours_ago": 9.0,
+          "hours_ago": 9.3,
           "relative_time": "9 giờ trước",
           "within_24h": true,
           "niche": {
@@ -989,7 +984,7 @@
           "Znews"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 0.4,
+        "newest_hours_ago": 0.7,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -1018,8 +1013,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T14:27:02+07:00",
-          "hours_ago": 0.4,
-          "relative_time": "21 phút trước",
+          "hours_ago": 0.7,
+          "relative_time": "40 phút trước",
           "within_24h": true,
           "niche": {
             "id": "GOV_DIGITAL_POLICY",
@@ -1038,7 +1033,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T13:32:32+07:00",
-          "hours_ago": 1.3,
+          "hours_ago": 1.6,
           "relative_time": "1 giờ trước",
           "within_24h": true,
           "niche": {
@@ -1058,7 +1053,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T12:32:46+07:00",
-          "hours_ago": 2.3,
+          "hours_ago": 2.6,
           "relative_time": "2 giờ trước",
           "within_24h": true,
           "niche": {
@@ -1078,7 +1073,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T10:38:10+07:00",
-          "hours_ago": 4.2,
+          "hours_ago": 4.5,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -1098,7 +1093,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T10:31:00+07:00",
-          "hours_ago": 4.3,
+          "hours_ago": 4.6,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -1140,7 +1135,7 @@
           "tin.skydoor.net"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 0.5,
+        "newest_hours_ago": 0.8,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -1169,8 +1164,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo Game",
           "published_at": "2026-11-02T14:18:00+07:00",
-          "hours_ago": 0.5,
-          "relative_time": "30 phút trước",
+          "hours_ago": 0.8,
+          "relative_time": "49 phút trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
@@ -1189,8 +1184,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T10:00:00+07:00",
-          "hours_ago": 4.8,
-          "relative_time": "4 giờ trước",
+          "hours_ago": 5.1,
+          "relative_time": "5 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
@@ -1209,7 +1204,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-01T13:10:45+07:00",
-          "hours_ago": 25.6,
+          "hours_ago": 25.9,
           "relative_time": "25 giờ trước",
           "within_24h": false,
           "niche": {
@@ -1229,7 +1224,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo Game",
           "published_at": "2026-11-02T10:13:00+07:00",
-          "hours_ago": 4.6,
+          "hours_ago": 4.9,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -1249,7 +1244,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo Game",
           "published_at": "2026-11-02T09:15:00+07:00",
-          "hours_ago": 5.6,
+          "hours_ago": 5.9,
           "relative_time": "5 giờ trước",
           "within_24h": true,
           "niche": {
@@ -1268,21 +1263,21 @@
       "keyword": "Ứng dụng Zalo",
       "cluster_id": "ứng dụng zalo",
       "niche": {
-        "id": "AI_UPDATES",
-        "name": "A.I",
-        "badge_color": "amber",
+        "id": "SOCIAL_APPS",
+        "name": "Mạng xã hội - App",
+        "badge_color": "pink",
         "group": "Tin tức Hot & Trend",
-        "relevance_score": 3
+        "relevance_score": 6
       },
-      "total_score": 75.5,
+      "total_score": 78.0,
       "score_breakdown": {
-        "coverage": 37.0,
+        "coverage": 39.5,
         "competitor": 13.5,
         "freshness": 20.0,
         "serpapi_trend": 5.0
       },
       "stats": {
-        "total_articles_found": 4,
+        "total_articles_found": 5,
         "press_count": 3,
         "competitor_count": 0,
         "press_list": [
@@ -1291,34 +1286,30 @@
           "Znews"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 2.4,
+        "newest_hours_ago": 0.1,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [],
-      "related_keywords": [
-        "Ứng dụng Zalo mới nhất",
-        "đánh giá Ứng dụng Zalo",
-        "tin tức Ứng dụng Zalo"
-      ],
+      "related_keywords": [],
       "top_3_articles": [
         {
-          "title": "Công an phát thông báo quan trọng đến những ai hay nhắn tin với sếp, đồng nghiệp qua Zalo",
-          "url": "https://news.google.com/rss/articles/CBMiyAFBVV95cUxOMFdQcEkzcFdTSnFTSVZOR0ZnMzdRczUyekZXYndjR3pCUHoybkF0RnFjeENVZDNjSFpTcWp0Q1JMWFotRU9FMmhlOVNpc2N6Ui0zT3Ywd3dkRkFlLVlmOVVXdkktMGVqb2xWandEV3lETndCN2pfU3FLTjc0YVpacUh1N1RFb2l6MTlyQi1YVU1qT2lVNXNjT1VjRlU3Y0kxYng3N21UdUc5LWRHelJZZXoyQzBkRDQ3OE94WTZFbEFQNmlsMkNEUw?oc=5",
-          "summary": "Công an phát thông báo quan trọng đến những ai hay nhắn tin với sếp, đồng nghiệp qua Zalo Kenh14.vn",
-          "source_name": "Kenh14.vn",
+          "title": "Loạt tính năng AI được dùng phổ biến trên ứng dụng nhắn tin Zalo",
+          "url": "https://news.google.com/rss/articles/CBMiwgFBVV95cUxOXy1BVF9nYmdvWExCWG1ManFuSG1qcUY0Mmk4cnFSMG5RUklmSmNWb2RROTZ2MWFGa1VkUE1obHc0TGcxQnNzRTY0VUlHRkJlZ2hITTZXWGk2MUJobmtGMzdpVjB6QUdSZXBBdFAyYlp5VnlBRFM2b0VpNXVESGxpUGhERi1mRDRmMURTZ2ozOVBKYzFGVzhyWjBKYWVUYkQzZzFOekVLaHhNUm92OUJLMlVhbDV0a1ZzdVFrRGdyN29RZw?oc=5",
+          "summary": "Loạt tính năng AI được dùng phổ biến trên ứng dụng nhắn tin Zalo Tin tức 24h",
+          "source_name": "Tin tức 24h",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-11-02T12:22:00+07:00",
-          "hours_ago": 2.4,
-          "relative_time": "2 giờ trước",
+          "published_at": "2026-11-02T15:00:00+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "7 phút trước",
           "within_24h": true,
           "niche": {
-            "id": "AI_UPDATES",
-            "name": "A.I",
-            "badge_color": "amber",
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
             "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
+            "relevance_score": 6
           },
           "extracted_keyword": "Ứng dụng Zalo"
         },
@@ -1330,8 +1321,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T08:00:00+07:00",
-          "hours_ago": 6.8,
-          "relative_time": "6 giờ trước",
+          "hours_ago": 7.1,
+          "relative_time": "7 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "SOCIAL_APPS",
@@ -1343,53 +1334,13 @@
           "extracted_keyword": "Ứng dụng Zalo"
         },
         {
-          "title": "Hàng trăm creator kể chuyện mùa Trung thu trên Zalo Video",
-          "url": "https://news.google.com/rss/articles/CBMilgFBVV95cUxQbjBSNThDV0RUZ1dDV2dqdDFQX0RpUk5hWE16dHZEX2U1ajdtTkZPUnNBREdnQm5lZXlrRXdpU2pueW1YREl3ZHVIY2w3NS1vaW1hM0hPaFpldVk5RS12VHprSFdna1RfdlBnTnFyQ3puaC1INGlubWZFRVB4UzIxalFxRVN0R2Z3dFRpNHJWVktRVnI3UkE?oc=5",
-          "summary": "Hàng trăm creator kể chuyện mùa Trung thu trên Zalo Video Znews",
-          "source_name": "Znews",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-01T19:16:37+07:00",
-          "hours_ago": 19.5,
-          "relative_time": "19 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội - App",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Ứng dụng Zalo"
-        },
-        {
-          "title": "Người nhận tin nhắn Zalo có nội dung sau chú ý thông báo từ công an",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOMnc0QlJLaDdWU2E1X05yRUJLd1czQ0M1QWgxNHg4VXJhYnhrekoxaUxEaUlQbGVNUWdtcFFINEowUjhOYlRXcTY5elM2TnpSVzFvMWxNRHU0SVhBaV9GX0FJcUtKMjBMTlZHeGptdGZocjFVbEwyTHNpQXlra0JLU1VBeFQtOFIxUUJFemU3TFBqQzVlWm1va0FsR195TElISmR2emprYXdyY3No?oc=5",
-          "summary": "Người nhận tin nhắn Zalo có nội dung sau chú ý thông báo từ công an Kenh14.vn",
-          "source_name": "Kenh14.vn",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-02T11:00:00+07:00",
-          "hours_ago": 3.8,
-          "relative_time": "3 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội - App",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Ứng dụng Zalo"
-        },
-        {
           "title": "Đã có ứng dụng gõ tiếng Anh - Việt không cần bấm chuyển đổi mà dân văn phòng nào cũng sẽ cần",
           "url": "https://genk.vn/da-co-ung-dung-go-tieng-anh-viet-khong-can-bam-chuyen-doi-ma-dan-van-phong-nao-cung-se-can-165261102112342114.chn",
           "summary": "Việc phải chuyển đổi chế độ gõ phím vô số lần mỗi ngày trên máy tính và điện thoại từ lâu đã là nỗi phiền toái lớn của người dùng đa ngữ. Với ứng dụng Vikey mới, tác giả Tony Dinh khẳng định đã giải quyết dứt điểm sự bất tiện này.",
           "source_name": "GenK",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-11-02T14:48:16.053916+07:00",
+          "published_at": "2026-11-02T15:07:26.344153+07:00",
           "hours_ago": 0.1,
           "relative_time": "1 phút trước",
           "within_24h": true,
@@ -1401,131 +1352,49 @@
             "relevance_score": 3
           },
           "extracted_keyword": "Đã có ứng dụng gõ tiếng Anh"
+        },
+        {
+          "title": "Từng làm cho Bộ ngoại giao Nhật Bản, người đàn ông này giờ đang phát triển ứng dụng dịch thuật món ăn ngay giữa thời đại AI",
+          "url": "https://genk.vn/tung-lam-cho-bo-ngoai-giao-nhat-ban-nguoi-dan-ong-nay-gio-dang-phat-trien-ung-dung-dich-thuat-mon-an-ngay-giua-thoi-dai-ai-165261102112824138.chn",
+          "summary": "Du lịch Nhật Bản luôn hấp dẫn, nhưng rào cản ngôn ngữ tại các quán ăn địa phương lại là nỗi ám ảnh lớn. MENU-PAAN, một ứng dụng AI đột phá, ra đời để giải quyết triệt để vấn đề này, biến các thực đơn viết tay thành thông tin dễ hiểu.",
+          "source_name": "GenK",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-11-02T15:07:26.344841+07:00",
+          "hours_ago": 0.1,
+          "relative_time": "1 phút trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Từng làm cho Bộ ngoại giao Nhật"
+        },
+        {
+          "title": "Microsoft thử nghiệm ứng dụng AI Project Pantheon trên Windows 11",
+          "url": "https://tinhte.vn/thread/microsoft-thu-nghiem-ung-dung-ai-project-pantheon-tren-windows-11.4188957/",
+          "summary": "Biết người dùng không thích Recall hoặc rất ít dùng vì nó chụp màn hình quá nhiều. Microsoft đang thử nghiệm một ứng dụng AI mới trên Windows 11 với tên mã Project Pantheon. Ứng dụng này có chức...",
+          "source_name": "Tinh Tế",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-11-02T12:23:55+07:00",
+          "hours_ago": 2.7,
+          "relative_time": "2 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "OS_SOFTWARE",
+            "name": "HĐH - Phần mềm",
+            "badge_color": "blue",
+            "group": "Sát sườn ngành hàng",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Windows 11"
         }
       ],
       "rank": 6
-    },
-    {
-      "keyword": "Tính năng mới Facebook",
-      "cluster_id": "tính năng mới facebook",
-      "niche": {
-        "id": "SOCIAL_APPS",
-        "name": "Mạng xã hội - App",
-        "badge_color": "pink",
-        "group": "Tin tức Hot & Trend",
-        "relevance_score": 3
-      },
-      "total_score": 73.0,
-      "score_breakdown": {
-        "coverage": 37.0,
-        "competitor": 13.5,
-        "freshness": 17.5,
-        "serpapi_trend": 5.0
-      },
-      "stats": {
-        "total_articles_found": 4,
-        "press_count": 3,
-        "competitor_count": 0,
-        "press_list": [
-          "Báo Dân Trí",
-          "Báo Tuổi Trẻ",
-          "Laodong.vn"
-        ],
-        "competitor_list": [],
-        "newest_hours_ago": 7.7,
-        "is_trending_now": false,
-        "google_trends_index": 0
-      },
-      "seo_suggested_keywords": [],
-      "related_keywords": [
-        "vneid tính năng mới",
-        "Tính năng mới Facebook mới nhất",
-        "đánh giá Tính năng mới Facebook",
-        "tin tức Tính năng mới Facebook"
-      ],
-      "top_3_articles": [
-        {
-          "title": "Nghệ sĩ Quốc Tuấn: Có ít tiền gửi tiết kiệm, lý do không dùng Facebook",
-          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQQjJxUUV3Tk9xaGhfR0RSdkFMVGgyVHlnVmpLc1lMOVRYOHlnZWJYQjhuZ3lrY2JwYVFTVG02WkQ1WENITk1aazBvR3JiUEMwMWsydXJXX3FhOGMwX1hGdUVnekR5RVFZVldoZURqV2Z0T2ZNd09lV1B0UmEtcm16RzZxWkdfeVc2WTczeW80VFJwdTg4b0VxREVRSEZaUUJnekF5dDV1R3JWUFh4N2ZOXzFkUHBCZm05am40aTB3?oc=5",
-          "summary": "Nghệ sĩ Quốc Tuấn: Có ít tiền gửi tiết kiệm, lý do không dùng Facebook Báo Dân trí",
-          "source_name": "Báo Dân Trí",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-02T07:07:37+07:00",
-          "hours_ago": 7.7,
-          "relative_time": "7 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội - App",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Tính năng mới Facebook"
-        },
-        {
-          "title": "Công an cảnh báo đường link thiệp cưới giả mạo trên Facebook, Zalo",
-          "url": "https://news.google.com/rss/articles/CBMirAFBVV95cUxOZzc4THdjYWxFNnotbEpiMmQzcXpIY3BocGdIRWdUR0FkU2NWWnB2VmwxTGR6c3RQbHUyampUZkZnb1d0bGhaZWZiRnFRaUNmaEctN0RfMjdKdU5MOWtHQWJhb0xob1RLUms5ZGpEZnpTcW1GX0dYTHBOY2YyckpxbjduM0UyT244U0Q2cjNJU3g2MnEtQ09zeXZrMWVnZE1PUlNqVEdMdDJZclA4?oc=5",
-          "summary": "Công an cảnh báo đường link thiệp cưới giả mạo trên Facebook, Zalo Laodong.vn",
-          "source_name": "Laodong.vn",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-01T17:58:53+07:00",
-          "hours_ago": 20.8,
-          "relative_time": "20 giờ trước",
-          "within_24h": true,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội - App",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 6
-          },
-          "extracted_keyword": "Tính năng mới Facebook"
-        },
-        {
-          "title": "Hy Lạp đề xuất cấm trẻ dưới 15 tuổi dùng Instagram, TikTok, Facebook",
-          "url": "https://tuoitre.vn/hy-lap-de-xuat-cam-tre-duoi-15-tuoi-dung-instagram-tiktok-facebook-100261013094157955.htm",
-          "summary": "Instagram, TikTok và Facebook có thể phải xác minh độ tuổi người dùng theo dự luật mới của Hy Lạp, dự kiến áp dụng từ đầu năm 2027.",
-          "source_name": "Báo Tuổi Trẻ",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-01T02:48:15.878842+07:00",
-          "hours_ago": 36.0,
-          "relative_time": "35 giờ trước",
-          "within_24h": false,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội - App",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 9
-          },
-          "extracted_keyword": "Tính năng mới Facebook"
-        },
-        {
-          "title": "Bị kết án tử hình vì một bài đăng Facebook",
-          "url": "https://tuoitre.vn/bi-ket-an-tu-hinh-vi-mot-bai-dang-facebook-100261008105818134.htm",
-          "summary": "Sri Lanka đang dốc sức can thiệp nhằm cứu một thanh niên khỏi án tử hình tại Saudi Arabia vì một bài đăng trên Facebook.",
-          "source_name": "Báo Tuổi Trẻ",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-01T02:48:15.879243+07:00",
-          "hours_ago": 36.0,
-          "relative_time": "35 giờ trước",
-          "within_24h": false,
-          "niche": {
-            "id": "SOCIAL_APPS",
-            "name": "Mạng xã hội - App",
-            "badge_color": "pink",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 3
-          },
-          "extracted_keyword": "Tính năng mới Facebook"
-        }
-      ],
-      "rank": 7
     },
     {
       "keyword": "CKTG 2026",
@@ -1554,7 +1423,7 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 7.7,
+        "newest_hours_ago": 8.0,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -1583,8 +1452,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T07:07:15+07:00",
-          "hours_ago": 7.7,
-          "relative_time": "7 giờ trước",
+          "hours_ago": 8.0,
+          "relative_time": "8 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
@@ -1603,8 +1472,8 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-01T08:03:41+07:00",
-          "hours_ago": 30.7,
-          "relative_time": "30 giờ trước",
+          "hours_ago": 31.1,
+          "relative_time": "31 giờ trước",
           "within_24h": false,
           "niche": {
             "id": "GAME_TREND",
@@ -1623,8 +1492,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T08:02:01+07:00",
-          "hours_ago": 6.8,
-          "relative_time": "6 giờ trước",
+          "hours_ago": 7.1,
+          "relative_time": "7 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
@@ -1643,27 +1512,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-01T08:02:01+07:00",
-          "hours_ago": 30.8,
-          "relative_time": "30 giờ trước",
-          "within_24h": false,
-          "niche": {
-            "id": "GAME_TREND",
-            "name": "Game",
-            "badge_color": "purple",
-            "group": "Tin tức Hot & Trend",
-            "relevance_score": 6
-          },
-          "extracted_keyword": "Liên Minh Huyền Thoại"
-        },
-        {
-          "title": "Bốc thăm tứ kết CKTG 2026: T1 đại chiến KC, BLG gặp đối thủ khó nhằn",
-          "url": "https://news.google.com/rss/articles/CBMiugFBVV95cUxOZ19VMmkwWkVzcVF4cXRtU3ZwMV9vNVI0QlpCSVhtUFFLX2RfaFFtVW14emxpbWJtNkc2SVA4RHJyRjJvTURYUEM1T1RIZ2ctV2pYSjJkcnRSODl6czJEYmk3TVhVM1A5VWJoR2NsZlozTm5Jc182NVY5RGQwanZmVDBrWlhTODJIYW94LW9CSmRxTENwZnAzZ01MSnR3RV96VXR1UFRHTWZ3OGVxRUh2cGRDc2FaRzRwRHc?oc=5",
-          "summary": "Bốc thăm tứ kết CKTG 2026: T1 đại chiến KC, BLG gặp đối thủ khó nhằn Thể Thao 247",
-          "source_name": "Thể Thao 247",
-          "source_type": "PRESS",
-          "source_badge": "Báo chí",
-          "published_at": "2026-11-01T07:03:00+07:00",
-          "hours_ago": 31.8,
+          "hours_ago": 31.1,
           "relative_time": "31 giờ trước",
           "within_24h": false,
           "niche": {
@@ -1673,10 +1522,10 @@
             "group": "Tin tức Hot & Trend",
             "relevance_score": 6
           },
-          "extracted_keyword": "Đội tuyển T1 / Faker"
+          "extracted_keyword": "Liên Minh Huyền Thoại"
         }
       ],
-      "rank": 8
+      "rank": 7
     },
     {
       "keyword": "Claude AI",
@@ -1705,7 +1554,7 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 12.6,
+        "newest_hours_ago": 12.9,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -1728,7 +1577,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T02:12:00+07:00",
-          "hours_ago": 12.6,
+          "hours_ago": 12.9,
           "relative_time": "12 giờ trước",
           "within_24h": true,
           "niche": {
@@ -1748,7 +1597,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-10-31T15:47:17+07:00",
-          "hours_ago": 47.0,
+          "hours_ago": 47.3,
           "relative_time": "47 giờ trước",
           "within_24h": false,
           "niche": {
@@ -1761,7 +1610,7 @@
           "extracted_keyword": "Claude AI"
         }
       ],
-      "rank": 9
+      "rank": 8
     },
     {
       "keyword": "Sam Altman",
@@ -1790,15 +1639,19 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 43.8,
+        "newest_hours_ago": 44.1,
         "is_trending_now": false,
         "google_trends_index": 0
       },
-      "seo_suggested_keywords": [],
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Sam Altman: Thật tệ khi RAM nằm trong máy người dùng",
+          "intent": "Sự kiện gắn với nhân vật",
+          "based_on": "Tiêu đề bài viết top"
+        }
+      ],
       "related_keywords": [
-        "Sam Altman mới nhất",
-        "đánh giá Sam Altman",
-        "tin tức Sam Altman"
+        "Sam Altman: Thật tệ khi RAM nằm trong máy người dùng"
       ],
       "top_3_articles": [
         {
@@ -1809,8 +1662,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-10-31T19:00:00+07:00",
-          "hours_ago": 43.8,
-          "relative_time": "43 giờ trước",
+          "hours_ago": 44.1,
+          "relative_time": "44 giờ trước",
           "within_24h": false,
           "niche": {
             "id": "HARDWARE_COMPONENT",
@@ -1829,8 +1682,8 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-10-31T17:06:59+07:00",
-          "hours_ago": 45.7,
-          "relative_time": "45 giờ trước",
+          "hours_ago": 46.0,
+          "relative_time": "46 giờ trước",
           "within_24h": false,
           "niche": {
             "id": "AI_UPDATES",
@@ -1840,6 +1693,102 @@
             "relevance_score": 6
           },
           "extracted_keyword": "Sam Altman"
+        }
+      ],
+      "rank": 9
+    },
+    {
+      "keyword": "Tính năng mới Facebook",
+      "cluster_id": "tính năng mới facebook",
+      "niche": {
+        "id": "SOCIAL_APPS",
+        "name": "Mạng xã hội - App",
+        "badge_color": "pink",
+        "group": "Tin tức Hot & Trend",
+        "relevance_score": 3
+      },
+      "total_score": 57.0,
+      "score_breakdown": {
+        "coverage": 25.5,
+        "competitor": 9.0,
+        "freshness": 17.5,
+        "serpapi_trend": 5.0
+      },
+      "stats": {
+        "total_articles_found": 3,
+        "press_count": 2,
+        "competitor_count": 0,
+        "press_list": [
+          "Báo Dân Trí",
+          "Báo Tuổi Trẻ"
+        ],
+        "competitor_list": [],
+        "newest_hours_ago": 8.0,
+        "is_trending_now": false,
+        "google_trends_index": 0
+      },
+      "seo_suggested_keywords": [],
+      "related_keywords": [],
+      "top_3_articles": [
+        {
+          "title": "Nghệ sĩ Quốc Tuấn: Có ít tiền gửi tiết kiệm, lý do không dùng Facebook",
+          "url": "https://news.google.com/rss/articles/CBMivgFBVV95cUxQQjJxUUV3Tk9xaGhfR0RSdkFMVGgyVHlnVmpLc1lMOVRYOHlnZWJYQjhuZ3lrY2JwYVFTVG02WkQ1WENITk1aazBvR3JiUEMwMWsydXJXX3FhOGMwX1hGdUVnekR5RVFZVldoZURqV2Z0T2ZNd09lV1B0UmEtcm16RzZxWkdfeVc2WTczeW80VFJwdTg4b0VxREVRSEZaUUJnekF5dDV1R3JWUFh4N2ZOXzFkUHBCZm05am40aTB3?oc=5",
+          "summary": "Nghệ sĩ Quốc Tuấn: Có ít tiền gửi tiết kiệm, lý do không dùng Facebook Báo Dân trí",
+          "source_name": "Báo Dân Trí",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-11-02T07:07:37+07:00",
+          "hours_ago": 8.0,
+          "relative_time": "7 giờ trước",
+          "within_24h": true,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Tính năng mới Facebook"
+        },
+        {
+          "title": "Hy Lạp đề xuất cấm trẻ dưới 15 tuổi dùng Instagram, TikTok, Facebook",
+          "url": "https://tuoitre.vn/hy-lap-de-xuat-cam-tre-duoi-15-tuoi-dung-instagram-tiktok-facebook-100261013094157955.htm",
+          "summary": "Instagram, TikTok và Facebook có thể phải xác minh độ tuổi người dùng theo dự luật mới của Hy Lạp, dự kiến áp dụng từ đầu năm 2027.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-11-01T03:07:25.999875+07:00",
+          "hours_ago": 36.0,
+          "relative_time": "35 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 9
+          },
+          "extracted_keyword": "Tính năng mới Facebook"
+        },
+        {
+          "title": "Bị kết án tử hình vì một bài đăng Facebook",
+          "url": "https://tuoitre.vn/bi-ket-an-tu-hinh-vi-mot-bai-dang-facebook-100261008105818134.htm",
+          "summary": "Sri Lanka đang dốc sức can thiệp nhằm cứu một thanh niên khỏi án tử hình tại Saudi Arabia vì một bài đăng trên Facebook.",
+          "source_name": "Báo Tuổi Trẻ",
+          "source_type": "PRESS",
+          "source_badge": "Báo chí",
+          "published_at": "2026-11-01T03:07:26.000241+07:00",
+          "hours_ago": 36.0,
+          "relative_time": "35 giờ trước",
+          "within_24h": false,
+          "niche": {
+            "id": "SOCIAL_APPS",
+            "name": "Mạng xã hội - App",
+            "badge_color": "pink",
+            "group": "Tin tức Hot & Trend",
+            "relevance_score": 3
+          },
+          "extracted_keyword": "Tính năng mới Facebook"
         }
       ],
       "rank": 10
@@ -1874,11 +1823,15 @@
         "is_trending_now": false,
         "google_trends_index": 0
       },
-      "seo_suggested_keywords": [],
+      "seo_suggested_keywords": [
+        {
+          "keyword": "Elon Musk: Tác nhân AI có thể hack hệ thống",
+          "intent": "Sự kiện gắn với nhân vật",
+          "based_on": "Tiêu đề bài viết top"
+        }
+      ],
       "related_keywords": [
-        "Elon Musk mới nhất",
-        "đánh giá Elon Musk",
-        "tin tức Elon Musk"
+        "Elon Musk: Tác nhân AI có thể hack hệ thống"
       ],
       "top_3_articles": [
         {
@@ -1888,7 +1841,7 @@
           "source_name": "GenK",
           "source_type": "PRESS",
           "source_badge": "Báo chí",
-          "published_at": "2026-11-02T14:48:16.055582+07:00",
+          "published_at": "2026-11-02T15:07:26.347136+07:00",
           "hours_ago": 0.1,
           "relative_time": "1 phút trước",
           "within_24h": true,
@@ -1909,8 +1862,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-01T15:54:30+07:00",
-          "hours_ago": 22.9,
-          "relative_time": "22 giờ trước",
+          "hours_ago": 23.2,
+          "relative_time": "23 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "AI_UPDATES",
@@ -1950,7 +1903,7 @@
           "VnExpress Số Hóa"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 0.1,
+        "newest_hours_ago": 0.4,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -1973,8 +1926,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T14:44:36+07:00",
-          "hours_ago": 0.1,
-          "relative_time": "3 phút trước",
+          "hours_ago": 0.4,
+          "relative_time": "22 phút trước",
           "within_24h": true,
           "niche": {
             "id": "HARDWARE_COMPONENT",
@@ -1993,8 +1946,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-10-31T19:00:00+07:00",
-          "hours_ago": 43.8,
-          "relative_time": "43 giờ trước",
+          "hours_ago": 44.1,
+          "relative_time": "44 giờ trước",
           "within_24h": false,
           "niche": {
             "id": "HARDWARE_COMPONENT",
@@ -2033,17 +1986,12 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 3.6,
+        "newest_hours_ago": 3.9,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [],
-      "related_keywords": [
-        "vneid tính năng mới",
-        "Mới làm content creator nên mua laptop nào có gì mới",
-        "Mới làm content creator nên mua laptop nào mới nhất",
-        "đánh giá Mới làm content creator nên mua laptop nào"
-      ],
+      "related_keywords": [],
       "top_3_articles": [
         {
           "title": "Mới làm content creator nên mua laptop nào? Đây là top 4 laptop dành cho \"tân\" content creator đáng cân nhắc!",
@@ -2053,7 +2001,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-02T11:11:46+07:00",
-          "hours_ago": 3.6,
+          "hours_ago": 3.9,
           "relative_time": "3 giờ trước",
           "within_24h": true,
           "niche": {
@@ -2073,7 +2021,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-01T11:33:30+07:00",
-          "hours_ago": 27.2,
+          "hours_ago": 27.6,
           "relative_time": "27 giờ trước",
           "within_24h": false,
           "niche": {
@@ -2093,8 +2041,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-10-31T18:58:00+07:00",
-          "hours_ago": 43.8,
-          "relative_time": "43 giờ trước",
+          "hours_ago": 44.2,
+          "relative_time": "44 giờ trước",
           "within_24h": false,
           "niche": {
             "id": "BIG_TECH_EVENT",
@@ -2134,7 +2082,7 @@
           "Znews"
         ],
         "competitor_list": [],
-        "newest_hours_ago": 8.0,
+        "newest_hours_ago": 8.3,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -2157,8 +2105,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T06:48:22+07:00",
-          "hours_ago": 8.0,
-          "relative_time": "7 giờ trước",
+          "hours_ago": 8.3,
+          "relative_time": "8 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "SOCIAL_APPS",
@@ -2177,7 +2125,7 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-01T22:25:00+07:00",
-          "hours_ago": 16.4,
+          "hours_ago": 16.7,
           "relative_time": "16 giờ trước",
           "within_24h": true,
           "niche": {
@@ -2197,8 +2145,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T09:00:00+07:00",
-          "hours_ago": 5.8,
-          "relative_time": "5 giờ trước",
+          "hours_ago": 6.1,
+          "relative_time": "6 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "SOCIAL_APPS",
@@ -2237,17 +2185,12 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 0.8,
+        "newest_hours_ago": 1.2,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [],
-      "related_keywords": [
-        "hướng dẫn iOS 18",
-        "iOS 18 mới nhất",
-        "đánh giá iOS 18",
-        "tin tức iOS 18"
-      ],
+      "related_keywords": [],
       "top_3_articles": [
         {
           "title": "Trên tay Acer Predator Helios 18 AI: Đắt ngang vài chục cây vàng, cỗ máy RTX 5090 này có gì để \"bào ví\" game thủ?",
@@ -2257,8 +2200,8 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-02T13:58:23+07:00",
-          "hours_ago": 0.8,
-          "relative_time": "49 phút trước",
+          "hours_ago": 1.2,
+          "relative_time": "1 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "HARDWARE_COMPONENT",
@@ -2277,8 +2220,8 @@
           "source_type": "PRESS",
           "source_badge": "Báo chí",
           "published_at": "2026-11-02T14:04:00+07:00",
-          "hours_ago": 0.7,
-          "relative_time": "44 phút trước",
+          "hours_ago": 1.1,
+          "relative_time": "1 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "OS_SOFTWARE",
@@ -2317,17 +2260,12 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 4.3,
+        "newest_hours_ago": 4.6,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [],
-      "related_keywords": [
-        "Cách tải và chơi Một Ngày Làm có gì mới",
-        "hướng dẫn Cách tải và chơi Một Ngày Làm",
-        "Cách tải và chơi Một Ngày Làm mới nhất",
-        "đánh giá Cách tải và chơi Một Ngày Làm"
-      ],
+      "related_keywords": [],
       "top_3_articles": [
         {
           "title": "Cách tải và chơi Một Ngày Làm Chó, game mô phỏng đường phố siêu nhộn",
@@ -2337,7 +2275,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-02T10:32:44+07:00",
-          "hours_ago": 4.3,
+          "hours_ago": 4.6,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -2357,9 +2295,9 @@
           "source_type": "PRESS",
           "source_badge": "Báo Game",
           "published_at": "2026-11-01T15:00:00+07:00",
-          "hours_ago": 23.8,
-          "relative_time": "23 giờ trước",
-          "within_24h": true,
+          "hours_ago": 24.1,
+          "relative_time": "24 giờ trước",
+          "within_24h": false,
           "niche": {
             "id": "GAME_TREND",
             "name": "Game",
@@ -2397,7 +2335,7 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 4.6,
+        "newest_hours_ago": 4.9,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -2426,7 +2364,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-02T10:14:10+07:00",
-          "hours_ago": 4.6,
+          "hours_ago": 4.9,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -2446,7 +2384,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-01T10:29:18+07:00",
-          "hours_ago": 28.3,
+          "hours_ago": 28.6,
           "relative_time": "28 giờ trước",
           "within_24h": false,
           "niche": {
@@ -2486,17 +2424,12 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 15.1,
+        "newest_hours_ago": 15.5,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [],
-      "related_keywords": [
-        "hướng dẫn Genshin Impact",
-        "Genshin Impact mới nhất",
-        "đánh giá Genshin Impact",
-        "tin tức Genshin Impact"
-      ],
+      "related_keywords": [],
       "top_3_articles": [
         {
           "title": "Genshin Impact: Quay nhân vật 5 sao nào tốt nhất patch 7.2?",
@@ -2506,7 +2439,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-01T23:39:48+07:00",
-          "hours_ago": 15.1,
+          "hours_ago": 15.5,
           "relative_time": "15 giờ trước",
           "within_24h": true,
           "niche": {
@@ -2526,8 +2459,8 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-01T20:04:37+07:00",
-          "hours_ago": 18.7,
-          "relative_time": "18 giờ trước",
+          "hours_ago": 19.0,
+          "relative_time": "19 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "GAME_TREND",
@@ -2566,7 +2499,7 @@
         "competitor_list": [
           "CellphoneS (Sforum)"
         ],
-        "newest_hours_ago": 4.4,
+        "newest_hours_ago": 4.7,
         "is_trending_now": false,
         "google_trends_index": 0
       },
@@ -2589,7 +2522,7 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-02T10:24:56+07:00",
-          "hours_ago": 4.4,
+          "hours_ago": 4.7,
           "relative_time": "4 giờ trước",
           "within_24h": true,
           "niche": {
@@ -2629,17 +2562,12 @@
         "competitor_list": [
           "An Phát PC"
         ],
-        "newest_hours_ago": 4.8,
+        "newest_hours_ago": 5.1,
         "is_trending_now": false,
         "google_trends_index": 0
       },
       "seo_suggested_keywords": [],
-      "related_keywords": [
-        "WRX90 AI TOP có gì mới",
-        "WRX90 AI TOP mới nhất",
-        "đánh giá WRX90 AI TOP",
-        "tin tức WRX90 AI TOP"
-      ],
+      "related_keywords": [],
       "top_3_articles": [
         {
           "title": "GIGABYTE ra mắt WRX90 AI TOP: Nền tảng AI local đa GPU cho doanh nghiệp",
@@ -2649,8 +2577,8 @@
           "source_type": "COMPETITOR",
           "source_badge": "Đối thủ",
           "published_at": "2026-11-02T10:01:00+07:00",
-          "hours_ago": 4.8,
-          "relative_time": "4 giờ trước",
+          "hours_ago": 5.1,
+          "relative_time": "5 giờ trước",
           "within_24h": true,
           "niche": {
             "id": "HARDWARE_COMPONENT",

@@ -1878,7 +1878,7 @@
           <div class="mt-4">
             <h3 class="text-xs font-extrabold uppercase tracking-wider text-slate-800 mb-3">Keyword gợi ý triển khai</h3>
             <div class="grid grid-cols-1 gap-2.5">
-              ${seoSuggestionsHtml}
+              ${seoSuggestionsHtml || '<div class="text-xs text-slate-500 italic px-1 py-2">Chưa có keyword gợi ý đạt chuẩn cho chủ đề này (bài viết chưa đủ sự kiện cụ thể).</div>'}
             </div>
           </div>
         </div>
@@ -1886,9 +1886,8 @@
     }
 
     function getSeoList(item) {
-      return item.seo_suggested_keywords && item.seo_suggested_keywords.length > 0
-        ? item.seo_suggested_keywords
-        : (item.related_keywords || []).map(rk => ({ keyword: rk, intent: "Keyword Gợi ý", based_on: "Tổng hợp từ Top 5 bài viết" }));
+      // Chỉ dùng keyword gợi ý đạt chuẩn; KHÔNG fallback sang related_keywords (cụm mẫu chung chung: "có gì mới", "mới nhất"...)
+      return item.seo_suggested_keywords || [];
     }
 
     // =====================================================================
@@ -3079,7 +3078,7 @@
       ];
       for (const item of currentReport.top_10_keywords) {
         const arts = item.top_3_articles || [];
-        const seoKws = (item.seo_suggested_keywords || []).map(s => s.keyword).join(" | ") || (item.related_keywords || []).join(" | ");
+        const seoKws = (item.seo_suggested_keywords || []).map(s => s.keyword).join(" | ");
         const artCells = [];
         for (let i = 0; i < ARTICLE_SLOTS; i++) {
           const a = arts[i] || {};
