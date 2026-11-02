@@ -46,7 +46,7 @@ GENERIC_TOKENS = {
 
 
 def _tokens(text: str) -> List[str]:
-    return [t for t in re.split(r"\W+", text.lower()) if len(t) >= 3 and t not in GENERIC_TOKENS]
+    return [t for t in re.split(r"\W+", text.lower()) if (len(t) >= 3 or t == "ai") and t not in GENERIC_TOKENS]
 
 
 def _norm_title(title: str) -> str:
@@ -70,7 +70,13 @@ def keywords_match(a: str, b: str) -> bool:
     if not ta or not tb:
         return False
     common = ta & tb
-    return len(common) >= 2 or (len(common) >= 1 and min(len(ta), len(tb)) == 1)
+    if len(common) >= 2 or (len(common) >= 1 and min(len(ta), len(tb)) == 1):
+        return True
+    # Nếu cụm keyword kết thúc bằng hậu tố chung ('AI', 'Game', 'PC') nhưng từ chính đầu tiên khớp hoàn toàn
+    toks_a = _tokens(a)
+    if len(toks_a) == 2 and toks_a[1] in {"ai", "game", "pc", "pro", "plus"} and len(toks_a[0]) >= 4:
+        return toks_a[0] in tb
+    return False
 
 
 def select_top_articles(articles: List[Dict], all_pool: List[Dict], keyword: str, limit: int = TOP_ARTICLES) -> List[Dict]:

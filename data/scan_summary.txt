@@ -10,15 +10,17 @@
 #5 Nền tảng Steam [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 12}]
     -> Steam tặng một game  (Sự kiện cụ thể)
     -> Cách tải Steam  (Keyword Hướng dẫn / Thủ thuật)
-#6 Ứng dụng Zalo [{'id': 'AI_UPDATES', 'name': 'A.I', 'badge_color': 'amber', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
-#7 Tính năng mới Facebook [{'id': 'SOCIAL_APPS', 'name': 'Mạng xã hội - App', 'badge_color': 'pink', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
-#8 CKTG 2026 [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+#6 Ứng dụng Zalo [{'id': 'SOCIAL_APPS', 'name': 'Mạng xã hội - App', 'badge_color': 'pink', 'group': 'Tin tức Hot & Trend', 'relevance_score': 6}]
+#7 CKTG 2026 [{'id': 'GAME_TREND', 'name': 'Game', 'badge_color': 'purple', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
     -> Link xem trực tiếp CKTG 2026  (Keyword Lịch / Kết quả)
     -> Lịch thi đấu CKTG 2026  (Keyword Lịch / Kết quả)
-#9 Claude AI [{'id': 'AI_UPDATES', 'name': 'A.I', 'badge_color': 'amber', 'group': 'Tin tức Hot & Trend', 'relevance_score': 4}]
+#8 Claude AI [{'id': 'AI_UPDATES', 'name': 'A.I', 'badge_color': 'amber', 'group': 'Tin tức Hot & Trend', 'relevance_score': 4}]
     -> Claude Desktop  (Keyword Tin tức SEO trọng tâm)
-#10 Sam Altman [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 3}]
+#9 Sam Altman [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 3}]
+    -> Sam Altman: Thật tệ khi RAM nằm trong máy người dùng  (Sự kiện gắn với nhân vật)
+#10 Tính năng mới Facebook [{'id': 'SOCIAL_APPS', 'name': 'Mạng xã hội - App', 'badge_color': 'pink', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
 #11 Elon Musk [{'id': 'AI_UPDATES', 'name': 'A.I', 'badge_color': 'amber', 'group': 'Tin tức Hot & Trend', 'relevance_score': 3}]
+    -> Elon Musk: Tác nhân AI có thể hack hệ thống  (Sự kiện gắn với nhân vật)
 #12 MacBook Pro OLED [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 7}]
     -> MacBook Pro OLED cảm ứng mới  (Sự kiện nổi bật)
 #13 Mới làm content creator nên mua laptop nào [{'id': 'HARDWARE_COMPONENT', 'name': 'Linh kiện - Phần Cứng', 'badge_color': 'emerald', 'group': 'Sát sườn ngành hàng', 'relevance_score': 3}]

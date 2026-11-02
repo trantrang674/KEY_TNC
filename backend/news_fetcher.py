@@ -41,6 +41,20 @@ RSS_SOURCES = [
         "domain": "genk.vn"
     },
     {
+        "name": "GenK AI",
+        "url": "https://genk.vn/rss/ai.rss",
+        "source_type": "PRESS",
+        "source_badge": "Báo chí",
+        "domain": "genk.vn"
+    },
+    {
+        "name": "GenK Tin ICT",
+        "url": "https://genk.vn/rss/tin-ict.rss",
+        "source_type": "PRESS",
+        "source_badge": "Báo chí",
+        "domain": "genk.vn"
+    },
+    {
         "name": "Tinh Tế",
         "url": "https://tinhte.vn/rss",
         "source_type": "PRESS",

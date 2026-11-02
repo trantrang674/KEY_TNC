@@ -35,14 +35,14 @@ NOISE_TOKENS = {
 }
 
 MAX_ENTITY_WORDS = 4
-MAX_SUGGEST_WORDS = 6
+MAX_SUGGEST_WORDS = 8
 MIN_SUGGEST_WORDS = 2
 MAX_PERSON_PHRASE_WORDS = 12  # keyword dài đủ ý cho tên người gắn với 1 sự kiện
 
 # Từ lửng: không được đứng cuối keyword (cụm bị cắt cụt thì vô nghĩa)
 DANGLING_TOKENS = (NOISE_TOKENS - {"mới", "nhất"}) | {
     "từ", "sang", "ở", "về", "trên", "vào", "khi", "một", "các", "những", "nên", "dung", "kinh",
-    "này", "đó", "nhiều", "rất", "cũng", "đều", "chỉ", "không", "vẫn", "lại", "tới", "đến", "theo", "tự",
+    "này", "đó", "nhiều", "rất", "cũng", "đều", "chỉ", "không", "vẫn", "lại", "tới", "đến", "theo", "tự", "thành",
 }
 # Thực thể chứa các từ này là câu/lời khuyên dài, không phải tên riêng -> không dùng làm lõi keyword
 BAD_ENTITY_TOKENS = {"nên", "nào", "và", "là", "làm", "sao", "thế", "không"}
@@ -206,11 +206,12 @@ def _ends_with_bare_verb(words: List[str]) -> bool:
 
 
 def _mine_event_phrase(title: str, entity: str) -> Optional[str]:
-    """Cụm sự kiện cụ thể: <thực thể> [phiên bản] + động từ + tối đa 3 từ/số liệu
-    (VD 'Google giảm dung lượng', 'Windows 11 26H2 chạy thành công'). Trả None nếu cụm chưa trọn nghĩa."""
+    """Cụm sự kiện cụ thể: <thực thể> [tên gói/phiên bản] + động từ + tối đa 3 từ/số liệu
+    (VD 'Google giảm dung lượng', 'Windows 11 26H2 chạy thành công', 'Claude Max 20x đổi tên thành Ultra').
+    Trả None nếu cụm chưa trọn nghĩa."""
     m = re.search(
-        rf"{re.escape(entity)}((?:\s+[\w.]*\d[\w.]*)?)\s+((?:{EVENT_VERBS})(?:\s+[^\s,.;:!?()\[\]\"'|–—-]+){{0,3}})",
-        title, flags=re.IGNORECASE,
+        rf"{re.escape(entity)}((?:(?:\s+(?:[A-Z][\w.+-]*|[\w.]*\d[\w.]*)){{1,2}})?)\s+((?:{EVENT_VERBS})(?:\s+[^\s,.;:!?()\[\]\"'|–—-]+){{0,3}})",
+        title,
     )
     if not m:
         return None
@@ -230,7 +231,7 @@ def _fallback_headline_phrase(titles: List[str], entity: str) -> Optional[str]:
             continue
         clause = re.split(r"[,;:!?|–—]|\s-\s", title[m.start():], maxsplit=1)[0]
         clause = re.sub(r"[\"'“”‘’()\[\]]", "", clause)
-        words = _strip_dangling(clause.split()[:MAX_SUGGEST_WORDS])
+        words = _strip_dangling(clause.split()[:6])
         if len(words) > len(entity.split()) and len(words) >= MIN_SUGGEST_WORDS and not _ends_with_bare_verb(words):
             return " ".join(words)
     return None

@@ -26,6 +26,8 @@ class TestMeaningfulSuggestions(unittest.TestCase):
     def test_event_phrase(self):
         r = kws("Windows 11", "windows 11", "Windows 11 26H2 chạy thành công trên máy chỉ có 128 MB RAM")
         self.assertIn("Windows 11 26H2 chạy thành công", r)
+        r2 = kws("Claude AI", "claude ai", "Claude Max 20x đổi tên thành Ultra, bỏ giới hạn 5 giờ")
+        self.assertIn("Claude Max 20x", r2)
 
     def test_no_truncated_or_bare_verb(self):
         for k in kws("Windows 11", "windows 11", "Bất ngờ Windows 11 26H2 chạy trên dung lượng RAM vỏn vẹn 128 MB"):
