@@ -104,7 +104,7 @@ flowchart LR
 - `zalo-webhook`: nhận tin Zalo; lệnh `/quet` (gọi GitHub chạy quét) và `/top`. Chỉ nhận lệnh từ đúng `ZALO_CHAT_ID`.
 
 ### `cowork/`, `.github/`, file ở thư mục gốc
-- `cowork/COWORK_TASK.md`: hướng dẫn cài đặt và prompt của scheduled task Cowork.
+- `cowork/COWORK_TASK.md`: hướng dẫn cài đặt và prompt của scheduled task Cowork chạy tại `tnc-seo-content` (sử dụng 2 bộ skill `tnc-viet-bai-tin` và `tnc-viet-bai-review`, kiểm soát chất lượng bằng Bộ 13 Tiêu chí Chấm điểm SEO trong `cham-diem-seo.md` và `evaluate_seo.py` đạt $\ge$ 90 điểm).
 - `.github/workflows/daily-pages.yml`: quét + dựng GitHub Pages.
 - `.github/workflows/sync-gsc-ga4.yml`: đồng bộ GSC + GA4 (không tốn token AI).
 - `build_static.py`: quét, đẩy báo cáo, báo Zalo, dựng `site/`. `--ui-only` chỉ dựng giao diện; `--reuse` dựng lại từ file local và **không ghi lên Supabase**.
@@ -163,11 +163,13 @@ sequenceDiagram
     Editor->>UI: Tab CÀI ĐẶT xem sức khỏe: quét, sync, Cowork, SerpApi
 ```
 
-**Quy tắc của Cowork** (theo `cowork/COWORK_TASK.md`): mỗi lần chạy tối đa 5 keyword và 5 outline; Phần C chỉ **đề xuất** làm mới tối đa 3 bài cũ qua chuông (không tự sửa bài, không đẩy outline/bài mới); dùng đúng 100% key phụ trong outline đã duyệt; điểm SEO ≥ 90; không để link trong bài; gặp mã 409 (đã có) thì bỏ qua; lỗi tạo Google Docs hoặc gửi thông báo không làm dừng cả lần chạy.
+**Quy tắc của Cowork** (theo `cowork/COWORK_TASK.md`): mỗi lần chạy tối đa 5 keyword và 5 outline; dùng đúng 100% key phụ trong outline đã duyệt; bài viết phải đạt điểm SEO ≥ 90/100 theo Bộ 13 tiêu chí chuẩn; không để link trong bài; không dùng em-dash "—"; gặp mã 409 (đã có) thì bỏ qua; lỗi tạo Google Docs hoặc gửi thông báo không làm dừng cả lần chạy.
 
 ---
 
-## 🎯 5. Công thức chấm điểm từ khóa (thang 100)
+## 🎯 5. Công thức chấm điểm từ khóa & Tiêu chuẩn chất lượng bài viết
+
+### 5.1. Chấm điểm từ khóa Hot hàng ngày (thang 100)
 
 Tại `backend/engine.py`:
 
@@ -177,6 +179,27 @@ Tại `backend/engine.py`:
 | **Đối thủ đã viết** | **25** | GearVN, CellphoneS, Phong Vũ, FPT Shop, Thế Giới Di Động... đã lên bài. |
 | **Độ tươi mới** | **20** | Tin dưới 6 giờ được điểm tối đa, giảm dần theo tuổi tin. |
 | **Xác thực SerpApi** | **15** | Trending Now và Google Trends (chỉ đo thật cho 5 ứng viên đầu do giới hạn quota). |
+
+### 5.2. Bộ 13 Tiêu chuẩn Chấm điểm SEO cho Bài viết (Thang 100, nghiệm thu ≥ 90)
+
+Kiểm soát tự động qua `evaluate_seo.py` và chuẩn hóa tại `cham-diem-seo.md` (áp dụng cho cả bài Tin tức `tnc-viet-bai-tin` và bài Review `tnc-viet-bai-review`):
+
+| # | Tiêu chí | Trọng số | Khoảng chuẩn nghiệm thu |
+|---|---|:---:|---|
+| 1 | **Tiêu đề (Title)** | 12 | 50 ≤ len ≤ 60 ký tự, chứa từ khóa chính, không có dấu chấm cuối. |
+| 2 | **Meta description** | 8 | 150 ≤ len ≤ 160 ký tự, từ khóa chính ngay đầu câu, không có link. |
+| 3 | **Mật độ từ khóa chính** | 10 | 0.8% - 1.2%, xuất hiện trong 100 từ đầu, ít nhất 2 thẻ H2 và phần Kết luận. |
+| 4 | **Mật độ từ khóa phụ** | 8 | 4 - 6 từ khóa phụ (2-3 key ngắn + 2-3 key dài), mỗi từ lặp 2 - 5 lần. |
+| 5 | **Độ dài tổng từ** | 10 | 1500 ≤ words ≤ 2200 từ thân bài. |
+| 6 | **Heading (H2/H3)** | 10 | H2 ≥ 70 từ, H3 ≥ 50 từ (nếu có H3 thì ≥ 2 thẻ H3/H2), Sentence case. |
+| 7 | **Đoạn mở đầu (Opening)** | 6 | 1 đoạn văn chuẩn (3-5 câu), từ khóa chính ở đầu câu, không in đậm, không link. |
+| 8 | **Readability (Độ dễ đọc)** | 8 | Câu văn súc tích, độ dài câu trung bình ≤ 20 từ/câu, Flesch-Kincaid ≥ 60. |
+| 9 | **Hình ảnh** | 6 | Tỉ lệ 3:2, 900x600 px; bài tin ≥ 2 hình, bài review ≥ 5 hình (mỗi H2 có 1 ảnh). |
+| 10 | **Độc bản & Cấm link** | 10 | Không trùng > 30% đối thủ, cấm từ sáo rỗng mục 3.7, tuyệt đối cấm link trong bài. |
+| 11 | **Không dùng em-dash** | 2 | Không xuất hiện dấu gạch ngang dài `—` trong toàn bài. |
+| 12 | **FAQ (PAA)** | 5 | Đúng 5 câu hỏi - trả lời từ Google PAA, mỗi câu trả lời súc tích ≤ 80 từ. |
+| 13 | **Kết luận & CTA** | 5 | Thẻ `## Kết luận` ≥ 70 từ; theo dõi Tin tức TNC (tin) hoặc CTA Showroom/Hotline 1900 6078 (review). |
+| **Tổng** | **ĐẠT CHUẨN** | **100** | **Tổng điểm chấm bằng `evaluate_seo.py` phải đạt từ 90/100 điểm trở lên.** |
 
 ---
 

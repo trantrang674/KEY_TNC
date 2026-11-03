@@ -1,7 +1,7 @@
 # Cowork: tự động lập outline và viết bài từ keyword đã duyệt
 
 Chạy 1 lần/ngày. Thư mục làm việc của task phải là `C:\Users\MK01\Documents\GEMNI ANTIGRAVITY\tnc-seo-content`
-(nơi có `CLAUDE.md`, `.agents/skills/tnc-viet-bai-tin`, `.agents/skills/tnc-viet-bai-review`, `seo-keyword-research`, `evaluate_seo.py` và `.env` chứa SerpApi key).
+(nơi có `CLAUDE.md`, `.agents/skills/tnc-viet-bai-tin`, `.agents/skills/tnc-viet-bai-review`, `seo-keyword-research`, `evaluate_seo.py`, `cham-diem-seo.md` và `.env` chứa SerpApi key).
 Cowork chạy cục bộ và chỉ dùng quy chuẩn trong thư mục đó, không dùng skill nào có sẵn của app.
 
 ## Cài đặt một lần
@@ -70,17 +70,21 @@ PHẦN A, lập outline:
      ## <H2>            (dòng dưới là mô tả ngắn nội dung H2)
      ### <H3>           (dòng dưới là mô tả ngắn nội dung H3)
      ## FAQ             (mỗi câu hỏi 1 dòng gạch đầu dòng "- ", đủ 5 câu)
-     ## Kết luận        (kèm câu kết theo dõi Tin Tức TNC)
+     ## Kết luận        (kèm câu kết theo dõi Tin Tức TNC với bài tin, hoặc CTA Hotline 1900 6078 / Showroom Thành Nhân TNC với bài review)
    Không đưa danh sách key phụ vào outline_md (đã có trong short_kws / long_kws).
 
 PHẦN B, viết bài:
 4. GET {COWORK_API_URL}/outlines/approved. Với mỗi outline (tối đa 5):
    Nếu outline có rejected_article_note (không rỗng) nghĩa là người duyệt đã YÊU CẦU CHỈNH SỬA bài lần trước:
    đọc kỹ nhận xét và viết lại bài làm đúng từng ý được yêu cầu (vẫn giữ 100% key phụ và điểm SEO >= 90).
-5. Viết bài theo Bước 4 của skill, dùng đúng 100% key phụ trong outline đã duyệt; chạy evaluate_seo.py
-   và sửa đến khi điểm >= 90 (bài review thêm --type review); tạo meta description 150-160 ký tự (Bước 5).
-   Bài dài 1,500-2,200 từ, mỗi key phụ lặp 2-5 lần, tuân thủ mục 3.7 và 6.7 (không lộ văn phong AI).
-   Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
+5. Viết bài theo Bước 4 của skill, dùng đúng 100% key phụ trong outline đã duyệt; tuân thủ nghiêm ngặt 13 tiêu chí trong cham-diem-seo.md:
+   - Bài dài 1,500-2,200 từ, mỗi key phụ lặp 2-5 lần, tuân thủ mục 3.7 và 6.7 (không lộ văn phong AI), cấm mọi link và không dùng em-dash "—".
+   - Bắt buộc chèn khối "## Meta description" ở cuối cùng của file bài viết (150-160 ký tự, từ khóa chính ở ngay đầu câu).
+   - Hình ảnh (Tiêu chí 9): tỉ lệ 3:2, 900x600 px, .jpg/.jpeg, caption không chứa từ khóa chính; bài tin >= 2 hình, bài review >= 5 hình (mỗi H2 chèn 1 ảnh, kiểm tra folder "hình ảnh review sản phẩm/<tên_sản_phẩm>/" để lấy ảnh thật hoặc chèn ảnh minh họa đúng quy chuẩn).
+   - Chạy evaluate_seo.py và sửa đến khi điểm >= 90 (thang 100):
+       Bài tin tức: python evaluate_seo.py --file "seo_output/<slug>/<slug>.md" --keyword "<keyword>" --auto-kws
+       Bài review:  python evaluate_seo.py --file "seo_output/<slug>/<slug>.md" --keyword "<keyword>" --auto-kws --type review
+   - Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
 6. Tạo file Google Docs cho bài bằng connector Google Drive/Docs, trong thư mục Drive có ID
    1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz (https://drive.google.com/drive/folders/1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz).
    Tên file = title của bài; nội dung = content_md đã định dạng (H1/H2/H3, danh sách, bảng, in đậm, không chèn link),
