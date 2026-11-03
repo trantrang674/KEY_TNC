@@ -170,8 +170,8 @@
             <p class="mt-1 text-slate-600"><code>GET /outlines/approved</code> ➔ viết đúng 100% key phụ, chạy <code>evaluate_seo.py</code> đến &ge; 90, meta 150-160 ký tự, không để link trong bài ➔ lưu <code>seo_output/&lt;slug&gt;/</code> ➔ tạo Google Docs trong thư mục Drive ➔ <code>POST /articles</code> kèm <code>google_doc_url</code>.</p>
           </div>
           <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
-            <strong class="text-rose-900">Phần C - Gợi ý làm mới bài cũ:</strong>
-            <p class="mt-1 text-slate-600"><code>GET /refresh-candidates</code> (bài giảm clicks hoặc tụt hạng, bài Cowork xếp trước, tối đa 3 bài/lần) ➔ so với đối thủ ➔ báo lên chuông 2-4 việc nên sửa. <strong>Chỉ đề xuất</strong>, không tự sửa bài đã đăng.</p>
+            <strong class="text-rose-900">Phần C - Gợi ý làm mới bài cũ (0 tốn SerpApi):</strong>
+            <p class="mt-1 text-slate-600"><code>GET /refresh-candidates</code> (bài giảm clicks hoặc tụt hạng, tối đa 3 bài/lần) ➔ phân tích On-page cục bộ từ file sẵn có trong <code>seo_output/</code> (<strong>tuyệt đối KHÔNG gọi SerpApi</strong>) ➔ báo lên chuông 2-3 việc nên sửa. <strong>Chỉ đề xuất</strong>, không tự sửa bài đã đăng.</p>
           </div>          <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
             <strong class="text-rose-900">Báo lên chuông Dashboard:</strong>
             <p class="mt-1 text-slate-600">Mỗi lỗi: mức <em>error / warning</em>. Cuối lần chạy: <em>success</em> (&quot;Đã đẩy N outline, M bài&quot;), <em>info</em> nếu không có keyword mới. Lỗi tạo Docs không làm dừng lần chạy.</p>

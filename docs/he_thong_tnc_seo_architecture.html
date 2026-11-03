@@ -271,7 +271,7 @@ sequenceDiagram
     G-->>SB: Clicks, impressions, vị trí, query, GA4, trạng thái index
     Editor->>UI: Tab BÁO CÁO xem bài lên hạng chưa, mục Bài cần xử lý
     CW->>SB: GET refresh-candidates (bài giảm clicks hoặc tụt hạng)
-    CW->>SB: POST notifications, gợi ý làm mới (không tự sửa bài)
+    CW->>SB: POST notifications, gợi ý làm mới (0 tốn SerpApi: phân tích On-page cục bộ, không tự sửa bài)
     Editor->>UI: Tab CÀI ĐẶT xem sức khỏe: quét, sync, Cowork, SerpApi
       </div>
     </div>

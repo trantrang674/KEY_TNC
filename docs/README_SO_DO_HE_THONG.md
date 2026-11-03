@@ -159,11 +159,11 @@ sequenceDiagram
     G-->>SB: Clicks, impressions, vị trí, query, GA4, trạng thái index
     Editor->>UI: Tab BÁO CÁO xem bài lên hạng chưa, mục Bài cần xử lý
     CW->>SB: GET refresh-candidates (bài giảm clicks hoặc tụt hạng)
-    CW->>SB: POST notifications, gợi ý làm mới (không tự sửa bài)
+    CW->>SB: POST notifications, gợi ý làm mới (0 tốn SerpApi: chỉ phân tích On-page cục bộ, không tự sửa bài)
     Editor->>UI: Tab CÀI ĐẶT xem sức khỏe: quét, sync, Cowork, SerpApi
 ```
 
-**Quy tắc của Cowork** (theo `cowork/COWORK_TASK.md`): mỗi lần chạy tối đa 5 keyword và 5 outline; dùng đúng 100% key phụ trong outline đã duyệt; bài viết phải đạt điểm SEO ≥ 90/100 theo Bộ 13 tiêu chí chuẩn; không để link trong bài; không dùng em-dash "—"; gặp mã 409 (đã có) thì bỏ qua; lỗi tạo Google Docs hoặc gửi thông báo không làm dừng cả lần chạy.
+**Quy tắc của Cowork** (theo `cowork/COWORK_TASK.md`): mỗi lần chạy tối đa 5 keyword và 5 outline; Phần C chỉ **đề xuất** làm mới tối đa 3 bài cũ qua chuông (hoàn toàn **0 tốn lượt SerpApi**: chỉ đọc lý do GSC từ Supabase và kiểm tra file bài viết cục bộ trong `seo_output/`, tuyệt đối không gọi `serp_keyword.py` hay SerpApi; không tự sửa bài); dùng đúng 100% key phụ trong outline đã duyệt; bài viết phải đạt điểm SEO ≥ 90/100 theo Bộ 13 tiêu chí chuẩn; không để link trong bài; không dùng em-dash "—"; gặp mã 409 (đã có) thì bỏ qua; lỗi tạo Google Docs hoặc gửi thông báo không làm dừng cả lần chạy.
 
 ---
 

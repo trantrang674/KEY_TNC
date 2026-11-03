@@ -94,6 +94,19 @@ PHẦN B, viết bài:
 7. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count,
    google_doc_url (link Docs ở bước 6; dashboard sẽ hiện nút "Docs").
 
+PHẦN C, gợi ý làm mới bài cũ (HOÀN TOÀN KHÔNG TỐN LƯỢT SERPAPI, chỉ ĐỀ XUẤT, không tự sửa bài):
+8. GET {COWORK_API_URL}/refresh-candidates. Lấy tối đa 3 bài đầu danh sách, bỏ qua URL đã báo trong 7 ngày qua
+   (ghi nhớ trong file seo_output/refresh_log.json dạng {"<url>": "YYYY-MM-DD"}, tạo nếu chưa có).
+   Lỗi gọi endpoint này (404 nếu chưa deploy) không được làm dừng lần chạy: bỏ qua cả Phần C.
+9. TUYỆT ĐỐI KHÔNG GỌI serp_keyword.py hay SerpApi (0 tốn lượt SerpApi).
+   Với mỗi bài: Cowork chỉ kiểm tra cục bộ từ file bài viết sẵn có seo_output/<slug>/<slug>.md (hoặc report.md/report.json cũ nếu có):
+   - Đọc lý do có sẵn từ Google Search Console trong trường candidate.reasons (clicks giảm, tụt hạng...).
+   - Kiểm tra các yếu tố lỗi thời On-page: năm cũ (2024/2025 cần cập nhật 2026), cấu hình/giá bán lỗi thời.
+   - Chạy evaluate_seo.py cục bộ (offline, không tốn API) để phát hiện tiêu chí có thể nâng điểm.
+   Sau đó POST {COWORK_API_URL}/notifications với level "info", title "Nên làm mới: <title rút gọn>",
+   message gồm lý do (trường reasons) và 2-3 đề xuất sửa nhanh On-page, keyword = keyword của bài.
+   KHÔNG POST /outlines hay /articles cho việc này, KHÔNG sửa bài đã đăng; người dùng tự quyết định trên Dashboard.
+
 THÔNG BÁO LÊN CHUÔNG DASHBOARD (POST {COWORK_API_URL}/notifications, body {level, title, message, keyword}):
 - Mỗi keyword lỗi (serp_keyword.py hỏng, không đủ PAA, evaluate_seo.py không đạt 90 sau nhiều lần sửa, API trả lỗi khác 409):
   level "error" hoặc "warning", title ngắn nêu việc, message ghi nguyên nhân, keyword là từ khóa liên quan.
