@@ -171,7 +171,7 @@
           </div>
           <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
             <strong class="text-rose-900">Phần C - Gợi ý làm mới bài cũ (0 tốn SerpApi):</strong>
-            <p class="mt-1 text-slate-600"><code>GET /refresh-candidates</code> (bài giảm clicks hoặc tụt hạng, tối đa 3 bài/lần) ➔ phân tích On-page cục bộ từ file sẵn có trong <code>seo_output/</code> (<strong>tuyệt đối KHÔNG gọi SerpApi</strong>) ➔ báo lên chuông 2-3 việc nên sửa. <strong>Chỉ đề xuất</strong>, không tự sửa bài đã đăng.</p>
+            <p class="mt-1 text-slate-600"><code>GET /refresh-candidates</code> (bài giảm clicks hoặc tụt hạng, tối đa 3 bài/lần) ➔ phân tích On-page cục bộ từ file sẵn có (<strong>tuyệt đối KHÔNG gọi SerpApi</strong>), lưu báo cáo vào <code>seo_audit/</code> ➔ báo lên chuông 2-3 việc nên sửa. <strong>Chỉ đề xuất</strong>, không tự sửa bài đã đăng.</p>
           </div>          <div class="p-2.5 bg-white rounded-xl border border-rose-200 shadow-sm">
             <strong class="text-rose-900">Báo lên chuông Dashboard:</strong>
             <p class="mt-1 text-slate-600">Mỗi lỗi: mức <em>error / warning</em>. Cuối lần chạy: <em>success</em> (&quot;Đã đẩy N outline, M bài&quot;), <em>info</em> nếu không có keyword mới. Lỗi tạo Docs không làm dừng lần chạy.</p>

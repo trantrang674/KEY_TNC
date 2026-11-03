@@ -163,7 +163,7 @@ sequenceDiagram
     Editor->>UI: Tab CÀI ĐẶT xem sức khỏe: quét, sync, Cowork, SerpApi
 ```
 
-**Quy tắc của Cowork** (theo `cowork/COWORK_TASK.md`): mỗi lần chạy tối đa 5 keyword và 5 outline; Phần C chỉ **đề xuất** làm mới tối đa 3 bài cũ qua chuông (hoàn toàn **0 tốn lượt SerpApi**: chỉ đọc lý do GSC từ Supabase và kiểm tra file bài viết cục bộ trong `seo_output/`, tuyệt đối không gọi `serp_keyword.py` hay SerpApi; không tự sửa bài); dùng đúng 100% key phụ trong outline đã duyệt; bài viết phải đạt điểm SEO ≥ 90/100 theo Bộ 13 tiêu chí chuẩn; không để link trong bài; không dùng em-dash "—"; gặp mã 409 (đã có) thì bỏ qua; lỗi tạo Google Docs hoặc gửi thông báo không làm dừng cả lần chạy.
+**Quy tắc của Cowork** (theo `cowork/COWORK_TASK.md`): mỗi lần chạy tối đa 5 keyword và 5 outline; Phần C chỉ **đề xuất** làm mới tối đa 3 bài cũ qua chuông (hoàn toàn **0 tốn lượt SerpApi**: chạy `refresh_audit.py` đọc lý do GSC từ Supabase, chấm lại 13 tiêu chí và lưu báo cáo vào thư mục riêng `seo_output/<slug>/seo_audit/`, tuyệt đối không gọi `serp_keyword.py` hay SerpApi; không tự sửa bài); dùng đúng 100% key phụ trong outline đã duyệt; bài viết phải đạt điểm SEO ≥ 90/100 theo Bộ 13 tiêu chí chuẩn; không để link trong bài; không dùng em-dash "—"; gặp mã 409 (đã có) thì bỏ qua; lỗi tạo Google Docs hoặc gửi thông báo không làm dừng cả lần chạy.
 
 ---
 
