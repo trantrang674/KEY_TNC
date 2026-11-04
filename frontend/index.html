@@ -582,17 +582,25 @@
           Keyword <span class="text-gradient">Duyệt</span>
         </h2>
         <!-- THÊM KEYWORD THỦ CÔNG: lưu như keyword duyệt, chạy tiếp workflow/Cowork -->
-        <form id="manualKwForm" onsubmit="return addManualKeyword(event)" class="pro-card rounded-2xl p-4 flex flex-col sm:flex-row sm:items-center gap-3">
-          <div class="shrink-0">
-            <div class="text-sm font-extrabold text-slate-900">Thêm KEYWORD</div>
-            <div class="text-[11px] text-slate-500">Nhập tay keyword của bạn, hệ thống xử lý như keyword đã duyệt.</div>
+        <form id="manualKwForm" onsubmit="return addManualKeyword(event)" class="pro-card rounded-2xl p-4 space-y-2.5">
+          <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+            <div class="shrink-0">
+              <div class="text-sm font-extrabold text-slate-900">Thêm KEYWORD</div>
+              <div class="text-[11px] text-slate-500">Nhập tay, hệ thống xử lý như keyword đã duyệt. Bạn chọn loại bài.</div>
+            </div>
+            <select id="manualKwType" onchange="onManualKwTypeChange()" aria-label="Loại bài"
+                    class="bg-white border border-blue-100 rounded-xl px-3 py-2 text-xs font-bold text-slate-700 focus:outline-none focus:border-blue-500">
+              <option value="news">Tin tức</option>
+              <option value="review">Đánh giá sản phẩm</option>
+            </select>
+            <input id="manualKwInput" type="text" maxlength="300" autocomplete="off" oninput="suggestManualKwType()" placeholder="VD: card đồ họa RTX 5060 Ti giá bao nhiêu"
+                   class="flex-1 min-w-0 bg-white border border-blue-100 rounded-xl px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
+            <button id="manualKwBtn" type="submit"
+                    class="min-w-[140px] px-4 py-2 rounded-full accent-btn text-white text-xs font-extrabold tracking-wide transition disabled:opacity-60">
+              + THÊM KEYWORD
+            </button>
           </div>
-          <input id="manualKwInput" type="text" maxlength="300" autocomplete="off" placeholder="VD: card đồ họa RTX 5060 Ti giá bao nhiêu"
-                 class="flex-1 min-w-0 bg-white border border-blue-100 rounded-xl px-3.5 py-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
-          <button id="manualKwBtn" type="submit"
-                  class="min-w-[140px] px-4 py-2 rounded-full accent-btn text-white text-xs font-extrabold tracking-wide transition disabled:opacity-60">
-            + THÊM KEYWORD
-          </button>
+          <div id="manualKwHint" class="hidden text-[11px] rounded-lg bg-amber-50 border border-amber-200 text-amber-800 px-3 py-2"></div>
         </form>
         <div class="pro-card rounded-2xl overflow-hidden">
           <div class="px-4 py-3.5 flex items-center justify-between border-b border-blue-50">
@@ -1125,6 +1133,69 @@
               <button type="button" id="artReviewApprove" onclick="submitReview('approved')"
                       class="px-5 py-2 rounded-full bg-blue-600 hover:bg-blue-700 text-white text-xs font-extrabold tracking-wide transition disabled:opacity-60">DUYỆT</button>
             </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POPUP DỮ LIỆU THẬT CHO BÀI ĐÁNH GIÁ SẢN PHẨM (Cowork chỉ viết dựa trên dữ liệu này + thông số công bố) -->
+  <div id="reviewInputModal" class="hidden fixed inset-0 z-[80]" role="dialog" aria-modal="true" aria-labelledby="rvKw">
+    <div class="absolute inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeReviewInputModal()"></div>
+    <div class="relative h-full flex items-center justify-center p-4 pointer-events-none">
+      <div class="pointer-events-auto w-full max-w-xl max-h-[92vh] overflow-y-auto bg-white rounded-2xl shadow-2xl border border-blue-100 p-6 space-y-4">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <span class="w-8 h-8 rounded-xl bg-orange-50 text-orange-600 font-bold flex items-center justify-center">★</span>
+            <h3 class="text-base font-extrabold text-slate-900">Dữ liệu bài đánh giá sản phẩm</h3>
+          </div>
+          <button type="button" onclick="closeReviewInputModal()" class="w-8 h-8 rounded-full hover:bg-slate-100 text-slate-400 hover:text-slate-600 flex items-center justify-center" aria-label="Đóng">✕</button>
+        </div>
+        <div>
+          <label class="block text-xs font-bold text-slate-800 mb-1">Tên sản phẩm (keyword):</label>
+          <div id="rvKw" class="text-xs font-extrabold text-blue-700 bg-blue-50 px-3 py-2 rounded-xl break-words"></div>
+        </div>
+        <p class="text-[11px] text-slate-500 leading-relaxed">
+          Tất cả các ô đều <strong>không bắt buộc</strong>. Cowork chỉ viết dựa trên dữ liệu bạn nhập và thông số do hãng công bố.
+          Ô nào để trống, bài sẽ không bịa thông số hay trải nghiệm.
+        </p>
+        <div class="space-y-3">
+          <div>
+            <label for="rvUrl" class="block text-xs font-bold text-slate-800 mb-1">Link trang sản phẩm TNC <span class="font-normal text-slate-400">(chỉ để Cowork đọc thông số, không chèn vào bài)</span></label>
+            <input type="url" id="rvUrl" placeholder="https://www.tnc.com.vn/..." class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" />
+          </div>
+          <div>
+            <label for="rvSpecs" class="block text-xs font-bold text-slate-800 mb-1">Thông số chính <span class="font-normal text-slate-400">(CPU, RAM, màn hình, giá, bảo hành...)</span></label>
+            <textarea id="rvSpecs" rows="3" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Core Ultra 5, RAM 16GB, SSD 512GB, màn 2.5K cảm ứng, giá 35,9 triệu, bảo hành 2 năm"></textarea>
+          </div>
+          <label class="flex items-start gap-2 text-xs text-slate-800 bg-orange-50 border border-orange-100 rounded-xl px-3 py-2.5 cursor-pointer">
+            <input type="checkbox" id="rvHandsOn" class="mt-0.5" onchange="onReviewHandsOnChange()" />
+            <span><strong>Tôi/nhóm đã trực tiếp dùng sản phẩm này.</strong> Chỉ khi tích ô này, bài mới được viết trải nghiệm dùng thật, và chỉ dựa trên các ô bên dưới.</span>
+          </label>
+          <div id="rvHandsOnFields" class="space-y-3">
+            <div>
+              <label for="rvPros" class="block text-xs font-bold text-slate-800 mb-1">Ưu điểm đã dùng thực tế</label>
+              <textarea id="rvPros" rows="2" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Vỏ nhôm CNC chắc, bàn phím gõ êm, màn rất nét"></textarea>
+            </div>
+            <div>
+              <label for="rvCons" class="block text-xs font-bold text-slate-800 mb-1">Nhược điểm đã dùng thực tế</label>
+              <textarea id="rvCons" rows="2" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Chỉ có 2 cổng Type-C, cần thêm hub"></textarea>
+            </div>
+            <div>
+              <label for="rvNotes" class="block text-xs font-bold text-slate-800 mb-1">Ghi chú thực tế khác (Tester Notes)</label>
+              <textarea id="rvNotes" rows="2" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Pin dùng văn phòng khoảng 8 tiếng, quạt êm khi chạy nhẹ"></textarea>
+            </div>
+          </div>
+          <div>
+            <label for="rvFolder" class="block text-xs font-bold text-slate-800 mb-1">Folder ảnh <span class="font-normal text-slate-400">(trong "hình ảnh review sản phẩm", để trống nếu trùng tên sản phẩm)</span></label>
+            <input type="text" id="rvFolder" maxlength="200" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" />
+          </div>
+        </div>
+        <div class="flex items-center justify-between gap-2 pt-2 border-t border-slate-100">
+          <button type="button" id="rvToNews" onclick="switchKeywordToNews()" class="hidden px-3 py-2 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 text-[11px] font-bold transition">Chuyển về Tin tức</button>
+          <div class="flex items-center gap-2 ml-auto">
+            <button type="button" onclick="closeReviewInputModal()" class="px-4 py-2 rounded-xl bg-slate-100 text-slate-600 text-xs font-bold hover:bg-slate-200 transition">Hủy</button>
+            <button type="button" id="rvSaveBtn" onclick="saveReviewInputModal()" class="px-4 py-2 rounded-xl brand-btn text-white text-xs font-bold transition disabled:opacity-60">Lưu</button>
           </div>
         </div>
       </div>
@@ -1939,7 +2010,10 @@
     // Ghi 1 keyword vào approved_keywords (Supabase, hoặc localStorage khi xem thử local) rồi vẽ lại bảng
     async function insertApproved(record) {
       if (STATIC_MODE) {
-        const { data, error } = await sb.from("approved_keywords").insert(record).select().single();
+        // Tin tức là mặc định của cột content_type: không gửi để vẫn lưu được khi chưa chạy database/content_type.sql
+        const row = { ...record };
+        if (row.content_type === "news") delete row.content_type;
+        const { data, error } = await sb.from("approved_keywords").insert(row).select().single();
         if (error && error.code === "23505") {
           await loadApprovedKeywords(); // đã có người khác duyệt keyword này
         } else if (error) {
@@ -1958,33 +2032,188 @@
     // "Thêm KEYWORD": keyword nhập tay, đi chung luồng với keyword duyệt (outline -> bài viết -> đăng)
     async function addManualKeyword(ev) {
       ev.preventDefault();
-      const input = byId("manualKwInput"), btn = byId("manualKwBtn");
+      const input = byId("manualKwInput");
       const kw = input.value.replace(/\s+/g, " ").trim();
-      if (!kw) { showToast("Hãy nhập keyword trước khi thêm.", true); return false; }
+      const type = byId("manualKwType").value === "review" ? "review" : "news";
+      if (!kw) { showToast(type === "review" ? "Hãy nhập tên sản phẩm trước khi thêm." : "Hãy nhập keyword trước khi thêm.", true); return false; }
       if (isApproved(kw)) { showToast(`Keyword "${kw}" đã có trong danh sách.`, true); return false; }
       const today = new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Ho_Chi_Minh" }).format(new Date()); // YYYY-MM-DD giờ VN
       const record = {
         keyword: kw,
         source_keyword: "Nhập tay",
         niche: null,
-        intent: "Keyword nhập tay",
+        intent: type === "review" ? "Đánh giá sản phẩm (nhập tay)" : "Keyword nhập tay",
         based_on: "Người dùng tự thêm",
-        report_date: today
+        report_date: today,
+        content_type: type
       };
+      // Bài đánh giá: mở popup điền dữ liệu thật (không bắt buộc) rồi mới lưu
+      if (type === "review") { openReviewInputModal({ mode: "new", record }); return false; }
+      await saveManualKeyword(record);
+      return false;
+    }
+
+    async function saveManualKeyword(record) {
+      const input = byId("manualKwInput"), btn = byId("manualKwBtn");
       btn.disabled = true;
       btn.textContent = "Đang lưu...";
       try {
         await insertApproved(record);
         input.value = "";
-        showToast(`Đã thêm keyword: "${kw}"`);
+        byId("manualKwHint").classList.add("hidden");
+        showToast(`Đã thêm ${record.content_type === "review" ? "sản phẩm đánh giá" : "keyword"}: "${record.keyword}"`);
+        return true;
       } catch (err) {
         console.error(err);
         showToast("Không thêm được keyword: " + err.message, true);
+        return false;
       } finally {
         btn.disabled = false;
         btn.textContent = "+ THÊM KEYWORD";
       }
-      return false;
+    }
+
+    // ---- Loại bài: ô nhập đổi theo loại; gợi ý (không tự đổi) khi thấy chữ đánh giá/review hoặc tên sản phẩm ----
+    const REVIEW_WORD_RE = /(đánh giá|review|trên tay|so sánh)/i;
+    const PRODUCT_MODEL_RE = /\b(dell|asus|acer|lenovo|msi|hp|apple|macbook|samsung|lg|tp-link|gigabyte|logitech|razer|corsair|kingston|intel|amd|nvidia|rtx|rx|ryzen|xps|thinkpad)\b[^,;]*\d/i;
+
+    function onManualKwTypeChange() {
+      const isReview = byId("manualKwType").value === "review";
+      byId("manualKwInput").placeholder = isReview ? "Tên sản phẩm. VD: Laptop MSI Modern 14 H1M-014VN" : "VD: card đồ họa RTX 5060 Ti giá bao nhiêu";
+      suggestManualKwType();
+    }
+
+    function suggestManualKwType() {
+      const hint = byId("manualKwHint");
+      const kw = byId("manualKwInput").value;
+      const isNews = byId("manualKwType").value === "news";
+      if (isNews && kw.trim() && (REVIEW_WORD_RE.test(kw) || PRODUCT_MODEL_RE.test(kw))) {
+        hint.innerHTML = `Có vẻ đây là bài đánh giá sản phẩm. <button type="button" onclick="applyReviewSuggestion()" class="ml-1 px-2.5 py-0.5 rounded-full bg-amber-600 text-white font-bold">Chuyển sang Đánh giá sản phẩm</button> hoặc cứ giữ là Tin tức.`;
+        hint.classList.remove("hidden");
+      } else {
+        hint.classList.add("hidden");
+      }
+    }
+
+    function applyReviewSuggestion() {
+      byId("manualKwType").value = "review";
+      onManualKwTypeChange();
+    }
+
+    // ---- Popup dữ liệu bài đánh giá (mode "new": thêm keyword mới; mode "edit": sửa keyword đã duyệt) ----
+    let reviewModalCtx = null;
+
+    function openReviewInputModal(ctx) {
+      reviewModalCtx = ctx;
+      const rec = ctx.mode === "edit" ? (approvedKeywords.find(a => Number(a.id) === Number(ctx.id)) || {}) : ctx.record;
+      const ri = rec.review_input || {};
+      byId("rvKw").textContent = rec.keyword || "";
+      byId("rvUrl").value = ri.tnc_url || "";
+      byId("rvSpecs").value = ri.specs || "";
+      byId("rvHandsOn").checked = !!ri.has_hands_on;
+      byId("rvPros").value = ri.pros || "";
+      byId("rvCons").value = ri.cons || "";
+      byId("rvNotes").value = ri.tester_notes || "";
+      byId("rvFolder").value = ri.image_folder || "";
+      byId("rvToNews").classList.toggle("hidden", ctx.mode !== "edit");
+      byId("rvSaveBtn").textContent = ctx.mode === "edit" ? "Lưu dữ liệu" : "Lưu & thêm keyword";
+      onReviewHandsOnChange();
+      byId("reviewInputModal").classList.remove("hidden");
+    }
+
+    function closeReviewInputModal() {
+      byId("reviewInputModal").classList.add("hidden");
+      reviewModalCtx = null;
+    }
+
+    // Chưa tích "đã trực tiếp dùng" thì khóa các ô trải nghiệm để không lỡ nhập dữ liệu không có thật
+    function onReviewHandsOnChange() {
+      const on = byId("rvHandsOn").checked;
+      ["rvPros", "rvCons", "rvNotes"].forEach(id => { byId(id).disabled = !on; });
+      byId("rvHandsOnFields").classList.toggle("opacity-50", !on);
+    }
+
+    function collectReviewInput() {
+      const clean = (id) => byId(id).value.replace(/\r/g, "").trim();
+      const out = {};
+      const url = clean("rvUrl");
+      if (url) {
+        if (!/^https?:\/\//i.test(url)) throw new Error("Link trang sản phẩm phải bắt đầu bằng http:// hoặc https://");
+        out.tnc_url = url;
+      }
+      if (clean("rvSpecs")) out.specs = clean("rvSpecs");
+      const hands = byId("rvHandsOn").checked;
+      if (hands) {
+        if (clean("rvPros")) out.pros = clean("rvPros");
+        if (clean("rvCons")) out.cons = clean("rvCons");
+        if (clean("rvNotes")) out.tester_notes = clean("rvNotes");
+        if (!out.pros && !out.cons && !out.tester_notes) {
+          throw new Error("Đã tích \"trực tiếp dùng\" thì cần nhập ít nhất một trong: ưu điểm, nhược điểm, ghi chú thực tế.");
+        }
+        out.has_hands_on = true;
+      }
+      if (clean("rvFolder")) out.image_folder = clean("rvFolder");
+      return out;
+    }
+
+    async function saveReviewInputModal() {
+      const ctx = reviewModalCtx;
+      if (!ctx) return;
+      let ri;
+      try { ri = collectReviewInput(); } catch (e) { showToast(e.message, true); return; }
+      const review_input = Object.keys(ri).length ? ri : null;
+      const btn = byId("rvSaveBtn");
+      btn.disabled = true;
+      try {
+        if (ctx.mode === "new") {
+          const ok = await saveManualKeyword({ ...ctx.record, review_input });
+          if (ok) closeReviewInputModal();
+        } else {
+          await updateApprovedKeyword(ctx.id, { content_type: "review", review_input });
+          showToast("Đã lưu dữ liệu bài đánh giá.");
+          closeReviewInputModal();
+        }
+      } catch (err) {
+        console.error(err);
+        showToast("Không lưu được: " + err.message, true);
+      } finally {
+        btn.disabled = false;
+      }
+    }
+
+    async function switchKeywordToNews() {
+      const ctx = reviewModalCtx;
+      if (!ctx || ctx.mode !== "edit") return;
+      try {
+        await updateApprovedKeyword(ctx.id, { content_type: "news" });
+        showToast("Đã chuyển keyword về Tin tức (dữ liệu review được giữ lại).");
+        closeReviewInputModal();
+      } catch (err) {
+        showToast("Không chuyển được: " + err.message, true);
+      }
+    }
+
+    // Sửa loại / dữ liệu review của keyword đã duyệt (Supabase hoặc localStorage khi xem thử local)
+    async function updateApprovedKeyword(id, patch) {
+      const idx = approvedKeywords.findIndex(a => Number(a.id) === Number(id));
+      if (idx < 0) throw new Error("Không tìm thấy keyword.");
+      if (STATIC_MODE) {
+        const { data, error } = await sb.from("approved_keywords").update(patch).eq("id", id).select().single();
+        if (error) throw new Error(error.message + " (cần chạy database/content_type.sql nếu chưa chạy)");
+        approvedKeywords[idx] = data;
+      } else {
+        approvedKeywords[idx] = { ...approvedKeywords[idx], ...patch };
+        localStorage.setItem(LOCAL_APPROVED_KEY, JSON.stringify(approvedKeywords));
+      }
+      renderApprovedTable();
+      renderWorkflowTable();
+    }
+
+    // Nhãn loại bài dùng chung cho bảng Keyword Duyệt và Workflow
+    function typeBadge(a) {
+      return (a && a.content_type === "review")
+        ? `<span class="px-2 py-0.5 rounded-full bg-orange-50 text-orange-700 border border-orange-200 text-[10px] font-extrabold whitespace-nowrap">ĐÁNH GIÁ</span>`
+        : `<span class="px-2 py-0.5 rounded-full bg-slate-50 text-slate-500 border border-slate-200 text-[10px] font-extrabold whitespace-nowrap">TIN TỨC</span>`;
     }
 
     async function approveKeyword(rank, idx, btn) {
@@ -1999,7 +2228,8 @@
         niche: item.niche?.name || null,
         intent: s.intent || null,
         based_on: s.based_on || null,
-        report_date: currentReportDate(item)
+        report_date: currentReportDate(item),
+        content_type: "news" // keyword từ Top 20 tự quét luôn là Tin tức
       };
       btn.disabled = true;
       btn.textContent = "Đang lưu...";
@@ -2081,6 +2311,12 @@
                   <td class="px-3 py-3 text-center"><span class="inline-flex w-7 h-7 rounded-lg rank-other text-xs font-extrabold items-center justify-center">${i + 1}</span></td>
                   <td class="px-3 py-3">
                     <div class="font-bold text-slate-900">${escapeHtml(a.keyword)}</div>
+                    <div class="mt-0.5 flex flex-wrap items-center gap-1.5">
+                      ${typeBadge(a)}
+                      ${a.content_type === "review" ? (a.review_input && Object.keys(a.review_input).length
+                          ? `<span class="text-[10px] font-bold text-emerald-600">Đã có dữ liệu${a.review_input.has_hands_on ? " · đã dùng thật" : ""}</span>`
+                          : `<span class="text-[10px] font-bold text-slate-400">Chưa nhập dữ liệu</span>`) : ""}
+                    </div>
                     ${a.intent ? `<div class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(a.intent)}</div>` : ""}
                   </td>
                   <td class="px-3 py-3 text-slate-700">${escapeHtml(a.source_keyword || "--")}</td>
@@ -2090,6 +2326,11 @@
                   ${STATIC_MODE ? `<td class="px-3 py-3 text-slate-700 whitespace-nowrap">${escapeHtml(a.approved_by_email || "--")}</td>` : ""}
                   <td class="px-3 py-3 sticky right-0 bg-white shadow-[-8px_0_12px_-10px_rgba(30,64,175,0.25)]">
                     <div class="flex items-center justify-end gap-1.5">
+                      <button onclick="openReviewInputModal({ mode: 'edit', id: ${Number(a.id)} })"
+                              title="${a.content_type === "review" ? "Nhập / sửa dữ liệu bài đánh giá" : "Chuyển thành bài Đánh giá sản phẩm và nhập dữ liệu"}"
+                              class="px-2.5 py-1.5 rounded-full bg-white hover:bg-orange-50 border border-orange-200 text-orange-700 text-[11px] font-extrabold tracking-wide transition">
+                        ${a.content_type === "review" ? "DỮ LIỆU" : "→ ĐÁNH GIÁ"}
+                      </button>
                       <button onclick="copyText('${escapeAttr(a.keyword)}')" title="Copy keyword" aria-label="Copy keyword"
                               class="w-8 h-8 rounded-full hover:bg-blue-50 text-slate-400 hover:text-blue-600 inline-flex items-center justify-center transition">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
@@ -2653,7 +2894,8 @@
                         return rej ? `<div class="mt-1 text-[11px] text-rose-600 max-w-[320px]" title="${escapeAttr(rej.review_note)}">Yêu cầu chỉnh sửa lần trước:${escapeHtml(rej.review_note.length > 90 ? rej.review_note.slice(0, 90) + "…" : rej.review_note)}</div>` : "";
                       })()}
                       <div class="mt-1 flex flex-wrap items-center gap-1.5 text-[11px]">
-                        ${item.niche ? `<span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-semibold">${escapeHtml(item.niche)}</span>` : ""}
+                        ${typeBadge(item)}
+                        ${item.niche ?`<span class="px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 font-semibold">${escapeHtml(item.niche)}</span>` : ""}
                       </div>
                     </td>
                     <td class="px-3 py-3">

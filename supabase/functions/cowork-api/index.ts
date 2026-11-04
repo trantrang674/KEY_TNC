@@ -4,7 +4,9 @@
 // SUPABASE_URL và SUPABASE_SERVICE_ROLE_KEY được Supabase tự cấp cho Edge Function.
 //
 // Mọi request phải có header:  x-api-key: <COWORK_API_KEY>
-//   GET  /cowork-api/keywords           keyword đã duyệt CHƯA có outline (?all=1 để lấy tất cả)
+//   GET  /cowork-api/keywords           keyword đã duyệt CHƯA có outline (?all=1 lấy tất cả, ?type=news|review lọc theo loại;
+//                                       mỗi keyword có content_type và review_input = dữ liệu thật người nhập cho bài review)
+//   GET  /cowork-api/outlines/approved?type=news|review  (kèm content_type và review_input)
 //   POST /cowork-api/outlines           đẩy outline (status = pending)
 //   GET  /cowork-api/outlines/approved  outline đã được duyệt và CHƯA có bài viết
 //   POST /cowork-api/articles           đẩy bài viết (status = pending)
@@ -31,6 +33,7 @@ function sameKey(a: string, b: string): boolean {
   return diff === 0;
 }
 
+const CONTENT_TYPES = ["news", "review"];
 const str = (v: unknown, max: number) => (typeof v === "string" ? v.trim().slice(0, max) : "");
 const strList = (v: unknown) => (Array.isArray(v) ? v.map((x) => str(x, 200)).filter(Boolean).slice(0, 20) : []);
 
@@ -42,9 +45,14 @@ Deno.serve(async (req) => {
 
   try {
     if (req.method === "GET" && route === "/keywords") {
-      const { data: kws, error } = await supabase.from("approved_keywords")
-        .select("id, keyword, source_keyword, niche, intent, based_on, report_date, approved_at")
+      // ?type=news|review: mỗi loại dùng đúng một skill (news = tnc-viet-bai-tin, review = tnc-viet-bai-review)
+      const typeParam = url.searchParams.get("type");
+      if (typeParam && !CONTENT_TYPES.includes(typeParam)) return json({ error: "type phải là news hoặc review" }, 400);
+      let q = supabase.from("approved_keywords")
+        .select("id, keyword, source_keyword, niche, intent, based_on, report_date, approved_at, content_type, review_input")
         .order("approved_at", { ascending: true });
+      if (typeParam) q = q.eq("content_type", typeParam);
+      const { data: kws, error } = await q;
       if (error) throw error;
       if (url.searchParams.get("all") === "1") return json({ keywords: kws });
       const { data: outs, error: e2 } = await supabase.from("seo_outlines").select("keyword, status").neq("status", "rejected");
@@ -67,24 +75,52 @@ Deno.serve(async (req) => {
       const keyword = str(b.keyword, 300);
       const outline_md = str(b.outline_md, 60000);
       if (!keyword || !outline_md) return json({ error: "keyword và outline_md là bắt buộc" }, 400);
+      // Loại nội dung do NGƯỜI chọn trên dashboard (approved_keywords.content_type), không nhận từ body
+      let content_type = "news";
+      if (Number.isInteger(b.approved_keyword_id)) {
+        const { data: ak, error: eak } = await supabase.from("approved_keywords")
+          .select("content_type").eq("id", b.approved_keyword_id).maybeSingle();
+        if (eak) throw eak;
+        if (ak?.content_type === "review") content_type = "review";
+      } else {
+        const esc = keyword.replace(/[\\%_]/g, (c) => "\\" + c);
+        const { data: ak, error: eak } = await supabase.from("approved_keywords")
+          .select("content_type").ilike("keyword", esc).limit(1).maybeSingle();
+        if (eak) throw eak;
+        if (ak?.content_type === "review") content_type = "review";
+      }
       const { data, error } = await supabase.from("seo_outlines").insert({
         approved_keyword_id: Number.isInteger(b.approved_keyword_id) ? b.approved_keyword_id : null,
+        content_type,
         keyword,
         outline_md,
         short_kws: strList(b.short_kws),
         long_kws: strList(b.long_kws),
         research: b.research && JSON.stringify(b.research).length <= 500000 ? b.research : null,
         status: "pending", // luôn chờ duyệt, client không chọn được
-      }).select("id, keyword, status").single();
+      }).select("id, keyword, status, content_type").single();
       if (error) return json({ error: error.message }, error.code === "23505" ? 409 : 500);
       return json({ outline: data }, 201);
     }
 
     if (req.method === "GET" && route === "/outlines/approved") {
-      const { data: outs, error } = await supabase.from("seo_outlines")
-        .select("id, keyword, outline_md, short_kws, long_kws, research, reviewed_at, review_note")
+      const typeParam = url.searchParams.get("type");
+      if (typeParam && !CONTENT_TYPES.includes(typeParam)) return json({ error: "type phải là news hoặc review" }, 400);
+      let oq = supabase.from("seo_outlines")
+        .select("id, approved_keyword_id, keyword, content_type, outline_md, short_kws, long_kws, research, reviewed_at, review_note")
         .eq("status", "approved").order("reviewed_at", { ascending: true });
+      if (typeParam) oq = oq.eq("content_type", typeParam);
+      const { data: outs, error } = await oq;
       if (error) throw error;
+      // Dữ liệu thật người nhập cho bài review (thông số, ưu/nhược, ghi chú dùng thật)
+      const akIds = (outs ?? []).map((o) => o.approved_keyword_id).filter((v) => Number.isInteger(v));
+      const inputById = new Map<number, unknown>();
+      if (akIds.length) {
+        const { data: aks, error: eak } = await supabase.from("approved_keywords")
+          .select("id, review_input").in("id", akIds as number[]);
+        if (eak) throw eak;
+        for (const a of aks ?? []) inputById.set(a.id, a.review_input);
+      }
       const { data: arts, error: e2 } = await supabase.from("seo_articles").select("outline_id").neq("status", "rejected");
       if (e2) throw e2;
       const written = new Set((arts ?? []).map((a) => a.outline_id));
@@ -95,7 +131,11 @@ Deno.serve(async (req) => {
       const lastRej = new Map<number, string>();
       for (const a of rejArts ?? []) if (a.review_note) lastRej.set(a.outline_id, a.review_note);
       return json({
-        outlines: (outs ?? []).filter((o) => !written.has(o.id)).map((o) => ({ ...o, rejected_article_note: lastRej.get(o.id) ?? null })),
+        outlines: (outs ?? []).filter((o) => !written.has(o.id)).map((o) => ({
+          ...o,
+          review_input: inputById.get(o.approved_keyword_id as number) ?? null,
+          rejected_article_note: lastRej.get(o.id) ?? null,
+        })),
       });
     }
 
@@ -169,13 +209,18 @@ Deno.serve(async (req) => {
       if (!Number.isInteger(b.outline_id) || !title || !content_md) {
         return json({ error: "outline_id, title, content_md là bắt buộc" }, 400);
       }
+      // word_count phải là số từ thật (>= 1), tránh lỗi gửi 0 làm dashboard hiện sai
+      if (!Number.isInteger(b.word_count) || b.word_count < 1) {
+        return json({ error: "word_count phải là số nguyên >= 1 (lấy từ trường word_count trong file .seo_score.json)" }, 400);
+      }
       const { data: outline, error: e1 } = await supabase.from("seo_outlines")
-        .select("id, keyword, status").eq("id", b.outline_id).maybeSingle();
+        .select("id, keyword, status, content_type").eq("id", b.outline_id).maybeSingle();
       if (e1) throw e1;
       if (!outline) return json({ error: "không có outline này" }, 404);
       if (outline.status !== "approved") return json({ error: "outline chưa được duyệt, không được viết bài" }, 409);
       const { data, error } = await supabase.from("seo_articles").insert({
         outline_id: outline.id,
+        content_type: outline.content_type ?? "news", // bài kế thừa loại của outline
         keyword: outline.keyword,
         title,
         content_md,
