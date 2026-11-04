@@ -82,8 +82,12 @@ PHẦN B, viết bài:
    - Bắt buộc chèn khối "## Meta description" ở cuối cùng của file bài viết (150-160 ký tự, từ khóa chính ở ngay đầu câu).
    - Hình ảnh (Tiêu chí 9): tỉ lệ 3:2, 900x600 px, .jpg/.jpeg, caption không chứa từ khóa chính; bài tin >= 2 hình, bài review >= 5 hình (mỗi H2 chèn 1 ảnh, kiểm tra folder "hình ảnh review sản phẩm/<tên_sản_phẩm>/" để lấy ảnh thật hoặc chèn ảnh minh họa đúng quy chuẩn).
    - Chạy evaluate_seo.py và sửa đến khi điểm >= 90 (thang 100):
-       Bài tin tức: python evaluate_seo.py --file "seo_output/<slug>/<slug>.md" --keyword "<keyword>" --auto-kws
-       Bài review:  python evaluate_seo.py --file "seo_output/<slug>/<slug>.md" --keyword "<keyword>" --auto-kws --type review
+       Bài tin tức: python evaluate_seo.py --file "seo_output/<slug>/<slug>.md" --keyword "<keyword>" --short-kws "<short_kws của outline đã duyệt, cách nhau bởi dấu phẩy>" --long-kws "<long_kws của outline đã duyệt>" --quiet
+       Bài review:  python evaluate_seo.py --file "seo_output/<slug>/<slug>.md" --keyword "<keyword>" --short-kws "<short_kws của outline đã duyệt, cách nhau bởi dấu phẩy>" --long-kws "<long_kws của outline đã duyệt>" --type review --quiet
+   - TUYỆT ĐỐI KHÔNG dùng --auto-kws (cờ này lấy key rác từ SerpApi, không phải key phụ đã duyệt). Chỉ dùng --short-kws/--long-kws lấy từ outline đã duyệt.
+   - Kết quả chỉ ĐẠT khi dòng đầu in [PASS] và KHÔNG có dòng "CHẶN" (mật độ từ khóa chính 0.8%-1.2%, key phụ 4-6 từ mỗi từ lặp 2-5 lần). Có "CHẶN" thì sửa bài rồi chấm lại, dù tổng >= 90.
+   - word_count = trường "word_count" trong <slug>.seo_score.json (hoặc số sau "word_count=" ở dòng kết quả). KHÔNG được gửi 0 hay bỏ trống; seo_score cũng lấy từ file này. Phải gửi đúng số của lần chấm cuối cùng.
+   - Nếu dòng kết quả có "CẢNH BÁO ảnh chưa có file": ghi rõ trong thông báo level "warning" (keyword tương ứng) rằng ảnh chưa được chèn thật, không được báo hoàn tất như đã có ảnh.
    - Lưu bài vào seo_output/<slug>/<slug>.md (kèm <slug>.seo_score.json cùng thư mục) TRƯỚC khi đẩy lên API.
 6. Tạo file Google Docs cho bài bằng connector Google Drive/Docs, trong thư mục Drive có ID
    1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz (https://drive.google.com/drive/folders/1fRp_DIEG6NszTzxzJSet3BFqAXKRlUTz).
@@ -91,7 +95,7 @@ PHẦN B, viết bài:
    thêm meta description ở đầu file. Lấy link file Docs (https://docs.google.com/document/d/<id>/edit).
    Nếu connector lỗi hoặc không có quyền vào thư mục: KHÔNG dừng, vẫn làm bước 7 với google_doc_url bỏ trống,
    và gửi thông báo level "warning" (title "Không tạo được Google Docs", message ghi lý do, keyword tương ứng).
-7. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count,
+7. TRƯỚC khi POST, kiểm tra word_count >= 1500 và seo_score >= 90 từ file .seo_score.json; sau khi POST, GET lại hoặc đọc phản hồi để chắc word_count không phải 0. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count,
    google_doc_url (link Docs ở bước 6; dashboard sẽ hiện nút "Docs").
 
 PHẦN C, quét & chấm điểm lại bài cũ NÊN LÀM MỚI (HOÀN TOÀN KHÔNG TỐN LƯỢT SERPAPI, chỉ ĐỀ XUẤT):
