@@ -33,7 +33,7 @@ Mọi request có header `x-api-key: $COWORK_API_KEY`.
 
 `GET /keywords` trả thêm `rejected_note` (lý do người duyệt từ chối outline trước), `GET /outlines/approved` trả thêm `rejected_article_note` (lý do từ chối bài trước).
 
-**Loại nội dung (cần chạy `database/content_type.sql` một lần):** `GET /keywords` và `GET /outlines/approved` nhận `?type=news|review`; mỗi mục trả `content_type` và `review_input` (dữ liệu thật người nhập cho bài đánh giá: `product_name, tnc_url, specs, pros, cons, tester_notes, has_hands_on, image_folder`; có thể null).
+**Loại nội dung (cần chạy `database/content_type.sql` một lần):** `GET /keywords` và `GET /outlines/approved` nhận `?type=news|review`; mỗi mục trả `content_type` và `review_input` (dữ liệu thật người nhập cho bài đánh giá, có `form_type` = `single` | `build_pc` | `toplist` ứng với 3 mẫu trong FORM_INPUT_REVIEW.md: single có `tnc_url, specs, pros, cons`; build_pc có `purpose, components{cpu,mainboard,ram,vga,storage,cooling_psu,case}`; toplist có `products[]`; chung có `tester_notes, has_hands_on, image_folder`; có thể null).
 Loại bài do NGƯỜI chọn trên dashboard (ô "Loại bài" ở form Thêm KEYWORD; keyword từ Top 20 luôn là `news`). `POST /outlines` và `POST /articles` tự lấy `content_type` từ keyword/outline, không nhận từ body.
 `POST /articles` trả 400 nếu `word_count` không phải số nguyên >= 1.
 
@@ -55,12 +55,13 @@ BƯỚC 0 (đầu lần chạy): POST {COWORK_API_URL}/heartbeat với {"status"
 Dashboard dựa vào đây để hiện "Cowork chạy lần cuối" và báo đỏ nếu quá 26 giờ không có nhịp. Lỗi gọi /heartbeat không được làm dừng lần chạy.
 
 QUY TẮC RIÊNG CHO BÀI ĐÁNH GIÁ (content_type = "review"), áp dụng cả Phần A và Phần B:
-- Mỗi keyword/outline review có trường review_input (có thể null hoặc thiếu một số ô): {product_name?, tnc_url?, specs?, pros?, cons?, tester_notes?, has_hands_on?, image_folder?}
+- Mỗi keyword/outline review có trường review_input (có thể null hoặc thiếu một số ô): {form_type, ...}. form_type do người chọn, khớp 3 mẫu trong FORM_INPUT_REVIEW.md: "single" (Mẫu 1: tnc_url?, specs? gồm giá/SKU, pros?, cons?), "build_pc" (Mẫu 2: purpose?, components? = {cpu, mainboard, ram, vga, storage, cooling_psu, case}), "toplist" (Mẫu 3: products? = danh sách tối đa 5 sản phẩm); mọi mẫu đều có thể có tester_notes?, has_hands_on?, image_folder?}
   do NGƯỜI nhập trên dashboard. Đây là nguồn dữ liệu thật duy nhất cho thông số và trải nghiệm.
 - Thông số: chỉ lấy từ review_input.specs, từ trang sản phẩm tnc_url (chỉ để ĐỌC, cấm chèn link vào bài) và thông số do hãng công bố có trong report.md. Thiếu thông số nào thì bỏ qua
   hoặc ghi "theo thông số công bố", TUYỆT ĐỐI KHÔNG bịa số liệu, KHÔNG bịa điểm benchmark, thời lượng pin hay nhiệt độ.
 - Trải nghiệm dùng thật: chỉ được viết khi review_input.has_hands_on = true, và chỉ dựa trên pros, cons, tester_notes. Nếu has_hands_on không phải true thì CẤM mọi câu kiểu
   "chúng tôi đã dùng thử", "qua trải nghiệm thực tế", "khi sử dụng thấy", "test thực tế"; viết theo hướng tổng hợp thông số công bố và phù hợp với ai.
+- Dạng bài theo form_type: single = review 1 sản phẩm; build_pc = bài Build PC (dùng đúng danh sách components, không thêm/bớt linh kiện); toplist = bài top-list đúng các sản phẩm trong products (không thêm sản phẩm ngoài danh sách).
 - Folder ảnh: image_folder nếu có, nếu trống dùng tên sản phẩm trong "hình ảnh review sản phẩm/".
 - Nếu thiếu dữ liệu quan trọng (không có specs và không có tnc_url) thì vẫn lập outline từ thông số công bố, nhưng gửi thông báo level "warning" (keyword tương ứng)
   nhắc người dùng nhập dữ liệu trên dashboard.

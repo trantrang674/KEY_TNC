@@ -7,8 +7,11 @@
 --   * content_type = 'review' -> Cowork dùng skill tnc-viet-bai-review
 --   * NGƯỜI chọn loại trên dashboard (không để AI đoán). Keyword lấy từ Top 20 tự quét luôn là 'news'.
 --   * review_input (JSONB, chỉ dùng cho 'review'): dữ liệu thật do người nhập để AI không bịa:
---       { "product_name": "", "tnc_url": "", "specs": "", "pros": "", "cons": "", "tester_notes": "",
---         "has_hands_on": false, "image_folder": "" }
+--       { "form_type": "single" | "build_pc" | "toplist",   -- 3 mẫu trong FORM_INPUT_REVIEW.md
+--         single:   "tnc_url", "specs", "pros", "cons"
+--         build_pc: "purpose", "components": {"cpu","mainboard","ram","vga","storage","cooling_psu","case"}
+--         toplist:  "products": ["...", ... tối đa 5]
+--         chung:    "tester_notes", "has_hands_on": true|false, "image_folder" }
 --     has_hands_on = true khi người nhập xác nhận đã trực tiếp dùng sản phẩm.
 -- =====================================================================
 

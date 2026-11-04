@@ -1155,24 +1155,62 @@
           <label class="block text-xs font-bold text-slate-800 mb-1">Tên sản phẩm (keyword):</label>
           <div id="rvKw" class="text-xs font-extrabold text-blue-700 bg-blue-50 px-3 py-2 rounded-xl break-words"></div>
         </div>
+        <div>
+          <label for="rvFormType" class="block text-xs font-bold text-slate-800 mb-1">Dạng bài đánh giá:</label>
+          <select id="rvFormType" onchange="onReviewFormTypeChange()" class="w-full bg-white border border-blue-100 rounded-xl px-3 py-2 text-xs font-semibold text-slate-700 focus:outline-none focus:border-blue-500">
+            <option value="single">Mẫu 1: Đánh giá 1 sản phẩm đơn lẻ (laptop, router, màn hình, gear...)</option>
+            <option value="build_pc">Mẫu 2: Dàn máy / giải pháp Build PC</option>
+            <option value="toplist">Mẫu 3: Top-list / phân khúc sản phẩm</option>
+          </select>
+          <div id="rvFormSuggest" class="hidden mt-1 text-[11px] text-amber-700"></div>
+        </div>
         <p class="text-[11px] text-slate-500 leading-relaxed">
           Tất cả các ô đều <strong>không bắt buộc</strong>. Cowork chỉ viết dựa trên dữ liệu bạn nhập và thông số do hãng công bố.
           Ô nào để trống, bài sẽ không bịa thông số hay trải nghiệm.
         </p>
         <div class="space-y-3">
-          <div>
-            <label for="rvUrl" class="block text-xs font-bold text-slate-800 mb-1">Link trang sản phẩm TNC <span class="font-normal text-slate-400">(chỉ để Cowork đọc thông số, không chèn vào bài)</span></label>
-            <input type="url" id="rvUrl" placeholder="https://www.tnc.com.vn/..." class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" />
+          <!-- MẪU 1: 1 sản phẩm đơn lẻ -->
+          <div id="rvSecSingle" class="space-y-3">
+            <div>
+              <label for="rvUrl" class="block text-xs font-bold text-slate-800 mb-1">Link sản phẩm TNC <span class="font-normal text-slate-400">(chỉ để Cowork đọc thông số, không chèn vào bài)</span></label>
+              <input type="url" id="rvUrl" placeholder="https://www.tnc.com.vn/..." class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" />
+            </div>
+            <div>
+              <label for="rvSpecs" class="block text-xs font-bold text-slate-800 mb-1">Thông số chính, giá / SKU <span class="font-normal text-slate-400">(CPU, RAM, màn hình, giá, bảo hành...)</span></label>
+              <textarea id="rvSpecs" rows="3" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Bản Core Ultra 5, RAM 16GB, SSD 512GB, màn 2.5K cảm ứng, giá 35,9 triệu, bảo hành 2 năm"></textarea>
+            </div>
           </div>
-          <div>
-            <label for="rvSpecs" class="block text-xs font-bold text-slate-800 mb-1">Thông số chính <span class="font-normal text-slate-400">(CPU, RAM, màn hình, giá, bảo hành...)</span></label>
-            <textarea id="rvSpecs" rows="3" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Core Ultra 5, RAM 16GB, SSD 512GB, màn 2.5K cảm ứng, giá 35,9 triệu, bảo hành 2 năm"></textarea>
+          <!-- MẪU 2: dàn máy / Build PC -->
+          <div id="rvSecBuild" class="hidden space-y-3">
+            <div>
+              <label for="rvPurpose" class="block text-xs font-bold text-slate-800 mb-1">Mục đích chính của dàn máy</label>
+              <input type="text" id="rvPurpose" maxlength="500" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Chạy AI Local offline, LLM Llama 3, Stable Diffusion, dựng phim 4K" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div><label for="rvCpu" class="block text-xs font-bold text-slate-800 mb-1">CPU</label><input type="text" id="rvCpu" maxlength="300" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: AMD Ryzen 9 9950X" /></div>
+              <div><label for="rvMain" class="block text-xs font-bold text-slate-800 mb-1">Mainboard</label><input type="text" id="rvMain" maxlength="300" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: GIGABYTE X870 A ELITE WIFI7" /></div>
+              <div><label for="rvRam" class="block text-xs font-bold text-slate-800 mb-1">RAM</label><input type="text" id="rvRam" maxlength="300" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: CORSAIR DDR5 64GB (2x32GB) 6000MHz" /></div>
+              <div><label for="rvVga" class="block text-xs font-bold text-slate-800 mb-1">VGA</label><input type="text" id="rvVga" maxlength="300" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: ASUS RTX 5070 Ti OC 16GB" /></div>
+              <div><label for="rvStorage" class="block text-xs font-bold text-slate-800 mb-1">SSD / HDD</label><input type="text" id="rvStorage" maxlength="300" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Kingston NV3 1TB + Seagate 4TB" /></div>
+              <div><label for="rvCooling" class="block text-xs font-bold text-slate-800 mb-1">Tản nhiệt / Nguồn</label><input type="text" id="rvCooling" maxlength="300" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: AIO 360 + Nguồn 1000W Gold" /></div>
+              <div class="sm:col-span-2"><label for="rvCase" class="block text-xs font-bold text-slate-800 mb-1">Vỏ case</label><input type="text" id="rvCase" maxlength="300" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Xigmatek Anubis Pro 4FX" /></div>
+            </div>
+          </div>
+          <!-- MẪU 3: top-list 5 sản phẩm -->
+          <div id="rvSecTop" class="hidden space-y-2">
+            <label class="block text-xs font-bold text-slate-800">Danh sách 5 sản phẩm tại TNC <span class="font-normal text-slate-400">(tên + 1 dòng đặc điểm)</span></label>
+            <input type="text" id="rvP1" maxlength="300" class="rv-top w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="1. VD: MSI PRO MP242L - 23.8 inch IPS 100Hz có cổng DP" />
+            <input type="text" id="rvP2" maxlength="300" class="rv-top w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="2. VD: Lenovo ThinkVision S22-4e - 21.5 inch 99% sRGB" />
+            <input type="text" id="rvP3" maxlength="300" class="rv-top w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="3. ..." />
+            <input type="text" id="rvP4" maxlength="300" class="rv-top w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="4. ..." />
+            <input type="text" id="rvP5" maxlength="300" class="rv-top w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="5. ..." />
           </div>
           <label class="flex items-start gap-2 text-xs text-slate-800 bg-orange-50 border border-orange-100 rounded-xl px-3 py-2.5 cursor-pointer">
             <input type="checkbox" id="rvHandsOn" class="mt-0.5" onchange="onReviewHandsOnChange()" />
             <span><strong>Tôi/nhóm đã trực tiếp dùng sản phẩm này.</strong> Chỉ khi tích ô này, bài mới được viết trải nghiệm dùng thật, và chỉ dựa trên các ô bên dưới.</span>
           </label>
           <div id="rvHandsOnFields" class="space-y-3">
+            <div id="rvProsConsWrap" class="space-y-3">
             <div>
               <label for="rvPros" class="block text-xs font-bold text-slate-800 mb-1">Ưu điểm đã dùng thực tế</label>
               <textarea id="rvPros" rows="2" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Vỏ nhôm CNC chắc, bàn phím gõ êm, màn rất nét"></textarea>
@@ -1180,6 +1218,7 @@
             <div>
               <label for="rvCons" class="block text-xs font-bold text-slate-800 mb-1">Nhược điểm đã dùng thực tế</label>
               <textarea id="rvCons" rows="2" maxlength="3000" class="w-full bg-slate-50 border border-blue-100 rounded-xl px-3 py-2 text-xs text-slate-900 focus:outline-none focus:border-blue-500" placeholder="VD: Chỉ có 2 cổng Type-C, cần thêm hub"></textarea>
+            </div>
             </div>
             <div>
               <label for="rvNotes" class="block text-xs font-bold text-slate-800 mb-1">Ghi chú thực tế khác (Tester Notes)</label>
@@ -2107,9 +2146,28 @@
       reviewModalCtx = ctx;
       const rec = ctx.mode === "edit" ? (approvedKeywords.find(a => Number(a.id) === Number(ctx.id)) || {}) : ctx.record;
       const ri = rec.review_input || {};
+      const comp = ri.components || {};
+      const prods = Array.isArray(ri.products) ? ri.products : [];
       byId("rvKw").textContent = rec.keyword || "";
+      // Mẫu đã lưu thì dùng lại; chưa có thì gợi ý từ keyword (người dùng xác nhận bằng cách giữ hoặc đổi)
+      const guessed = guessReviewFormType(rec.keyword || "");
+      byId("rvFormType").value = ri.form_type || guessed;
+      const sug = byId("rvFormSuggest");
+      if (!ri.form_type && guessed !== "single") {
+        sug.textContent = "Gợi ý theo keyword: " + (guessed === "build_pc" ? "Mẫu 2 (Build PC)" : "Mẫu 3 (Top-list)") + ". Đổi lại nếu chưa đúng.";
+        sug.classList.remove("hidden");
+      } else { sug.classList.add("hidden"); }
       byId("rvUrl").value = ri.tnc_url || "";
       byId("rvSpecs").value = ri.specs || "";
+      byId("rvPurpose").value = ri.purpose || "";
+      byId("rvCpu").value = comp.cpu || "";
+      byId("rvMain").value = comp.mainboard || "";
+      byId("rvRam").value = comp.ram || "";
+      byId("rvVga").value = comp.vga || "";
+      byId("rvStorage").value = comp.storage || "";
+      byId("rvCooling").value = comp.cooling_psu || "";
+      byId("rvCase").value = comp.case || "";
+      [1, 2, 3, 4, 5].forEach(n => { byId("rvP" + n).value = prods[n - 1] || ""; });
       byId("rvHandsOn").checked = !!ri.has_hands_on;
       byId("rvPros").value = ri.pros || "";
       byId("rvCons").value = ri.cons || "";
@@ -2117,8 +2175,27 @@
       byId("rvFolder").value = ri.image_folder || "";
       byId("rvToNews").classList.toggle("hidden", ctx.mode !== "edit");
       byId("rvSaveBtn").textContent = ctx.mode === "edit" ? "Lưu dữ liệu" : "Lưu & thêm keyword";
-      onReviewHandsOnChange();
+      onReviewFormTypeChange();
       byId("reviewInputModal").classList.remove("hidden");
+    }
+
+    // Đoán mẫu từ keyword: chỉ là gợi ý chọn sẵn, người dùng vẫn tự xác nhận / đổi
+    function guessReviewFormType(kw) {
+      const k = String(kw || "").toLowerCase();
+      if (/(build\s*pc|dàn máy|cấu hình pc|pc\s+(ai|gaming|workstation|đồ họa|văn phòng)|bộ pc)/i.test(k)) return "build_pc";
+      if (/\btop\s*\d+|\b\d+\s*(sản phẩm|mẫu|chiếc)\b|tốt nhất|đáng mua|dưới \d+/i.test(k)) return "toplist";
+      return "single";
+    }
+
+    // Hiện đúng các mục theo mẫu: Mẫu 1 đơn lẻ / Mẫu 2 Build PC / Mẫu 3 Top-list
+    function onReviewFormTypeChange() {
+      const t = byId("rvFormType").value;
+      byId("rvSecSingle").classList.toggle("hidden", t !== "single");
+      byId("rvSecBuild").classList.toggle("hidden", t !== "build_pc");
+      byId("rvSecTop").classList.toggle("hidden", t !== "toplist");
+      byId("rvProsConsWrap").classList.toggle("hidden", t !== "single"); // Mẫu 2, 3 chỉ có "Ghi chú thực tế"
+      byId("rvFormSuggest").classList.add("hidden");
+      onReviewHandsOnChange();
     }
 
     function closeReviewInputModal() {
@@ -2135,20 +2212,36 @@
 
     function collectReviewInput() {
       const clean = (id) => byId(id).value.replace(/\r/g, "").trim();
-      const out = {};
-      const url = clean("rvUrl");
-      if (url) {
-        if (!/^https?:\/\//i.test(url)) throw new Error("Link trang sản phẩm phải bắt đầu bằng http:// hoặc https://");
-        out.tnc_url = url;
+      const type = byId("rvFormType").value;
+      const out = { form_type: type };
+      if (type === "single") {
+        const url = clean("rvUrl");
+        if (url) {
+          if (!/^https?:\/\//i.test(url)) throw new Error("Link trang sản phẩm phải bắt đầu bằng http:// hoặc https://");
+          out.tnc_url = url;
+        }
+        if (clean("rvSpecs")) out.specs = clean("rvSpecs");
+      } else if (type === "build_pc") {
+        if (clean("rvPurpose")) out.purpose = clean("rvPurpose");
+        const comp = {};
+        [["cpu", "rvCpu"], ["mainboard", "rvMain"], ["ram", "rvRam"], ["vga", "rvVga"], ["storage", "rvStorage"], ["cooling_psu", "rvCooling"], ["case", "rvCase"]]
+          .forEach(([k, id]) => { if (clean(id)) comp[k] = clean(id); });
+        if (Object.keys(comp).length) out.components = comp;
+      } else {
+        const products = [1, 2, 3, 4, 5].map(n => clean("rvP" + n)).filter(Boolean);
+        if (products.length) out.products = products;
       }
-      if (clean("rvSpecs")) out.specs = clean("rvSpecs");
       const hands = byId("rvHandsOn").checked;
       if (hands) {
-        if (clean("rvPros")) out.pros = clean("rvPros");
-        if (clean("rvCons")) out.cons = clean("rvCons");
+        if (type === "single") {
+          if (clean("rvPros")) out.pros = clean("rvPros");
+          if (clean("rvCons")) out.cons = clean("rvCons");
+        }
         if (clean("rvNotes")) out.tester_notes = clean("rvNotes");
         if (!out.pros && !out.cons && !out.tester_notes) {
-          throw new Error("Đã tích \"trực tiếp dùng\" thì cần nhập ít nhất một trong: ưu điểm, nhược điểm, ghi chú thực tế.");
+          throw new Error(type === "single"
+            ? "Đã tích \"trực tiếp dùng\" thì cần nhập ít nhất một trong: ưu điểm, nhược điểm, ghi chú thực tế."
+            : "Đã tích \"trực tiếp dùng\" thì cần nhập ghi chú thực tế.");
         }
         out.has_hands_on = true;
       }
@@ -2313,8 +2406,8 @@
                     <div class="font-bold text-slate-900">${escapeHtml(a.keyword)}</div>
                     <div class="mt-0.5 flex flex-wrap items-center gap-1.5">
                       ${typeBadge(a)}
-                      ${a.content_type === "review" ? (a.review_input && Object.keys(a.review_input).length
-                          ? `<span class="text-[10px] font-bold text-emerald-600">Đã có dữ liệu${a.review_input.has_hands_on ? " · đã dùng thật" : ""}</span>`
+                      ${a.content_type === "review" ? (a.review_input && Object.keys(a.review_input).some(k => k !== "form_type")
+                          ? `<span class="text-[10px] font-bold text-emerald-600">Đã có dữ liệu · ${({ single: "Mẫu 1", build_pc: "Mẫu 2 Build PC", toplist: "Mẫu 3 Top-list" })[a.review_input.form_type] || "Mẫu 1"}${a.review_input.has_hands_on ? " · đã dùng thật" : ""}</span>`
                           : `<span class="text-[10px] font-bold text-slate-400">Chưa nhập dữ liệu</span>`) : ""}
                     </div>
                     ${a.intent ? `<div class="text-[11px] text-slate-500 mt-0.5">${escapeHtml(a.intent)}</div>` : ""}
