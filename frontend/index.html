@@ -1094,10 +1094,6 @@
           </div>
           <div class="flex items-center gap-2 shrink-0">
             <div id="artModalActions" class="flex items-center gap-1.5"></div>
-            <button type="button" onclick="copyArticleMarkdown()" class="px-3 py-1.5 rounded-xl bg-white hover:bg-blue-50 border border-blue-200 text-blue-700 font-semibold text-xs flex items-center gap-1.5 transition">
-              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
-              Copy Markdown
-            </button>
             <button type="button" onclick="closeArticleModal()" aria-label="Đóng" class="w-9 h-9 rounded-full bg-slate-100 hover:bg-rose-50 text-slate-500 hover:text-rose-600 flex items-center justify-center transition">
               <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/></svg>
             </button>
@@ -3058,7 +3054,14 @@
       }
       byId("artTabPreview").textContent = isOutline ? "XEM OUTLINE" : "XEM BÀI VIẾT";
       byId("artModalBodyPreview").innerHTML = preview;
-      byId("artModalBodyReport").innerHTML = renderReportHtml(artReportMd);
+      if (isOutline) {
+        byId("artModalBodyReport").innerHTML = renderReportHtml(artReportMd);
+      } else {
+        // Bài viết: XEM REPORT = file chấm điểm SEO (<slug>.seo_score.json), đồng bộ vào research.seo_score
+        const sc = outline?.research?.seo_score || null;
+        artReportMd = sc ? JSON.stringify(sc, null, 2) : "";
+        byId("artModalBodyReport").innerHTML = renderSeoScoreHtml(sc, item);
+      }
 
       switchArticleTab(tab === "report" ? "report" : "preview");
       show("articleModal", true);
@@ -3173,11 +3176,6 @@
       const off = "px-3 py-1 rounded-lg font-medium text-slate-600 hover:bg-slate-100";
       byId("artTabPreview").className = tab === "preview" ? on : off;
       byId("artTabReport").className = tab === "report" ? on : off;
-    }
-
-    // Đang xem Report thì copy report.md, ngược lại copy outline / bài viết
-    function copyArticleMarkdown() {
-      copyText(artTab === "report" ? artReportMd : artRawMd);
     }
 
     // Modal Thêm / Sửa Link Bài Đã Đăng
@@ -3460,6 +3458,60 @@
             ${created ? `<p class="text-xs text-slate-500 mt-0.5">${escapeHtml(created)}</p>` : ""}
           </div>
           ${body}
+        </div>`;
+    }
+
+    // =====================================================================
+    // XEM REPORT của BÀI VIẾT: file chấm điểm SEO 13 tiêu chí (<slug>.seo_score.json)
+    // =====================================================================
+    const SEO_CRITERIA = {
+      title: "Tiêu đề", meta: "Meta description", kw_density: "Mật độ từ khóa chính", secondary_kws: "Từ khóa phụ",
+      word_count: "Số từ", headings: "Cấu trúc H2/H3", opening: "Mở bài (sapo)", readability: "Độ dễ đọc",
+      images: "Hình ảnh", uniqueness: "Độc bản", emdash: "Dấu em-dash", faq: "FAQ", conclusion: "Kết luận"
+    };
+
+    function renderSeoScoreHtml(sc, item) {
+      if (!sc) {
+        const n = item && item.seo_score != null ? `<p class="text-sm text-slate-700 mt-2">Điểm SEO đã ghi nhận: <strong>${escapeHtml(item.seo_score)}/100</strong></p>` : "";
+        return `<div class="py-14 text-center">
+          <p class="text-sm font-bold text-slate-900">Chưa có file chấm điểm SEO cho bài này</p>${n}
+          <p class="text-xs text-slate-500 mt-1.5">Chạy <code class="px-1.5 py-0.5 bg-blue-50 border border-blue-100 rounded font-mono">python sync_reports.py --apply</code> để đồng bộ file <code class="font-mono">.seo_score.json</code> từ thư mục seo_output.</p>
+        </div>`;
+      }
+      const total = Number(sc.total_score) || 0;
+      const passed = !!sc.passed;
+      const details = sc.details || {};
+      const rows = Object.keys(SEO_CRITERIA).filter(k => details[k] || (sc.scores || {})[k] != null).map(k => {
+        const d = details[k] || {};
+        const score = Number(d.score ?? (sc.scores || {})[k]) || 0;
+        const max = Number(d.max) || 0;
+        const pct = max ? Math.round(score / max * 100) : 0;
+        const full = max && score >= max - 0.05;
+        const bar = full ? "bg-emerald-500" : pct >= 70 ? "bg-amber-500" : "bg-rose-500";
+        const text = d.text ? `<div class="mt-1 text-[11px] text-slate-500 italic break-words">“${escapeHtml(d.text)}”</div>` : "";
+        return `<div class="rounded-xl border border-blue-100 bg-white px-3 py-2.5">
+          <div class="flex items-center justify-between gap-2 text-xs">
+            <span class="font-bold text-slate-900">${escapeHtml(SEO_CRITERIA[k])}</span>
+            <span class="font-extrabold ${full ? "text-emerald-600" : "text-slate-700"}">${score}${max ? `/${max}` : ""}</span>
+          </div>
+          <div class="mt-1.5 h-1.5 rounded-full bg-slate-100"><div class="h-1.5 rounded-full ${bar}" style="width:${pct}%"></div></div>
+          ${d.notes ? `<div class="mt-1.5 text-[11px] text-slate-600">${escapeHtml(d.notes)}</div>` : ""}${text}
+        </div>`;
+      }).join("");
+      const sug = (sc.suggestions || []);
+      return `
+        <div class="space-y-4">
+          <div class="flex flex-wrap items-center gap-3">
+            <div class="text-4xl font-extrabold ${passed ? "text-emerald-600" : "text-amber-600"} leading-none">${total}<span class="text-base font-bold text-slate-400">/100</span></div>
+            <span class="px-2.5 py-1 rounded-full border text-[11px] font-extrabold ${passed ? "bg-emerald-100 text-emerald-700 border-emerald-200" : "bg-amber-100 text-amber-700 border-amber-200"}">${passed ? "Đạt chuẩn (≥ 90)" : "Chưa đạt (cần ≥ 90)"}</span>
+            ${sc.article_type ? `<span class="px-2.5 py-1 rounded-full bg-slate-100 text-slate-600 text-[11px] font-bold">${sc.article_type === "review" ? "Bài review" : "Bài tin"}</span>` : ""}
+            ${sc.keyword ? `<span class="text-xs text-slate-500">Từ khóa: <strong class="text-slate-700">${escapeHtml(sc.keyword)}</strong></span>` : ""}
+          </div>
+          ${sug.length ? `<section class="rounded-2xl border border-amber-200 bg-amber-50/60 p-4">
+            <h3 class="text-sm font-extrabold text-slate-900 mb-2">Cần chỉnh (${sug.length})</h3>
+            <ul class="space-y-1.5 text-xs text-slate-700">${sug.map(s => `<li class="flex gap-2"><span class="text-amber-500">▸</span><span>${escapeHtml(s)}</span></li>`).join("")}</ul>
+          </section>` : ""}
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">${rows}</div>
         </div>`;
     }
 

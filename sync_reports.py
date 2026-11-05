@@ -11,6 +11,7 @@ Biến môi trường (.env): SUPABASE_URL, SUPABASE_SERVICE_KEY. Tùy chọn: S
 Chạy:  python sync_reports.py            (xem trước)
        python sync_reports.py --apply    (ghi lên Supabase)
 """
+import json
 import os
 import re
 import sys
@@ -76,10 +77,20 @@ def main() -> None:
             continue
         md = f.read_text(encoding="utf-8")
         research = dict(o.get("research") or {})
-        if research.get("report_md") == md:
+        score = None
+        sf = next(iter(sorted(f.parent.glob("*.seo_score.json"))), None)
+        if sf:
+            try:
+                score = json.loads(sf.read_text(encoding="utf-8"))
+                score.pop("file", None)  # bỏ đường dẫn máy cá nhân
+            except Exception as e:
+                print(f"  ! {sf.name}: không đọc được ({e})")
+        if research.get("report_md") == md and (score is None or research.get("seo_score") == score):
             skipped += 1
             continue
         research["report_md"] = md
+        if score is not None:
+            research["seo_score"] = score
         research["report_synced_at"] = datetime.now(timezone.utc).isoformat()
         print(f"  {'ghi' if apply else 'sẽ ghi'}: {o['keyword']}  <-  {f.parent.name}/report.md ({len(md)} ký tự)")
         if apply:
