@@ -114,6 +114,10 @@ PHẦN B, viết bài:
    và gửi thông báo level "warning" (title "Không tạo được Google Docs", message ghi lý do, keyword tương ứng).
 7. TRƯỚC khi POST, kiểm tra word_count >= 1500 và seo_score >= 90 từ file .seo_score.json; sau khi POST, GET lại hoặc đọc phản hồi để chắc word_count không phải 0. POST {COWORK_API_URL}/articles với outline_id, title, content_md, meta_description, seo_score, word_count,
    google_doc_url (link Docs ở bước 6; dashboard sẽ hiện nút "Docs").
+   QUY TẮC CỨNG (chủ dự án đã chốt, KHÔNG chỉnh lại): mỗi bài viết/update đẩy lên dashboard PHẢI có ĐỦ CẢ HAI phần:
+   (a) bài viết (content_md) và (b) report chấm điểm SEO (research.report_md từ seo_output/<slug>/report.md + seo_score từ <slug>.seo_score.json).
+   Sau khi POST xong, nếu dashboard còn báo "Chưa có file chấm điểm SEO" (thiếu report_md/seo_score) thì chạy
+   `python sync_reports.py --apply` (thư mục tnc-seo-keyword-news/KEY_TNC) rồi kiểm tra lại. Không báo hoàn tất khi còn thiếu một trong hai.
 
 PHẦN C, quét & chấm điểm lại bài cũ NÊN LÀM MỚI (HOÀN TOÀN KHÔNG TỐN LƯỢT SERPAPI, chỉ ĐỀ XUẤT):
 8. Chạy script chẩn đoán tự động: `python refresh_audit.py --limit 3 --json`
