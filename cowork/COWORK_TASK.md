@@ -31,6 +31,8 @@ Mọi request có header `x-api-key: $COWORK_API_KEY`.
 
 | POST | `/heartbeat` | Báo "Cowork vừa chạy": `{status: "running"|"ok"|"error", summary?}` (cần `database/cowork_heartbeat.sql`) |
 
+Nút **BỎ** trên Workflow đặt outline/bài sang `status = dropped`: keyword đó không còn nằm trong `GET /keywords` hay `GET /outlines/approved`, `POST /articles` cho outline đã bỏ trả 409. Cowork không lập lại, không viết lại, không cần gắn link. Không tự đổi trạng thái này.
+
 `GET /keywords` trả thêm `rejected_note` (lý do người duyệt từ chối outline trước), `GET /outlines/approved` trả thêm `rejected_article_note` (lý do từ chối bài trước).
 
 **Loại nội dung (cần chạy `database/content_type.sql` một lần):** `GET /keywords` và `GET /outlines/approved` nhận `?type=news|review`; mỗi mục trả `content_type` và `review_input` (dữ liệu thật người nhập cho bài đánh giá, có `form_type` = `single` | `build_pc` | `toplist` ứng với 3 mẫu trong FORM_INPUT_REVIEW.md: single có `tnc_url, specs, pros, cons`; build_pc có `purpose, components{cpu,mainboard,ram,vga,storage,cooling_psu,case}`; toplist có `products[]`; chung có `tester_notes, has_hands_on, image_folder`; có thể null).

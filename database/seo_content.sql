@@ -18,7 +18,7 @@ CREATE TABLE IF NOT EXISTS public.seo_outlines (
     short_kws            JSONB NOT NULL DEFAULT '[]'::jsonb,   -- key phụ ngắn (3-4 từ)
     long_kws             JSONB NOT NULL DEFAULT '[]'::jsonb,   -- key phụ dài (5-7 từ)
     research             JSONB,                    -- PAA, đối thủ top Google... (tham khảo)
-    status               TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+    status               TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected', 'dropped')),
     review_note          TEXT,
     reviewed_by          UUID REFERENCES auth.users(id) ON DELETE SET NULL,
     reviewed_by_email    TEXT,
@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS public.seo_articles (
     meta_description   TEXT,
     seo_score          NUMERIC(5,1),
     word_count         INTEGER,
-    status             TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
+    status             TEXT NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected', 'dropped')),
     review_note        TEXT,
     reviewed_by        UUID REFERENCES auth.users(id) ON DELETE SET NULL,
     reviewed_by_email  TEXT,
