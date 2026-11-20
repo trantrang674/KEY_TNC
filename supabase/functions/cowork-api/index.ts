@@ -207,7 +207,7 @@ Deno.serve(async (req) => {
       const content_md = str(b.content_md, 200000);
       const title = str(b.title, 300);
       if (!Number.isInteger(b.outline_id) || !title || !content_md) {
-        return json({ error: "outline_id, title, content_md là bắt buộc" }, 400);
+        return json({ error: "outline_id, title, content_md là bắt buộc", debug_keys: Object.keys(b ?? {}), debug_types: { outline_id: typeof b.outline_id, title: typeof b.title, content_md: typeof b.content_md } }, 400);
       }
       // word_count phải là số từ thật (>= 1), tránh lỗi gửi 0 làm dashboard hiện sai
       if (!Number.isInteger(b.word_count) || b.word_count < 1) {
